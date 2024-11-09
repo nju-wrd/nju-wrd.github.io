@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/" /><link rel="apple-touch-icon" href="/favicon_32.ico" />
+  <link rel="icon" href="/favicon_32.ico" />
+  <link rel="shortcut" href="/favicon_32.ico" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/nju-wrd.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "网络安全与检测技术作业丨01",
+      "headline" : "网络安全与检测技术作业丨01",
+      "description" : "题目 作业的内容是网络安全与检测技术 作业 1，其中第八题的内容是：\n我的答案 1.(1)Mi=Dk(Ci⊕Ci−1)⊕Ci-1\n(2)在AES-CBS-STAR模式中，每个密文分组Ci依赖于前一个密文分组Ci−1，即加密过程是串行的，无法进行并行化。\n解密过程中Mi的计算也依赖于前一个密文分组Ci−1，因此，解密过程也是串行的。\n所以AES-CBS-STAR模式既不能并行加密，也不能并行解密。\n(3)由于C0=IV0是已知的，对手能够根据选择的明文和已知的IV，推测出初始密文分组C1或其他分组。然后攻击者可以分析密文序列中的变化趋势，利用IV的已知值推断出明文。\n2.(1)在ECB模式中，每个分组的加密是独立的，只会影响第8个明文分组的第17比特。\n(2)CTR模式的密文模块之间是独立的，因此一个密文模块的污染只会影响相应的明文模块。第2和第3个明文分组都将被污染。\n(3)OFB模式中,密文生成是通过明文与一个伪随机序列进行异或来完成的,密文模块之间是独立的，只会影响第7个明文分组。\n(4)CBC模式中，每个明文分组与前一个密文分组进行异或操作,会影响当前分组的解密结果和下一个分组的解密结果。会影响第9个明文分组的第16和第17比特，以及第10个明文分组的第16和第17比特。\n(5)CFB模式中，密文是通过明文与来自加密器输出的前几个比特进行异或来生成的。会影响第12个明文分组的第3到第6比特，以及以后所有明文分组的所有比特。\n3.这种方法与RSA不等价在RSA中，e（相当于这里的E）的选择是有一定条件的，通常要求e与(P-1)(Q-1)互质，这样才能保证解密的唯一性和正确性。而这里不满足RSA中的选择条件，解密指数D未必存在，或者可能存在多个解，无法保证解密过程的正确性。所以该方法不是RSA算法。\n4.假设我们希望找到一对新的分组C1和C2，使得：\nRSAH(C1,C2)=RSAH(B1,B2)即\nRSA(E(C1)⊕C2)=RSA(E(B1)⊕B2)\n由于RSA是一个可逆操作，给定密文，我们可以通过逆向操作（即RSA解密）得到对应的明文。因此，如果我们有密文E(B1)⊕B2，我们可以通过适当选择C1和C2来调整这个结果，使其匹配。\n我们可以选择：\nC2=B2⊕(E(C1)⊕E(B1))这样，RSA(C1,C2)就会与RSA(B1,B2)相同。因此，该Hash函数是不安全的，它不满足抗弱碰撞性。\n5.攻击者可以利用逐字节比较的特性，通过逐字节猜测sig_bytes的正确值。在每次对比时，比较操作会在不匹配的字节处提前结束。可以通过监控每次比较的时间差来判断哪些字节匹配。通常，匹配的字节会导致较长的比较时间（因为继续进行字节比较），而不匹配的字节会导致较短的比较时间。利用这个反馈信息，攻击者就可以逐步恢复正确的签名。\n我们可以使用常数时间比较：\nimporthmac\ndefverify(key,msg,sig_bytes):\nreturnhmac.compare_digest(HMAC(key,msg),sig_bytes)\n6.(1)Bob能解密密文c并获得明文m的条件是密文c中包含了可以通过对称加密解密或通过私钥解签名获得的明文。\n(a)这种方式使用了哈希函数对密文Enc(K,m)进行哈希计算。哈希函数是单向的，Bob无法获得明文m，\n(b)中，c1是通过对称加密得到的密文，Bob使用对称密钥K可以解密c1得到m。c2只是Enc(K,m)的哈希，Bob不需要它来获取明文m。(c)中c1是加密后的密文，Bob可以使用K解密得到m，c2是对m的MAC（消息认证码），它主要用于验证消息的完整性。\n(d)中c1是加密的密文，Bob可以解密它得到m。c2是对加密后密文的MAC，用于完整性验证。\n(e)这里，c是Alice使用私钥SKA对加密消息Enc(K,m)的签名。Bob可以使用Alice的公钥PKA来验证签名，然后Bob可以根据对称密钥K解密Enc(K,m)。\n(f)中c1是加密后的明文m，Bob使用K解密得到m。c2是对明文m的签名（加密过），Bob可以解密c2并验证签名，但这不会影响c1中的解密过程。\nBob能解密c获得明文m的方式是(b)、(c)、(d)、(e)、(f)。\n(2) (a)是通过哈希函数对密文进行处理，而哈希函数本身是单向的，不涉及加密，所以不能提供机密性保护。\n(b)是对称加密的密文，提供了机密性保护，可以提供机密性保护。\n(c)是对称加密的密文，可以提供机密性保护。\n(d)是对称加密的密文，可以提供机密性保护。\n(e)是加密的密文，提供了机密性保护，可以提供机密性保护。\n(f)是对称加密的密文，可以提供机密性保护。\n可以提供机密性保护的方式是(b)、(c)、(d)、(e)、(f)。\n(3) (a)只能提供单向验证，但不能验证消息是否在传输中被篡改，不能提供完整性保护。\n(b)中c2是Enc(K,m)的哈希值，可以用于验证密文是否被篡改，因此可以提供完整性保护。\n(c)中c2是对消息m的MAC，可以验证消息的完整性，因此可以提供完整性保护。\n(d)中c2是对密文Enc(K,m)的MAC，可以验证密文是否被篡改，因此可以提供完整性保护。\n(e)Sign(SKA,Enc(K,m))是对密文的签名，可以验证密文是否被篡改，因此可以提供完整性保护。\n(f)中c2是对明文m的签名的加密，可以用于验证消息的完整性，因此可以提供完整性保护。\n可以提供完整性保护的方式是(b)、(c)、(d)、(e)、(f)。\n(4)选择方式(c)：c=c1,c2:c1=Enc(K,m),c2=MAC(K,m)，它同时提供了机密性和完整性保护。为了防止重放攻击，我们可以在消息中添加时间戳或唯一的随机数nonce。\n7.(1)一种可能的攻击角度是伪造人脸图像进行攻击，即通过技术手段制造或操控一个与目标人物极为相似的面部图像或视频，从而欺骗门禁系统，绕过人脸识别机制进入系统。具体攻击方法可能包括以下几种：\n照片攻击：使用目标用户的照片，将其展示给门禁系统的摄像头来欺骗系统。\n视频攻击：通过录制目标用户的正常活动（例如走路、说话等），再通过播放视频来进行攻击，模拟目标的面部动态。\n3D模型攻击：通过3D打印技术制造出目标人物的面部模型，并将其放置在摄像头前，试图欺骗识别系统。\n深度学习攻击：利用深度学习技术生成目标人物的虚假面部图像或视频，进行欺骗。\n威胁模型：\n资产：门禁后的区域安全、生物识别数据、门禁系统完整性。\n对手：外部无通行权限的攻击者，获取门禁后的被保护的东西\n漏洞：识别技术不精确、缺乏活体检测、数据传输不加密。\n威胁：伪造身份、深度伪造、数据截获。\n风险：高价值区域和用户数据泄露，漏洞可能性较大。\n防御：活体检测、多因素认证、加密传输。\n(2)安全性质：\nKnowYourThreatModel： 确定潜在威胁和攻击者，包括外部黑客、内部员工、以及中间人。了解攻击者的动机、能力和目标。\nSecurityisEconomics： 评估安全防护的成本和攻击的潜在损失，确保在合理的成本范围内实现最佳安全效果。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-11-09 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-11-09 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>网络安全与检测技术作业丨01</title>
+  <meta property="og:title" content="网络安全与检测技术作业丨01" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="题目 作业的内容是网络安全与检测技术 作业 1，其中第八题的内容是：
+我的答案 1.(1)Mi=Dk(Ci⊕Ci−1)⊕Ci-1
+(2)在AES-CBS-STAR模式中，每个密文分组Ci依赖于前一个密文分组Ci−1，即加密过程是串行的，无法进行并行化。
+解密过程中Mi的计算也依赖于前一个密文分组Ci−1，因此，解密过程也是串行的。
+所以AES-CBS-STAR模式既不能并行加密，也不能并行解密。
+(3)由于C0=IV0是已知的，对手能够根据选择的明文和已知的IV，推测出初始密文分组C1或其他分组。然后攻击者可以分析密文序列中的变化趋势，利用IV的已知值推断出明文。
+2.(1)在ECB模式中，每个分组的加密是独立的，只会影响第8个明文分组的第17比特。
+(2)CTR模式的密文模块之间是独立的，因此一个密文模块的污染只会影响相应的明文模块。第2和第3个明文分组都将被污染。
+(3)OFB模式中,密文生成是通过明文与一个伪随机序列进行异或来完成的,密文模块之间是独立的，只会影响第7个明文分组。
+(4)CBC模式中，每个明文分组与前一个密文分组进行异或操作,会影响当前分组的解密结果和下一个分组的解密结果。会影响第9个明文分组的第16和第17比特，以及第10个明文分组的第16和第17比特。
+(5)CFB模式中，密文是通过明文与来自加密器输出的前几个比特进行异或来生成的。会影响第12个明文分组的第3到第6比特，以及以后所有明文分组的所有比特。
+3.这种方法与RSA不等价在RSA中，e（相当于这里的E）的选择是有一定条件的，通常要求e与(P-1)(Q-1)互质，这样才能保证解密的唯一性和正确性。而这里不满足RSA中的选择条件，解密指数D未必存在，或者可能存在多个解，无法保证解密过程的正确性。所以该方法不是RSA算法。
+4.假设我们希望找到一对新的分组C1和C2，使得：
+RSAH(C1,C2)=RSAH(B1,B2)即
+RSA(E(C1)⊕C2)=RSA(E(B1)⊕B2)
+由于RSA是一个可逆操作，给定密文，我们可以通过逆向操作（即RSA解密）得到对应的明文。因此，如果我们有密文E(B1)⊕B2，我们可以通过适当选择C1和C2来调整这个结果，使其匹配。
+我们可以选择：
+C2=B2⊕(E(C1)⊕E(B1))这样，RSA(C1,C2)就会与RSA(B1,B2)相同。因此，该Hash函数是不安全的，它不满足抗弱碰撞性。
+5.攻击者可以利用逐字节比较的特性，通过逐字节猜测sig_bytes的正确值。在每次对比时，比较操作会在不匹配的字节处提前结束。可以通过监控每次比较的时间差来判断哪些字节匹配。通常，匹配的字节会导致较长的比较时间（因为继续进行字节比较），而不匹配的字节会导致较短的比较时间。利用这个反馈信息，攻击者就可以逐步恢复正确的签名。
+我们可以使用常数时间比较：
+importhmac
+defverify(key,msg,sig_bytes):
+returnhmac.compare_digest(HMAC(key,msg),sig_bytes)
+6.(1)Bob能解密密文c并获得明文m的条件是密文c中包含了可以通过对称加密解密或通过私钥解签名获得的明文。
+(a)这种方式使用了哈希函数对密文Enc(K,m)进行哈希计算。哈希函数是单向的，Bob无法获得明文m，
+(b)中，c1是通过对称加密得到的密文，Bob使用对称密钥K可以解密c1得到m。c2只是Enc(K,m)的哈希，Bob不需要它来获取明文m。(c)中c1是加密后的密文，Bob可以使用K解密得到m，c2是对m的MAC（消息认证码），它主要用于验证消息的完整性。
+(d)中c1是加密的密文，Bob可以解密它得到m。c2是对加密后密文的MAC，用于完整性验证。
+(e)这里，c是Alice使用私钥SKA对加密消息Enc(K,m)的签名。Bob可以使用Alice的公钥PKA来验证签名，然后Bob可以根据对称密钥K解密Enc(K,m)。
+(f)中c1是加密后的明文m，Bob使用K解密得到m。c2是对明文m的签名（加密过），Bob可以解密c2并验证签名，但这不会影响c1中的解密过程。
+Bob能解密c获得明文m的方式是(b)、(c)、(d)、(e)、(f)。
+(2) (a)是通过哈希函数对密文进行处理，而哈希函数本身是单向的，不涉及加密，所以不能提供机密性保护。
+(b)是对称加密的密文，提供了机密性保护，可以提供机密性保护。
+(c)是对称加密的密文，可以提供机密性保护。
+(d)是对称加密的密文，可以提供机密性保护。
+(e)是加密的密文，提供了机密性保护，可以提供机密性保护。
+(f)是对称加密的密文，可以提供机密性保护。
+可以提供机密性保护的方式是(b)、(c)、(d)、(e)、(f)。
+(3) (a)只能提供单向验证，但不能验证消息是否在传输中被篡改，不能提供完整性保护。
+(b)中c2是Enc(K,m)的哈希值，可以用于验证密文是否被篡改，因此可以提供完整性保护。
+(c)中c2是对消息m的MAC，可以验证消息的完整性，因此可以提供完整性保护。
+(d)中c2是对密文Enc(K,m)的MAC，可以验证密文是否被篡改，因此可以提供完整性保护。
+(e)Sign(SKA,Enc(K,m))是对密文的签名，可以验证密文是否被篡改，因此可以提供完整性保护。
+(f)中c2是对明文m的签名的加密，可以用于验证消息的完整性，因此可以提供完整性保护。
+可以提供完整性保护的方式是(b)、(c)、(d)、(e)、(f)。
+(4)选择方式(c)：c=c1,c2:c1=Enc(K,m),c2=MAC(K,m)，它同时提供了机密性和完整性保护。为了防止重放攻击，我们可以在消息中添加时间戳或唯一的随机数nonce。
+7.(1)一种可能的攻击角度是伪造人脸图像进行攻击，即通过技术手段制造或操控一个与目标人物极为相似的面部图像或视频，从而欺骗门禁系统，绕过人脸识别机制进入系统。具体攻击方法可能包括以下几种：
+照片攻击：使用目标用户的照片，将其展示给门禁系统的摄像头来欺骗系统。
+视频攻击：通过录制目标用户的正常活动（例如走路、说话等），再通过播放视频来进行攻击，模拟目标的面部动态。
+3D模型攻击：通过3D打印技术制造出目标人物的面部模型，并将其放置在摄像头前，试图欺骗识别系统。
+深度学习攻击：利用深度学习技术生成目标人物的虚假面部图像或视频，进行欺骗。
+威胁模型：
+资产：门禁后的区域安全、生物识别数据、门禁系统完整性。
+对手：外部无通行权限的攻击者，获取门禁后的被保护的东西
+漏洞：识别技术不精确、缺乏活体检测、数据传输不加密。
+威胁：伪造身份、深度伪造、数据截获。
+风险：高价值区域和用户数据泄露，漏洞可能性较大。
+防御：活体检测、多因素认证、加密传输。
+(2)安全性质：
+KnowYourThreatModel： 确定潜在威胁和攻击者，包括外部黑客、内部员工、以及中间人。了解攻击者的动机、能力和目标。
+SecurityisEconomics： 评估安全防护的成本和攻击的潜在损失，确保在合理的成本范围内实现最佳安全效果。
+" />
+  <meta name="description" content="题目 作业的内容是网络安全与检测技术 作业 1，其中第八题的内容是：
+我的答案 1.(1)Mi=Dk(Ci⊕Ci−1)⊕Ci-1
+(2)在AES-CBS-STAR模式中，每个密文分组Ci依赖于前一个密文分组Ci−1，即加密过程是串行的，无法进行并行化。
+解密过程中Mi的计算也依赖于前一个密文分组Ci−1，因此，解密过程也是串行的。
+所以AES-CBS-STAR模式既不能并行加密，也不能并行解密。
+(3)由于C0=IV0是已知的，对手能够根据选择的明文和已知的IV，推测出初始密文分组C1或其他分组。然后攻击者可以分析密文序列中的变化趋势，利用IV的已知值推断出明文。
+2.(1)在ECB模式中，每个分组的加密是独立的，只会影响第8个明文分组的第17比特。
+(2)CTR模式的密文模块之间是独立的，因此一个密文模块的污染只会影响相应的明文模块。第2和第3个明文分组都将被污染。
+(3)OFB模式中,密文生成是通过明文与一个伪随机序列进行异或来完成的,密文模块之间是独立的，只会影响第7个明文分组。
+(4)CBC模式中，每个明文分组与前一个密文分组进行异或操作,会影响当前分组的解密结果和下一个分组的解密结果。会影响第9个明文分组的第16和第17比特，以及第10个明文分组的第16和第17比特。
+(5)CFB模式中，密文是通过明文与来自加密器输出的前几个比特进行异或来生成的。会影响第12个明文分组的第3到第6比特，以及以后所有明文分组的所有比特。
+3.这种方法与RSA不等价在RSA中，e（相当于这里的E）的选择是有一定条件的，通常要求e与(P-1)(Q-1)互质，这样才能保证解密的唯一性和正确性。而这里不满足RSA中的选择条件，解密指数D未必存在，或者可能存在多个解，无法保证解密过程的正确性。所以该方法不是RSA算法。
+4.假设我们希望找到一对新的分组C1和C2，使得：
+RSAH(C1,C2)=RSAH(B1,B2)即
+RSA(E(C1)⊕C2)=RSA(E(B1)⊕B2)
+由于RSA是一个可逆操作，给定密文，我们可以通过逆向操作（即RSA解密）得到对应的明文。因此，如果我们有密文E(B1)⊕B2，我们可以通过适当选择C1和C2来调整这个结果，使其匹配。
+我们可以选择：
+C2=B2⊕(E(C1)⊕E(B1))这样，RSA(C1,C2)就会与RSA(B1,B2)相同。因此，该Hash函数是不安全的，它不满足抗弱碰撞性。
+5.攻击者可以利用逐字节比较的特性，通过逐字节猜测sig_bytes的正确值。在每次对比时，比较操作会在不匹配的字节处提前结束。可以通过监控每次比较的时间差来判断哪些字节匹配。通常，匹配的字节会导致较长的比较时间（因为继续进行字节比较），而不匹配的字节会导致较短的比较时间。利用这个反馈信息，攻击者就可以逐步恢复正确的签名。
+我们可以使用常数时间比较：
+importhmac
+defverify(key,msg,sig_bytes):
+returnhmac.compare_digest(HMAC(key,msg),sig_bytes)
+6.(1)Bob能解密密文c并获得明文m的条件是密文c中包含了可以通过对称加密解密或通过私钥解签名获得的明文。
+(a)这种方式使用了哈希函数对密文Enc(K,m)进行哈希计算。哈希函数是单向的，Bob无法获得明文m，
+(b)中，c1是通过对称加密得到的密文，Bob使用对称密钥K可以解密c1得到m。c2只是Enc(K,m)的哈希，Bob不需要它来获取明文m。(c)中c1是加密后的密文，Bob可以使用K解密得到m，c2是对m的MAC（消息认证码），它主要用于验证消息的完整性。
+(d)中c1是加密的密文，Bob可以解密它得到m。c2是对加密后密文的MAC，用于完整性验证。
+(e)这里，c是Alice使用私钥SKA对加密消息Enc(K,m)的签名。Bob可以使用Alice的公钥PKA来验证签名，然后Bob可以根据对称密钥K解密Enc(K,m)。
+(f)中c1是加密后的明文m，Bob使用K解密得到m。c2是对明文m的签名（加密过），Bob可以解密c2并验证签名，但这不会影响c1中的解密过程。
+Bob能解密c获得明文m的方式是(b)、(c)、(d)、(e)、(f)。
+(2) (a)是通过哈希函数对密文进行处理，而哈希函数本身是单向的，不涉及加密，所以不能提供机密性保护。
+(b)是对称加密的密文，提供了机密性保护，可以提供机密性保护。
+(c)是对称加密的密文，可以提供机密性保护。
+(d)是对称加密的密文，可以提供机密性保护。
+(e)是加密的密文，提供了机密性保护，可以提供机密性保护。
+(f)是对称加密的密文，可以提供机密性保护。
+可以提供机密性保护的方式是(b)、(c)、(d)、(e)、(f)。
+(3) (a)只能提供单向验证，但不能验证消息是否在传输中被篡改，不能提供完整性保护。
+(b)中c2是Enc(K,m)的哈希值，可以用于验证密文是否被篡改，因此可以提供完整性保护。
+(c)中c2是对消息m的MAC，可以验证消息的完整性，因此可以提供完整性保护。
+(d)中c2是对密文Enc(K,m)的MAC，可以验证密文是否被篡改，因此可以提供完整性保护。
+(e)Sign(SKA,Enc(K,m))是对密文的签名，可以验证密文是否被篡改，因此可以提供完整性保护。
+(f)中c2是对明文m的签名的加密，可以用于验证消息的完整性，因此可以提供完整性保护。
+可以提供完整性保护的方式是(b)、(c)、(d)、(e)、(f)。
+(4)选择方式(c)：c=c1,c2:c1=Enc(K,m),c2=MAC(K,m)，它同时提供了机密性和完整性保护。为了防止重放攻击，我们可以在消息中添加时间戳或唯一的随机数nonce。
+7.(1)一种可能的攻击角度是伪造人脸图像进行攻击，即通过技术手段制造或操控一个与目标人物极为相似的面部图像或视频，从而欺骗门禁系统，绕过人脸识别机制进入系统。具体攻击方法可能包括以下几种：
+照片攻击：使用目标用户的照片，将其展示给门禁系统的摄像头来欺骗系统。
+视频攻击：通过录制目标用户的正常活动（例如走路、说话等），再通过播放视频来进行攻击，模拟目标的面部动态。
+3D模型攻击：通过3D打印技术制造出目标人物的面部模型，并将其放置在摄像头前，试图欺骗识别系统。
+深度学习攻击：利用深度学习技术生成目标人物的虚假面部图像或视频，进行欺骗。
+威胁模型：
+资产：门禁后的区域安全、生物识别数据、门禁系统完整性。
+对手：外部无通行权限的攻击者，获取门禁后的被保护的东西
+漏洞：识别技术不精确、缺乏活体检测、数据传输不加密。
+威胁：伪造身份、深度伪造、数据截获。
+风险：高价值区域和用户数据泄露，漏洞可能性较大。
+防御：活体检测、多因素认证、加密传输。
+(2)安全性质：
+KnowYourThreatModel： 确定潜在威胁和攻击者，包括外部黑客、内部员工、以及中间人。了解攻击者的动机、能力和目标。
+SecurityisEconomics： 评估安全防护的成本和攻击的潜在损失，确保在合理的成本范围内实现最佳安全效果。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon_32.ico" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="桐木">
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">桐木</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">网络安全与检测技术作业丨01</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-11-09 00:00:00 UTC">
+                09 Nov 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="题目">题目</h2>
+<p>作业的内容是<a style="color: #0000FF;" href="网络安全与检测技术作业 1.pdf" target="_blank">网络安全与检测技术 作业 1</a>，其中第八题的内容是：</p>
+<img src="8.png" />
+<h2 id="我的答案">我的答案</h2>
+<p>1.(1)Mi=Dk(Ci⊕Ci−1)⊕Ci-1</p>
+<p>(2)在AES-CBS-STAR模式中，每个密文分组Ci依赖于前一个密文分组Ci−1，即加密过程是串行的，无法进行并行化。</p>
+<p>解密过程中Mi的计算也依赖于前一个密文分组Ci−1，因此，解密过程也是串行的。</p>
+<p>所以AES-CBS-STAR模式既不能并行加密，也不能并行解密。</p>
+<p>(3)由于C0=IV0是已知的，对手能够根据选择的明文和已知的IV，推测出初始密文分组C1或其他分组。然后攻击者可以分析密文序列中的变化趋势，利用IV的已知值推断出明文。</p>
+<p>2.(1)在ECB模式中，每个分组的加密是独立的，只会影响第8个明文分组的第17比特。</p>
+<p>(2)CTR模式的密文模块之间是独立的，因此一个密文模块的污染只会影响相应的明文模块。第2和第3个明文分组都将被污染。</p>
+<p>(3)OFB模式中,密文生成是通过明文与一个伪随机序列进行异或来完成的,密文模块之间是独立的，只会影响第7个明文分组。</p>
+<p>(4)CBC模式中，每个明文分组与前一个密文分组进行异或操作,会影响当前分组的解密结果和下一个分组的解密结果。会影响第9个明文分组的第16和第17比特，以及第10个明文分组的第16和第17比特。</p>
+<p>(5)CFB模式中，密文是通过明文与来自加密器输出的前几个比特进行异或来生成的。会影响第12个明文分组的第3到第6比特，以及以后所有明文分组的所有比特。</p>
+<p>3.这种方法与RSA不等价在RSA中，e（相当于这里的E）的选择是有一定条件的，通常要求e与(P-1)(Q-1)互质，这样才能保证解密的唯一性和正确性。而这里不满足RSA中的选择条件，解密指数D未必存在，或者可能存在多个解，无法保证解密过程的正确性。所以该方法不是RSA算法。</p>
+<p>4.假设我们希望找到一对新的分组C1和C2，使得：</p>
+<p>RSAH(C1,C2)=RSAH(B1,B2)即</p>
+<p>RSA(E(C1)⊕C2)=RSA(E(B1)⊕B2)</p>
+<p>由于RSA是一个可逆操作，给定密文，我们可以通过逆向操作（即RSA解密）得到对应的明文。因此，如果我们有密文E(B1)⊕B2，我们可以通过适当选择C1和C2来调整这个结果，使其匹配。</p>
+<p>我们可以选择：</p>
+<p>C2=B2⊕(E(C1)⊕E(B1))这样，RSA(C1,C2)就会与RSA(B1,B2)相同。因此，该Hash函数是不安全的，它不满足抗弱碰撞性。</p>
+<p>5.攻击者可以利用逐字节比较的特性，通过逐字节猜测sig_bytes的正确值。在每次对比时，比较操作会在不匹配的字节处提前结束。可以通过监控每次比较的时间差来判断哪些字节匹配。通常，匹配的字节会导致较长的比较时间（因为继续进行字节比较），而不匹配的字节会导致较短的比较时间。利用这个反馈信息，攻击者就可以逐步恢复正确的签名。</p>
+<p>我们可以使用常数时间比较：</p>
+<p>importhmac</p>
+<p>defverify(key,msg,sig_bytes):</p>
+<p>returnhmac.compare_digest(HMAC(key,msg),sig_bytes)</p>
+<p>6.(1)Bob能解密密文c并获得明文m的条件是密文c中包含了可以通过对称加密解密或通过私钥解签名获得的明文。</p>
+<p>(a)这种方式使用了哈希函数对密文Enc(K,m)进行哈希计算。哈希函数是单向的，Bob无法获得明文m，</p>
+<p>(b)中，c1是通过对称加密得到的密文，Bob使用对称密钥K可以解密c1得到m。c2只是Enc(K,m)的哈希，Bob不需要它来获取明文m。(c)中c1是加密后的密文，Bob可以使用K解密得到m，c2是对m的MAC（消息认证码），它主要用于验证消息的完整性。</p>
+<p>(d)中c1是加密的密文，Bob可以解密它得到m。c2是对加密后密文的MAC，用于完整性验证。</p>
+<p>(e)这里，c是Alice使用私钥SKA对加密消息Enc(K,m)的签名。Bob可以使用Alice的公钥PKA来验证签名，然后Bob可以根据对称密钥K解密Enc(K,m)。</p>
+<p>(f)中c1是加密后的明文m，Bob使用K解密得到m。c2是对明文m的签名（加密过），Bob可以解密c2并验证签名，但这不会影响c1中的解密过程。</p>
+<p>Bob能解密c获得明文m的方式是(b)、(c)、(d)、(e)、(f)。</p>
+<p>(2) (a)是通过哈希函数对密文进行处理，而哈希函数本身是单向的，不涉及加密，所以不能提供机密性保护。</p>
+<p>(b)是对称加密的密文，提供了机密性保护，可以提供机密性保护。</p>
+<p>(c)是对称加密的密文，可以提供机密性保护。</p>
+<p>(d)是对称加密的密文，可以提供机密性保护。</p>
+<p>(e)是加密的密文，提供了机密性保护，可以提供机密性保护。</p>
+<p>(f)是对称加密的密文，可以提供机密性保护。</p>
+<p>可以提供机密性保护的方式是(b)、(c)、(d)、(e)、(f)。</p>
+<p>(3) (a)只能提供单向验证，但不能验证消息是否在传输中被篡改，不能提供完整性保护。</p>
+<p>(b)中c2是Enc(K,m)的哈希值，可以用于验证密文是否被篡改，因此可以提供完整性保护。</p>
+<p>(c)中c2是对消息m的MAC，可以验证消息的完整性，因此可以提供完整性保护。</p>
+<p>(d)中c2是对密文Enc(K,m)的MAC，可以验证密文是否被篡改，因此可以提供完整性保护。</p>
+<p>(e)Sign(SKA,Enc(K,m))是对密文的签名，可以验证密文是否被篡改，因此可以提供完整性保护。</p>
+<p>(f)中c2是对明文m的签名的加密，可以用于验证消息的完整性，因此可以提供完整性保护。</p>
+<p>可以提供完整性保护的方式是(b)、(c)、(d)、(e)、(f)。</p>
+<p>(4)选择方式(c)：c=c1,c2:c1=Enc(K,m),c2=MAC(K,m)，它同时提供了机密性和完整性保护。为了防止重放攻击，我们可以在消息中添加时间戳或唯一的随机数nonce。</p>
+<p>7.(1)一种可能的攻击角度是伪造人脸图像进行攻击，即通过技术手段制造或操控一个与目标人物极为相似的面部图像或视频，从而欺骗门禁系统，绕过人脸识别机制进入系统。具体攻击方法可能包括以下几种：</p>
+<p>照片攻击：使用目标用户的照片，将其展示给门禁系统的摄像头来欺骗系统。</p>
+<p>视频攻击：通过录制目标用户的正常活动（例如走路、说话等），再通过播放视频来进行攻击，模拟目标的面部动态。</p>
+<p>3D模型攻击：通过3D打印技术制造出目标人物的面部模型，并将其放置在摄像头前，试图欺骗识别系统。</p>
+<p>深度学习攻击：利用深度学习技术生成目标人物的虚假面部图像或视频，进行欺骗。</p>
+<p>威胁模型：</p>
+<p>资产：门禁后的区域安全、生物识别数据、门禁系统完整性。</p>
+<p>对手：外部无通行权限的攻击者，获取门禁后的被保护的东西</p>
+<p>漏洞：识别技术不精确、缺乏活体检测、数据传输不加密。</p>
+<p>威胁：伪造身份、深度伪造、数据截获。</p>
+<p>风险：高价值区域和用户数据泄露，漏洞可能性较大。</p>
+<p>防御：活体检测、多因素认证、加密传输。</p>
+<p>(2)安全性质：</p>
+<p>KnowYourThreatModel：
+确定潜在威胁和攻击者，包括外部黑客、内部员工、以及中间人。了解攻击者的动机、能力和目标。</p>
+<p>SecurityisEconomics：
+评估安全防护的成本和攻击的潜在损失，确保在合理的成本范围内实现最佳安全效果。</p>
+<p>SecuretheWeakest：
+优先保护系统中最脆弱的部分，例如弱密码、无加密传输的部分，确保防护层级一致。</p>
+<p>DefenseinDepth：
+采用多层次的防御措施（如加密、身份验证、多因素认证等），增加攻击者突破系统的难度。</p>
+<p>LeastPrivilege：
+严格控制用户权限，确保每个用户仅能访问其所需的最低权限资源，避免滥用权限。</p>
+<p>Compartmentalization：
+将系统分成不同的模块或组件，减少单个组件被攻破后对系统整体的影响。</p>
+<p>DetectifYouCan&rsquo;tPrevent：
+通过日志记录、行为分析等手段，尽量提前检测异常行为或攻击迹象，弥补无法完全防止攻击的不足。</p>
+<p>DesigninSecurityfromtheStart：
+在设计阶段就考虑安全性，避免将安全性作为事后补充，确保系统一开始就具备良好的防护能力。</p>
+<p>威胁模型：</p>
+<p>Assets(我们要保护什么？)：</p>
+<p>文件内容（敏感数据），</p>
+<p>用户认证信息（账户密码、身份验证凭证），</p>
+<p>文件完整性（防止篡改）。</p>
+<p>Adversaries(谁可能会尝试攻击，为什么？)：</p>
+<p>外部攻击者（黑客）：窃取敏感文件，造成财务损失或声誉损害。</p>
+<p>内部攻击者（雇员）：滥用权限访问文件或泄露机密数据。</p>
+<p>中间人（MITM）：通过网络拦截和篡改文件传输，获取敏感信息。</p>
+<p>Vulnerabilities(系统可能多么薄弱？)：</p>
+<p>弱身份验证机制（如简单密码），</p>
+<p>文件传输未加密或加密方式弱，</p>
+<p>不严格的访问控制和权限管理。</p>
+<p>Threats(攻击者可能会采取哪些措施来利用漏洞？)：</p>
+<p>身份盗用：攻击者窃取凭证，访问机密文件。</p>
+<p>中间人攻击（MITM）：拦截并篡改传输中的文件。</p>
+<p>文件篡改：篡改文件内容或元数据，导致数据损坏或伪造。</p>
+<p>Risk(资产有多重要？漏洞利用的可能性有多大？)：</p>
+<p>高风险：文件和认证信息泄露可能导致重大财务损失和数据泄漏，漏洞利用的可能性较高（特别是在没有加密和访问控制的情况下）。</p>
+<p>PossibleDefenses(可能的防御措施)：</p>
+<p>强身份验证（密码+多因素认证），</p>
+<p>文件加密（传输和存储时），</p>
+<p>数字签名与哈希检查，</p>
+<p>严格的访问控制和权限审计，</p>
+<p>日志记录与异常检测，</p>
+<p>备份与灾难恢复计划。</p>
+<p>8.(2)使用两个密钥分别用于构造内部哈希、外部哈希。增强安全性并防止潜在的攻击，尤其是长度扩展攻击，</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

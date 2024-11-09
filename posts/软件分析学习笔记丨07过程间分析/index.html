@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon_32.ico" />
+  <link rel="icon" href="/favicon_32.ico" />
+  <link rel="shortcut" href="/favicon_32.ico" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/nju-wrd.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨07过程间分析",
+      "headline" : "软件分析学习笔记丨07过程间分析",
+      "description" : "前言 课程网站为Static Program Analysis | Tai-e\n因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。\n从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。\nMotivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。\nCall Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。\n本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。\n越往上速度越快，越往下精度越高。\n了解JAVA中的call：\nStatic call\rSpecial call\rVirtual call\rInstruction\rinvokestatic\rinvokespecial\rinvokeinterface\ninvokevirtual\rReceiver objects\r×无实例\r√有实例\r√有实例\rTarget methods\r·Static methods (静态方法)\r·Constructors (构造函数)\n·Private instance methods (类自己的私有方法)\n·Superclass instance methods (父类的实例方法)\r·Other instance methods (其他实例方法)\r# Target methods 个数\r1\r1\r≥1 (polymorphism) 多态\rDeterminacy 确定时机\rCompile-time (编译时)\rCompile-time (编译时)\rRun-time (运行时)\r构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-11-06 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-11-06 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>软件分析学习笔记丨07过程间分析</title>
+  <meta property="og:title" content="软件分析学习笔记丨07过程间分析" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="前言 课程网站为Static Program Analysis | Tai-e
+因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
+从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
+Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
+Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
+本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
+越往上速度越快，越往下精度越高。
+了解JAVA中的call：
+Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
+invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
+·Private instance methods (类自己的私有方法)
+·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
+" />
+  <meta name="description" content="前言 课程网站为Static Program Analysis | Tai-e
+因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
+从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
+Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
+Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
+本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
+越往上速度越快，越往下精度越高。
+了解JAVA中的call：
+Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
+invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
+·Private instance methods (类自己的私有方法)
+·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon_32.ico" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="桐木">
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">桐木</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨07过程间分析</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-11-06 00:00:00 UTC">
+                06 Nov 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="前言">前言</h2>
+<p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
+<p>因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的<strong>课程</strong>本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。</p>
+<p>从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。</p>
+<h2 id="motivation">Motivation</h2>
+<p>过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。</p>
+<h2 id="call-graph-construction-cha-">Call Graph Construction（ CHA ）</h2>
+<p>一个调用图是一个从 call-sites 到目标方法的调用边的集合。</p>
+<img src="call-graph.png" />
+<p>本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。</p>
+<img src="1.png" />
+<p>越往上速度越快，越往下精度越高。</p>
+<p>了解JAVA中的call：</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Static call</th>
+      <th>Special call</th>
+      <th>Virtual call</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Instruction</td>
+      <td>invokestatic</td>
+      <td>invokespecial</td>
+      <td>invokeinterface<br>invokevirtual</td>
+    </tr>
+    <tr>
+      <td>Receiver objects</td>
+      <td>×无实例</td>
+      <td>√有实例</td>
+      <td>√有实例</td>
+    </tr>
+    <tr>
+      <td>Target methods</td>
+      <td><strong>·</strong>Static methods (静态方法)</td>
+      <td><strong>·</strong>Constructors (构造函数)<br><strong>·</strong>Private instance methods (类自己的私有方法)<br><strong>·</strong>Superclass instance methods (父类的实例方法)</td>
+      <td><strong>·</strong>Other instance methods (其他实例方法)</td>
+    </tr>
+    <tr>
+      <td># Target methods 个数</td>
+      <td>1</td>
+      <td>1</td>
+      <td>≥1 (polymorphism) 多态</td>
+    </tr>
+    <tr>
+      <td>Determinacy 确定时机</td>
+      <td>Compile-time (编译时)</td>
+      <td>Compile-time (编译时)</td>
+      <td>Run-time (运行时)</td>
+    </tr>
+  </tbody>
+</table>
+<p>构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：</p>
+<ol>
+<li>receive object 的具体类型</li>
+<li>方法的签名signature</li>
+</ol>
+<ul>
+<li>
+<p>Signature = class type + method name +descriptor</p>
+</li>
+<li>
+<p>Descriptor = return type + parameter types</p>
+</li>
+<li>
+<img src="signature.png" />
+</li>
+</ul>
+<p>Dispatch(c,m)这个算法用来找到类为c，c中包含名为m且有方法体的方法。若c中未找到，就去父类中找。</p>
+<img src="dispatch.png" />
+<p>在这个基础上我们通过一个算法 CHA 找到 某一个调用点 cs（call site）可能的目标方法：</p>
+<img src="CHA.png" />
+<p>对于静态方法，目标方法就是这个方法本身，对于special call ，有三种情况，分别是前面提到的构造方法、私有方法和父类实例方法，对于前两种其实是不需要Dispatch的，但是第三种需要，而Dispatch可以覆盖这三种。然后对于 virtual call ，我们需要对于 cs 声明的类型的所有子类去做Dispatch。</p>
+<img src="example1.png" />
+<p>这里举了一个例子说明 virtual call 的同时，还说明了一点，也就是 b.foo() 它实际上调用的就是 A.foo() ，所以在这里后面的C.foo() D.foo() 都是多余的调用目标.</p>
+<p>CHA的优点就是很快，他只考虑在 cs 声明的类型和他的继承结构，忽略了实际的数据和控制流信息。所以它的缺点就是不够精确，比如上文可能引入的多余目标</p>
+<p>接下来我们就可以通过 CHA 来构建整个程序的调用图，我们从 Entry 开始，主要就是main函数，对于每一个可达的方法，利用 CHA 解析他的每一个 cs 的目标方法，重复这个过程直到不再有新方法出现。算法如下：</p>
+<img src="build.png" />
+<h2 id="interprocedural-control-flow-graph">Interprocedural Control-Flow Graph</h2>
+<p>CFG 是一个单独的方法之内的结构，而 ICFG 则是包含了不同方法的 CFG 以及加上两个额外的边，分别是 Call edges 和 Return edges。一个是从 cs 指向被调用的方法的 Entry nodes ，一个是从exit nodes 指向跟在 cs 之后的下一条语句（return sites）。</p>
+<p>$$
+ICFG\ =\ CFGs\ +\ call\ &amp;\ return\ edges
+$$</p>
+<p>而这两条边就来自于调用图。而原来的边（如下图黄色背景中的边）就被称作call-to-return edges，我们并不会删掉他，这一点会在后面解释。</p>
+<img src="call-to-return edges.png" />
+<h2 id="interproceduraldata-flow-analysis">InterproceduralData-Flow Analysis</h2>
+<p>根据 ICFG ，我们对整个包含方法调用的整个程序做分析。我们可以通过下表看到和 CFG 对比：</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Intraprocedura</th>
+      <th>Interprocedural</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Program representation</td>
+      <td>CFG</td>
+      <td>ICFG = CFGs + call & return edges</td>
+    </tr>
+    <tr>
+      <td>Transfer functions</td>
+      <td>Node transfer</td>
+      <td>Node transfer + edge transfer</td>
+    </tr>
+  </tbody>
+</table>
+<p>这里的 edge transfer 主要包括两种：</p>
+<ul>
+<li>Call edge transfer:将数据流从 cs 传递到被调用方法的 entry node（along call edges）主要传递参数值</li>
+<li>Return edge transfer:将数据流从被调用方法的 exit node 传递到 return site（along return edges）主要传递返回值</li>
+</ul>
+<p>对于Node transdfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
+<img src="example2.png" />
+<p>这里会将b识别为NAC，显然是不准确的。</p>
+<p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的c all-to-return edges 来获得数据流的传递。如图所示：</p>
+<img src="dataflow.png" />
+<p>总之，通过过程间的分析可以比原来的过程内分析得到的结果更加准确。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
