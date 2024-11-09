@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 桐木</description>
     <generator>Hugo</generator>
     <language>cn</language>
-    <lastBuildDate>Sat, 09 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://nju-wrd.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的博客网站搭建进展丨01</title>
+      <link>https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/</guid>
+      <description>&lt;h2 id=&#34;2024-11-07&#34;&gt;2024-11-07&lt;/h2&gt;&#xA;&lt;p&gt;在我写了几篇博客之后，通过实际的编写过程和这期间看到的别的内容，我发现用单纯的Markdown语法来写并不能达到我想要的效果。并且我通过对比发现我在Typora里编辑的 html 语法是可以被识别到并正确运行的，不过可能由于我本身博客的框架基础，在web页面并没有被正确加载，所以我决定研究一下我的 post 具体是怎样被加载的。&lt;/p&gt;&#xA;&lt;p&gt;经过研究发现，我的书写内容没有问题，post 的加载也没有问题，在&lt;a href=&#34;https://juejin.cn/post/7119681369831112741&#34;&gt;修复Hugo静态生成器中忽略原始HTML的方法&lt;/a&gt;中我找到了问题的答案，原来是因为渲染的markdown不能理解我在短代码中的HTML。从Hugo V.0.60开始，默认的markdown渲染器是Gold mark。Goldmark渲染引擎默认忽略了原始HTML。所以我必须使用配置参数来告诉它。这个解决方案可以让Markdown渲染器使用Goldmark渲染器，通过配置考虑原始HTML。&lt;/p&gt;&#xA;&lt;p&gt;修复方法是在配置文件中加入&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;style=&#34;position:relative;&#34;&gt;&lt;pre&gt;&lt;code id = &#34;code1&#34;&gt;[markup]&#xD;&#xA;  [markup.goldmark]&#xD;&#xA;    [markup.goldmark.renderer]&#xD;&#xA;      unsafe = true&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xD;&#xA;&lt;button class=&#34;copy-button&#34; data-clipboard-target=&#34;#code1&#34;&gt;Copy&lt;/button&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;p&gt;这里我正在使用 config.toml 文件，若是 yaml 文件参考文章给出的格式。这时候我之前的 html 语句就被正确加载了。&lt;/p&gt;&#xA;&lt;p&gt;第二个问题是我之前插入了很多图片都没有被正确加载，我觉得可能是因为文件路径的问题。因为上一个问题我是先问的 gpt ，其实 gpt 给出的方案和正确方案是比较类似的，但他没有意识到她提到的 blackfriday 渲染器已经不再使用了，导致我花费很多时间找到真正的原因，所以这一次我也觉得先在搜索引擎中找答案。根据 &lt;a href=&#34;https://blog.csdn.net/qq_38340601/article/details/108900666&#34;&gt;hugo 导入图片的两种方式&lt;/a&gt;我也完成了我的图片导入。但是后续我想到了一些问题，就是我的 content\cn\posts 内文件本身是没有额外文件夹的，但是在 hugo 启动之后生成的 public 文件夹中是针对每个 md 文件有一个文件夹的，其中放了 html 文件，所以我的做法就是将图片放在这个文件夹之下。我想到的是什么呢，就是说这个文件是一个缓存文件，如果我执行了清除缓存的命令，我里面的图片就没了，我测试了一下，果然没了。但是 edge 里面还能看到，我猜测是因为 edge 本身缓存了这个图片，于是我打开 chrome 试了一下果然，这张图片已经看不到了，所以我现在要理解这个过程，将图片放在一个一劳永逸的地方。为什么我不直接放在 content 目录先呢，因为这里面原来都是单独的 md 文件，我担心将 md 文件放入文件夹中会影响 hugo 构建的过程。这次我直接询问 gpt 得到了答案，我可以在 post 文件夹下额外新建一个对应 md 文件的文件夹，然后将相应的图片放入即可，这样 hugo 自然会将图片放入 public 对应的文件夹和 html 文件在一起。在这之前，~~我找到了回收站中被清除的图片。~~我重新上传了需要的图片。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>网络安全与检测技术作业丨01</title>
       <link>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/</link>
