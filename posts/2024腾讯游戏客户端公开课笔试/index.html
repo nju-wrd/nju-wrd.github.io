@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.136.5">
 
@@ -11,10 +11,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://nju-wrd.github.io/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" />
-  <link rel="canonical" href="https://nju-wrd.github.io/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" />
+  <link rel="canonical" href="http://localhost:1313/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
-  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="桐木">
 
   <script type="application/ld+json">
   {
@@ -22,12 +22,12 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "https:\/\/nju-wrd.github.io\/"
+           "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "posts",
       "name" : "2024腾讯游戏客户端公开课笔试",
       "headline" : "2024腾讯游戏客户端公开课笔试",
-      "description" : "前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C\u002b\u002b, Java, Python, Python 3] 1道题目可使用：[C\u002b\u002b] 1道题目可使用：[C, C#, C\u002b\u002b, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C\u002b\u002b] 1道题目可使用：[C#, C\u002b\u002b] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。\nQ1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。\nQ2 第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有\u002b-*\/，且输入可能会有空格。\nQ3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。\n我的思路 第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。\n第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。\n第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。\n代码如下：\n#include \u0026ltalgorithm\u0026gt\r#include \u0026ltiostream\u0026gt\rusing namespace std;\rint main() {\rint n,m;\rcin \u003e\u003e m \u003e\u003e n;\rint arr[100][100];\rfor(int i = 0 ;i \u003c m; i\u002b\u002b){\rfor(int j = 0; j \u003c n; j\u002b\u002b){\rcin \u003e\u003e arr[i][j];\r}\r}\rint dp[100][100] = {0};\rdp[0][0] = arr[0][0];\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rif(arr[i][0] == 0){\rwhile(i \u003c m){\rdp[i][0] = INT32_MAX;\ri\u002b\u002b;\r}\r}else{\rdp[i][0] = dp[i - 1][0] \u002b arr[i][0];\r}\r}\rfor(int i = 1 ;i \u003c n; i\u002b\u002b){\rif(arr[0][i] == 0){\rwhile(i \u003c n){\rdp[0][i] = INT32_MAX;\ri\u002b\u002b;\r}\r}else {\rdp[0][i] = dp[0][i - 1] \u002b arr[0][i];\r}\r}\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rfor(int j = 1; j \u003c n; j\u002b\u002b){\rif(arr[i][j] == 0){\rdp[i][j] = INT32_MAX;\r}else {\rdp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) \u002b arr[i][j];\r}\r}\r}\rprintf(\u0022%d\u0022,dp[m - 1][n - 1]);\r}\rCopy\r总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。\n",
+      "description" : "前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C\u002b\u002b, Java, Python, Python 3] 1道题目可使用：[C\u002b\u002b] 1道题目可使用：[C, C#, C\u002b\u002b, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C\u002b\u002b] 1道题目可使用：[C#, C\u002b\u002b] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。\nQ1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。\nQ2 第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有\u002b-*\/，且输入可能会有空格。\nQ3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。\n我的思路 第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。\n第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。\n第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。\n代码如下：\n#include \u0026ltalgorithm\u0026gt\r#include \u0026ltiostream\u0026gt\rusing namespace std;\rint main() {\rint n,m;\rcin \u003e\u003e m \u003e\u003e n;\rint arr[100][100];\rfor(int i = 0 ;i \u003c m; i\u002b\u002b){\rfor(int j = 0; j \u003c n; j\u002b\u002b){\rcin \u003e\u003e arr[i][j];\r}\r}\rint dp[100][100] = {0};\rdp[0][0] = arr[0][0];\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rif(arr[i][0] == 0){\rwhile(i \u003c m){\rdp[i][0] = INT32_MAX;\ri\u002b\u002b;\r}\r}else{\rdp[i][0] = dp[i - 1][0] \u002b arr[i][0];\r}\r}\rfor(int i = 1 ;i \u003c n; i\u002b\u002b){\rif(arr[0][i] == 0){\rwhile(i \u003c n){\rdp[0][i] = INT32_MAX;\ri\u002b\u002b;\r}\r}else {\rdp[0][i] = dp[0][i - 1] \u002b arr[0][i];\r}\r}\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rfor(int j = 1; j \u003c n; j\u002b\u002b){\rif(arr[i][j] == 0){\rdp[i][j] = INT32_MAX;\r}else {\rdp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) \u002b arr[i][j];\r}\r}\r}\rprintf(\u0022%d\u0022,dp[m - 1][n - 1]);\r}\rCopy\r总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。对于这次笔试，我得了60分，最后一题没有AC，可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，导致最后只差一点点但是来不及写完了。我做题的过程首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题我就写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致虽然找到了问题的核心，但距离写出题目浪费了很多时间，最后找到原因之后也已经来不及了，虽然最后还是花了几分钟把它写完了，不过算是有点可惜。\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,7 +37,7 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-11-10 00:00:00 \u002b0000 UTC",
       "dateModified" : "2024-11-10 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/nju-wrd.github.io\/posts\/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95\/",
+      "url" : "http:\/\/localhost:1313\/posts\/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95\/",
       "keywords" : [  ]
   }
 </script>
@@ -52,7 +52,7 @@ Q3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一
 第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。
 第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。
 代码如下：
-#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。
+#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。对于这次笔试，我得了60分，最后一题没有AC，可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，导致最后只差一点点但是来不及写完了。我做题的过程首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题我就写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致虽然找到了问题的核心，但距离写出题目浪费了很多时间，最后找到原因之后也已经来不及了，虽然最后还是花了几分钟把它写完了，不过算是有点可惜。
 " />
   <meta name="description" content="前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C&#43;&#43;, Java, Python, Python 3] 1道题目可使用：[C&#43;&#43;] 1道题目可使用：[C, C#, C&#43;&#43;, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C&#43;&#43;] 1道题目可使用：[C#, C&#43;&#43;] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。
 Q1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。
@@ -62,7 +62,7 @@ Q3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一
 第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。
 第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。
 代码如下：
-#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。
+#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。对于这次笔试，我得了60分，最后一题没有AC，可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，导致最后只差一点点但是来不及写完了。我做题的过程首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题我就写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致虽然找到了问题的核心，但距离写出题目浪费了很多时间，最后找到原因之后也已经来不及了，虽然最后还是花了几分钟把它写完了，不过算是有点可惜。
 " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
@@ -205,7 +205,7 @@ int main() {
 <button class="copy-button" data-clipboard-target="#code1">Copy</button>
 </div>
 <h3 id="总结">总结</h3>
-<p>只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。</p>
+<p>只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。对于这次笔试，我得了60分，最后一题没有AC，可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，导致最后只差一点点但是来不及写完了。我做题的过程首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题我就写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致虽然找到了问题的核心，但距离写出题目浪费了很多时间，最后找到原因之后也已经来不及了，虽然最后还是花了几分钟把它写完了，不过算是有点可惜。</p>
 <p>感觉除了平常的科研和学习，还是可以花一点时间来规划一下这种题目的训练，毕竟以后也会用得上，这次笔试的体验总体来说还是很不错的，继续努力吧。</p>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
