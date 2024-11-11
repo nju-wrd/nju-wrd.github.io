@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://nju-wrd.github.io/categories/" />
-  <link rel="canonical" href="https://nju-wrd.github.io/categories/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
 
@@ -24,10 +24,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/nju-wrd.github.io\/"
       },
-      "articleSection" : "categories",
-      "name" : "Categories",
-      "headline" : "Categories",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨08指针分析",
+      "headline" : "软件分析学习笔记丨08指针分析",
+      "description" : "Motivation CHA存在一些问题,会导致不精确的常量分析，如下图所示：\n由于CHA只考虑类名，不考虑上下文，所以会追踪到三个目标方法，导致x = NAC，但实际上调用的只是其中一个，这是不精确的，结果应该是x = 1。\nIntroduction to Pointer Analysis 指针分析是一个基础性的静态分析，计算指针可以指向的内存位置。对于面向对象（侧重于Java）的程序。计算指针（变量或字段）可以指向的对象。指针分析被看作may-analysis，会过度计算指针可以指向的对象集合，即“指针可能指向哪些对象？”。\n如上图例子所示，指针分析就是将一个输入的程序，输出为指针和对象之间的指向关系。\nPointer Analysis and Alias Analysis是两个密切但不相关的概念\n指针分析：指针可以指向哪些对象？\n别名分析：两个指针可以指向同一个对象吗？\n如果两个指针（比如 p 和 q）引用同一个对象，那么 p 和 q 之间就是别名的关系。\np = new C();\rq = p; 别名的信息是可以根据指针分析推导出来的。\nApplications of Pointer Analysis Fundamental information\nCall graph, aliases, … Compiler optimization\nVirtual call inlining, … Bug detection\nNull pointer detection, … Security analysis\nInformation flow analysis, … Key Factors of Pointer Analysis 指针分析是一个复杂的系统，影响系统精度和效率的因素很多\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,15 +37,43 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-11-11 00:00:00 \u002b0000 UTC",
       "dateModified" : "2024-11-11 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/nju-wrd.github.io\/categories\/",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90\/",
       "keywords" : [  ]
   }
 </script>
-<title>Categories</title>
-  <meta property="og:title" content="Categories" />
+<title>软件分析学习笔记丨08指针分析</title>
+  <meta property="og:title" content="软件分析学习笔记丨08指针分析" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Motivation CHA存在一些问题,会导致不精确的常量分析，如下图所示：
+由于CHA只考虑类名，不考虑上下文，所以会追踪到三个目标方法，导致x = NAC，但实际上调用的只是其中一个，这是不精确的，结果应该是x = 1。
+Introduction to Pointer Analysis 指针分析是一个基础性的静态分析，计算指针可以指向的内存位置。对于面向对象（侧重于Java）的程序。计算指针（变量或字段）可以指向的对象。指针分析被看作may-analysis，会过度计算指针可以指向的对象集合，即“指针可能指向哪些对象？”。
+如上图例子所示，指针分析就是将一个输入的程序，输出为指针和对象之间的指向关系。
+Pointer Analysis and Alias Analysis是两个密切但不相关的概念
+指针分析：指针可以指向哪些对象？
+别名分析：两个指针可以指向同一个对象吗？
+如果两个指针（比如 p 和 q）引用同一个对象，那么 p 和 q 之间就是别名的关系。
+p = new C();q = p; 别名的信息是可以根据指针分析推导出来的。
+Applications of Pointer Analysis Fundamental information
+Call graph, aliases, … Compiler optimization
+Virtual call inlining, … Bug detection
+Null pointer detection, … Security analysis
+Information flow analysis, … Key Factors of Pointer Analysis 指针分析是一个复杂的系统，影响系统精度和效率的因素很多
+" />
+  <meta name="description" content="Motivation CHA存在一些问题,会导致不精确的常量分析，如下图所示：
+由于CHA只考虑类名，不考虑上下文，所以会追踪到三个目标方法，导致x = NAC，但实际上调用的只是其中一个，这是不精确的，结果应该是x = 1。
+Introduction to Pointer Analysis 指针分析是一个基础性的静态分析，计算指针可以指向的内存位置。对于面向对象（侧重于Java）的程序。计算指针（变量或字段）可以指向的对象。指针分析被看作may-analysis，会过度计算指针可以指向的对象集合，即“指针可能指向哪些对象？”。
+如上图例子所示，指针分析就是将一个输入的程序，输出为指针和对象之间的指向关系。
+Pointer Analysis and Alias Analysis是两个密切但不相关的概念
+指针分析：指针可以指向哪些对象？
+别名分析：两个指针可以指向同一个对象吗？
+如果两个指针（比如 p 和 q）引用同一个对象，那么 p 和 q 之间就是别名的关系。
+p = new C();q = p; 别名的信息是可以根据指针分析推导出来的。
+Applications of Pointer Analysis Fundamental information
+Call graph, aliases, … Compiler optimization
+Virtual call inlining, … Bug detection
+Null pointer detection, … Security analysis
+Information flow analysis, … Key Factors of Pointer Analysis 指针分析是一个复杂的系统，影响系统精度和效率的因素很多
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -76,10 +104,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -103,42 +132,285 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨08指针分析</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-11-11 00:00:00 UTC">
+                11 Nov 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
+        <div class="post-content markdown-body">
+          
+          <h2 id="motivation">Motivation</h2>
+<p>CHA存在一些问题,会导致不精确的常量分析，如下图所示：</p>
+<img src = "problem.png" />
+<p>由于CHA只考虑类名，不考虑上下文，所以会追踪到三个目标方法，导致<code>x = NAC</code>，但实际上调用的只是其中一个，这是不精确的，结果应该是<code>x = 1</code>。</p>
+<h2 id="introduction-to-pointer-analysis">Introduction to Pointer Analysis</h2>
+<p>指针分析是一个基础性的静态分析，计算指针可以指向的内存位置。对于面向对象（侧重于Java）的程序。计算指针（变量或字段）可以指向的对象。指针分析被看作may-analysis，会过度计算指针可以指向的对象集合，即“指针可能指向哪些对象？”。</p>
+<img src = "example.png" />
+<p>如上图例子所示，指针分析就是将一个输入的程序，输出为指针和对象之间的指向关系。</p>
+<p>Pointer Analysis and Alias Analysis是两个密切但不相关的概念</p>
+<ul>
+<li>
+<p>指针分析：指针可以指向哪些对象？</p>
+</li>
+<li>
+<p>别名分析：两个指针可以指向同一个对象吗？</p>
+</li>
+</ul>
+<p>如果两个指针（比如 p 和 q）引用同一个对象，那么 p 和 q 之间就是别名的关系。</p>
+<pre tabindex="0"><code>p = new C();
+q = p;
+</code></pre><p>别名的信息是可以根据指针分析推导出来的。</p>
+<h3 id="applications-of-pointer-analysis">Applications of Pointer Analysis</h3>
+<ul>
+<li>
+<p>Fundamental information</p>
+<ul>
+<li>Call graph, aliases, …</li>
+</ul>
+</li>
+<li>
+<p>Compiler optimization</p>
+<ul>
+<li>Virtual call inlining, …</li>
+</ul>
+</li>
+<li>
+<p>Bug detection</p>
+<ul>
+<li>Null pointer detection, …</li>
+</ul>
+</li>
+<li>
+<p>Security analysis</p>
+<ul>
+<li>Information flow analysis, …</li>
+</ul>
+</li>
+</ul>
+<h2 id="key-factors-of-pointer-analysis">Key Factors of Pointer Analysis</h2>
+<p>指针分析是一个复杂的系统，影响系统精度和效率的因素很多</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Factor</th>
+      <th>Problem</th>
+      <th>Choice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Heap abstraction</td>
+      <td>How to model heap memory?</td>
+      <td>Allocation-site<br>Storeless</td>
+    </tr>
+    <tr>
+      <td>Context sensitivity</td>
+      <td>How to model calling contexts?</td>
+      <td>Context-sensitive<br>Context-insensitive</td>
+    </tr>
+    <tr>
+      <td>Flow sensitivity</td>
+      <td>How to model control flow?</td>
+      <td>Flow-sensitive<br>Flow-insensitive</td>
+    </tr>
+    <tr>
+      <td>Analysis scope</td>
+      <td>Which parts of program should be analyzed?</td>
+      <td>Whole-program<br>Demand-driven</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="heap-abstraction">Heap abstraction</h3>
+<p>在动态执行中，由于循环和递归，堆对象的数量可以不受限制，为了确保终止，所以我们要通过堆抽象模型将动态分配、无界的具体对象作为有限的抽象对象进行静态分析。</p>
+<h4 id="allocation-site-abstraction">Allocation-Site Abstraction</h4>
+<p>分配站点抽象是最常用的堆抽象</p>
+<ul>
+<li>按分配位置对具体对象进行建模</li>
+<li>每个分配站点一个抽象对象，用于表示其所有分配的具体对象</li>
+</ul>
+<img src = "site.png" />
+<p>如图所示，设o2是一个创建点，在此处创建了三个对象，利用Allocation-Site Abstraction仅利用一个抽象的对象o2来表示这些对象。可以保证静态分析处理的对象是有限的。</p>
+<h3 id="context-sensitivity">Context Sensitivity</h3>
+<p>如何对调用上下文进行建模？</p>
+<table border="1" cellpadding="10" cellspacing="0">
+<colgroup>
+    <col style="width: 50%">
+	<col style="width: 50%">
+</colgroup>
+  <thead>
+    <tr>
+      <th>Context-sensitive</th>
+      <th>Context-insensitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Distinguish different calling contexts of a method</td>
+      <td>Merge all calling contexts of a method</td>
+    </tr>
+    <tr>
+      <td>Analyze each method multiple times, once for each context</td>
+      <td>Analyze each method once</td>
+    </tr>
+  </tbody>
+</table>
+<img src = "context.png" />
+<p>前者会根据不同的上下文产生不同的结果，而后者对不同的上下文应用相同的分析，所以后者是不准确的。不过我们可以先从后者开始学习起来。</p>
+<h3 id="flow-sensitivity">Flow Sensitivity</h3>
+<p>如何对控制流进行建模？</p>
+<table border="1" cellpadding="10" cellspacing="0">
+<colgroup>
+    <col style="width: 50%">
+	<col style="width: 50%">
+</colgroup>
+  <thead>
+    <tr>
+      <th>Flow-sensitive</th>
+      <th>Flow-insensitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Respect the execution order of the statements</td>
+      <td>Ignore the control-flow order, treat the program as a set of unordered statements</td>
+    </tr>
+    <tr>
+      <td>Maintain a map of points-to relations at each program location</td>
+      <td>Maintain one map of points-to relations for the whole program</td>
+    </tr>
+  </tbody>
+</table>
+<img src = "flow.png" />
+<p>目前在Java当中并没有证明谁更好，所以在这里学习更简单的Flow-insensitive。</p>
+<h3 id="analysis-scope">Analysis Scope</h3>
+<table border="1" cellpadding="10" cellspacing="0">
+<colgroup>
+    <col style="width: 50%">
+	<col style="width: 50%">
+</colgroup>
+  <thead>
+    <tr>
+      <th>Whole-program</th>
+      <th>Demand-driven</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Compute points-to information for all pointers in the program</td>
+      <td>Only compute points-to information for the pointers that may affect specific sites of interest (on demand)</td>
+    </tr>
+    <tr>
+      <td>Provide information for all possible clients</td>
+      <td>Provide information for specific clients</td>
+    </tr>
+  </tbody>
+</table>
+<img src = "analysis.png" />
+<h2 id="concerned-statements">Concerned Statements</h2>
+<p>只关注影响指针的语句</p>
+<p>Pointers in Java</p>
+<ul>
+<li>Local variable: x</li>
+<li>Static field: C.f（有时称为全局变量）</li>
+<li>Instance field: x.f（建模为由 x 指向的对象的字段f）</li>
+<li>Array element: array[i]（忽略索引，被建模为一个由数组指向的对象，具有一个字段，例如 <code>arr</code>，该字段可以指向存储在数组中的任何值，如下图所示）</li>
+</ul>
+<img src = "arr.png" />
+<p>因此，指针分析中会影响指针的语句有：</p>
+<table>
+  <tbody>
+    <tr>
+      <th>New</th>
+      <th>x = new T()</th>
+    </tr>
+    <tr>
+      <th>Assign</th>
+      <th>x = y</th>
+    </tr>
+    <tr>
+      <th>Store</th>
+      <th>x.f = y</th>
+    </tr>
+    <tr>
+      <th>Load</th>
+      <th>y = x.f</th>
+    </tr>
+    <tr>
+      <th>Call</th>
+      <th>r = x.k(a, …)</th>
+    </tr>
+  </tbody>
+</table>
+其中，通过引入临时变量，将复杂的内存访问转换为三地址代码
+<img src = "temp.png" />
+<p>而在Call中，有三种情况：</p>
+<ul>
+<li>Static call C.foo()</li>
+<li>Special call super.foo()/x.<init>()/this.privateFoo()</li>
+<li>Virtual call x.foo()</li>
+</ul>
+<p>这里面的前两条较为简单，而Virtual Call较为复杂是分析的重点。</p>
 
-	
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
+        </div>
 
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：10<br> 
-		最近一次发布日期：2024-11-10
-	</p>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td style="text-align:left"><a href="/categories/%e5%8d%9a%e5%ae%a2/" style = "color: #0000FF" target="_blank">博客</a></td>
-				<td style="text-align:left">2024-11-10</td>
-				<td style="text-align:left">6</td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"  style = "color: #0000FF" target="_blank">软件分析</a></td>
-				<td style="text-align:left">2024-11-06</td>
-				<td style="text-align:left">2</td>
-			</tr>
-	</table>
-</div>
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -158,6 +430,8 @@
     
   
 </script>
+
+  
 
 </body>
 

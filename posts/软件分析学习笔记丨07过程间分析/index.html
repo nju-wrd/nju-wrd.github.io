@@ -27,7 +27,7 @@
       "articleSection" : "posts",
       "name" : "软件分析学习笔记丨07过程间分析",
       "headline" : "软件分析学习笔记丨07过程间分析",
-      "description" : "前言 课程网站为Static Program Analysis | Tai-e\n因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。\n从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。\nMotivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。\nCall Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。\n本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。\n越往上速度越快，越往下精度越高。\n了解JAVA中的call：\nStatic call\rSpecial call\rVirtual call\rInstruction\rinvokestatic\rinvokespecial\rinvokeinterface\ninvokevirtual\rReceiver objects\r×无实例\r√有实例\r√有实例\rTarget methods\r·Static methods (静态方法)\r·Constructors (构造函数)\n·Private instance methods (类自己的私有方法)\n·Superclass instance methods (父类的实例方法)\r·Other instance methods (其他实例方法)\r# Target methods 个数\r1\r1\r≥1 (polymorphism) 多态\rDeterminacy 确定时机\rCompile-time (编译时)\rCompile-time (编译时)\rRun-time (运行时)\r构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：\n",
+      "description" : "前言 课程网站为Static Program Analysis | Tai-e\n因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。\n从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。\nMotivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。\nCall Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。\n本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。\n越往上速度越快，越往下精度越高。\n了解JAVA中的call：\nStatic call\rSpecial call\rVirtual call\rInstruction\rinvokestatic\rinvokespecial\rinvokeinterface\ninvokevirtual\rReceiver objects\r×无实例\r√有实例\r√有实例\rTarget methods\r·Static methods (静态方法)\r·Constructors (构造函数)\n·Private instance methods (类自己的私有方法)\n·Superclass instance methods (父类的实例方法)\r·Other instance methods (其他实例方法)\r# Target methods 个数\r1\r1\r≥1 (polymorphism) 多态\rDeterminacy 确定时机\rCompile-time (编译时)\rCompile-time (编译时)\rRun-time (运行时)\r构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -45,8 +45,8 @@
   <meta property="og:title" content="软件分析学习笔记丨07过程间分析" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
+因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
+从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
 Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
 Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
 本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
@@ -58,8 +58,8 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 ·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
 " />
   <meta name="description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的课程本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
+因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
+从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
 Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
 Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
 本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
@@ -151,8 +151,8 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
           
           <h2 id="前言">前言</h2>
 <p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
-<p>因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。实话实说的话，李樾老师的课确实要更精彩更吸引我一些，当然没有说谭添老师不好的意思，从内容上来说这门课始终都是非常棒的，但是李樾老师线下的课和线上不一样，因为李樾老师的<strong>课程</strong>本身也十分的幽默风趣，他上课提到的一些包括用于举例子以及给我们讲的一些非课程相关的知识是和视频内不一样的，所以我自然不想错过，无论刮风下雨。但是这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。</p>
-<p>从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些s动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。</p>
+<p>因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。</p>
+<p>从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。</p>
 <h2 id="motivation">Motivation</h2>
 <p>过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。</p>
 <h2 id="call-graph-construction-cha-">Call Graph Construction（ CHA ）</h2>

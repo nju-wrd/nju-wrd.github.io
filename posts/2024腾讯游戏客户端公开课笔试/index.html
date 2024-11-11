@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/" />
-  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
 
@@ -25,9 +25,9 @@
            "@id": "https:\/\/nju-wrd.github.io\/"
       },
       "articleSection" : "posts",
-      "name" : "我的博客网站搭建进展丨01",
-      "headline" : "我的博客网站搭建进展丨01",
-      "description" : "2024-11-07 在我写了几篇博客之后，通过实际的编写过程和这期间看到的别的内容，我发现用单纯的Markdown语法来写并不能达到我想要的效果。并且我通过对比发现我在Typora里编辑的 html 语法是可以被识别到并正确运行的，不过可能由于我本身博客的框架基础，在web页面并没有被正确加载，所以我决定研究一下我的 post 具体是怎样被加载的。\n经过研究发现，我的书写内容没有问题，post 的加载也没有问题，在修复Hugo静态生成器中忽略原始HTML的方法中我找到了问题的答案，原来是因为渲染的markdown不能理解我在短代码中的HTML。从Hugo V.0.60开始，默认的markdown渲染器是Gold mark。Goldmark渲染引擎默认忽略了原始HTML。所以我必须使用配置参数来告诉它。这个解决方案可以让Markdown渲染器使用Goldmark渲染器，通过配置考虑原始HTML。\n修复方法是在配置文件中加入\n[markup]\r[markup.goldmark]\r[markup.goldmark.renderer]\runsafe = true\rCopy\r这里我正在使用 config.toml 文件，若是 yaml 文件参考文章给出的格式。这时候我之前的 html 语句就被正确加载了。\n第二个问题是我之前插入了很多图片都没有被正确加载，我觉得可能是因为文件路径的问题。因为上一个问题我是先问的 gpt ，其实 gpt 给出的方案和正确方案是比较类似的，但他没有意识到她提到的 blackfriday 渲染器已经不再使用了，导致我花费很多时间找到真正的原因，所以这一次我也觉得先在搜索引擎中找答案。根据 hugo 导入图片的两种方式我也完成了我的图片导入。但是后续我想到了一些问题，就是我的 content\\cn\\posts 内文件本身是没有额外文件夹的，但是在 hugo 启动之后生成的 public 文件夹中是针对每个 md 文件有一个文件夹的，其中放了 html 文件，所以我的做法就是将图片放在这个文件夹之下。我想到的是什么呢，就是说这个文件是一个缓存文件，如果我执行了清除缓存的命令，我里面的图片就没了，我测试了一下，果然没了。但是 edge 里面还能看到，我猜测是因为 edge 本身缓存了这个图片，于是我打开 chrome 试了一下果然，这张图片已经看不到了，所以我现在要理解这个过程，将图片放在一个一劳永逸的地方。为什么我不直接放在 content 目录先呢，因为这里面原来都是单独的 md 文件，我担心将 md 文件放入文件夹中会影响 hugo 构建的过程。这次我直接询问 gpt 得到了答案，我可以在 post 文件夹下额外新建一个对应 md 文件的文件夹，然后将相应的图片放入即可，这样 hugo 自然会将图片放入 public 对应的文件夹和 html 文件在一起。在这之前，~~我找到了回收站中被清除的图片。~~我重新上传了需要的图片。\n",
+      "name" : "2024腾讯游戏客户端公开课笔试",
+      "headline" : "2024腾讯游戏客户端公开课笔试",
+      "description" : "前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C\u002b\u002b, Java, Python, Python 3] 1道题目可使用：[C\u002b\u002b] 1道题目可使用：[C, C#, C\u002b\u002b, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C\u002b\u002b] 1道题目可使用：[C#, C\u002b\u002b] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。\nQ1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。\nQ2 第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有\u002b-*\/，且输入可能会有空格。\nQ3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。\n我的思路 第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。\n第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。\n第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。\n代码如下：\n#include \u0026ltalgorithm\u0026gt\r#include \u0026ltiostream\u0026gt\rusing namespace std;\rint main() {\rint n,m;\rcin \u003e\u003e m \u003e\u003e n;\rint arr[100][100];\rfor(int i = 0 ;i \u003c m; i\u002b\u002b){\rfor(int j = 0; j \u003c n; j\u002b\u002b){\rcin \u003e\u003e arr[i][j];\r}\r}\rint dp[100][100] = {0};\rdp[0][0] = arr[0][0];\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rif(arr[i][0] == 0){\rwhile(i \u003c m){\rdp[i][0] = INT32_MAX;\ri\u002b\u002b;\r}\r}else{\rdp[i][0] = dp[i - 1][0] \u002b arr[i][0];\r}\r}\rfor(int i = 1 ;i \u003c n; i\u002b\u002b){\rif(arr[0][i] == 0){\rwhile(i \u003c n){\rdp[0][i] = INT32_MAX;\ri\u002b\u002b;\r}\r}else {\rdp[0][i] = dp[0][i - 1] \u002b arr[0][i];\r}\r}\rfor(int i = 1 ;i \u003c m; i\u002b\u002b){\rfor(int j = 1; j \u003c n; j\u002b\u002b){\rif(arr[i][j] == 0){\rdp[i][j] = INT32_MAX;\r}else {\rdp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) \u002b arr[i][j];\r}\r}\r}\rprintf(\u0022%d\u0022,dp[m - 1][n - 1]);\r}\rCopy\r总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,24 +37,32 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-11-10 00:00:00 \u002b0000 UTC",
       "dateModified" : "2024-11-10 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801\/",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95\/",
       "keywords" : [  ]
   }
 </script>
-<title>我的博客网站搭建进展丨01</title>
-  <meta property="og:title" content="我的博客网站搭建进展丨01" />
+<title>2024腾讯游戏客户端公开课笔试</title>
+  <meta property="og:title" content="2024腾讯游戏客户端公开课笔试" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="2024-11-07 在我写了几篇博客之后，通过实际的编写过程和这期间看到的别的内容，我发现用单纯的Markdown语法来写并不能达到我想要的效果。并且我通过对比发现我在Typora里编辑的 html 语法是可以被识别到并正确运行的，不过可能由于我本身博客的框架基础，在web页面并没有被正确加载，所以我决定研究一下我的 post 具体是怎样被加载的。
-经过研究发现，我的书写内容没有问题，post 的加载也没有问题，在修复Hugo静态生成器中忽略原始HTML的方法中我找到了问题的答案，原来是因为渲染的markdown不能理解我在短代码中的HTML。从Hugo V.0.60开始，默认的markdown渲染器是Gold mark。Goldmark渲染引擎默认忽略了原始HTML。所以我必须使用配置参数来告诉它。这个解决方案可以让Markdown渲染器使用Goldmark渲染器，通过配置考虑原始HTML。
-修复方法是在配置文件中加入
-[markup][markup.goldmark][markup.goldmark.renderer]unsafe = trueCopy这里我正在使用 config.toml 文件，若是 yaml 文件参考文章给出的格式。这时候我之前的 html 语句就被正确加载了。
-第二个问题是我之前插入了很多图片都没有被正确加载，我觉得可能是因为文件路径的问题。因为上一个问题我是先问的 gpt ，其实 gpt 给出的方案和正确方案是比较类似的，但他没有意识到她提到的 blackfriday 渲染器已经不再使用了，导致我花费很多时间找到真正的原因，所以这一次我也觉得先在搜索引擎中找答案。根据 hugo 导入图片的两种方式我也完成了我的图片导入。但是后续我想到了一些问题，就是我的 content\cn\posts 内文件本身是没有额外文件夹的，但是在 hugo 启动之后生成的 public 文件夹中是针对每个 md 文件有一个文件夹的，其中放了 html 文件，所以我的做法就是将图片放在这个文件夹之下。我想到的是什么呢，就是说这个文件是一个缓存文件，如果我执行了清除缓存的命令，我里面的图片就没了，我测试了一下，果然没了。但是 edge 里面还能看到，我猜测是因为 edge 本身缓存了这个图片，于是我打开 chrome 试了一下果然，这张图片已经看不到了，所以我现在要理解这个过程，将图片放在一个一劳永逸的地方。为什么我不直接放在 content 目录先呢，因为这里面原来都是单独的 md 文件，我担心将 md 文件放入文件夹中会影响 hugo 构建的过程。这次我直接询问 gpt 得到了答案，我可以在 post 文件夹下额外新建一个对应 md 文件的文件夹，然后将相应的图片放入即可，这样 hugo 自然会将图片放入 public 对应的文件夹和 html 文件在一起。在这之前，~~我找到了回收站中被清除的图片。~~我重新上传了需要的图片。
+  <meta property="og:description" content="前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C&#43;&#43;, Java, Python, Python 3] 1道题目可使用：[C&#43;&#43;] 1道题目可使用：[C, C#, C&#43;&#43;, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C&#43;&#43;] 1道题目可使用：[C#, C&#43;&#43;] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。
+Q1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。
+Q2 第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有&#43;-*/，且输入可能会有空格。
+Q3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。
+我的思路 第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。
+第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。
+第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。
+代码如下：
+#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。
 " />
-  <meta name="description" content="2024-11-07 在我写了几篇博客之后，通过实际的编写过程和这期间看到的别的内容，我发现用单纯的Markdown语法来写并不能达到我想要的效果。并且我通过对比发现我在Typora里编辑的 html 语法是可以被识别到并正确运行的，不过可能由于我本身博客的框架基础，在web页面并没有被正确加载，所以我决定研究一下我的 post 具体是怎样被加载的。
-经过研究发现，我的书写内容没有问题，post 的加载也没有问题，在修复Hugo静态生成器中忽略原始HTML的方法中我找到了问题的答案，原来是因为渲染的markdown不能理解我在短代码中的HTML。从Hugo V.0.60开始，默认的markdown渲染器是Gold mark。Goldmark渲染引擎默认忽略了原始HTML。所以我必须使用配置参数来告诉它。这个解决方案可以让Markdown渲染器使用Goldmark渲染器，通过配置考虑原始HTML。
-修复方法是在配置文件中加入
-[markup][markup.goldmark][markup.goldmark.renderer]unsafe = trueCopy这里我正在使用 config.toml 文件，若是 yaml 文件参考文章给出的格式。这时候我之前的 html 语句就被正确加载了。
-第二个问题是我之前插入了很多图片都没有被正确加载，我觉得可能是因为文件路径的问题。因为上一个问题我是先问的 gpt ，其实 gpt 给出的方案和正确方案是比较类似的，但他没有意识到她提到的 blackfriday 渲染器已经不再使用了，导致我花费很多时间找到真正的原因，所以这一次我也觉得先在搜索引擎中找答案。根据 hugo 导入图片的两种方式我也完成了我的图片导入。但是后续我想到了一些问题，就是我的 content\cn\posts 内文件本身是没有额外文件夹的，但是在 hugo 启动之后生成的 public 文件夹中是针对每个 md 文件有一个文件夹的，其中放了 html 文件，所以我的做法就是将图片放在这个文件夹之下。我想到的是什么呢，就是说这个文件是一个缓存文件，如果我执行了清除缓存的命令，我里面的图片就没了，我测试了一下，果然没了。但是 edge 里面还能看到，我猜测是因为 edge 本身缓存了这个图片，于是我打开 chrome 试了一下果然，这张图片已经看不到了，所以我现在要理解这个过程，将图片放在一个一劳永逸的地方。为什么我不直接放在 content 目录先呢，因为这里面原来都是单独的 md 文件，我担心将 md 文件放入文件夹中会影响 hugo 构建的过程。这次我直接询问 gpt 得到了答案，我可以在 post 文件夹下额外新建一个对应 md 文件的文件夹，然后将相应的图片放入即可，这样 hugo 自然会将图片放入 public 对应的文件夹和 html 文件在一起。在这之前，~~我找到了回收站中被清除的图片。~~我重新上传了需要的图片。
+  <meta name="description" content="前言 因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是1道题目可使用：[C, C#, C&#43;&#43;, Java, Python, Python 3] 1道题目可使用：[C&#43;&#43;] 1道题目可使用：[C, C#, C&#43;&#43;, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]而11.10的表述是2道题目可使用：[C, C&#43;&#43;] 1道题目可使用：[C#, C&#43;&#43;] 在线作答编程不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。
+Q1 第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。
+Q2 第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有&#43;-*/，且输入可能会有空格。
+Q3 第三道题是给定一个包含非负整数的 m x n 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。
+我的思路 第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。
+第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。
+第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。
+代码如下：
+#include &ltalgorithm&gt#include &ltiostream&gtusing namespace std;int main() {int n,m;cin &gt;&gt; m &gt;&gt; n;int arr[100][100];for(int i = 0 ;i &lt; m; i&#43;&#43;){for(int j = 0; j &lt; n; j&#43;&#43;){cin &gt;&gt; arr[i][j];}}int dp[100][100] = {0};dp[0][0] = arr[0][0];for(int i = 1 ;i &lt; m; i&#43;&#43;){if(arr[i][0] == 0){while(i &lt; m){dp[i][0] = INT32_MAX;i&#43;&#43;;}}else{dp[i][0] = dp[i - 1][0] &#43; arr[i][0];}}for(int i = 1 ;i &lt; n; i&#43;&#43;){if(arr[0][i] == 0){while(i &lt; n){dp[0][i] = INT32_MAX;i&#43;&#43;;}}else {dp[0][i] = dp[0][i - 1] &#43; arr[0][i];}}for(int i = 1 ;i &lt; m; i&#43;&#43;){for(int j = 1; j &lt; n; j&#43;&#43;){if(arr[i][j] == 0){dp[i][j] = INT32_MAX;}else {dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) &#43; arr[i][j];}}}printf(&#34;%d&#34;,dp[m - 1][n - 1]);}Copy总结 只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。
 " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
@@ -116,7 +124,7 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">我的博客网站搭建进展丨01</h1>
+          <h1 class="post-title">2024腾讯游戏客户端公开课笔试</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
@@ -135,88 +143,70 @@
 
         <div class="post-content markdown-body">
           
-          <h2 id="2024-11-07">2024-11-07</h2>
-<p>在我写了几篇博客之后，通过实际的编写过程和这期间看到的别的内容，我发现用单纯的Markdown语法来写并不能达到我想要的效果。并且我通过对比发现我在Typora里编辑的 html 语法是可以被识别到并正确运行的，不过可能由于我本身博客的框架基础，在web页面并没有被正确加载，所以我决定研究一下我的 post 具体是怎样被加载的。</p>
-<p>经过研究发现，我的书写内容没有问题，post 的加载也没有问题，在<a href="https://juejin.cn/post/7119681369831112741">修复Hugo静态生成器中忽略原始HTML的方法</a>中我找到了问题的答案，原来是因为渲染的markdown不能理解我在短代码中的HTML。从Hugo V.0.60开始，默认的markdown渲染器是Gold mark。Goldmark渲染引擎默认忽略了原始HTML。所以我必须使用配置参数来告诉它。这个解决方案可以让Markdown渲染器使用Goldmark渲染器，通过配置考虑原始HTML。</p>
-<p>修复方法是在配置文件中加入</p>
-<div class="highlight"style="position:relative;"><pre><code id = "code1">[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+          <h2 id="前言">前言</h2>
+<p>因为周六要打工没空，所以选择参加了11.10号的场次，在参加之前我除了知道这两场题目会不同之外，我还发现11.9对于编程语言限制的描述是<div style="border-left:4px solid green;padding-left:10px;"><font color=#686868>1道题目可使用：[C, C#, C++, Java, Python, Python 3] 1道题目可使用：[C++] 1道题目可使用：[C, C#, C++, Go, Groovy, Java, Javascript, Kotlin, Matlab, Object C, Pascal, Php, Pypy2, Pypy3, Python, Python 3, R, Ruby, Rust, Scala, Swift, Typescript]</font></div>而11.10的表述是<div style="border-left:4px solid green;padding-left:10px;"><font color=#686868>2道题目可使用：[C, C++] 1道题目可使用：[C#, C++] 在线作答编程</font></div>不知道会不会差别很大，大致回忆一下题目的内容，记不清的内容我会用自己理解的东西代替描述。</p>
+<h2 id="q1">Q1</h2>
+<p>第一道题是定义了一个完美平方数组，他会给你字符串的长度，以及相对应的由01组成的字符串，如果他能形成一个m * n的矩阵，满足外部都是1，中间都是0，就是完美数组，且当m == n的时候，是完美平方数组。输入的格式先是字符串的个数，然后接受每个字符串的长度和内容，满足完美平方数组的打印Yes，否则打印No。</p>
+<h2 id="q2">Q2</h2>
+<p>第二道题是会给出一个表达式，然后你要做的是解析表达式，解析成功的打印表达式的最终值，解析失败则打印XXX。要求解析的只有+-*/，且输入可能会有空格。</p>
+<h2 id="q3">Q3</h2>
+<p>第三道题是给定一个包含非负整数的 <code>m x n</code> 矩阵 ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。且元素为0时，表示不可以通过。说明：每次只能向下或者向右移动一步。</p>
+<h2 id="我的思路">我的思路</h2>
+<p>第一题的话我是先判断是否满足平方，然后再简单的遍历每一个字符串的元素是否满足0，1的条件。</p>
+<p>第二题用了两个栈来解析，第一个栈对于数字操作，第二个对于op符操作，当遇到数字进数字栈，遇到符号且符号栈为空时进栈，栈不为空时，根据符号的优先级进行出栈以及计算的判断。不过中间会有一些细节的处理。</p>
+<p>第三题是很常见的dp题，因为某一点的最短路径只会来自于他的左边和上边，选择短的加上自己则是最短，所以可以划分为子问题。不过这里要对于0做特殊处理，我的处理是将此处的dp值设为int的最大值。随后循环生成打印即可。</p>
+<p>代码如下：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">#include &ltalgorithm&gt
+#include &ltiostream&gt
+using namespace std;
+int main() {
+	int n,m;
+	cin >> m >> n;
+	int arr[100][100];
+	for(int i = 0 ;i < m; i++){
+	for(int j = 0; j < n; j++){
+		cin >> arr[i][j];
+        }
+    }
+    int dp[100][100] = {0};
+    dp[0][0] = arr[0][0];
+    for(int i = 1 ;i < m; i++){
+        if(arr[i][0] == 0){
+            while(i < m){
+                dp[i][0] = INT32_MAX;
+                i++;
+            }
+        }else{
+            dp[i][0] = dp[i - 1][0] + arr[i][0];
+        }
+    }
+    for(int i = 1 ;i < n; i++){
+        if(arr[0][i] == 0){
+            while(i < n){
+                dp[0][i] = INT32_MAX;
+                i++;
+            }
+        }else {
+            dp[0][i] = dp[0][i - 1] + arr[0][i];
+        }
+    }
+    for(int i = 1 ;i < m; i++){
+        for(int j = 1; j < n; j++){
+            if(arr[i][j] == 0){
+                dp[i][j] = INT32_MAX;
+            }else {
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + arr[i][j];
+            }
+        }
+    }
+    printf("%d",dp[m - 1][n - 1]);
+}
 </code></pre>
 <button class="copy-button" data-clipboard-target="#code1">Copy</button>
 </div>
-<p>这里我正在使用 config.toml 文件，若是 yaml 文件参考文章给出的格式。这时候我之前的 html 语句就被正确加载了。</p>
-<p>第二个问题是我之前插入了很多图片都没有被正确加载，我觉得可能是因为文件路径的问题。因为上一个问题我是先问的 gpt ，其实 gpt 给出的方案和正确方案是比较类似的，但他没有意识到她提到的 blackfriday 渲染器已经不再使用了，导致我花费很多时间找到真正的原因，所以这一次我也觉得先在搜索引擎中找答案。根据 <a href="https://blog.csdn.net/qq_38340601/article/details/108900666">hugo 导入图片的两种方式</a>我也完成了我的图片导入。但是后续我想到了一些问题，就是我的 content\cn\posts 内文件本身是没有额外文件夹的，但是在 hugo 启动之后生成的 public 文件夹中是针对每个 md 文件有一个文件夹的，其中放了 html 文件，所以我的做法就是将图片放在这个文件夹之下。我想到的是什么呢，就是说这个文件是一个缓存文件，如果我执行了清除缓存的命令，我里面的图片就没了，我测试了一下，果然没了。但是 edge 里面还能看到，我猜测是因为 edge 本身缓存了这个图片，于是我打开 chrome 试了一下果然，这张图片已经看不到了，所以我现在要理解这个过程，将图片放在一个一劳永逸的地方。为什么我不直接放在 content 目录先呢，因为这里面原来都是单独的 md 文件，我担心将 md 文件放入文件夹中会影响 hugo 构建的过程。这次我直接询问 gpt 得到了答案，我可以在 post 文件夹下额外新建一个对应 md 文件的文件夹，然后将相应的图片放入即可，这样 hugo 自然会将图片放入 public 对应的文件夹和 html 文件在一起。在这之前，~~我找到了回收站中被清除的图片。~~我重新上传了需要的图片。</p>
-<p>接着针对超链接的格式设置问题由于我解决了 html 渲染的问题，所以我不需要在我原来的 css 文件里设置统一的格式。我可以根据每一处的超链接单独设置了。我将博客内按照原来的格式去配置，博客外的采用另一种我觉得好看的形式去展示。相应的我要修改我之前改过的 css 文件。之后对于文档内的我要设置超链接的颜色为<code>style=&quot;color: #0000FF;&quot;</code></p>
-<p>在此记录一下链接到外部网站和链接到文档内的位置的语法：</p>
-<pre tabindex="0"><code>外部网站
-&lt;a style=&#34;color: #0000FF;&#34; href=&#34;网站链接&#34; target=&#34;_blank&#34;&gt;网站名&lt;/a&gt;
-内部位置
-&lt;a style=&#34;color: #0000FF;&#34; href=&#34;#位置id&#34;&gt;位置名&lt;/a&gt;&lt;br&gt;
-&lt;a id=&#34;位置id&#34;&gt;&lt;/a&gt;
-</code></pre><p>之后我在观察途中发现我的字体很细，最终经过F12发现是我的字体版本较细，所以更换为 Screen 的版本。利用npm工具在字体网站下载新的版本，发现npm命令未找到，重新安装 Node.js ,但是并没有重新安装。在此记录这两条命令，以防下次遇到类似问题。（要使用 Powershell 且以管理员身份运行）</p>
-<div class="highlight"style="position:relative;"><pre><code class="language-powershell" data-lang="powershell" id = "code2"># 配置 fnm 环境
-fnm env --use-on-cd | Out-String | Invoke-Expression
-# 下载并安装 Node.js
-fnm use --install-if-missing 22
-# 验证环境中是否存在正确的 Node.js 版本
-node -v # 应该打印 `v22.11.0`
-# 验证环境中是否存在正确的 npm 版本
-npm -v # 应该打印 `10.9.0`
-</code></pre>
-<button class="copy-button" data-clipboard-target="#code2">Copy</button>
-</div>
-<p>均可以得到正常结果，且不需要安装，可能是需要使用该环境。用<code>npm install --save lxgw-wenkai-screen-webfont</code>下载。</p>
-<p>然后我发现 Markdown 自带的表格不是很好用，首先他没有边框，对表格内再做其他操作也不方便，所以我在想现在能不能用 html 重写来替换我之前的表格。改变成功！</p>
-<p>对Java代码的语法做了高亮处理，优化了我的代码块，增加了复制按钮，并设置相应的美化效果。模板如下：</p>
-<div class="highlight"style="position:relative;"><pre><code class="language-html" data-lang="html" id = "code3">&ltdiv class="highlight" style="position:relative;"&gt&ltpre&gt&ltcode class="language-java" data-lang="java" id = "代码的id"&gt填充代码
-&lt/code&gt&lt/pre&gt
-&ltbutton class="copy-button" data-clipboard-target="#代码的id"&gtCopy&lt/button&gt
-&lt/div&gt
-</code></pre>
-<button class="copy-button" data-clipboard-target="#code3">Copy</button>
-</div>
-<div class="highlight" style="position:relative;"><pre><code class="language-html" data-lang="html" id="code4">&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet"&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    // 初始化 Clipboard.js
-    var clipboard = new ClipboardJS('.copy-button');
-    clipboard.on('success', function(e) {
-        var copyButton = e.trigger;
-        copyButton.textContent = 'Copied!';
-        copyButton.style.backgroundColor = '#cd3bee';
-        setTimeout(function() {
-            copyButton.textContent = 'Copy';
-            copyButton.style.backgroundColor = '#008b8b';
-        }, 2000);
-        e.clearSelection(); // 清除选中的文本
-    });
-&lt;/script&gt;
-</code></pre>
-<button class="copy-button" data-clipboard-target="#code4">Copy</button>
-</div>
-<h2 id="2024-11-8">2024-11-8</h2>
-<p>今天尝试在 GitHub 上创建了代码仓库，并进行了常规的部署，效果不错，但是因为还有很多功能未实现，所以就先关掉了。</p>
-<h2 id="2024-11-9">2024-11-9</h2>
-<p>今天准备整理一下我的网站的目录等网页内容,写了一个文章分类与统计的页面，把之前生成的分类页面串联在一起了。其中，分类的总页面是我根据自动生成的 html 改写的，因为我没有找到它是怎么生成的。所以后续更新了我的博客网站的话，我还得重新改写，希望后续能弄得，目前来看的话，我每次都要改meta property以及它下面的link、title和页面的内容。</p>
-<p><strong>好的后续经过我不懈的努力，我成功将他改成了部分自动的！可喜可贺！</strong></p>
-<p>然后在title部分加上了一个头像，是十日终焉的主角齐夏的同人创作。来自于<a style="color: #0000FF;" href="https://www.xiaohongshu.com/discovery/item/6687ead0000000000d00da18?app_platform=android&ignoreEngage=true&app_version=8.60.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CByNCmzVbvvnZwpXFtmf7eMiJ-pwoMFsDvcEbOqfgE1Z4=&author_share=1&xhsshare=QQ&shareRedId=ODdDQ0k7PEo2NzUyOTgwNjczOTc5NzZP&apptime=1731165979&share_id=4579a22106e642058bfc333aa654c9eb" target="_blank">小红书</a>的分享。</p>
-<h2 id="2024-11-10">2024-11-10</h2>
-<p>然后我加上了变换深色浅色的功能。使用的是<a style="color: #0000FF;" href="https://github.com/sandoche/Darkmode.js" target="_blank">Darkmode.js</a>。</p>
-<p>最后在情情的强烈要求下，加上了评论区功能。支持来源于<a style="color: #0000FF;" href="https://disqus.com/" target="_blank">Disqus</a>。</p>
-<p>然后就完成了我初期设想的全部功能啦！</p>
-<p>每次提交需要：</p>
-<div class="highlight"style="position:relative;"><pre><code class="language-powershell" data-lang="powershell" id = "code2">hugo --buildFuture -D
-git add .
-git commit -m ""
-git push
-</code></pre>
-<button class="copy-button" data-clipboard-target="#code2">Copy</button>
-</div>
-<p>现在是凌晨4点，我发现我的论文发不出去，经过各种调试之后我发现和时间有关，经过搜索，我终于通过<a style="color: #0000FF;" href="https://blog.hly0928.com/post/hugo-post-date-issue" target="_blank">hugo 文章日期设定上的小问题</a>解决了这个问题，心累。</p>
+<h3 id="总结">总结</h3>
+<p>只有第三题的代码的原因是，我没有在本地idea存储每一题的答案，所以只剩下最后的，就顺便贴上了。可能还是因为我平常不会经常去有目的性的去刷题，所以做题目的速度比较慢，首先就是思路的产生，再到将思路转化为实践，最后是实践中的边界情况讨论。第一题写了半个小时，要花费很多时间去找到出错的边界。第二题也是一样的情况，写完第二题只剩半个小时了。而第三题一开始我甚至没看到障碍的情况，导致浪费了很多时间，最后找到原因之后以及来不及了，虽然最后还是花了几分钟把它写完了，也算是有点可惜。</p>
+<p>感觉除了平常的科研和学习，还是可以花一点时间来规划一下这种题目的训练，毕竟以后也会用得上，这次笔试的体验总体来说还是很不错的，继续努力吧。</p>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
@@ -235,7 +225,6 @@ git push
         e.clearSelection();// 清除选中的文本
     });
 </script>
-
         </div>
 
         <div class="row middle-xs">
