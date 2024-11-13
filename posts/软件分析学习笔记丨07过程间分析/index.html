@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.136.5">
 
@@ -11,10 +11,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" />
-  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
-  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="桐木">
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
 
   <script type="application/ld+json">
   {
@@ -22,7 +22,7 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "http:\/\/localhost:1313\/"
+           "@id": "https:\/\/nju-wrd.github.io\/"
       },
       "articleSection" : "posts",
       "name" : "软件分析学习笔记丨07过程间分析",
@@ -37,11 +37,15 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-11-06 00:00:00 \u002b0000 UTC",
       "dateModified" : "2024-11-06 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90\/",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90\/",
       "keywords" : [  ]
   }
 </script>
-<title>软件分析学习笔记丨07过程间分析</title>
+<title>
+    
+    软件分析学习笔记丨07过程间分析
+  
+  </title>
   <meta property="og:title" content="软件分析学习笔记丨07过程间分析" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 课程网站为Static Program Analysis | Tai-e
@@ -224,7 +228,7 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 <img src="dispatch.png" />
 <p>在这个基础上我们通过一个算法 CHA 找到 某一个调用点 cs（call site）可能的目标方法：</p>
 <img src="CHA.png" />
-<p>对于静态方法，目标方法就是这个方法本身，对于special call ，有三种情况，分别是前面提到的构造方法、私有方法和父类实例方法，对于前两种其实是不需要Dispatch的，但是第三种需要，而Dispatch可以覆盖这三种。然后对于 virtual call ，我们需要对于 cs 声明的类型的所有子类去做Dispatch。</p>
+<p>对于静态方法，目标方法就是这个方法本身，对于special call ，有三种情况，分别是前面提到的构造方法、私有方法和父类实例方法，对于前两种其实是不需要Dispatch的，但是第三种需要，而Dispatch可以覆盖这三种。然后对于 virtual call ，我们需要对于 cs 声明的类型的所有子类去做Dispatch，最终返回此处的目标方法。</p>
 <img src="example1.png" />
 <p>这里举了一个例子说明 virtual call 的同时，还说明了一点，也就是 b.foo() 它实际上调用的就是 A.foo() ，所以在这里后面的C.foo() D.foo() 都是多余的调用目标.</p>
 <p>CHA的优点就是很快，他只考虑在 cs 声明的类型和他的继承结构，忽略了实际的数据和控制流信息。所以它的缺点就是不够精确，比如上文可能引入的多余目标</p>
@@ -232,9 +236,7 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 <img src="build.png" />
 <h2 id="interprocedural-control-flow-graph">Interprocedural Control-Flow Graph</h2>
 <p>CFG 是一个单独的方法之内的结构，而 ICFG 则是包含了不同方法的 CFG 以及加上两个额外的边，分别是 Call edges 和 Return edges。一个是从 cs 指向被调用的方法的 Entry nodes ，一个是从exit nodes 指向跟在 cs 之后的下一条语句（return sites）。</p>
-<p>$$
-ICFG\ =\ CFGs\ +\ call\ &amp;\ return\ edges
-$$</p>
+<img src = "formula.png"  alt = "公式"/>
 <p>而这两条边就来自于调用图。而原来的边（如下图黄色背景中的边）就被称作call-to-return edges，我们并不会删掉他，这一点会在后面解释。</p>
 <img src="call-to-return edges.png" />
 <h2 id="interproceduraldata-flow-analysis">InterproceduralData-Flow Analysis</h2>
@@ -265,7 +267,7 @@ $$</p>
 <li>Call edge transfer:将数据流从 cs 传递到被调用方法的 entry node（along call edges）主要传递参数值</li>
 <li>Return edge transfer:将数据流从被调用方法的 exit node 传递到 return site（along return edges）主要传递返回值</li>
 </ul>
-<p>对于Node transdfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
+<p>对于Node transfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
 <img src="example2.png" />
 <p>这里会将b识别为NAC，显然是不准确的。</p>
 <p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的c all-to-return edges 来获得数据流的传递。如图所示：</p>

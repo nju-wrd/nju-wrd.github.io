@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="桐木">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/nju-wrd.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "软件分析实验笔记丨A4",
+      "headline" : "软件分析实验笔记丨A4",
+      "description" : "课程网站为Static Program Analysis | Tai-e\n本次实验为作业 4：类层次结构分析与过程间常量传播\n作业目标 为 Java 实现一个类层次结构分析（Class Hierarchy Analysis，CHA）。\n实现过程间常量传播。\n实现过程间数据流传播的 worklist 求解器。\n实现 完成 CHABuilder 类 JMethod dispatch(JClass,Subsignature) 该方法实现了如下图所示的 Dispatch 方法。特别地，如果找不到满足要求的方法，返回 null。\n这里要了解三个类， JMethod 、 JClass 、 Subsignature 。其中， JMethod 表示 Tai-e 中的 Java 方法，每个 JMethod 的实例关联着一个方法并包含该方法的各种信息。boolean isAbstract(): 如果该 JMethod 是一个没有方法体的抽象方法，则返回 true ，否则返回 false； JClass 表示 Tai-e 中的 Java 类，每个 JClass 的实例关联着一个类并包含该类的各种信息。JClass getSuperClass(): 返回该类的父类。如果这个类在类层次结构的顶端（没有父类），比如 java.lang.Object，则返回 null。JMethod getDeclaredMethod(Subsignature): 根据子签名返回该类中声明的对应方法。如果该类中没有该子签名对应的方法，则返回 null。boolean isInterface(): 返回该类是否是一个接口； Subsignature 表示 Tai-e 中的子签名，一个方法的子签名只包含它的方法名和方法签名的描述符，举个例子，下面方法 foo 的子签名是：“T foo(P,Q,R)” ，而它的完整签名是：“\u0026lt;C: T foo(P,Q,R)\u0026gt;”。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-11-13 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-11-13 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    软件分析实验笔记丨A4
+  
+  </title>
+  <meta property="og:title" content="软件分析实验笔记丨A4" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="课程网站为Static Program Analysis | Tai-e
+本次实验为作业 4：类层次结构分析与过程间常量传播
+作业目标 为 Java 实现一个类层次结构分析（Class Hierarchy Analysis，CHA）。
+实现过程间常量传播。
+实现过程间数据流传播的 worklist 求解器。
+实现 完成 CHABuilder 类 JMethod dispatch(JClass,Subsignature) 该方法实现了如下图所示的 Dispatch 方法。特别地，如果找不到满足要求的方法，返回 null。
+这里要了解三个类， JMethod 、 JClass 、 Subsignature 。其中， JMethod 表示 Tai-e 中的 Java 方法，每个 JMethod 的实例关联着一个方法并包含该方法的各种信息。boolean isAbstract(): 如果该 JMethod 是一个没有方法体的抽象方法，则返回 true ，否则返回 false； JClass 表示 Tai-e 中的 Java 类，每个 JClass 的实例关联着一个类并包含该类的各种信息。JClass getSuperClass(): 返回该类的父类。如果这个类在类层次结构的顶端（没有父类），比如 java.lang.Object，则返回 null。JMethod getDeclaredMethod(Subsignature): 根据子签名返回该类中声明的对应方法。如果该类中没有该子签名对应的方法，则返回 null。boolean isInterface(): 返回该类是否是一个接口； Subsignature 表示 Tai-e 中的子签名，一个方法的子签名只包含它的方法名和方法签名的描述符，举个例子，下面方法 foo 的子签名是：“T foo(P,Q,R)” ，而它的完整签名是：“&lt;C: T foo(P,Q,R)&gt;”。
+" />
+  <meta name="description" content="课程网站为Static Program Analysis | Tai-e
+本次实验为作业 4：类层次结构分析与过程间常量传播
+作业目标 为 Java 实现一个类层次结构分析（Class Hierarchy Analysis，CHA）。
+实现过程间常量传播。
+实现过程间数据流传播的 worklist 求解器。
+实现 完成 CHABuilder 类 JMethod dispatch(JClass,Subsignature) 该方法实现了如下图所示的 Dispatch 方法。特别地，如果找不到满足要求的方法，返回 null。
+这里要了解三个类， JMethod 、 JClass 、 Subsignature 。其中， JMethod 表示 Tai-e 中的 Java 方法，每个 JMethod 的实例关联着一个方法并包含该方法的各种信息。boolean isAbstract(): 如果该 JMethod 是一个没有方法体的抽象方法，则返回 true ，否则返回 false； JClass 表示 Tai-e 中的 Java 类，每个 JClass 的实例关联着一个类并包含该类的各种信息。JClass getSuperClass(): 返回该类的父类。如果这个类在类层次结构的顶端（没有父类），比如 java.lang.Object，则返回 null。JMethod getDeclaredMethod(Subsignature): 根据子签名返回该类中声明的对应方法。如果该类中没有该子签名对应的方法，则返回 null。boolean isInterface(): 返回该类是否是一个接口； Subsignature 表示 Tai-e 中的子签名，一个方法的子签名只包含它的方法名和方法签名的描述符，举个例子，下面方法 foo 的子签名是：“T foo(P,Q,R)” ，而它的完整签名是：“&lt;C: T foo(P,Q,R)&gt;”。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="桐木">
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">桐木</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析实验笔记丨A4</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-11-13 00:00:00 UTC">
+                13 Nov 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
+<p>本次实验为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/pa4.html" target="_blank">作业 4：类层次结构分析与过程间常量传播</a></p>
+<h2 id="作业目标">作业目标</h2>
+<ul>
+<li>
+<p>为 Java 实现一个类层次结构分析（Class Hierarchy Analysis，CHA）。</p>
+</li>
+<li>
+<p>实现过程间常量传播。</p>
+</li>
+<li>
+<p>实现过程间数据流传播的 worklist 求解器。</p>
+</li>
+</ul>
+<h2 id="实现">实现</h2>
+<h3 id="完成-chabuilder-类">完成 CHABuilder 类</h3>
+<h4 id="jmethod-dispatchjclasssubsignature">JMethod dispatch(JClass,Subsignature)</h4>
+<p>该方法实现了如下图所示的 Dispatch 方法。特别地，如果找不到满足要求的方法，返回 null。</p>
+<img src = "dispatch.png" />
+<p>这里要了解三个类， JMethod 、 JClass 、 Subsignature 。其中， <strong>JMethod</strong> 表示 Tai-e 中的 Java 方法，每个 JMethod 的实例关联着一个方法并包含该方法的各种信息。<strong>boolean isAbstract()</strong>: 如果该 JMethod 是一个没有方法体的抽象方法，则返回 true ，否则返回 false； <strong>JClass</strong> 表示 Tai-e 中的 Java 类，每个 JClass 的实例关联着一个类并包含该类的各种信息。<strong>JClass getSuperClass()</strong>: 返回该类的父类。如果这个类在类层次结构的顶端（没有父类），比如 java.lang.Object，则返回 null。<strong>JMethod getDeclaredMethod(Subsignature)</strong>: 根据子签名返回该类中声明的对应方法。如果该类中没有该子签名对应的方法，则返回 null。<strong>boolean isInterface()</strong>: 返回该类是否是一个接口； <strong>Subsignature</strong> 表示 Tai-e 中的子签名，一个方法的子签名只包含它的方法名和方法签名的描述符，举个例子，下面方法 foo 的子签名是：“T foo(P,Q,R)” ，而它的完整签名是：“&lt;C: T foo(P,Q,R)&gt;”。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "example1">class C {
+    T foo(P p, Q q, R r) { … }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#example1">Copy</button>
+  </div>
+C是class类型， T 、P 、Q 、R 是返回类型和参数类型， foo 是方法名。
+<p>具体实现如下：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">private JMethod dispatch(JClass jclass, Subsignature subsignature) {
+    // TODO - finish me
+    // 最终找不到返回 null
+if (jclass == null) return null;
+// 或取当前类定义的和 subsignature 相同的 method
+JMethod m = jclass.getDeclaredMethod(subsignature);
+// 如果这个方法存在且为具体的方法体则返回该方法
+if (m != null && !m.isAbstract()) {
+    return m;
+} else {
+    // 找不到向父类去找
+    return dispatch(jclass.getSuperClass(), subsignature);
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code1">Copy</button>
+  </div>
+<h4 id="set-jmethod--resolveinvoke">Set&lt; JMethod &gt; resolve(Invoke)</h4>
+<p>该方法实现了如下图所示的 Resolve 方法。</p>
+<img src = "CHA.png" />
+<p>这里要再了解三个类，Invoke (subclass of Stmt)、MethodRef、ClassHierarchy。<strong>Invoke</strong> 是 Stmt 的子类，表示程序中的方法调用（举个例子：x = o.m(a1,a2,…)）以及调用图中的调用点。它提供了一些 API 来获取调用点的各种信息。我需要使用 <strong>getMethodRef()</strong> 来获取目标方法的签名信息；**MethodRef **表示Tai-e 中的目标方法引用，如调用点的目标方法。它包含了调用点所调用的目标方法的签名信息。**JClass getDeclaringClass()：**返回该方法签名的声明类，即声明该方法的类；**Subsignature getSubsignature()：**返回被调用方法的子签名（subsignature）；<strong>ClassHierarchy</strong> 提供了类层次结构的相关信息，**Collection&lt; JClass &gt; getDirectSubclassesOf(JClass): **对于给定类，返回直接继承该类的子类。<strong>Collection&lt; JClass &gt; getDirectSubinterfacesOf(JClass):</strong> 对于一个给定接口，返回直接继承该接口的子接口。<strong>Collection&lt; JClass &gt; getDirectImplementorsOf(JClass):</strong> 对于一个给定接口，返回直接实现了该接口的类。</p>
+<p>举个例子，在下面的 class hierarchy 中，I, II, III 是接口，其他均为类：</p>
+<img src = example2.png>
+<p>那么有</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "example2">getDirectSubclassesOf(A) = [B]
+getDirectSubinterfacesOf(I) = [II, III]
+getDirectImplementorsOf(II) = [E]</code></pre>
+  <button class="copy-button" data-clipboard-target="#example2">Copy</button>
+  </div>
+<p>具体实现如下：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code2">private Set<JMethod> resolve(Invoke callSite) {
+    // TODO - finish me
+    Set<JMethod> T = new HashSet<>();
+    MethodRef m = callSite.getMethodRef();
+    JClass c = m.getDeclaringClass();
+    Subsignature s = m.getSubsignature();
+    JMethod target = dispatch(c,s);
+    // 无论哪种情况都要加
+    T.add(target);
+    // 特殊情况需遍历子类和子接口
+    CallKind callKind = CallGraphs.getCallKind(callSite);
+    if(callSite.isVirtual() || callSite.isInterface()) {
+        // 初始化子类和子接口
+        ArrayDeque<JClass> subclasses = new ArrayDeque<>();
+        HashSet<JClass> set = new HashSet<>();
+        subclasses.addLast(c);
+        set.add(c);
+        // 遍历所有
+        while (!subclasses.isEmpty()) {
+            // 取出一个类或接口
+            JClass subclass = subclasses.pollFirst();
+            T.add(dispatch(subclass, s));
+            // 将该类或接口的子类和子接口加入集合
+            for (JClass jClass : (hierarchy.getDirectSubclassesOf(subclass))) {
+                if (!set.contains(jClass)) {
+                    set.add(jClass);
+                    subclasses.addLast(jClass);
+                }
+            }
+            for (JClass jClass : (hierarchy.getDirectSubinterfacesOf(subclass))) {
+                if (!set.contains(jClass)) {
+                    set.add(jClass);
+                    subclasses.addLast(jClass);
+                }
+            }
+            for (JClass jClass : (hierarchy.getDirectImplementorsOf(subclass))) {
+                if (!set.contains(jClass)) {
+                    set.add(jClass);
+                    subclasses.addLast(jClass);
+                }
+            }
+            // 将目标方法加入结果中
+            T.add(dispatch(subclass,s));
+        }
+    }
+    return T;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code2">Copy</button>
+  </div>
+<h4 id="callgraphinvoke-jmethod-buildcallgraphjmethod">CallGraph&lt;Invoke, JMethod&gt; buildCallGraph(JMethod)</h4>
+<p>该方法实现了如下图所示的 BuildCallGraph 方法。</p>
+<img src = "build.png" />
+<p>这里要再了解四个类，DefaultCallGraph、CallKind、Edge&lt;Invoke,JMethod&gt;、Callgraphs。<strong>DefaultCallGraph</strong> 代表了程序的调用图。它提供了多样的 API（继承自类 AbstractCallGraph）来获取到调用图的信息。另外，它还提供了一些修改调用图的 API，可以借此来建立调用图。<strong>Stream&lt; Invoke &gt; callSitesIn(JMethod)：</strong>返回给定方法 JMethod 中的所有 call sites。<strong>boolean contains(JMethod):</strong> 返回当前调用图是否含有给定的方法，即给定方法 JMethod 在当前调用图中是否可达。<strong>boolean addReachableMethod(JMethod):</strong> 向当前调用图中添加方法 JMethod 并将方法标记成可达的。<strong>boolean addEdge(Edge&lt;Invoke,JMethod&gt;):</strong> 向当前调用图中添加一条调用边；<strong>CallKind</strong> 表示调用图中边的种类，包括 INTERFACE、VIRTUAL、SPECIAL 和 STATIC；<strong>Edge&lt;Invoke,JMethod&gt;</strong> 表示调用图中的边。每一条边从调用点（call site，Tai-e 中为 Invoke 类型）出发，指向被调用方法（callee method，类型为 JMethod）。在创建一条边的时候，你需要向构造方法提供调用类型、调用点和被调用方法的信息；Callgraphs 表示调用图的静态方法，<strong>CallKind getCallKind(Invoke invoke)：</strong>可以或取某 cs 的边类型。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code3">private CallGraph<Invoke, JMethod> buildCallGraph(JMethod entry) {
+    DefaultCallGraph callGraph = new DefaultCallGraph();
+    callGraph.addEntryMethod(entry);
+    // TODO - finish me
+    ArrayDeque<JMethod> WL = new ArrayDeque<>();
+    WL.addLast(entry);
+    // 遍历 WL
+    while(!WL.isEmpty()){
+        JMethod m = WL.pollFirst();
+        if(!callGraph.contains(m)){
+            callGraph.addReachableMethod(m);
+            // 遍历 cs
+            Stream<Invoke> invokeStream = callGraph.callSitesIn(m);
+            for(Invoke cs : invokeStream.toList()){
+                for (JMethod m1 : resolve(cs)) {
+                    if (m1 != null) {
+                        callGraph.addEdge(new Edge<>(CallGraphs.getCallKind(cs), cs, m1));
+                        WL.addLast(m1);
+                    }
+                }
+            }
+        }
+    }
+    return callGraph;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code3">Copy</button>
+  </div>
+<h3 id="实现过程间常量传播">实现过程间常量传播</h3>
+<p>InterConstantPropagation 类包含了一个 ConstantPropagation 类的字段：<strong>cp</strong>，这使得我可以利用过程内常量传播实现的逻辑。但是ConstantPropagation.java 目前还和 A3 一样没有实现完全，所以，我首先需要补全 ConstantPropagation.java ，复制粘贴前面完成的内容即可。</p>
+<div style="border-left:4px solid blue;padding-left:10px;">
+<strong><em>提示：</em></strong><br>
+<ul>
+<li>在实现 transfer*Edge() 方法的时候，不应该修改第二个参数，也就是该边的源节点的 OUT fact。</li>
+<li>可以从 IR 类中获取方法的参数，且可以使用 API JMethod.getIR() 来获取一个方法的 IR。</li>
+</ul>
+</div>
+<p>总的来说我要完成 InterConstantPropagation 的这些 API：</p>
+<h4 id="boolean-transfercallnodestmtcpfactcpfact">boolean transferCallNode(Stmt,CPFact,CPFact)</h4>
+<p>用来处理调用后的 fact 变化，只需复制即可，会沿着调用边做相应的处理</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code4">protected boolean transferCallNode(Stmt stmt, CPFact in, CPFact out) {
+    // TODO - finish me
+    // 会做调用的处理，所以直接将 in 复制给 out
+    return out.copyFrom(in);
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code4">Copy</button>
+  </div>
+<h4 id="boolean-transfernoncallnodestmtcpfactcpfact">boolean transferNonCallNode(Stmt,CPFact,CPFact)</h4>
+<p>该方法沿用原来的即可</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code5">protected boolean transferNonCallNode(Stmt stmt, CPFact in, CPFact out) {
+    // TODO - finish me
+    return cp.transferNode(stmt, in, out);
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code5">Copy</button>
+  </div>
+<h4 id="cpfact-transfernormaledgenormaledgecpfact">CPFact transferNormalEdge(NormalEdge,CPFact)</h4>
+<p>对于普通边的处理，前后是相等的</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code6">protected CPFact transferNormalEdge(NormalEdge<Stmt> edge, CPFact out) {
+    // TODO - finish me
+    return out;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code6">Copy</button>
+  </div>
+<h4 id="cpfact-transfercalltoreturnedgecalltoreturnedgecpfact">CPFact transferCallToReturnEdge(CallToReturnEdge,CPFact)</h4>
+<p>对于方法调用 x = m(…)，该函数会把等号左侧的变量和它的值从 fact 中kill 掉。而对于等号左侧没有变量的调用，比如 m(…)，该函数的处理方式与对待 normal edge 的一致：不修改 fact，edge transfer 是一个恒等函数。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code7">protected CPFact transferCallToReturnEdge(CallToReturnEdge<Stmt> edge, CPFact out) {
+    // TODO - finish me
+    Optional<LValue> v = edge.getSource().getDef();
+    if(v.isPresent() && v.get() instanceof Var){
+        // 有左值需要删掉在 fact 的左值
+        out.remove((Var)v.get());
+    }
+    return out;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code7">Copy</button>
+  </div>
+<h4 id="cpfact-transfercalledgelocaledgecpfact">CPFact transferCallEdge(LocalEdge,CPFact)</h4>
+<p>将实参在调用点中的值传递给被调用函数的形参，这里要了解一个类 InvokeExp ，<strong>InvokeExp</strong>  表示程序中的方法调用表达式。它包含了被调用的方法引用和传入的各个参数。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code8">protected CPFact transferCallEdge(CallEdge<Stmt> edge, CPFact callSiteOut) {
+    // TODO - finish me
+    CPFact result = new CPFact();
+    JMethod callee = edge.getCallee();
+    Stmt source = edge.getSource();
+    if(source instanceof Invoke invoke){
+        InvokeExp rValue = invoke.getRValue();
+        for(int i = 0; i < rValue.getArgCount(); i++)
+        {
+            Var actual = rValue.getArg(i);
+            result.update(callee.getIR().getParam(i), callSiteOut.get(actual));
+        }
+    }
+    return result;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code8">Copy</button>
+  </div>
+<h4 id="cpfact-transferreturnedgelocaledgecpfact">CPFact transferReturnEdge(LocalEdge,CPFact)</h4>
+<p>将被调用方法的返回值传递给调用点等号左侧的变量，返回值可能有多个要做相应处理</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code9">protected CPFact transferReturnEdge(ReturnEdge<Stmt> edge, CPFact returnOut) {
+    // TODO - finish me
+    CPFact result = returnOut.copy();
+    Optional<LValue> def = edge.getCallSite().getDef();
+    if(def.isPresent()) {
+        LValue l = def.get();
+        Value value  = Value.getUndef();
+        for(Var var : edge.getReturnVars()){
+            value = cp.meetValue(value,returnOut.get(var));
+        }
+        if (l instanceof Var VarL) {
+            result.update(VarL, value);
+        }
+    }
+    return result;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code9">Copy</button>
+  </div>
+<h3 id="完成-intersolver-的两个-api">完成 InterSolver 的两个 API</h3>
+<p>过程间 worklist 求解器所使用的算法和第二次作业中实现的过程内worklist求解器的算法大体上是一样的。它们仅有两处不同：</p>
+<ol>
+<li>在计算一个节点的 IN fact 时，过程间求解器需要对传入的 edge 和前驱们的 OUT facts 应用 edge transfer 函数（<em>transferEdge</em>）。</li>
+<li>在初始化的过程中，过程间求解器需要初始化程序中所有的 IN/OUT fact，也就是 ICFG 的全部节点。但仅需要对 ICFG 的 entry 方法（比如 main 方法）的 entry 节点设置 boundary fact。这意味着其他方法的 entry 节点和非 entry 节点的初始 fact 是一样的。都设置为 boundary fact 即可。</li>
+</ol>
+<img src = "work.png" alt = "过程内常量分析" />
+<p>上图是过程内常量分析，可以结合该图和不同之处完成。此处还需要了解的类有</p>
+<h4 id="void-initialize">void initialize()</h4>
+<p>根据不同之处2完成</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code10">private void initialize() {
+    // TODO - finish me
+    //先初始化每一个节点
+    for(Node node : icfg) {
+        result.setInFact(node,analysis.newInitialFact());
+        result.setOutFact(node,analysis.newInitialFact());
+    }
+    // 对于每个方法的 entry 节点设置为boundary fact
+    for(Method m : icfg.entryMethods().toList()){
+        Node n = icfg.getEntryOf(m);
+        result.setInFact(n,analysis.newBoundaryFact(n));
+        result.setOutFact(n,analysis.newBoundaryFact(n));
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code10">Copy</button>
+  </div>
+<h4 id="void-dosolve">void doSolve()</h4>
+<p>在原来的基础上根据不同处1完成</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code11">private void doSolve() {
+    // TODO - finish me
+    workList = new ArrayDeque<>();
+    for(Node n : icfg){
+        workList.add(n);
+    }
+    while(!workList.isEmpty()){
+        Node node = workList.remove();
+        // 计算 IN Fact，对传入的 edge 做 transfer
+        for(ICFGEdge<Node> edge : icfg.getInEdgesOf(node)){
+            // 对于传入的源节点 Out 做相应 edge 类型的 transfer 处理，并传给 node 的 In
+            analysis.meetInto(analysis.transferEdge(edge,result.getOutFact(edge.getSource())), result.getInFact(node));
+        }
+        // 这里其实有两种，但好像不用自己判断
+        if(analysis.transferNode(node, result.getInFact(node), result.getOutFact(node))){
+            for(Node n : icfg.getSuccsOf(node)){
+                workList.add(n);
+            }
+        }
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code11">Copy</button>
+  </div>
+<h2 id="总结">总结</h2>
+<p>一共提交了三次，分别修改了一些小错误，以及一个大错误。一个是 transferReturnEdge 中调用的 fact 参数写错了；找了很久才发现，还有一个是因为对于 icfg 的建立过程中，并没有用队列先进先出，导致一直构建错误，可能是因为最近在看指针分析，我一直觉得顺序不重要。总之总体思路没错，写代码还是要多注意细节。</p>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    // 初始化 Clipboard.js
+    var clipboard = new ClipboardJS('.copy-button'); 
+    clipboard.on('success', function(e) {
+        var copyButton = e.trigger;
+        copyButton.textContent = 'Copied!';
+        copyButton.style.backgroundColor = '#cd3bee';
+        setTimeout(function() {
+            copyButton.textContent = 'Copy';
+            copyButton.style.backgroundColor = '#008b8b';
+        }, 2000);
+        e.clearSelection();// 清除选中的文本
+    });
+</script>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
