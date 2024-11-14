@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cn" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.136.5">
@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/" />
-  <link rel="canonical" href="http://localhost:1313/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,10 +24,10 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "",
-      "name" : "子春廿一",
-      "headline" : "子春廿一",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）",
+      "headline" : "现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）",
+      "description" : "前言 在我开始写博客之前我已经学完了前面的五次课，并且完成了作业0和作业1。在我简单回顾之后，我本来是想把这一块补上的，因为前几节课还是有很多需要记住的点的。但是犹豫再三，我还是放弃了，因为还是那句话，这意味着我要补上前面的很多内容，会带来很多重复的工作量让我心生退却。不过我也给自己立了一个 Flag ，如果我下一次用到相关知识，或者说复习的时候忘记了，我就把它加上，这样它对我来说就是一个更加有意义的工作量了，我会更容易接受。\nAntialiasing 锯齿是一种图片走样的结果，比如图中本来是一个三角形，但经过测试像素中心点在三角形内部还是外部并且将在内部的像素填上颜色的方式呈现在屏幕上时，就发生了锯齿的现象。所以我们要采用反走样技术来解决这种现象。\n在这之前我们先看看在计算机图形学中的采样。\nRasterization = Sample 2D Positions，栅格化也就是采样2D平面内的位置\nPhotograph = Sample Image Sensor Plane，照片也就是采样图像传感器平面\nVideo = Sample Time，视频也就是对时间采样，每隔一定时间采样一次\nSampling Artifacts（Errors \/ Mistakes \/ Inaccuracies）in Computer Graphics 计算机图形学中由采样带来的“瑕疵”有很多，包括锯齿、摩尔纹、车轮效应。\nJaggies（Staircase Pattern）：锯齿，也被称作楼梯模式\nMoiré Patterns in Imaging：摩尔纹\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -37,15 +37,37 @@
       "copyrightYear" : "2024",
       "datePublished": "2024-11-14 00:00:00 \u002b0000 UTC",
       "dateModified" : "2024-11-14 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/",
+      "url" : "http:\/\/localhost:1313\/posts\/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing\/",
       "keywords" : [  ]
   }
 </script>
-<title>子春廿一</title>
-  <meta property="og:title" content="子春廿一" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+<title>
+    
+    现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）
+  
+  </title>
+  <meta property="og:title" content="现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="前言 在我开始写博客之前我已经学完了前面的五次课，并且完成了作业0和作业1。在我简单回顾之后，我本来是想把这一块补上的，因为前几节课还是有很多需要记住的点的。但是犹豫再三，我还是放弃了，因为还是那句话，这意味着我要补上前面的很多内容，会带来很多重复的工作量让我心生退却。不过我也给自己立了一个 Flag ，如果我下一次用到相关知识，或者说复习的时候忘记了，我就把它加上，这样它对我来说就是一个更加有意义的工作量了，我会更容易接受。
+Antialiasing 锯齿是一种图片走样的结果，比如图中本来是一个三角形，但经过测试像素中心点在三角形内部还是外部并且将在内部的像素填上颜色的方式呈现在屏幕上时，就发生了锯齿的现象。所以我们要采用反走样技术来解决这种现象。
+在这之前我们先看看在计算机图形学中的采样。
+Rasterization = Sample 2D Positions，栅格化也就是采样2D平面内的位置
+Photograph = Sample Image Sensor Plane，照片也就是采样图像传感器平面
+Video = Sample Time，视频也就是对时间采样，每隔一定时间采样一次
+Sampling Artifacts（Errors / Mistakes / Inaccuracies）in Computer Graphics 计算机图形学中由采样带来的“瑕疵”有很多，包括锯齿、摩尔纹、车轮效应。
+Jaggies（Staircase Pattern）：锯齿，也被称作楼梯模式
+Moiré Patterns in Imaging：摩尔纹
+" />
+  <meta name="description" content="前言 在我开始写博客之前我已经学完了前面的五次课，并且完成了作业0和作业1。在我简单回顾之后，我本来是想把这一块补上的，因为前几节课还是有很多需要记住的点的。但是犹豫再三，我还是放弃了，因为还是那句话，这意味着我要补上前面的很多内容，会带来很多重复的工作量让我心生退却。不过我也给自己立了一个 Flag ，如果我下一次用到相关知识，或者说复习的时候忘记了，我就把它加上，这样它对我来说就是一个更加有意义的工作量了，我会更容易接受。
+Antialiasing 锯齿是一种图片走样的结果，比如图中本来是一个三角形，但经过测试像素中心点在三角形内部还是外部并且将在内部的像素填上颜色的方式呈现在屏幕上时，就发生了锯齿的现象。所以我们要采用反走样技术来解决这种现象。
+在这之前我们先看看在计算机图形学中的采样。
+Rasterization = Sample 2D Positions，栅格化也就是采样2D平面内的位置
+Photograph = Sample Image Sensor Plane，照片也就是采样图像传感器平面
+Video = Sample Time，视频也就是对时间采样，每隔一定时间采样一次
+Sampling Artifacts（Errors / Mistakes / Inaccuracies）in Computer Graphics 计算机图形学中由采样带来的“瑕疵”有很多，包括锯齿、摩尔纹、车轮效应。
+Jaggies（Staircase Pattern）：锯齿，也被称作楼梯模式
+Moiré Patterns in Imaging：摩尔纹
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -76,10 +98,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -103,254 +126,146 @@
 </div>
 <div class="header-line"></div>
 
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2024</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-14 00:00:00 UTC">Nov 14</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/">现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/games101/"><strong>GAMES101</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-13 00:00:00 UTC">Nov 13</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4/">软件分析实验笔记丨A4</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"><strong>软件分析</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-12 00:00:00 UTC">Nov 12</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A809%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80i/">软件分析学习笔记丨09指针分析基础I</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"><strong>软件分析</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-11 00:00:00 UTC">Nov 11</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90/">软件分析学习笔记丨08指针分析</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"><strong>软件分析</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-10 00:00:00 UTC">Nov 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/">我的博客网站搭建进展丨01</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-10 00:00:00 UTC">Nov 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/">2024腾讯游戏客户端公开课笔试</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-09 00:00:00 UTC">Nov 09</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/">网络安全与检测技术学习笔记丨01</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-09 00:00:00 UTC">Nov 09</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/">网络安全与检测技术作业丨01</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-06 00:00:00 UTC">Nov 06</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a3/">软件分析实验笔记丨A3</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"><strong>软件分析</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-06 00:00:00 UTC">Nov 06</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/">软件分析学习笔记丨07过程间分析</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e8%bd%af%e4%bb%b6%e5%88%86%e6%9e%90/"><strong>软件分析</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-04 00:00:00 UTC">Nov 04</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E5%8E%BB%E9%99%A4%E5%86%97%E4%BD%99%E7%9A%84java%E4%BE%9D%E8%B5%96/">去除冗余的Java依赖</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2024-11-02 00:00:00 UTC">Nov 02</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/%e5%8d%9a%e5%ae%a2/"><strong>博客</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-11-14 00:00:00 UTC">
+                14 Nov 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="前言">前言</h2>
+<p>在我开始写博客之前我已经学完了前面的五次课，并且完成了作业0和作业1。在我简单回顾之后，我本来是想把这一块补上的，因为前几节课还是有很多需要记住的点的。但是犹豫再三，我还是放弃了，因为还是那句话，这意味着我要补上前面的很多内容，会带来很多重复的工作量让我心生退却。不过我也给自己立了一个 Flag ，如果我下一次用到相关知识，或者说复习的时候忘记了，我就把它加上，这样它对我来说就是一个更加有意义的工作量了，我会更容易接受。</p>
+<h2 id="antialiasing">Antialiasing</h2>
+<img src = "jaggie.png" alt = "锯齿" />
+<p>锯齿是一种图片走样的结果，比如图中本来是一个三角形，但经过测试像素中心点在三角形内部还是外部并且将在内部的像素填上颜色的方式呈现在屏幕上时，就发生了锯齿的现象。所以我们要采用反走样技术来解决这种现象。</p>
+<p>在这之前我们先看看在计算机图形学中的采样。</p>
+<p>Rasterization = Sample 2D Positions，栅格化也就是采样2D平面内的位置</p>
+<img src = "rasterization.png" alt = "栅格化" />
+<p>Photograph = Sample Image Sensor Plane，照片也就是采样图像传感器平面</p>
+<img src = "photograph.png" alt = "照片采样" />
+<p>Video = Sample Time，视频也就是对时间采样，每隔一定时间采样一次</p>
+<img src = "video.png" alt = "视频采样" />
+<h3 id="sampling-artifactserrors--mistakes--inaccuraciesin-computer-graphics">Sampling Artifacts（Errors / Mistakes / Inaccuracies）in Computer Graphics</h3>
+<p>计算机图形学中由采样带来的“瑕疵”有很多，包括锯齿、摩尔纹、车轮效应。</p>
+<p>Jaggies（Staircase Pattern）：锯齿，也被称作楼梯模式</p>
+<img src = "jaggies.png" alt = "锯齿" />
+<p>Moiré Patterns in Imaging：摩尔纹</p>
+<img src = "moire.png" alt = "摩尔纹" />
+<p>这是由于为了增加成像的速度，采用了跳过奇数行和奇数列的策略所导致。</p>
+<p>Wagon Wheel Illusion (False Motion)：车轮效应，会让人看到错误的运动方向</p>
+<p>这些 Artifacts 产生的背后原因，是信号变化太快（高频），但是采样的速度太慢。</p>
+<h3 id="antialiasing-idea-blurring-pre-filtering-before-sampling">Antialiasing Idea: Blurring (Pre-Filtering) Before Sampling</h3>
+<p>在采样前先过滤，可以有效地缓解锯齿的情况。</p>
+<img src = "filter.png" alt = "模糊" />
+<p>那么我们可不可以将这个过程反过来，也就是先采样再模糊？</p>
+<img src = "filter2.png" alt = "先采样" />
+<p>答案是不可以的，左侧是先采样再过滤的结果，直观来说会让已经走样产生锯齿的图片变得更加模糊。</p>
+<p>但是为什么欠采样会引入混叠以及为什么预过滤后采样可以做抗锯齿？需要深入研究根本原因，看看如何实现抗锯齿栅格化。</p>
+<h2 id="frequency-domain">Frequency Domain</h2>
+<img src = "frequency.png" alt = "频率" />
+<p>在频域内，可以用正弦或余弦函数来表示信号，其中用 f 来表示频率，可以看到频率 f 越大，信号变化的越快。</p>
+<img src = "fourier.png" alt = "傅里叶变换" />
+<p>通过傅里叶变换可以将函数表示为正弦和余弦的加权和。</p>
+<img src = "formula.png" alt = "傅里叶变换转换信号" />
+<p>这样也就是将原来空间域的信号通过傅里叶变换到了频域上的信号，而频域上的信号也可以通过逆变换转回空间域。</p>
+<img src = "frequency2sample.png" alt = "更高的频率需要更快的采样" />
+<p>更高的频率需要更快的采样，否则会在重建信号时错误地显示为来自低频信号。</p>
+<img src = "undersample.png" alt = "欠采样" />
+<p>高频信号采样不足：样本错误地显示为来自低频信号在给定采样率下无法区分的两个频率称为“aliases”。</p>
+<p>对频域的信息有了一点了解之后，那么过滤操作就可以看作去除某些频率的内容。</p>
+<img src = "image2frequency.png" alt = "图像转化为频率信号" />
+<p>可视化图像转化为频率信号的内容，亮起的部分表示这里有该频率的信号。距离图像中心越近则频率越低；距离图像越远，则频率越高。可以看到在中心处的横向和纵向上都有一条线，这是因为在生成频率信号的时候会对同一张图片不断排列，这样从前一张图片到下一张图片的时候会发生突变，因此最终在这里产生两条线也就是可视化的高频信号，其实我们可以将之忽略。</p>
+<img src = "filterlow.png" alt = "过滤低频信号" />
+<p>这里将中心处的信号过滤掉，只留下高频信号，因此也叫做“High-pass filter”高通滤波。可以看到在过滤掉低频信号之后，原来的图片只留下了一些轮廓信息。这也很容易理解，在边界处，信号变化剧烈，所以是高频信号。</p>
+<img src = "filterhigh.png" alt = "过滤高频信号" />
+<p>这里将中心处以外的信号过滤掉，只留下低频信号，因此也叫做“Low-pass filter”低通滤波。可以看到在过滤掉高频信号之后，原来的图片变得十分模糊。这也很容易理解，因为过滤了高频信号，图片的轮廓变得不清晰了。</p>
+<img src = "filterlowhigh.png" alt = "过滤低频和高频信号" />
+<p>这里同时过滤低频和高频信号，留下一部分中间的信号。可以看到原来的图片留下了一些不易察觉的轮廓信息。</p>
+<p>在这里再引入一个概念来将过滤的概念引入到栅格化的过程当中。也就是Convolution——卷积。我们可以认为 Filtering = Convolution（= Averaging），都是带来了一个模糊的结果。</p>
+<img src = "convolution.png" alt = "卷积" />
+<p>卷积实际上就是利用一个卷积核，本质上是一个矩阵，来对图像上的像素利用它自己以及周围的像素来进行加权平均。通常用的是3×3的矩阵。</p>
+<h2 id="convolution-theorem">Convolution Theorem</h2>
+<p>卷积定理：空间域中的卷积等于频域中的乘法，反之亦然。</p>
+<img src = "convolutiontheorem.png" alt = "卷积定理" />
+<p>如图所示，对于图像像素的卷积操作就等于频域中的乘法也就是滤波。</p>
+<img src = "boxfilter.png" alt = "卷箱式过滤器" />
+<img src = "boxfilter2filter.png" alt = "卷箱式过滤器在频域上的对应" />
+<p>这个box filter采用的是3×3的矩阵，它对应的滤波器是一个 Low-Pass Filter 。并且如果这个box越大，那么相对应的滤波器能过滤的频率越低。这一点可以通过极限法来想，比如把这个box设置的比一个像素还小，那么对于信号就没有任何处理，所以所有频率都可以通过；如果把这个box设置成一整个图片，那么整张图片会变得平均，所以高频信号都没了，只剩下超低的频率。</p>
+<img src = "sample.png" alt = "采样是重复频率中的内容" />
+<p>现在我们回到采样上，那么采样其实就是重复频率中的内容，并且采集的越密集，我们就越有可能还原频率本来的模样。所以现在我们对于前面的两个问题，就知道了答案。为什么欠采样会引入混叠是因为对频率信号采样不足不能还原频率本身模样，而导致一些频率信号丢失，前后的频率信号重叠；为什么预过滤后采样可以抗锯齿是因为在重复之前使傅里叶内容“更窄”，即在采样前过滤掉高频。</p>
+<p>如下图所示：</p>
+<img src = "whyfilter.png" alt = "为什么filter可以抗锯齿" />
+<p>对于栅格化过程中，我们就可以采用抗锯齿采样。</p>
+<img src = "antialiasedsample.png" alt = "抗锯齿采样" />
+<p>先采用过滤操作，使得三角形中的抗锯齿边缘的像素值采用了中间值。</p>
+<h2 id="antialiasing-in-practice">Antialiasing in practice</h2>
+<p>一个常规的方法便是通过1像素的方框对 f（x，y） 进行卷积来抗锯齿，通过计算平均像素值进行抗锯齿。在栅格化一个三角形时，像素区域内的平均值 f（x，y） = inside（triangle，x，y） 等于三角形覆盖的像素面积。如下图所示：</p>
+<img src = "regularmethod.png" alt = "常规方法" />
+<p>还可以通过超级采样（MSAA）来抗锯齿，这是对上面方法的优化。在每个像素中取 NxN 样本。根据有多少样本被覆盖，然后计算 被覆盖的样本 / N×N 来给定新的“平均值”。如图所示：</p>
+<img src = "MSAA1.png" alt = "MSAA方法" />
+<img src = "MSAA2.png" alt = "MSAA方法" />
+<p>虽然MSAA的效果可能更好，但是它的代价是更多的计算。然后是老师对于抗锯齿的一些想法：</p>
+<img src = "idea.png" alt = "抗锯齿的想法" />
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -370,6 +285,8 @@
     
   
 </script>
+
+  
 
 </body>
 

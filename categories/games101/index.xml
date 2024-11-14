@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GAMES101 on 子春廿一</title>
+    <link>http://localhost:1313/categories/games101/</link>
+    <description>Recent content in GAMES101 on 子春廿一</description>
+    <generator>Hugo</generator>
+    <language>cn</language>
+    <lastBuildDate>Thu, 14 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/games101/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>现代计算机图形学入门学习笔记丨06 Rasterization 2（Antialiasing）</title>
+      <link>http://localhost:1313/posts/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/</link>
+      <pubDate>Thu, 14 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;在我开始写博客之前我已经学完了前面的五次课，并且完成了作业0和作业1。在我简单回顾之后，我本来是想把这一块补上的，因为前几节课还是有很多需要记住的点的。但是犹豫再三，我还是放弃了，因为还是那句话，这意味着我要补上前面的很多内容，会带来很多重复的工作量让我心生退却。不过我也给自己立了一个 Flag ，如果我下一次用到相关知识，或者说复习的时候忘记了，我就把它加上，这样它对我来说就是一个更加有意义的工作量了，我会更容易接受。&lt;/p&gt;&#xA;&lt;h2 id=&#34;antialiasing&#34;&gt;Antialiasing&lt;/h2&gt;&#xA;&lt;img src = &#34;jaggie.png&#34; alt = &#34;锯齿&#34; /&gt;&#xD;&#xA;&lt;p&gt;锯齿是一种图片走样的结果，比如图中本来是一个三角形，但经过测试像素中心点在三角形内部还是外部并且将在内部的像素填上颜色的方式呈现在屏幕上时，就发生了锯齿的现象。所以我们要采用反走样技术来解决这种现象。&lt;/p&gt;&#xA;&lt;p&gt;在这之前我们先看看在计算机图形学中的采样。&lt;/p&gt;&#xA;&lt;p&gt;Rasterization = Sample 2D Positions，栅格化也就是采样2D平面内的位置&lt;/p&gt;&#xA;&lt;img src = &#34;rasterization.png&#34; alt = &#34;栅格化&#34; /&gt;&#xD;&#xA;&lt;p&gt;Photograph = Sample Image Sensor Plane，照片也就是采样图像传感器平面&lt;/p&gt;&#xA;&lt;img src = &#34;photograph.png&#34; alt = &#34;照片采样&#34; /&gt;&#xD;&#xA;&lt;p&gt;Video = Sample Time，视频也就是对时间采样，每隔一定时间采样一次&lt;/p&gt;&#xA;&lt;img src = &#34;video.png&#34; alt = &#34;视频采样&#34; /&gt;&#xD;&#xA;&lt;h3 id=&#34;sampling-artifactserrors--mistakes--inaccuraciesin-computer-graphics&#34;&gt;Sampling Artifacts（Errors / Mistakes / Inaccuracies）in Computer Graphics&lt;/h3&gt;&#xA;&lt;p&gt;计算机图形学中由采样带来的“瑕疵”有很多，包括锯齿、摩尔纹、车轮效应。&lt;/p&gt;&#xA;&lt;p&gt;Jaggies（Staircase Pattern）：锯齿，也被称作楼梯模式&lt;/p&gt;&#xA;&lt;img src = &#34;jaggies.png&#34; alt = &#34;锯齿&#34; /&gt;&#xD;&#xA;&lt;p&gt;Moiré Patterns in Imaging：摩尔纹&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
