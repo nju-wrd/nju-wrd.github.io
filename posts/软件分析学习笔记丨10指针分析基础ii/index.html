@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" />
-  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A810%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80ii/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A810%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80ii/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -25,9 +25,9 @@
            "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "posts",
-      "name" : "软件分析学习笔记丨07过程间分析",
-      "headline" : "软件分析学习笔记丨07过程间分析",
-      "description" : "前言 课程网站为Static Program Analysis | Tai-e\n因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。\n从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。\nMotivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。\nCall Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。\n本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。\n越往上速度越快，越往下精度越高。\n了解JAVA中的call：\nStatic call\rSpecial call\rVirtual call\rInstruction\rinvokestatic\rinvokespecial\rinvokeinterface\ninvokevirtual\rReceiver objects\r×无实例\r√有实例\r√有实例\rTarget methods\r·Static methods (静态方法)\r·Constructors (构造函数)\n·Private instance methods (类自己的私有方法)\n·Superclass instance methods (父类的实例方法)\r·Other instance methods (其他实例方法)\r# Target methods 个数\r1\r1\r≥1 (polymorphism) 多态\rDeterminacy 确定时机\rCompile-time (编译时)\rCompile-time (编译时)\rRun-time (运行时)\r构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：\n",
+      "name" : "软件分析学习笔记丨10指针分析基础II",
+      "headline" : "软件分析学习笔记丨10指针分析基础II",
+      "description" : "Pointer Analysis with Method Calls 过程间指针分析需要调用图，在 07 过程间分析中，我们采用了 CHA 方法来构造调用图。但是它本身是不精确的，因为它在一些情况下引入虚假的调用边和指向关系。\n而利用指针分析的方法，会比CHA更加精确。并且这种好处对调用图和指向关系的构建都会带来更精确的好处。规则如下：\n我们来一点一点解析这里面的符号所代表的含义。这里的 Dispatch(oi,k) 和前面 CHA 中的本质上是一样的，它利用 receive object oi 的类型和调用点方法的签名 k 来找到实际的调用方法 m 。mthis 代表当前找到的目标方法的 this 变量。aj 表示调用的第 j 个参数。mpj 表示 m 的第 j 个参数。所以为了将调用的参数对应传递给 m 的参数，会在他们之间加上 PFG 边进行指向信息的传递。\nmret 代表 m 的返回值，将返回值赋给调用点的左值。\n这里可以思考一个问题也就是为什么我们在处理 mthis 的时候，不和参数一样直接添加 PFG Edge ？\n首先我们知道在 Java 中，this 是一个很重要的变量，方法中可能会频繁地使用 this 变量，所以 this 变量的指向信息的正确性十分重要。我们再来看上图的例子，如果我们直接引入新 PFG Edge ，会导致给方法的 this 引入虚假的指向关系。具体来说在下面的三个方法中，其实每个方法的 this 的指向的类都是声明方法的类本身。而在 x 调用foo方法的时候，如果直接引入 PFG Edge，会将 x 原来所有的指向信息都流入找到的方法的 this ，但其实最终 this 只会是其中一个，而这由具体调用到哪个方法所决定。所以为了避免给 this 引入虚假的指向信息，我们不能和参数一样直接添加 PFG Edge。\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,44 +35,32 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2024",
-      "datePublished": "2024-11-06 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2024-11-06 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90\/",
+      "datePublished": "2024-11-21 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-11-21 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A810%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80ii\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    软件分析学习笔记丨07过程间分析
+    软件分析学习笔记丨10指针分析基础II
   
   </title>
-  <meta property="og:title" content="软件分析学习笔记丨07过程间分析" />
+  <meta property="og:title" content="软件分析学习笔记丨10指针分析基础II" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
-Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
-Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
-本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
-越往上速度越快，越往下精度越高。
-了解JAVA中的call：
-Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
-invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
-·Private instance methods (类自己的私有方法)
-·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
+  <meta property="og:description" content="Pointer Analysis with Method Calls 过程间指针分析需要调用图，在 07 过程间分析中，我们采用了 CHA 方法来构造调用图。但是它本身是不精确的，因为它在一些情况下引入虚假的调用边和指向关系。
+而利用指针分析的方法，会比CHA更加精确。并且这种好处对调用图和指向关系的构建都会带来更精确的好处。规则如下：
+我们来一点一点解析这里面的符号所代表的含义。这里的 Dispatch(oi,k) 和前面 CHA 中的本质上是一样的，它利用 receive object oi 的类型和调用点方法的签名 k 来找到实际的调用方法 m 。mthis 代表当前找到的目标方法的 this 变量。aj 表示调用的第 j 个参数。mpj 表示 m 的第 j 个参数。所以为了将调用的参数对应传递给 m 的参数，会在他们之间加上 PFG 边进行指向信息的传递。
+mret 代表 m 的返回值，将返回值赋给调用点的左值。
+这里可以思考一个问题也就是为什么我们在处理 mthis 的时候，不和参数一样直接添加 PFG Edge ？
+首先我们知道在 Java 中，this 是一个很重要的变量，方法中可能会频繁地使用 this 变量，所以 this 变量的指向信息的正确性十分重要。我们再来看上图的例子，如果我们直接引入新 PFG Edge ，会导致给方法的 this 引入虚假的指向关系。具体来说在下面的三个方法中，其实每个方法的 this 的指向的类都是声明方法的类本身。而在 x 调用foo方法的时候，如果直接引入 PFG Edge，会将 x 原来所有的指向信息都流入找到的方法的 this ，但其实最终 this 只会是其中一个，而这由具体调用到哪个方法所决定。所以为了避免给 this 引入虚假的指向信息，我们不能和参数一样直接添加 PFG Edge。
 " />
-  <meta name="description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
-Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
-Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
-本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
-越往上速度越快，越往下精度越高。
-了解JAVA中的call：
-Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
-invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
-·Private instance methods (类自己的私有方法)
-·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
+  <meta name="description" content="Pointer Analysis with Method Calls 过程间指针分析需要调用图，在 07 过程间分析中，我们采用了 CHA 方法来构造调用图。但是它本身是不精确的，因为它在一些情况下引入虚假的调用边和指向关系。
+而利用指针分析的方法，会比CHA更加精确。并且这种好处对调用图和指向关系的构建都会带来更精确的好处。规则如下：
+我们来一点一点解析这里面的符号所代表的含义。这里的 Dispatch(oi,k) 和前面 CHA 中的本质上是一样的，它利用 receive object oi 的类型和调用点方法的签名 k 来找到实际的调用方法 m 。mthis 代表当前找到的目标方法的 this 变量。aj 表示调用的第 j 个参数。mpj 表示 m 的第 j 个参数。所以为了将调用的参数对应传递给 m 的参数，会在他们之间加上 PFG 边进行指向信息的传递。
+mret 代表 m 的返回值，将返回值赋给调用点的左值。
+这里可以思考一个问题也就是为什么我们在处理 mthis 的时候，不和参数一样直接添加 PFG Edge ？
+首先我们知道在 Java 中，this 是一个很重要的变量，方法中可能会频繁地使用 this 变量，所以 this 变量的指向信息的正确性十分重要。我们再来看上图的例子，如果我们直接引入新 PFG Edge ，会导致给方法的 this 引入虚假的指向关系。具体来说在下面的三个方法中，其实每个方法的 this 的指向的类都是声明方法的类本身。而在 x 调用foo方法的时候，如果直接引入 PFG Edge，会将 x 原来所有的指向信息都流入找到的方法的 this ，但其实最终 this 只会是其中一个，而这由具体调用到哪个方法所决定。所以为了避免给 this 引入虚假的指向信息，我们不能和参数一样直接添加 PFG Edge。
 " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
@@ -134,13 +122,13 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">软件分析学习笔记丨07过程间分析</h1>
+          <h1 class="post-title">软件分析学习笔记丨10指针分析基础II</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
               
-              <time class="post-date" datetime="2024-11-06 00:00:00 UTC">
-                06 Nov 2024
+              <time class="post-date" datetime="2024-11-21 00:00:00 UTC">
+                21 Nov 2024
               </time>
               
             </div>
@@ -153,128 +141,25 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 
         <div class="post-content markdown-body">
           
-          <h2 id="前言">前言</h2>
-<p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
-<p>因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。</p>
-<p>从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。</p>
-<h2 id="motivation">Motivation</h2>
-<p>过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。</p>
-<h2 id="call-graph-construction-cha-">Call Graph Construction（ CHA ）</h2>
-<p>一个调用图是一个从 call-sites 到目标方法的调用边的集合。</p>
-<img src="call-graph.png" />
-<p>本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。</p>
-<img src="1.png" />
-<p>越往上速度越快，越往下精度越高。</p>
-<p>了解JAVA中的call：</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Static call</th>
-      <th>Special call</th>
-      <th>Virtual call</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Instruction</td>
-      <td>invokestatic</td>
-      <td>invokespecial</td>
-      <td>invokeinterface<br>invokevirtual</td>
-    </tr>
-    <tr>
-      <td>Receiver objects</td>
-      <td>×无实例</td>
-      <td>√有实例</td>
-      <td>√有实例</td>
-    </tr>
-    <tr>
-      <td>Target methods</td>
-      <td><strong>·</strong>Static methods (静态方法)</td>
-      <td><strong>·</strong>Constructors (构造函数)<br><strong>·</strong>Private instance methods (类自己的私有方法)<br><strong>·</strong>Superclass instance methods (父类的实例方法)</td>
-      <td><strong>·</strong>Other instance methods (其他实例方法)</td>
-    </tr>
-    <tr>
-      <td># Target methods 个数</td>
-      <td>1</td>
-      <td>1</td>
-      <td>≥1 (polymorphism) 多态</td>
-    </tr>
-    <tr>
-      <td>Determinacy 确定时机</td>
-      <td>Compile-time (编译时)</td>
-      <td>Compile-time (编译时)</td>
-      <td>Run-time (运行时)</td>
-    </tr>
-  </tbody>
-</table>
-<p>构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：</p>
-<ol>
-<li>receive object 的具体类型</li>
-<li>方法的签名signature</li>
-</ol>
-<ul>
-<li>
-<p>Signature = class type + method name +descriptor</p>
-</li>
-<li>
-<p>Descriptor = return type + parameter types</p>
-</li>
-<li>
-<img src="signature.png" />
-</li>
-</ul>
-<p><a id="00"></a></p>
-<p>Dispatch(c,m)这个算法用来找到类为c，c中包含名为m且有方法体的方法。若c中未找到，就去父类中找。</p>
-<img src="dispatch.png" />
-<p>在这个基础上我们通过一个算法 CHA 找到 某一个调用点 cs（call site）可能的目标方法：</p>
-<img src="CHA.png" />
-<p>对于静态方法，目标方法就是这个方法本身，对于special call ，有三种情况，分别是前面提到的构造方法、私有方法和父类实例方法，对于前两种其实是不需要Dispatch的，但是第三种需要，而Dispatch可以覆盖这三种。然后对于 virtual call ，我们需要对于 cs 声明的类型的所有子类去做Dispatch，最终返回此处的目标方法。</p>
-<p><a id="01"></a></p>
-<img src="example1.png" />
-<p>这里举了一个例子说明 virtual call 的同时，还说明了一点，也就是 b.foo() 它实际上调用的就是 A.foo() ，所以在这里后面的C.foo() D.foo() 都是多余的调用目标.</p>
-<p>CHA的优点就是很快，他只考虑在 cs 声明的类型和他的继承结构，忽略了实际的数据和控制流信息。所以它的缺点就是不够精确，比如上文可能引入的多余目标</p>
-<p>接下来我们就可以通过 CHA 来构建整个程序的调用图，我们从 Entry 开始，主要就是main函数，对于每一个可达的方法，利用 CHA 解析他的每一个 cs 的目标方法，重复这个过程直到不再有新方法出现。算法如下：</p>
-<img src="build.png" />
-<h2 id="interprocedural-control-flow-graph">Interprocedural Control-Flow Graph</h2>
-<p>CFG 是一个单独的方法之内的结构，而 ICFG 则是包含了不同方法的 CFG 以及加上两个额外的边，分别是 Call edges 和 Return edges。一个是从 cs 指向被调用的方法的 Entry nodes ，一个是从exit nodes 指向跟在 cs 之后的下一条语句（return sites）。</p>
-<img src = "formula.png"  alt = "公式"/>
-<p>而这两条边就来自于调用图。而原来的边（如下图黄色背景中的边）就被称作call-to-return edges，我们并不会删掉他，这一点会在后面解释。</p>
-<img src="call-to-return edges.png" />
-<h2 id="interproceduraldata-flow-analysis">InterproceduralData-Flow Analysis</h2>
-<p>根据 ICFG ，我们对整个包含方法调用的整个程序做分析。我们可以通过下表看到和 CFG 对比：</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Intraprocedura</th>
-      <th>Interprocedural</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Program representation</td>
-      <td>CFG</td>
-      <td>ICFG = CFGs + call & return edges</td>
-    </tr>
-    <tr>
-      <td>Transfer functions</td>
-      <td>Node transfer</td>
-      <td>Node transfer + edge transfer</td>
-    </tr>
-  </tbody>
-</table>
-<p>这里的 edge transfer 主要包括两种：</p>
-<ul>
-<li>Call edge transfer:将数据流从 cs 传递到被调用方法的 entry node（along call edges）主要传递参数值</li>
-<li>Return edge transfer:将数据流从被调用方法的 exit node 传递到 return site（along return edges）主要传递返回值</li>
-</ul>
-<p>对于Node transfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
-<img src="example2.png" />
-<p>这里会将b识别为NAC，显然是不准确的。</p>
-<p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的c all-to-return edges 来获得数据流的传递。如图所示：</p>
-<img src="dataflow.png" />
-<p>总之，通过过程间的分析可以比原来的过程内分析得到的结果更加准确。</p>
+          <h2 id="pointer-analysis-with-method-calls">Pointer Analysis with Method Calls</h2>
+<p>过程间指针分析需要调用图，在 <a style="color: #0000FF;" href = "https://nju-wrd.github.io//posts/软件分析学习笔记丨07过程间分析/#01" target="_blank" >07 过程间分析中</a>，我们采用了 CHA 方法来构造调用图。但是它本身是不精确的，因为它在一些情况下引入虚假的调用边和指向关系。</p>
+<p>而利用指针分析的方法，会比CHA更加精确。并且这种好处对调用图和指向关系的构建都会带来更精确的好处。规则如下：</p>
+<img src = "rule.png" alt = "规则"/>
+<p>我们来一点一点解析这里面的符号所代表的含义。这里的 Dispatch(o<sub>i</sub>,k) 和前面 CHA 中的本质上是一样的，它利用 receive object o<sub>i</sub> 的类型和调用点方法的签名 k 来找到实际的调用方法 m 。m<sub>this</sub> 代表当前找到的目标方法的 this 变量。a<sub>j</sub> 表示调用的第 j 个参数。m<sub>pj</sub> 表示 m 的第 j 个参数。所以为了将调用的参数对应传递给 m 的参数，会在他们之间加上 PFG 边进行指向信息的传递。</p>
+<img src = "edge.png" alt = "加边"/>
+<p>m<sub>ret</sub> 代表 m 的返回值，将返回值赋给调用点的左值。</p>
+<p>这里可以思考一个问题也就是为什么我们在处理 m<sub>this</sub> 的时候，不和参数一样直接添加 PFG Edge ？</p>
+<img src = "example.png" alt = "例子"/>
+<p>首先我们知道在 Java 中，this 是一个很重要的变量，方法中可能会频繁地使用 this 变量，所以 this 变量的指向信息的正确性十分重要。我们再来看上图的例子，如果我们直接引入新 PFG Edge ，会导致给方法的 this 引入虚假的指向关系。具体来说在下面的三个方法中，其实每个方法的 this 的指向的类都是声明方法的类本身。而在 x 调用foo方法的时候，如果直接引入 PFG Edge，会将 x 原来所有的指向信息都流入找到的方法的 this ，但其实最终 this 只会是其中一个，而这由具体调用到哪个方法所决定。所以为了避免给 this 引入虚假的指向信息，我们不能和参数一样直接添加 PFG Edge。</p>
+<p>过程间指针分析中指针分析和调用图构造依然是一个相互依赖的过程。从 Entry 方法开始，所以 Entry 方法一开始就可以被访问，然后其他可访问的方法在分析过程中逐渐被发现，所以实际上我们仅仅分析可访问的方法和语句。这一方面简化了分析的流程，另一方面让分析变的更加精确，因为这样避免了不会被访问的方法中的指向信息流入，从而避免不精确的指针分析。</p>
+<img src = "algorithm.png" alt = "算法"/>
+<p>算法如图所示，其中黄色背景的部分表示和 CHA 中不同的地方，接下来我们一一分析算法的内容。由于是从程序的 Entry 通常也就是 main 方法开始，所以传入的参数就是 main 方法。首先会初始化五个数据结构，分别是 WorkList，依旧是一个指针和一个指针集形成的 pair 、PFG，一个针对指针分析的 CFG 、S，所有的可达语句，之前是所有语句、RM，可达的方法、CF，Call Graph 的边。然后对 main 方法执行Add reachable方法。</p>
+<img src = "addreachable.png" alt = "添加可达方法"/>
+<p>这个方法主要做了什么呢？每当发现新方法，就会调用这个函数，所以我们会在有新的 call edge 和算法一开始执行这个方法。首先判断当前方法有没有在 RM 里面了，如果不在，我们要把他加进去，然后将该方法内的语句加入 S 中，再根据新发现的语句中的 new 语句和 assign 语句做有关 WL 和 PFG 的更新处理，更新新发现的语句的 WL 和 PFG。</p>
+<img src = "addedge.png" alt = "添加边"/>
+<p>加边的方法和之前一样，如果 s → t 已经在 PFG 里面了，就什么都不做；但如果不在，就将 s → t 加入到PFG里。并且如果 pt(s) 不为空，还将 &lt;t,pt(s)&gt; 加入到WL，这也就是将 s 的指向传递给 t ，确保 s 指向的每一个对象也被 t 所指向。</p>
+<img src = "processcall.png" alt = "调用函数"/>
+<p>ProcessCall 函数的处理则是针对 n 表示一个变量的情况下，会涉及到函数调用的情况。根据我们之前的分析，我们在这里面主要做的事情就是首先找到调用的具体方法是什么，这里和 CHA 不同的地方在于它是根据此处 x 的类名去对应的，因此不会产生冗余的方法。将该方法和此处的 o<sub>i</sub> 加入 WL 。并且如果该调用语句已经被处理过（因为是非上下文敏感，每当分析到该 x 变量，都会执行 ProcessCall ，所以有可能不是第一次遇到），即 l → m 已经被加入CG 了，就不做任何处理，否则加入其中，并将 m 加入可达方法集合中。同时，对于 m 中的每一个参数，将调用语句中提供的参数一一对应传入，也就是执行 AddEdge 以达到指针传递的效果。最后对返回值做相似的处理。</p>
 
         </div>
 

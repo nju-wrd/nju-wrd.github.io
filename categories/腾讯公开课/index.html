@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" />
-  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/" />
+  <link rel="canonical" href="http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,10 +24,10 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "posts",
-      "name" : "软件分析学习笔记丨07过程间分析",
-      "headline" : "软件分析学习笔记丨07过程间分析",
-      "description" : "前言 课程网站为Static Program Analysis | Tai-e\n因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。\n从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。\nMotivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。\nCall Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。\n本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。\n越往上速度越快，越往下精度越高。\n了解JAVA中的call：\nStatic call\rSpecial call\rVirtual call\rInstruction\rinvokestatic\rinvokespecial\rinvokeinterface\ninvokevirtual\rReceiver objects\r×无实例\r√有实例\r√有实例\rTarget methods\r·Static methods (静态方法)\r·Constructors (构造函数)\n·Private instance methods (类自己的私有方法)\n·Superclass instance methods (父类的实例方法)\r·Other instance methods (其他实例方法)\r# Target methods 个数\r1\r1\r≥1 (polymorphism) 多态\rDeterminacy 确定时机\rCompile-time (编译时)\rCompile-time (编译时)\rRun-time (运行时)\r构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：\n",
+      "articleSection" : "categories",
+      "name" : "腾讯公开课",
+      "headline" : "腾讯公开课",
+      "description" : "",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,45 +35,21 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2024",
-      "datePublished": "2024-11-06 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2024-11-06 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90\/",
+      "datePublished": "2024-11-24 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-11-24 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/categories\/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    软件分析学习笔记丨07过程间分析
+    腾讯公开课
   
   </title>
-  <meta property="og:title" content="软件分析学习笔记丨07过程间分析" />
+  <meta property="og:title" content="腾讯公开课" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
-Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
-Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
-本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
-越往上速度越快，越往下精度越高。
-了解JAVA中的call：
-Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
-invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
-·Private instance methods (类自己的私有方法)
-·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
-" />
-  <meta name="description" content="前言 课程网站为Static Program Analysis | Tai-e
-因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。
-从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。
-Motivation 过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。
-Call Graph Construction（ CHA ） 一个调用图是一个从 call-sites 到目标方法的调用边的集合。
-本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。
-越往上速度越快，越往下精度越高。
-了解JAVA中的call：
-Static callSpecial callVirtual callInstructioninvokestaticinvokespecialinvokeinterface
-invokevirtualReceiver objects×无实例√有实例√有实例Target methods·Static methods (静态方法)·Constructors (构造函数)
-·Private instance methods (类自己的私有方法)
-·Superclass instance methods (父类的实例方法)·Other instance methods (其他实例方法)# Target methods 个数11≥1 (polymorphism) 多态Determinacy 确定时机Compile-time (编译时)Compile-time (编译时)Run-time (运行时)构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：
-" />
+  <meta property="og:description" content="" />
+  <meta name="description" content="" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -104,11 +80,10 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 
 
 <body>
-  <article class="post Chinese" id="article">
+  <article class="posts">
     <div class="row">
       <div class="col-xs-12">
-        <div class="site-header">
-          
+        
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -132,196 +107,48 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 </div>
 <div class="header-line"></div>
 
-        </div>
-        <header class="post-header">
-          <h1 class="post-title">软件分析学习笔记丨07过程间分析</h1>
-          
-          <div class="row post-desc">
-            <div class="col-xs-6">
-              
-              <time class="post-date" datetime="2024-11-06 00:00:00 UTC">
-                06 Nov 2024
-              </time>
-              
-            </div>
-            <div class="col-xs-6">
-              
-            </div>
-          </div>
-          
-        </header>
 
-        <div class="post-content markdown-body">
-          
-          <h2 id="前言">前言</h2>
-<p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
-<p>因为上周三忙着做团支书的工作以及各种其他事情，课上没有仔细的听，所以之后再花时间重新看b站的视频课程。顺便就此机会准备后面的课都通过视频的形式来学习了。这门课还是在观看视频的时候反复理解和思考才是更高效的，即使我之前会线下去上课，回来之后还是有一些地方要自己好好研究的。所以后续以这种形式既不会错过知识内容，也可以增加我的效率。</p>
-<p>从这节课开始就是从谭添老师开始上了，前面听说从这一部分开始会有一些动态的分析，而且难度也会开始变得更高。针对过程间分析我们要了解的主要有 Call Graph Construction（ CHA ）、Interprocedural Control-Flow Graph 和 Interprocedural Data-Flow Analysis。</p>
-<h2 id="motivation">Motivation</h2>
-<p>过程内分析过于保守，假设调用后都不是常量，丢失了精度。所以我们需要过程间分析，首先就需要调用图，来得到调用边（Call edges）。</p>
-<h2 id="call-graph-construction-cha-">Call Graph Construction（ CHA ）</h2>
-<p>一个调用图是一个从 call-sites 到目标方法的调用边的集合。</p>
-<img src="call-graph.png" />
-<p>本课程主要对 OOPLs 构建调用图(focus on Java)，这节课会学习Class hierarchy analysis（ CHA ），下节课会学习Pointer analysis（k-CFA）。</p>
-<img src="1.png" />
-<p>越往上速度越快，越往下精度越高。</p>
-<p>了解JAVA中的call：</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Static call</th>
-      <th>Special call</th>
-      <th>Virtual call</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Instruction</td>
-      <td>invokestatic</td>
-      <td>invokespecial</td>
-      <td>invokeinterface<br>invokevirtual</td>
-    </tr>
-    <tr>
-      <td>Receiver objects</td>
-      <td>×无实例</td>
-      <td>√有实例</td>
-      <td>√有实例</td>
-    </tr>
-    <tr>
-      <td>Target methods</td>
-      <td><strong>·</strong>Static methods (静态方法)</td>
-      <td><strong>·</strong>Constructors (构造函数)<br><strong>·</strong>Private instance methods (类自己的私有方法)<br><strong>·</strong>Superclass instance methods (父类的实例方法)</td>
-      <td><strong>·</strong>Other instance methods (其他实例方法)</td>
-    </tr>
-    <tr>
-      <td># Target methods 个数</td>
-      <td>1</td>
-      <td>1</td>
-      <td>≥1 (polymorphism) 多态</td>
-    </tr>
-    <tr>
-      <td>Determinacy 确定时机</td>
-      <td>Compile-time (编译时)</td>
-      <td>Compile-time (编译时)</td>
-      <td>Run-time (运行时)</td>
-    </tr>
-  </tbody>
-</table>
-<p>构造调用图的关键在于处理virtual call，其中关键的一个步骤叫做Method Dispatch，基于：</p>
-<ol>
-<li>receive object 的具体类型</li>
-<li>方法的签名signature</li>
-</ol>
-<ul>
-<li>
-<p>Signature = class type + method name +descriptor</p>
-</li>
-<li>
-<p>Descriptor = return type + parameter types</p>
-</li>
-<li>
-<img src="signature.png" />
-</li>
-</ul>
-<p><a id="00"></a></p>
-<p>Dispatch(c,m)这个算法用来找到类为c，c中包含名为m且有方法体的方法。若c中未找到，就去父类中找。</p>
-<img src="dispatch.png" />
-<p>在这个基础上我们通过一个算法 CHA 找到 某一个调用点 cs（call site）可能的目标方法：</p>
-<img src="CHA.png" />
-<p>对于静态方法，目标方法就是这个方法本身，对于special call ，有三种情况，分别是前面提到的构造方法、私有方法和父类实例方法，对于前两种其实是不需要Dispatch的，但是第三种需要，而Dispatch可以覆盖这三种。然后对于 virtual call ，我们需要对于 cs 声明的类型的所有子类去做Dispatch，最终返回此处的目标方法。</p>
-<p><a id="01"></a></p>
-<img src="example1.png" />
-<p>这里举了一个例子说明 virtual call 的同时，还说明了一点，也就是 b.foo() 它实际上调用的就是 A.foo() ，所以在这里后面的C.foo() D.foo() 都是多余的调用目标.</p>
-<p>CHA的优点就是很快，他只考虑在 cs 声明的类型和他的继承结构，忽略了实际的数据和控制流信息。所以它的缺点就是不够精确，比如上文可能引入的多余目标</p>
-<p>接下来我们就可以通过 CHA 来构建整个程序的调用图，我们从 Entry 开始，主要就是main函数，对于每一个可达的方法，利用 CHA 解析他的每一个 cs 的目标方法，重复这个过程直到不再有新方法出现。算法如下：</p>
-<img src="build.png" />
-<h2 id="interprocedural-control-flow-graph">Interprocedural Control-Flow Graph</h2>
-<p>CFG 是一个单独的方法之内的结构，而 ICFG 则是包含了不同方法的 CFG 以及加上两个额外的边，分别是 Call edges 和 Return edges。一个是从 cs 指向被调用的方法的 Entry nodes ，一个是从exit nodes 指向跟在 cs 之后的下一条语句（return sites）。</p>
-<img src = "formula.png"  alt = "公式"/>
-<p>而这两条边就来自于调用图。而原来的边（如下图黄色背景中的边）就被称作call-to-return edges，我们并不会删掉他，这一点会在后面解释。</p>
-<img src="call-to-return edges.png" />
-<h2 id="interproceduraldata-flow-analysis">InterproceduralData-Flow Analysis</h2>
-<p>根据 ICFG ，我们对整个包含方法调用的整个程序做分析。我们可以通过下表看到和 CFG 对比：</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Intraprocedura</th>
-      <th>Interprocedural</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Program representation</td>
-      <td>CFG</td>
-      <td>ICFG = CFGs + call & return edges</td>
-    </tr>
-    <tr>
-      <td>Transfer functions</td>
-      <td>Node transfer</td>
-      <td>Node transfer + edge transfer</td>
-    </tr>
-  </tbody>
-</table>
-<p>这里的 edge transfer 主要包括两种：</p>
-<ul>
-<li>Call edge transfer:将数据流从 cs 传递到被调用方法的 entry node（along call edges）主要传递参数值</li>
-<li>Return edge transfer:将数据流从被调用方法的 exit node 传递到 return site（along return edges）主要传递返回值</li>
-</ul>
-<p>对于Node transfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
-<img src="example2.png" />
-<p>这里会将b识别为NAC，显然是不准确的。</p>
-<p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的c all-to-return edges 来获得数据流的传递。如图所示：</p>
-<img src="dataflow.png" />
-<p>总之，通过过程间的分析可以比原来的过程内分析得到的结果更加准确。</p>
+	
 
-        </div>
-
-        <div class="row middle-xs">
-          <div class="col-xs-12">
+	
+        <h1 class="taxonomy-term">腾讯公开课</h1>
+        <div id="posts-list">
+          <section>
+            <h1 class="site-date-catalog">2024</h1>
+    
             
-          </div>
-        </div>
-        
-          <div class="row">
-            <div class="col-xs-12">
-              
+            <div class="row posts-line">
+              <div class="posts-date col-xs-2">
+                <time datetime="2024-11-24 00:00:00 UTC">Nov 24</time>
+              </div>
+              <div class="posts-title col-xs-10">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/posts/24%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E4%BD%9C%E4%B8%9A%E4%B8%A801/">24腾讯游戏客户端公开课作业丨01</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-
+            
+            <div class="row posts-line">
+              <div class="posts-date col-xs-2">
+                <time datetime="2024-11-10 00:00:00 UTC">Nov 10</time>
+              </div>
+              <div class="posts-title col-xs-10">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/">2024腾讯游戏客户端公开课笔试</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </section>
           
+        </div>
 
+ 
 
-
-          
-          
-          <div style="height: 50px;"></div>
-          
-          <div class="post-comments">
-            <div id="disqus_thread"></div>
-<script>
-  window.addEventListener("load", () => {
-    (function() {
-      
-      var d = document,
-        s = d.createElement("script");
-      s.src = "https://dongi30.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  });
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-
-          </div>
-          
-        
 
         <div class="site-footer">
   
@@ -341,8 +168,6 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
     
   
 </script>
-
-  
 
 </body>
 
