@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/tags/" />
-  <link rel="canonical" href="http://localhost:1313/tags/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,32 +24,48 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨11上下文敏感指针分析I",
+      "headline" : "软件分析学习笔记丨11上下文敏感指针分析I",
+      "description" : "Problem of Context-Insensitive Pointer Analysis 在 CI（Content Insensitive）中，处理 x.get() 时，因为 x 是Number类型，所以这里会 Dispatch 到两个方法，并且将两条边都加入 CG 中。但是，其实可以看到有一条边是明显冗余的，在实际执行中并不是 x 的指向目标，这在常量传播分析当中会直接导致 i 成为一个 NAC 。\n采用 CS（Content Sensitive）后，由于对上下文敏感了，所以现在对于 id(n) 的调用，分为两次去分析。\nIntroduction 再简单总结一下 CI 带来的imprecision 的原因。\n在动态执行中，一个方法可能在不同的调用上下文中被多次调用，而在不同调用上下文中，该方法中的变量可能指向不同的对象，在 CI 指针分析中，不同上下文的对象被混合并传播到程序的其它部分（通过返回值或副作用），导致虚假的数据流。\n上下文敏感性模型通过区分不同上下文的不同数据流来调用上下文，以提高精度。最古老且最著名的上下文敏感性策略是调用点敏感性（ call-string ）：每个方法上下文都表示为调用点的链，即方法的一个调用点、；调用者的一个调用点；调用者的调用者的一个调用点等。\n在 CS 中，这里的方法 id(Number)有两个上下文：[1] 和 [2]。\nCloning-Based Context Sensitivity 基于克隆的上下文敏感分析是最直接的方法来实现上下文敏感性。在基于克隆的上下文相关指针分析中，每种方法都由一个或多个上下文来限定，变量也由上下文（从它们声明的函数继承而来）进行限定，本质上，每种方法和其变量都被克隆，每个上下文一个克隆。\nContext-Sensitive Heap OO 程序（例如 Java ）通常是堆密集型，在实践中，为了提高精度，对堆抽象也应用上下文敏感性，抽象对象也由上下文（称为堆上下文）限定，最常见的做法是从分配对象的方法中继承上下文。上下文敏感的堆抽象在分配站点抽象之上提供了一个更细粒度的堆模型。\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
       "publisher": "",
       "accountablePerson" : "",
       "copyrightHolder" : "",
-      "copyrightYear" : "0001",
-      "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
-      "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/tags\/",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-07 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-07 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    Tags
+    软件分析学习笔记丨11上下文敏感指针分析I
   
   </title>
-  <meta property="og:title" content="Tags" />
+  <meta property="og:title" content="软件分析学习笔记丨11上下文敏感指针分析I" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Problem of Context-Insensitive Pointer Analysis 在 CI（Content Insensitive）中，处理 x.get() 时，因为 x 是Number类型，所以这里会 Dispatch 到两个方法，并且将两条边都加入 CG 中。但是，其实可以看到有一条边是明显冗余的，在实际执行中并不是 x 的指向目标，这在常量传播分析当中会直接导致 i 成为一个 NAC 。
+采用 CS（Content Sensitive）后，由于对上下文敏感了，所以现在对于 id(n) 的调用，分为两次去分析。
+Introduction 再简单总结一下 CI 带来的imprecision 的原因。
+在动态执行中，一个方法可能在不同的调用上下文中被多次调用，而在不同调用上下文中，该方法中的变量可能指向不同的对象，在 CI 指针分析中，不同上下文的对象被混合并传播到程序的其它部分（通过返回值或副作用），导致虚假的数据流。
+上下文敏感性模型通过区分不同上下文的不同数据流来调用上下文，以提高精度。最古老且最著名的上下文敏感性策略是调用点敏感性（ call-string ）：每个方法上下文都表示为调用点的链，即方法的一个调用点、；调用者的一个调用点；调用者的调用者的一个调用点等。
+在 CS 中，这里的方法 id(Number)有两个上下文：[1] 和 [2]。
+Cloning-Based Context Sensitivity 基于克隆的上下文敏感分析是最直接的方法来实现上下文敏感性。在基于克隆的上下文相关指针分析中，每种方法都由一个或多个上下文来限定，变量也由上下文（从它们声明的函数继承而来）进行限定，本质上，每种方法和其变量都被克隆，每个上下文一个克隆。
+Context-Sensitive Heap OO 程序（例如 Java ）通常是堆密集型，在实践中，为了提高精度，对堆抽象也应用上下文敏感性，抽象对象也由上下文（称为堆上下文）限定，最常见的做法是从分配对象的方法中继承上下文。上下文敏感的堆抽象在分配站点抽象之上提供了一个更细粒度的堆模型。
+" />
+  <meta name="description" content="Problem of Context-Insensitive Pointer Analysis 在 CI（Content Insensitive）中，处理 x.get() 时，因为 x 是Number类型，所以这里会 Dispatch 到两个方法，并且将两条边都加入 CG 中。但是，其实可以看到有一条边是明显冗余的，在实际执行中并不是 x 的指向目标，这在常量传播分析当中会直接导致 i 成为一个 NAC 。
+采用 CS（Content Sensitive）后，由于对上下文敏感了，所以现在对于 id(n) 的调用，分为两次去分析。
+Introduction 再简单总结一下 CI 带来的imprecision 的原因。
+在动态执行中，一个方法可能在不同的调用上下文中被多次调用，而在不同调用上下文中，该方法中的变量可能指向不同的对象，在 CI 指针分析中，不同上下文的对象被混合并传播到程序的其它部分（通过返回值或副作用），导致虚假的数据流。
+上下文敏感性模型通过区分不同上下文的不同数据流来调用上下文，以提高精度。最古老且最著名的上下文敏感性策略是调用点敏感性（ call-string ）：每个方法上下文都表示为调用点的链，即方法的一个调用点、；调用者的一个调用点；调用者的调用者的一个调用点等。
+在 CS 中，这里的方法 id(Number)有两个上下文：[1] 和 [2]。
+Cloning-Based Context Sensitivity 基于克隆的上下文敏感分析是最直接的方法来实现上下文敏感性。在基于克隆的上下文相关指针分析中，每种方法都由一个或多个上下文来限定，变量也由上下文（从它们声明的函数继承而来）进行限定，本质上，每种方法和其变量都被克隆，每个上下文一个克隆。
+Context-Sensitive Heap OO 程序（例如 Java ）通常是堆密集型，在实践中，为了提高精度，对堆抽象也应用上下文敏感性，抽象对象也由上下文（称为堆上下文）限定，最常见的做法是从分配对象的方法中继承上下文。上下文敏感的堆抽象在分配站点抽象之上提供了一个更细粒度的堆模型。
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +96,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,58 +124,149 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨11上下文敏感指针分析I</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-07 00:00:00 UTC">
+                07 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
+        <div class="post-content markdown-body">
+          
+          <h2 id="problem-of-context-insensitive--pointer-analysis">Problem of Context-Insensitive  Pointer Analysis</h2>
+<image src = "problem.png" alt = "存在的问题"/>
+<p>在 CI（Content Insensitive）中，处理 x.get() 时，因为 x 是Number类型，所以这里会 Dispatch 到两个方法，并且将两条边都加入 CG 中。但是，其实可以看到有一条边是明显冗余的，在实际执行中并不是 x 的指向目标，这在常量传播分析当中会直接导致 i 成为一个 NAC 。</p>
+<image src = "via.png" alt = "改变后"/>
+<p>采用 CS（Content Sensitive）后，由于对上下文敏感了，所以现在对于 id(n) 的调用，分为两次去分析。</p>
+<h2 id="introduction">Introduction</h2>
+<p>再简单总结一下 CI 带来的imprecision 的原因。</p>
+<p>在动态执行中，一个方法可能在不同的调用上下文中被多次调用，而在不同调用上下文中，该方法中的变量可能指向不同的对象，在 CI 指针分析中，不同上下文的对象被混合并传播到程序的其它部分（通过返回值或副作用），导致虚假的数据流。</p>
+<p>上下文敏感性模型通过区分不同上下文的不同数据流来调用上下文，以提高精度。最古老且最著名的上下文敏感性策略是调用点敏感性（ call-string ）：每个方法上下文都表示为调用点的链，即方法的一个调用点、；调用者的一个调用点；调用者的调用者的一个调用点等。</p>
+<image src = "example.png" alt = "例子"/>
+<p>在 CS 中，这里的方法 id(Number)有两个上下文：[1] 和 [2]。</p>
+<h3 id="cloning-based-context-sensitivity">Cloning-Based Context Sensitivity</h3>
+<p>基于克隆的上下文敏感分析是最直接的方法来实现上下文敏感性。在基于克隆的上下文相关指针分析中，每种方法都由一个或多个上下文来限定，变量也由上下文（从它们声明的函数继承而来）进行限定，本质上，每种方法和其变量都被克隆，每个上下文一个克隆。</p>
+<h3 id="context-sensitive-heap">Context-Sensitive Heap</h3>
+<p>OO 程序（例如 Java ）通常是堆密集型，在实践中，为了提高精度，对堆抽象也应用上下文敏感性，抽象对象也由上下文（称为堆上下文）限定，最常见的做法是从分配对象的方法中继承上下文。上下文敏感的堆抽象在分配站点抽象之上提供了一个更细粒度的堆模型。</p>
+<image src = "heapModel.png" alt = "堆抽象模型"/>
+<p>根据不同的上下文，确定堆抽象的指针指向。</p>
+<h3 id="why-context-sensitive-heap-improve-precision">Why Context-Sensitive Heap Improve Precision?</h3>
+<p>在动态执行中，一个分配点可以在不同的调用上下文中创建多个对象，不同对象（由同一站点分配）可能使用不同的数据流进行操作，例如，将不同的值存储到它们的字段中，在指针分析中，没有堆上下文的情况下分析此类代码可能会通过将不同上下文的数据流合并到一个抽象对象中而失去精度，相比之下，通过堆上下文区分来自同一分配点的不同对象可以获得更高的精度。</p>
+<p>这里用一个例子来体会对堆抽象进行上下文敏感分析带来的精度提升：</p>
+<image src = "example2.png" alt = "例子"/>
+<p>在没有 C.S. Heap 的情况下，会将冗余的信息流向 x 的字段。</p>
+<h2 id="context-sensitive-pointer-analysis-rules">Context Sensitive Pointer Analysis: Rules</h2>
+<h3 id="domain-and-notations">Domain and Notations</h3>
+<p>在上下文相关分析中，程序元素由上下文限定：</p>
+<image src = "notations.png" alt = "符号"/>
+<p>其实就是在原来的基础上加上了限定的上下文。</p>
+<h3 id="rules">Rules</h3>
+<table border="0" cellpadding="10" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>Kind</td>
+      <td>Statement</td>
+      <td>Rule(under context c)</td>
+      <td>PFG Edge</td>
+    </tr>
+    <tr>
+      <td>New</td>
+      <td>i: x = new T()</td>
+      <td><image src = "new.png" alt = "new的规则"/></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Assign</td>
+      <td>x = y</td>
+      <td><image src = "assign.png" alt = "assign的规则"/></td>
+      <td>c:x ← c:y</td>
+    </tr>
+    <tr>
+      <td>Store</td>
+      <td>x.f = y</td>
+      <td><image src = "store.png" alt = "store的规则"/></td>
+      <td>c′:o<sub>i</sub>.f ← c:y</td>
+    </tr>
+    <tr>
+      <td>Load</td>
+      <td>y = x.f</td>
+      <td><image src = "load.png" alt = "load的规则"/></td>
+      <td>c:y ← c′:o<sub>i</sub>.f</td>
+    </tr>
+    <tr>
+      <td>Call</td>
+      <td>l: r = x.k(a1,…,an)</td>
+      <td><image src = "call.png" alt = "call的规则"/></td>
+      <td><image src = "edge.png" alt = "edge"/></td>
+    </tr>
+      <tr>
+      <td><image src = "tip.png" alt = "上下文提示"/></td>
+      <td><image src = "tip2.png" alt = "上下文提示"/></td>
+      <td><image src = "example3.png" alt = "实例"/></td>
+      <td><image src = "pfg.png" alt = "pfgedge"/></td>
+    </tr>
+  </tbody>
+</table>
+<p>也就是在原来 CI 的基础上加了上下文信息，这里具体的 Select 方法确定上下文信息在后面会介绍。</p>
 
-	
-	<title>分类</title>
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
+        </div>
 
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：20<br> 
-		最近一次发布日期：0001-01-01
-	</p>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-                        <tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href=""  style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-	</table>
-</div>
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -178,6 +286,8 @@
     
   
 </script>
+
+  
 
 </body>
 

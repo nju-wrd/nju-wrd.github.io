@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a5/" />
-  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a5/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a6/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a6/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -25,9 +25,9 @@
            "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "posts",
-      "name" : "软件分析实验笔记丨A5",
-      "headline" : "软件分析实验笔记丨A5",
-      "description" : "课程网站为Static Program Analysis | Tai-e\n本次实验为作业 5：非上下文敏感指针分析\n作业目标 为 Java 实现非上下文敏感的指针分析。 为指针分析实现一个调用图的实时构建算法。 在本次作业中，我们将在 Tai-e 上为 Java 实现一个非上下文敏感的指针分析，并在指针分析的过程中实时构建调用图。如果实现正确，该调用图会比用类层次结构分析（CHA）建立的更加精确。\n在本次作业中，我们将学习如何处理课上没有涉及的一些 Java 特性，即静态字段、数组和静态方法，这样我们的指针分析就可以处理 Java 中所有类型的指针了。\n新的分析规则 在这一节中，我们引入新的指针分析规则来处理静态字段、数组索引和静态方法调用。\n静态字段的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 T.f 的指针，然后定义如下规则来处理静态字段的 store 和 load：\n类型\r语句\r规则\rPFG 边\rStatic Store\rT.f = y\rT.f ← y\rStatic Load\ry = T.f\ry ← T.f\r常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 oi 代表一个数组对象，那么我们用 oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：\n",
+      "name" : "软件分析实验笔记丨A6",
+      "headline" : "软件分析实验笔记丨A6",
+      "description" : "课程网站为Static Program Analysis | Tai-e\n本次实验为作业 6：上下文敏感的指针分析\n作业目标 为 Java 实现一个上下文敏感的指针分析框架。 作为指针分析的一部分，随着指针分析一起实现调用图（call graph）构建。 实现几种常见的上下文敏感策略（context sensitivity variants）。 新的分析规则 在这一节中，我们引入与上次实验类似的新的指针分析规则来处理静态字段、数组索引和静态方法调用，主要区别在于上下文的部分\n静态字段的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 T.f 的指针，然后定义如下规则来处理静态字段的 store 和 load：\n类型\r语句\r规则（在上下文c下）\rPFG 边\rStatic Store\rT.f = y\rT.f ← c:y\rStatic Load\ry = T.f\rc:y ← T.f\r常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 c\u0026rsquo;:oi 代表一个具有上下文c\u0026rsquo;的数组对象，那么我们用 c\u0026rsquo;:oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,34 +35,30 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2024",
-      "datePublished": "2024-11-24 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2024-11-24 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a5\/",
+      "datePublished": "2024-12-07 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-07 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a6\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    软件分析实验笔记丨A5
+    软件分析实验笔记丨A6
   
   </title>
-  <meta property="og:title" content="软件分析实验笔记丨A5" />
+  <meta property="og:title" content="软件分析实验笔记丨A6" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="课程网站为Static Program Analysis | Tai-e
-本次实验为作业 5：非上下文敏感指针分析
-作业目标 为 Java 实现非上下文敏感的指针分析。 为指针分析实现一个调用图的实时构建算法。 在本次作业中，我们将在 Tai-e 上为 Java 实现一个非上下文敏感的指针分析，并在指针分析的过程中实时构建调用图。如果实现正确，该调用图会比用类层次结构分析（CHA）建立的更加精确。
-在本次作业中，我们将学习如何处理课上没有涉及的一些 Java 特性，即静态字段、数组和静态方法，这样我们的指针分析就可以处理 Java 中所有类型的指针了。
-新的分析规则 在这一节中，我们引入新的指针分析规则来处理静态字段、数组索引和静态方法调用。
+本次实验为作业 6：上下文敏感的指针分析
+作业目标 为 Java 实现一个上下文敏感的指针分析框架。 作为指针分析的一部分，随着指针分析一起实现调用图（call graph）构建。 实现几种常见的上下文敏感策略（context sensitivity variants）。 新的分析规则 在这一节中，我们引入与上次实验类似的新的指针分析规则来处理静态字段、数组索引和静态方法调用，主要区别在于上下文的部分
 静态字段的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 T.f 的指针，然后定义如下规则来处理静态字段的 store 和 load：
-类型语句规则PFG 边Static StoreT.f = yT.f ← yStatic Loady = T.fy ← T.f常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 oi 代表一个数组对象，那么我们用 oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：
+类型语句规则（在上下文c下）PFG 边Static StoreT.f = yT.f ← c:yStatic Loady = T.fc:y ← T.f常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 c&rsquo;:oi 代表一个具有上下文c&rsquo;的数组对象，那么我们用 c&rsquo;:oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：
 " />
   <meta name="description" content="课程网站为Static Program Analysis | Tai-e
-本次实验为作业 5：非上下文敏感指针分析
-作业目标 为 Java 实现非上下文敏感的指针分析。 为指针分析实现一个调用图的实时构建算法。 在本次作业中，我们将在 Tai-e 上为 Java 实现一个非上下文敏感的指针分析，并在指针分析的过程中实时构建调用图。如果实现正确，该调用图会比用类层次结构分析（CHA）建立的更加精确。
-在本次作业中，我们将学习如何处理课上没有涉及的一些 Java 特性，即静态字段、数组和静态方法，这样我们的指针分析就可以处理 Java 中所有类型的指针了。
-新的分析规则 在这一节中，我们引入新的指针分析规则来处理静态字段、数组索引和静态方法调用。
+本次实验为作业 6：上下文敏感的指针分析
+作业目标 为 Java 实现一个上下文敏感的指针分析框架。 作为指针分析的一部分，随着指针分析一起实现调用图（call graph）构建。 实现几种常见的上下文敏感策略（context sensitivity variants）。 新的分析规则 在这一节中，我们引入与上次实验类似的新的指针分析规则来处理静态字段、数组索引和静态方法调用，主要区别在于上下文的部分
 静态字段的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 T.f 的指针，然后定义如下规则来处理静态字段的 store 和 load：
-类型语句规则PFG 边Static StoreT.f = yT.f ← yStatic Loady = T.fy ← T.f常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 oi 代表一个数组对象，那么我们用 oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：
+类型语句规则（在上下文c下）PFG 边Static StoreT.f = yT.f ← c:yStatic Loady = T.fc:y ← T.f常规指针分析不区分对不同数组索引（位置）的 load 和 store。假设 c&rsquo;:oi 代表一个具有上下文c&rsquo;的数组对象，那么我们用 c&rsquo;:oi[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：
 " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
@@ -124,13 +120,13 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">软件分析实验笔记丨A5</h1>
+          <h1 class="post-title">软件分析实验笔记丨A6</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
               
-              <time class="post-date" datetime="2024-11-24 00:00:00 UTC">
-                24 Nov 2024
+              <time class="post-date" datetime="2024-12-07 00:00:00 UTC">
+                07 Dec 2024
               </time>
               
             </div>
@@ -144,23 +140,22 @@
         <div class="post-content markdown-body">
           
           <p>课程网站为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/lectures.html" target="_blank">Static Program Analysis | Tai-e</a></p>
-<p>本次实验为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/pa5.html" target="_blank">作业 5：非上下文敏感指针分析</a></p>
+<p>本次实验为<a style="color: #0000FF;" href="https://tai-e.pascal-lab.net/pa6.html" target="_blank">作业 6：上下文敏感的指针分析</a></p>
 <h2 id="作业目标">作业目标</h2>
 <ul>
-<li>为 Java 实现非上下文敏感的指针分析。</li>
-<li>为指针分析实现一个调用图的实时构建算法。</li>
+<li>为 Java 实现一个上下文敏感的指针分析框架。</li>
+<li>作为指针分析的一部分，随着指针分析一起实现调用图（call graph）构建。</li>
+<li>实现几种常见的上下文敏感策略（context sensitivity variants）。</li>
 </ul>
-<p>在本次作业中，我们将在 Tai-e 上为 Java 实现一个非上下文敏感的指针分析，并在指针分析的过程中实时构建调用图。如果实现正确，该调用图会比用类层次结构分析（CHA）建立的更加精确。</p>
-<p>在本次作业中，我们将学习如何处理课上没有涉及的一些 Java 特性，即静态字段、数组和静态方法，这样我们的指针分析就可以处理 Java 中所有类型的指针了。</p>
 <h2 id="新的分析规则">新的分析规则</h2>
-<p>在这一节中，我们引入新的指针分析规则来处理静态字段、数组索引和静态方法调用。</p>
-<p><strong>静态字段</strong>的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 <code>T.f</code> 的指针，然后定义如下规则来处理静态字段的 store 和 load：</p>
+<p>在这一节中，我们引入与上次实验类似的新的指针分析规则来处理静态字段、数组索引和静态方法调用，主要区别在于上下文的部分</p>
+<p><strong>静态字段</strong>的处理很简单：我们只需要在静态字段和变量之间传值。我们用 T.f 表示静态字段 T.f 的指针，然后定义如下规则来处理静态字段的 store 和 load：</p>
 <table border="1" cellpadding="10" cellspacing="0">
   <thead>
     <tr>
       <th>类型</th>
       <th>语句</th>
-      <th>规则</th>
+      <th>规则（在上下文c下）</th>
       <th>PFG 边</th>
     </tr>
   </thead>
@@ -169,17 +164,17 @@
       <td>Static Store</td>
       <td>T.f = y</td>
       <td><img src = "1.png" /></td>
-        <td>T.f ← y</sub></td>
+      <td>T.f ← c:y</sub></td>
     </tr>
     <tr>
       <td>Static Load</td>
       <td>y = T.f</td>
       <td><img src = "2.png" /></td>
-      <td>y ← T.f</td>
+      <td>c:y ← T.f</td>
     </tr>
   </tbody>
 </table>
-<p>常规指针分析不区分对不同<strong>数组索引</strong>（位置）的 load 和 store。假设 o<sub>i</sub> 代表一个数组对象，那么我们用 o<sub>i</sub>[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：</p>
+<p>常规指针分析不区分对不同<strong>数组索引</strong>（位置）的 load 和 store。假设 c&rsquo;:o<sub>i</sub> 代表一个具有上下文c&rsquo;的数组对象，那么我们用 c&rsquo;:o<sub>i</sub>[∗] 表示一个指向数组中所有对象的指针（无论保存在数组的什么位置）。基于这样的处理，我们定义了数组 store 和 load 的规则：</p>
 <table border="1" cellpadding="10" cellspacing="0">
   <thead>
     <tr>
@@ -194,17 +189,17 @@
       <td>Array Store</td>
       <td>x[i] = y</td>
       <td><img src = "3.png" /></td>
-        <td>o<sub>u</sub>[*] ← y</sub></td>
+      <td>c':o<sub>u</sub>[*] ←c:y</sub></td>
     </tr>
     <tr>
       <td>Array Load</td>
       <td>y = x[i]</td>
       <td><img src = "4.png" /></td>
-      <td>y ← o<sub>u</sub>[*]</td>
+      <td>c:y ← c':o<sub>u</sub>[*]</td>
     </tr>
   </tbody>
 </table>
-<p>静态方法的处理与实例方法大体相同，除了（1）我们不需要在 receiver object 上进行 dispatch 以解析（resolve）出被调用的方法，（2）我们不需要传 receiver object。因为静态方法的处理不需要考虑 receiver object，因此它的处理规则也比实例方法更简单：</p>
+静态方法的处理与实例方法大体相同，除了（1）我们不需要在 receiver object 上进行 dispatch 以解析（resolve）出被调用的方法，（2）我们不需要传 receiver object。因为静态方法的处理不需要考虑 receiver object，因此它的处理规则也比实例方法更简单：
 <table border="1" cellpadding="10" cellspacing="0">
   <thead>
     <tr>
@@ -219,75 +214,68 @@
       <td>Static Call</td>
       <td>r = T.m(a1,...,an)</td>
       <td><img src = "5.png" /></td>
-      <td>a<sub>1</sub> → m<sub>p1</sub><br>...<br>a<sub>n</sub> → m<sub>pn</sub><br>r ← m<sub>ret</sub></td>
+        <td>c:a<sub>1</sub> → c<sup>t</sup>:m<sub>p1</sub><br>...<br>c:a<sub>n</sub> → c<sup>t</sup>:m<sub>pn</sub><br>c:r ← c<sup>t</sup>:m<sub>ret</sub></td>
     </tr>
   </tbody>
 </table>
 <h2 id="实现">实现</h2>
 <h3 id="实现-solver-类">实现 Solver 类</h3>
-<p>我们已经在 Solver.initialize() 中初始化了 worklist、指针流图和调用图，并将它们存在 Solver 的字段 worklist、pointerFlowGraph 和 callGraph 中，这样我们就可以操作它们了。当我们建立调用图时，可以使用前面作业中介绍的 DefaultCallGraph 的 API 来修改调用图。主要实现以下五个API。</p>
-<h4 id="void-addreachablejmethod">void addReachable(JMethod)</h4>
+<p>Solver 类中已经有部分实现好的代码：Solver 类的构造方法中包含了设置堆模型（heap model）和 context selector 的相关代码；Solver.initialize() 方法中包含了初始化 context sensitivity (C.S.) manager、worklist、指针流图和调用图并将它们 store 到 Solver 的字段中的相关代码，从而可以直接使用这些字段。和上次作业一样，我们需要完成以下 5 个API：</p>
+<h4 id="void-addreachablecsmethod">void addReachable(CSMethod)</h4>
 <p>这个方法实现了 AddReachable 函数。</p>
 <img src = "addreachable.png" alt = "addreachable"/>
-<p>这里要再了解七个类，Var 、JField 、Obj 、HeapModel 、PointsToSet 、Pointer 、PointerFlowGraph 。其中，<strong>Var</strong> 在之前已经见过，不过这里提供了一些方便的API来查找相关语句。例如，假设我们在分析下面的代码片段：</p>
-<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "codeExample">x = y;
-x.h = a;
-x.g = z;
-a = x.f;
-b = y.f;
-c = x.m();
-d[i] = c;
-e = d[i];</code></pre>
-  <button class="copy-button" data-clipboard-target="#codeExample">Copy</button>
-  </div>
-如果 var 代表变量 x，那么 **var.getStoreFields()** 返回第 2 行和第 3 行的两个字段 store 语句，**var.getLoadFields()** 返回第 4 行的字段 load 语句，**var.getInvokes()** 返回第 6 行的实例调用；如果 var 代表变量 d，那么 **var.getStoreArrays()** 返回第 7 行的数组 store 语句，**var.getLoadArrays()** 返回第 8 行的数组 load 语句；**JField** 表示程序中的各个字段；**Obj** 表示指针分析中的抽象对象，即指针集（points-to sets）中的对象；**HeapModel** 表示堆模型（即堆抽象），它用来对堆对象进行建模。给定一个 New 语句（即创建点 allocation site），我们可以使用 HeapModel 的 **getObj(New)** 方法来获得与它对应的抽象对象（即 Obj），我们在这里其实采用了创建点抽象，所以该方法为每个 New 语句返回一个唯一的抽象对象；**PointsToSet** 表示指针集，即指针分析中的 `Obj` 集合。它是可迭代的，也就是说，我们可以通过 for 循环来迭代一个指针集中的所有对象；**Pointer** 表示分析中的指针，即 PFG（指针流图，pointer flow grpah）中的节点。每个指针都与一个指针集相关联，你可以调用 `getPointsToSet()` 来获得这个指针集。这个类有四个子类；
-<img src = "pointer.png" alt = "四个子类"/>
-<p><strong>PointerFlowGraph</strong> 表示程序的指针流图。它还维护着从变量、静态字段、实例字段、数组索引到相应指针（即 PFG 节点）的映射，因此我们可以利用这个类的 API 获得各种指针。</p>
-<div style="border-left:4px solid blue;padding-left:10px;">
-<strong><em>提示：</em></strong><br>
-<ol>
-<li>不要忘记在该方法中处理静态字段 loads/stores 和静态方法调用。</li>
-<li>可以通过如下方法获得 LoadField/StoreField 语句要 load/store 的字段：<br><div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">LoadField stmt = ...;
-JField field = stmt.getFieldRef().resolve();</code></pre>
-  <button class="copy-button" data-clipboard-target="#code1">Copy</button>
-  </div></li>
-    <li>为了实时建立调用图，我们需要解析方法调用的被调用者。出于方便，提供了 Solver.resolveCallee(Obj,Invoke) 来解析 Java 中静态调用、虚调用、接口调用和特殊调用（static, virtual, interface, and special invocations）的被调用者。</li>
-    <li>在 addReachable() 中，对于不同种类的语句，我们需要使用不同的逻辑来处理。实现这种需求的一个合理方式是访问者模式。Tai-e 的 IR 天然支持访问者模式。具体来说，Tai-e 提供了 pascal.taie.ir.stmt.StmtVisitor 类，这是所有 Stmt 访问者的通用接口，它为所有种类的语句都声明了访问操作。另外，Stmt 的非抽象子类都实现了 accept(StmtVisitor) 方法，因此它们可以回调来自具体访问者的访问操作。<br>在 Solver 中，我们为 Stmt 访问者提供了代码框架（即内部类 StmtProcessor），并在 initialize() 中创建了它的实例，并将该实例存在字段 stmtProcessor 中。如果你选择通过访问者模式实现 addReachable() 的逻辑，那么应该在类 stmtProcessor 中实现相关的 visit(…) 方法，并使用它来处理可达方法中的语句。在这次作业中，visit(…) 方法的返回值被忽略，因此在实现 visit(…) 方法时只需要返回 null。</li>
-</ol>
-</div>
-<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code2">private void addReachable(JMethod method) {
+<p>这里和 A5 的区别是 stmtProcessor 并没有提前初始化。且采用了 CS 方法，很多类进行了改变。这里要再了解五个类，Context 、CSManager 、ContextSelector 、PointsToSetFactory  、CSCallGraph 、CSElement 。<strong>Context</strong> 表示上下文敏感的指针分析中的上下文；<strong>CSManage</strong> 管理所有需要用到上下文的元素和所有上下文敏感的指针。也就是说，CSElement 或 Pointer 的所有子类的实例（每当你需要用到时）都需要通过这个类的相关 API 来取得；<strong>ContextSelector</strong> 是上下文敏感指针分析框架和具体的上下文敏感策略（如调用点敏感、对象敏感等）之间的接口。该类有 4 个 API，其中一个 API 返回空上下文，另外三个 API 分别为静态方法、实例方法和堆对象（heap object）选择上下文。本次作业中，当我们在上下文敏感指针分析中处理 Invoke 和 New 语句时，需要使用本类的各个子类中的方法来生成目标方法（Invoke 语句）和新创建对象（new 语句）的上下文。我们需要完成本类的六个子类中的方法；<strong>PointsToSetFactory</strong>  创建 PointsToSet 的静态工厂方法，可以用该类中的两个 <strong>make()</strong> 方法来创建 PointsToSet 的实例；<strong>CSCallGraph</strong> 表示上下文敏感的调用图，它和你上一次作业用的 DefaultCallGraph 非常类似，区别仅为现在调用点和方法被表示为 CSCallSite 和 CSMethod。你需要使用其中的 addReachableMethod(CSMethod) 以及 addEdge(Edge) 这两个 API 来修改调用图；<strong>CSElement</strong> 表示指针分析中需要用到上下文的元素，每个这样的元素都和一个上下文相关联。它有四个子类，分别表示四种需要用到上下文的元素：</p>
+<ul>
+<li>CSVar：表示一个带上下文（Context）的变量（Var）。</li>
+<li>CSObj：表示一个带上下文（Context）的抽象对象（Obj）。</li>
+<li>CSCallSite：表示一个带上下文（Context）的调用点（Invoke）。</li>
+<li>CSMethod：表示一个带上下文（Context）的方法（JMethod）。</li>
+</ul>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">private void addReachable(CSMethod csMethod) {
     // TODO - finish me
-    if(!callGraph.contains(method)){
+    if(!callGraph.contains(csMethod)){
         // add m to RM
-        callGraph.addReachableMethod(method);
+        callGraph.addReachableMethod(csMethod);
         // S ∪= Sm
-        for(Stmt s : method.getIR().getStmts()){
+        for(Stmt s : csMethod.getMethod().getIR()){
             // 交给访问者模式处理
+            StmtVisitor<?> stmtProcessor = null;
             s.accept(stmtProcessor);
         }
     }
 }</code></pre>
-  <button class="copy-button" data-clipboard-target="#code2">Copy</button>
+  <button class="copy-button" data-clipboard-target="#code1">Copy</button>
   </div>
-<h4 id="class-stmtprocessor-implements-stmtvisitorvoid">class StmtProcessor implements StmtVisitor&lt;Void&gt;</h4>
-<p>这里是对 addReachable 中的不同的 stmt 类型的处理</p>
-<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code7">private class StmtProcessor implements StmtVisitor<Void> {
+<h4 id="private-class-stmtprocessor-implements-stmtvisitorvoid">private class StmtProcessor implements StmtVisitor&lt;Void&gt;</h4>
+<p>这里是对 addReachable 中的不同的 stmt 类型的处理，主要是加入了上下文的处理。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code2">private class StmtProcessor implements StmtVisitor<Void> {
+    private final CSMethod csMethod;
+    private final Context context;
+    private StmtProcessor(CSMethod csMethod) {
+        this.csMethod = csMethod;
+        this.context = csMethod.getContext();
+    }
     // TODO - if you choose to implement addReachable()
     //  via visitor pattern, then finish me
     @Override
     public Void visit(New stmt) {
         // new 语句
         Obj o = heapModel.getObj(stmt);
-        VarPtr varPtr = pointerFlowGraph.getVarPtr(stmt.getLValue());
-        workList.addEntry(varPtr,new PointsToSet(o));
+        // 含上下文的变量
+        CSVar csVar = csManager.getCSVar(context,stmt.getLValue());
+        // heap context
+        Context context1 = contextSelector.selectHeapContext(csMethod,o);
+        // 含上下文的对象
+        CSObj csObj = csManager.getCSObj(context1,o);
+        workList.addEntry(csVar,PointsToSetFactory.make(csObj));
         return null;
     }
     @Override
     public Void visit(Copy stmt) {
         // 赋值语句
-        VarPtr lVarPtr = pointerFlowGraph.getVarPtr(stmt.getLValue());
-        VarPtr rVarPtr = pointerFlowGraph.getVarPtr(stmt.getRValue());
-        addPFGEdge(rVarPtr,lVarPtr);
+        CSVar lVar = csManager.getCSVar(context,stmt.getLValue());
+        CSVar rVar = csManager.getCSVar(context,stmt.getRValue());
+        addPFGEdge(rVar,lVar);
         return null;
     }
     @Override
@@ -305,8 +293,8 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
         if(stmt.isStatic()){
             // 这里只对静态处理
             // 字段 load
-            VarPtr lVarPtr = pointerFlowGraph.getVarPtr(stmt.getLValue());
-            StaticField rStaticField = pointerFlowGraph.getStaticField(stmt.getFieldRef().resolve());
+            CSVar lVarPtr = csManager.getCSVar(context,stmt.getLValue());
+            StaticField rStaticField = csManager.getStaticField(stmt.getFieldRef().resolve());
             addPFGEdge(rStaticField,lVarPtr);
         }
         return null;
@@ -315,8 +303,8 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
     public Void visit(StoreField stmt) {
         if(stmt.isStatic()){
             // 字段 store
-            VarPtr rVarPtr = pointerFlowGraph.getVarPtr(stmt.getRValue());
-            StaticField lStaticField = pointerFlowGraph.getStaticField(stmt.getFieldRef().resolve());
+            CSVar rVarPtr = csManager.getCSVar(context,stmt.getRValue());
+            StaticField lStaticField = csManager.getStaticField(stmt.getFieldRef().resolve());
             addPFGEdge(rVarPtr,lStaticField);
         }
         return null;
@@ -326,25 +314,29 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
         // 这里类似于 ProcessCall 的处理，不过是静态方法
         if(stmt.isStatic()){
             // 同样这里只对静态方法调用处理
+            CSCallSite csCallSite = csManager.getCSCallSite(context,stmt);
             Var lVar = stmt.getLValue();
             JMethod m = resolveCallee(null,stmt);
-            Edge<Invoke, JMethod> edge = new Edge<>(CallKind.STATIC,stmt,m);
+            // 静态方法的上下文
+            Context context1 = contextSelector.selectContext(csCallSite,m);
+            CSMethod csMethod1 = csManager.getCSMethod(context1,m);
+            Edge<CSCallSite, CSMethod> edge = new Edge<>(CallKind.STATIC, ,csMethod);
             if(callGraph.addEdge(edge)){
                 // 如果添加边成功，说明边不在 CG 中
-                addReachable(m);
+                addReachable(csMethod1);
                 InvokeExp invoke = stmt.getInvokeExp();
                 for(int i = 0; i < invoke.getArgCount(); i++){
                     // 参数到参数的传递
-                    VarPtr aPtr = pointerFlowGraph.getVarPtr(invoke.getArg(i));
-                    VarPtr pPtr = pointerFlowGraph.getVarPtr(m.getIR().getParam(i));
+                    CSVar aPtr = csManager.getCSVar(context,invoke.getArg(i));
+                    CSVar pPtr = csManager.getCSVar(context1,m.getIR().getParam(i));
                     addPFGEdge(aPtr,pPtr);
                 }
             }
             if(lVar != null){
                 // 有返回值对返回值做相应处理
+                CSVar lPtr = csManager.getCSVar(context,lVar);
                 for(Var ret : m.getIR().getReturnVars()){
-                    VarPtr retPtr = pointerFlowGraph.getVarPtr(ret);
-                    VarPtr lPtr = pointerFlowGraph.getVarPtr(lVar);
+                    CSVar retPtr = csManager.getCSVar(context1,ret);
                     addPFGEdge(retPtr,lPtr);
                 }
             }
@@ -352,11 +344,10 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
         return null;
     }
 }</code></pre>
-  <button class="copy-button" data-clipboard-target="#code7">Copy</button>
+  <button class="copy-button" data-clipboard-target="#code2">Copy</button>
   </div>
 <h4 id="void-addpfgedgepointerpointer">void addPFGEdge(Pointer,Pointer)</h4>
-<p>这个方法实现了 AddEdge 函数。</p>
-<img src = "addedge.png" alt = "addedge" />
+<p>这个方法实现了 AddEdge 函数，和A5相比没有变化。</p>
 <div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code3">private void addPFGEdge(Pointer source, Pointer target) {
     // TODO - finish me
     if(pointerFlowGraph.addEdge(source,target)){
@@ -365,12 +356,12 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
             workList.addEntry(target,source.getPointsToSet());
         }
     }
-}</code></pre>
+}
+</code></pre>
   <button class="copy-button" data-clipboard-target="#code3">Copy</button>
   </div>
 <h4 id="void-analyze">void analyze()</h4>
-<p>这个方法实现了 Solve 函数的主要部分，即 while 循环部分。</p>
-<img src = "while.png" alt = "while" />
+<p>这个方法实现了 Solve 函数的主要部分，即 while 循环部分，同样加入了上下文的处理。</p>
 <div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code4">private void analyze() {
     // TODO - finish me
     while(!workList.isEmpty()){
@@ -378,30 +369,30 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
         Pointer n = entry.pointer();
         PointsToSet pts = entry.pointsToSet();
         PointsToSet delta = propagate(n, pts);
-        if(n instanceof VarPtr varPtr){
-            Var v = varPtr.getVar();
-            for(Obj o : delta){
+        if(n instanceof CSVar csVar){
+            Var v = csVar.getVar();
+            for(CSObj o : delta){
                 for(StoreField storeField : v.getStoreFields()){
-                    VarPtr rVarPtr = pointerFlowGraph.getVarPtr(storeField.getRValue());
-                    InstanceField field = pointerFlowGraph.getInstanceField(o,storeField.getFieldRef().resolve());
+                    CSVar rVarPtr = csManager.getCSVar(csVar.getContext(),storeField.getRValue());
+                    InstanceField field = csManager.getInstanceField(o,storeField.getFieldRef().resolve());
                     addPFGEdge(rVarPtr,field);
                 }
                 for(LoadField loadField : v.getLoadFields()){
-                    VarPtr lVarPtr = pointerFlowGraph.getVarPtr(loadField.getLValue());
-                    InstanceField field = pointerFlowGraph.getInstanceField(o,loadField.getFieldRef().resolve());
+                    CSVar lVarPtr = csManager.getCSVar(csVar.getContext(),loadField.getLValue());
+                    InstanceField field = csManager.getInstanceField(o,loadField.getFieldRef().resolve());
                     addPFGEdge(field,lVarPtr);
                 }
                 for(StoreArray storeArray : v.getStoreArrays()){
-                    VarPtr rVarPtr = pointerFlowGraph.getVarPtr(storeArray.getRValue());
-                    ArrayIndex index = pointerFlowGraph.getArrayIndex(o);
+                    CSVar rVarPtr = csManager.getCSVar(csVar.getContext(),storeArray.getRValue());
+                    ArrayIndex index = csManager.getArrayIndex(o);
                     addPFGEdge(rVarPtr,index);
                 }
                 for(LoadArray loadArray : v.getLoadArrays()){
-                    VarPtr lVarPtr = pointerFlowGraph.getVarPtr(loadArray.getLValue());
-                    ArrayIndex index = pointerFlowGraph.getArrayIndex(o);
+                    CSVar lVarPtr = csManager.getCSVar(csVar.getContext(),loadArray.getLValue());
+                    ArrayIndex index = csManager.getArrayIndex(o);
                     addPFGEdge(index,lVarPtr);
                 }
-                processCall(v,o);
+                processCall(csVar,o);
             }
         }
     }
@@ -409,13 +400,13 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
   <button class="copy-button" data-clipboard-target="#code4">Copy</button>
   </div>
 <h4 id="pointstoset-propagatepointerpointstoset">PointsToSet propagate(Pointer,PointsToSet)</h4>
-<p>这个方法合并了算法中的两个步骤。它首先计算差集（Δ=pts−pt(n)），然后将 pts 传播到 pt(p) 中。它返回 Δ 作为调用的结果。</p>
+<p>这个方法合并了算法中的两个步骤。它首先计算差集（Δ=pts−pt(n)），然后将 pts 传播到 pt(p) 中。它返回 Δ 作为调用的结果。依旧只是进行了上下文的信息添加。</p>
 <div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code5">private PointsToSet propagate(Pointer pointer, PointsToSet pointsToSet) {
     // TODO - finish me
     PointsToSet ptn = pointer.getPointsToSet();
-    PointsToSet delta = new PointsToSet();
+    PointsToSet delta = PointsToSetFactory.make();
     // 计算 Δ
-    for(Obj o : pointsToSet){
+    for(CSObj o : pointsToSet){
         if(!ptn.contains(o)){
             ptn.addObject(o);
             delta.addObject(o);
@@ -431,44 +422,47 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
 }</code></pre>
   <button class="copy-button" data-clipboard-target="#code5">Copy</button>
   </div>
-<h4 id="void-processcallvarobj">void processCall(Var,Obj)</h4>
-<p>这个方法实现了 ProcessCall 函数。</p>
-<img src = "processcall.png" alt = "processcall" />
-<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code6">private void processCall(Var var, Obj recv) {
+<h4 id="void-processcallcsvarcsobj">void processCall(CSVar,CSObj)</h4>
+<p>这个方法实现了 ProcessCall 函数，还是仅增加了上下文的信息。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code6">private void processCall(CSVar recv, CSObj recv
     // TODO - finish me
+    Var var = recv.getVar();
     for(Invoke invoke : var.getInvokes()){
         // 不用判断调用类型，这里都是非静态方法
-        JMethod m= resolveCallee(recv,invoke);
-        VarPtr thisPtr = pointerFlowGraph.getVarPtr(m.getIR().getThis());
-        workList.addEntry(thisPtr,new PointsToSet(recv));
+        JMethod m= resolveCallee(recvObj,invoke
+        CSCallSite csCallSite = csManager.getCS
+        Context context = contextSelector.selec
+        CSMethod csMethod = csManager.getCSMeth
+        CSVar thisPtr = csManager.getCSVar(cont
+        workList.addEntry(thisPtr,PointsToSetFa
         Edge edge = null;
         // 加边的类型
         if(invoke.isDynamic()){
-            edge = new Edge<>(CallKind.DYNAMIC,invoke,m);
+            edge = new Edge<>(CallKind.DYNAMIC,
         }else if(invoke.isInterface()){
-            edge = new Edge<>(CallKind.INTERFACE,invoke,m);
+            edge = new Edge<>(CallKind.INTERFAC
         }else if(invoke.isVirtual()){
-            edge = new Edge<>(CallKind.VIRTUAL,invoke,m);
+            edge = new Edge<>(CallKind.VIRTUAL,
         }else if(invoke.isSpecial()){
-            edge = new Edge<>(CallKind.SPECIAL,invoke,m);
+            edge = new Edge<>(CallKind.SPECIAL,
         }else {
-            edge = new Edge<>(CallKind.OTHER,invoke,m);
+            edge = new Edge<>(CallKind.OTHER,cs
         }
         if(callGraph.addEdge(edge)){
-            addReachable(m);
-            InvokeExp invokeExp = invoke.getInvokeExp();
-            for(int i = 0; i < invokeExp.getArgCount(); i++){
+            addReachable(csMethod);
+            InvokeExp invokeExp = invoke.getInv
+            for(int i = 0; i < invokeExp.getArg
                 // 参数到参数的传递
-                VarPtr aPtr = pointerFlowGraph.getVarPtr(invokeExp.getArg(i));
-                VarPtr pPtr = pointerFlowGraph.getVarPtr(m.getIR().getParam(i));
+                CSVar aPtr = csManager.getCSVar
+                CSVar pPtr = csManager.getCSVar
                 addPFGEdge(aPtr,pPtr);
             }
             Var lVar = invoke.getLValue();
             if(lVar != null){
+                CSVar lPtr = csManager.getCSVar
                 // 有返回值对返回值做相应处理
-                for(Var ret : m.getIR().getReturnVars()){
-                    VarPtr retPtr = pointerFlowGraph.getVarPtr(ret);
-                    VarPtr lPtr = pointerFlowGraph.getVarPtr(lVar);
+                for(Var ret : m.getIR().getRetu
+                    CSVar retPtr = csManager.ge
                     addPFGEdge(retPtr,lPtr);
                 }
             }
@@ -477,8 +471,216 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
 }</code></pre>
   <button class="copy-button" data-clipboard-target="#code6">Copy</button>
   </div>
-<h2 id="总结">总结</h2>
-<p>这一次的任务量感觉不是很大，主要是前期的学习需要较长的时间，加上需要了解学习各种类并能找到要用的API，最终把他们都结合到一起这个过程比较困难。这就不得不说 ide 内部的提示功能确实很重要，虽然有时候不太熟悉有点忘记，但是大概知道要做什么再配合上这样的提醒功能真的事半功倍。提交的时候看了一下这个 Assigment 的成功率也确实很高。</p>
+<h3 id="实现常见的上下文敏感策略">实现常见的上下文敏感策略</h3>
+<p>具体而言，需要完成六个 context selector ，每个 selector 中都需要完成三个 API：两个 <strong>selectContext(&hellip;)</strong> 方法和一个 <strong>selectHeapContext(&hellip;)</strong> 方法。</p>
+<p>即之前用到的API。对每个 k 层的 context selector，其堆上下文（heap context）的层数为 k−1，举例来说，对一层调用点敏感（1-call-site sensitivity），堆上下文的层数为 0（即没有堆上下文）；对两层调用点敏感（2-call-site sensitivity），堆上下文的层数为 1。</p>
+<p>这里还要了解一个类 ListContext 。<strong>ListContext</strong> 实现了 Context 接口，它将每个上下文表示为一个由若干同类型元素组成的有序列表（对三种上下文敏感策略，该列表分别采用不同的元素来表示上下文：调用点敏感使用的元素为 Invoke，对象敏感使用的元素为 Obj，类型敏感使用的元素为 Type）。该类提供一系列静态工厂方法，即 make(&hellip;) 方法来创建上下文，我们需要利用这些方法来完成上面提到的六个上下文 selector。</p>
+<h4 id="pascaltaieanalysisptacorecsselector_1callselector">pascal.taie.analysis.pta.core.cs.selector._1CallSelector</h4>
+<p>该类实现了一层调用点敏感。</p>
+<img src = "6.png" alt = "select_1cs"/>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code7">public class _1CallSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        return ListContext.make(callSite.getCallSite());
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        return ListContext.make(callSite.getCallSite());
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        return getEmptyContext();
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code7">Copy</button>
+  </div>
+<h4 id="pascaltaieanalysisptacorecsselector_1objselector">pascal.taie.analysis.pta.core.cs.selector._1ObjSelector</h4>
+<p>该类实现了一层对象敏感。</p>
+<img src = "7.png" alt = "select_1o"/>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code8">public class _1ObjSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        return callSite.getContext();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        return ListContext.make(recv.getObject());
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        return getEmptyContext();
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code8">Copy</button>
+  </div>
+<h4 id="pascaltaieanalysisptacorecsselector_1typeselector">pascal.taie.analysis.pta.core.cs.selector._1TypeSelector</h4>
+<p>该类实现了一层类型敏感。</p>
+<img src = "8.png" alt = "select_1type"/>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code9">public class _1TypeSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        return callSite.getContext();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        return ListContext.make(recv.getObject().getContainerType());
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        return getEmptyContext();
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code9">Copy</button>
+  </div>
+<h4 id="pascaltaieanalysisptacorecsselector_2callselector">pascal.taie.analysis.pta.core.cs.selector._2CallSelector</h4>
+<p>该类实现了两层调用点敏感。</p>
+<img src = "9.png" alt = "select_2cs"/>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code10">public class _2CallSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        int len = callSite.getContext().getLength();
+        if(len > 0){
+            // 获取最后一个
+            return ListContext.make(callSite.getContext().getElementAt(len - 1),callSite.getCallSite());
+        }else{
+            return ListContext.make(callSite.getCallSite());
+        }
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        int len = callSite.getContext().getLength();
+        if(len > 0){
+            // 获取最后一个
+            return ListContext.make(callSite.getContext().getElementAt(len - 1),callSite.getCallSite());
+        }else{
+            return ListContext.make(callSite.getCallSite());
+        }
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        int len = method.getContext().getLength();
+        if(len > 0){
+            // 获取最后一个
+            return ListContext.make(method.getContext().getElementAt(len - 1));
+        }else{
+            return getEmptyContext();
+        }
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code10">Copy</button>
+  </div>
+<h4 id="pascaltaieanalysisptacorecsselector_2objselector">pascal.taie.analysis.pta.core.cs.selector._2ObjSelector</h4>
+<p>该类实现了两层对象敏感。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code11">public class _2ObjSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        int len = callSite.getContext().getLength();
+        if(len >= 2){
+            return ListContext.make(callSite.getContext().getElementAt(len - 2),callSite.getContext().getElementAt(len - 1));
+        }else if (len == 1){
+            return ListContext.make(callSite.getContext().getElementAt(0));
+        }else{
+            return getEmptyContext();
+        }
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        int len = recv.getContext().getLength();
+        if(len > 0){
+            return ListContext.make(recv.getContext().getElementAt(len - 1),recv.getObject());
+        }else{
+            return ListContext.make(recv.getObject());
+        }
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        int len = method.getContext().getLength();
+        if(len > 0){
+            return ListContext.make(method.getContext().getElementAt(len - 1));
+        }else{
+            return getEmptyContext();
+        }
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code11">Copy</button>
+  </div>
+<h4 id="pascaltaieanalysisptacorecsselector_2typeselector">pascal.taie.analysis.pta.core.cs.selector._2TypeSelector</h4>
+<p>该类实现了两层类型敏感。</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code12">public class _2TypeSelector implements ContextSelector {
+    @Override
+    public Context getEmptyContext() {
+        return ListContext.make();
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, JMethod callee) {
+        // TODO - finish me
+        int len = callSite.getContext().getLength();
+        if(len >= 2){
+            return ListContext.make(callSite.getContext().getElementAt(len - 2),callSite.getContext().getElementAt(len - 1));
+        }else if (len == 1){
+            return ListContext.make(callSite.getContext().getElementAt(0));
+        }else{
+            return getEmptyContext();
+        }
+    }
+    @Override
+    public Context selectContext(CSCallSite callSite, CSObj recv, JMethod callee) {
+        // TODO - finish me
+        int len = recv.getContext().getLength();
+        if(len > 0){
+            return ListContext.make(recv.getContext().getElementAt(len - 1),recv.getObject().getContainerType());
+        }else{
+            return ListContext.make(recv.getObject().getContainerType());
+        }
+    }
+    @Override
+    public Context selectHeapContext(CSMethod method, Obj obj) {
+        // TODO - finish me
+        int len = method.getContext().getLength();
+        if(len > 0){
+            return ListContext.make(method.getContext().getElementAt(len - 1));
+        }else{
+            return getEmptyContext();
+        }
+    }
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code12">Copy</button>
+  </div>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
@@ -497,7 +699,6 @@ JField field = stmt.getFieldRef().resolve();</code></pre>
         e.clearSelection();// 清除选中的文本
     });
 </script>
-
         </div>
 
         <div class="row middle-xs">

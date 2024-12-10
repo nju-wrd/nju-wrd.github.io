@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/tags/" />
-  <link rel="canonical" href="http://localhost:1313/tags/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A812%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90ii/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A812%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90ii/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,32 +24,48 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨12上下文敏感指针分析II",
+      "headline" : "软件分析学习笔记丨12上下文敏感指针分析II",
+      "description" : "Context Sensitive Pointer Analysis: Algorithms How to Implement Context-Sensitive Pointer Analysis 类似于上下文无关指针分析，依旧是在构建 PFG 的同时利用 PFG 传播指针信息。\nC.S. Pointer Analysis: Algorithm 算法如下所示：\n这里和前面类似，主要是加上了限定的上下文，就不再赘述，对于上下文的信息，在调用规则里也有体现。\nContext Sensitivity Variants Call-Site Sensitivity Select 算法会根据三个参数来确定，分别是调用者上下文，调用点，有堆上下文的接收对象。\n上下文无关可以被视为 C.S.分析框架中上下文敏感性的一个特例：Select(,,) = []\n每个上下文都由一系列调用点（调用链）组成，在方法调用时，将调用位置追加到调用者上下文中作为被调用者上下文，本质上是对调用栈的抽象。\n这个方法存在一定的问题，看下图例子：\n可以看到在函数之间循环的调用时，会导致调用链无限变长。所以这里的 k 其实就是用于对上下文抽象的限制。\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
       "publisher": "",
       "accountablePerson" : "",
       "copyrightHolder" : "",
-      "copyrightYear" : "0001",
-      "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
-      "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/tags\/",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-07 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-07 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A812%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90ii\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    Tags
+    软件分析学习笔记丨12上下文敏感指针分析II
   
   </title>
-  <meta property="og:title" content="Tags" />
+  <meta property="og:title" content="软件分析学习笔记丨12上下文敏感指针分析II" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Context Sensitive Pointer Analysis: Algorithms How to Implement Context-Sensitive Pointer Analysis 类似于上下文无关指针分析，依旧是在构建 PFG 的同时利用 PFG 传播指针信息。
+C.S. Pointer Analysis: Algorithm 算法如下所示：
+这里和前面类似，主要是加上了限定的上下文，就不再赘述，对于上下文的信息，在调用规则里也有体现。
+Context Sensitivity Variants Call-Site Sensitivity Select 算法会根据三个参数来确定，分别是调用者上下文，调用点，有堆上下文的接收对象。
+上下文无关可以被视为 C.S.分析框架中上下文敏感性的一个特例：Select(,,) = []
+每个上下文都由一系列调用点（调用链）组成，在方法调用时，将调用位置追加到调用者上下文中作为被调用者上下文，本质上是对调用栈的抽象。
+这个方法存在一定的问题，看下图例子：
+可以看到在函数之间循环的调用时，会导致调用链无限变长。所以这里的 k 其实就是用于对上下文抽象的限制。
+" />
+  <meta name="description" content="Context Sensitive Pointer Analysis: Algorithms How to Implement Context-Sensitive Pointer Analysis 类似于上下文无关指针分析，依旧是在构建 PFG 的同时利用 PFG 传播指针信息。
+C.S. Pointer Analysis: Algorithm 算法如下所示：
+这里和前面类似，主要是加上了限定的上下文，就不再赘述，对于上下文的信息，在调用规则里也有体现。
+Context Sensitivity Variants Call-Site Sensitivity Select 算法会根据三个参数来确定，分别是调用者上下文，调用点，有堆上下文的接收对象。
+上下文无关可以被视为 C.S.分析框架中上下文敏感性的一个特例：Select(,,) = []
+每个上下文都由一系列调用点（调用链）组成，在方法调用时，将调用位置追加到调用者上下文中作为被调用者上下文，本质上是对调用栈的抽象。
+这个方法存在一定的问题，看下图例子：
+可以看到在函数之间循环的调用时，会导致调用链无限变长。所以这里的 k 其实就是用于对上下文抽象的限制。
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +96,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,58 +124,139 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨12上下文敏感指针分析II</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-07 00:00:00 UTC">
+                07 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
+        <div class="post-content markdown-body">
+          
+          <h2 id="context-sensitive-pointer-analysis-algorithms">Context Sensitive Pointer Analysis: Algorithms</h2>
+<h3 id="how-to-implement-context-sensitive-pointer-analysis">How to Implement Context-Sensitive Pointer Analysis</h3>
+<img src = "dependent.png" alt = "相互依赖的过程" />
+<p>类似于上下文无关指针分析，依旧是在构建 PFG 的同时利用 PFG 传播指针信息。</p>
+<h3 id="cs-pointer-analysis-algorithm">C.S. Pointer Analysis: Algorithm</h3>
+<p>算法如下所示：</p>
+<img src = "algorithm.png" alt = "算法" />
+<p>这里和前面类似，主要是加上了限定的上下文，就不再赘述，对于上下文的信息，在调用规则里也有体现。</p>
+<h2 id="context-sensitivity-variants">Context Sensitivity Variants</h2>
+<h3 id="call-site-sensitivity">Call-Site Sensitivity</h3>
+<img src = "variant.png" alt = "select" />
+<p>Select 算法会根据三个参数来确定，分别是调用者上下文，调用点，有堆上下文的接收对象。</p>
+<p>上下文无关可以被视为 C.S.分析框架中上下文敏感性的一个特例：Select(,,) = []</p>
+<p>每个上下文都由一系列调用点（调用链）组成，在方法调用时，将调用位置追加到调用者上下文中作为被调用者上下文，本质上是对调用栈的抽象。</p>
+<img src = "call-string.png" alt = "call-string" />
+<p>这个方法存在一定的问题，看下图例子：</p>
+<img src = "example.png" alt = "call-string" />
+<p>可以看到在函数之间循环的调用时，会导致调用链无限变长。所以这里的 k 其实就是用于对上下文抽象的限制。</p>
+<p>Motivation</p>
+<ul>
+<li>
+<p>确保指针分析终止</p>
+</li>
+<li>
+<p>避免在现实世界程序中过多上下文（长调用链）导致指针分析爆炸</p>
+</li>
+</ul>
+<p>Approach</p>
+<ul>
+<li>每个上下文由调用链的最后 k 个调用站点组成</li>
+<li>实际上，k 是一个小数（通常≤3）</li>
+<li>方法上下文和堆上下文可能使用不同的 k
+<ul>
+<li>例如，方法上下文中 k=2，堆上下文中 k=1</li>
+</ul>
+</li>
+</ul>
+<p>k-Call-Site Sensitivity/k-CFA</p>
+<ul>
+<li>
+<p>1-call-site/1-CFA</p>
+<img src = "1.png" alt = "1-CFA" />
+</li>
+<li>
+<p>2-call-site/2-CFA</p>
+<img src = "2.png" alt = "2-CFA" />
+</li>
+</ul>
+<h3 id="object-sensitivity">Object Sensitivity</h3>
+<img src = "object.png" alt = "select" />
+<p>每个上下文都由一个抽象对象列表（由它们的分配位置表示）组成</p>
+<p>这里利用 receive object 来作为上下文信息。</p>
+<p>区分不同对象上的数据流操作。示例如下：</p>
+<img src = "example2.png" alt = "select" />
+<h3 id="call-site-vs-object-sensitivity">Call-Site vs. Object Sensitivity</h3>
+<img src = "compare.png" alt = "select" />
+<p>虽然这里如果让 k = 2 可以避免不准确的情况，但是 1-object 就能做到，主要是由于处理不了调用点相同的情况。或者说如果再多一个调用，那么 k = 2 也无法避免了，但是这里是可以用调用的对象作为上下文区分的。</p>
+<p>但是前文的例子让 1-object 来分析也会造成不准确，所以说从理论上讲，它们的精度是不可以进行比较的。不过在实践中，对象敏感性通常优于面向对象语言（如 Java）的调用点敏感性，或许这就是 OO 语言围绕对象的必然结果。</p>
+<h3 id="type-sensitivity">Type Sensitivity</h3>
+<img src = "type.png" alt = "select" />
+<p>在方法调用中，使用包含接收者对象分配位置及其堆上下文的类型作为调用者上下文，即调用点所在类的类型。</p>
+<p>这是一个关于对象敏感度的更粗糙的抽象。</p>
+<p>在相同的 k 限制下，类型敏感度的精度不优于对象敏感度。</p>
+<img src = "better.png" alt = "object > type" />
+<p>与对象敏感性相比，类型敏感性通过合并相同类型中的分配位置，以牺牲精度换取更高的效率。</p>
+<img src = "general.png" alt = "总结" />
+        </div>
 
-	
-	<title>分类</title>
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：20<br> 
-		最近一次发布日期：0001-01-01
-	</p>
-
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-                        <tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href=""  style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-	</table>
-</div>
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -178,6 +276,8 @@
     
   
 </script>
+
+  
 
 </body>
 
