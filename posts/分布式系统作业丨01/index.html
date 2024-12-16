@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/categories/" />
-  <link rel="canonical" href="http://localhost:1313/categories/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A801/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A801/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,10 +24,10 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "categories",
-      "name" : "Categories",
-      "headline" : "Categories",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "分布式系统作业丨01",
+      "headline" : "分布式系统作业丨01",
+      "description" : "简介 远程过程调用 (RPC) 是一种允许程序在不同计算机之间进行通信的协议。它使得客户端可以像调用本地函数一样调用远程服务器上的函数，而无需了解底层的网络细节。这一次的作业是实现RPC机制下的“黑杰克”游戏\n分析与设计 首先在 ubuntu 下下载并使用 rpcgen 编写 .x 文件，使用 rpcgen blackjack.x 生成文件并完善逻辑。\n基本规则如下：\n卡片值 数字牌(2-10)：牌的价值等于其面值。\n人头牌(J、Q、K):每张价值10分。\nA:可以值1分或11分，具体取决于哪个对玩家的手牌更有利。\n所以我用两个数组分别记录四个花色和13种牌面，外循环来选择牌面，内循环选择花色，来给 52 张牌初始化，并且外循环的牌面从 2 开始，也就是 2 - 10，J ，Q ，K ，A ，这样 2 - 10 的部分用外循环的值加2即可，然后针对 i \u002b 2 等于 11，12，13 的赋值为 10，等于 14 则赋值为 11 。并且根据有多少副牌就重复多少次这个过程。在计分时，每遇到一个手牌分值为11的就用一个变量记录一次，这样当手牌分值超过 21 且记录值大于 0 的时候，总分减去 10，这样就达成了 A 值 1 分或 11 分取决于哪个对玩家更有利的规则。\n游戏流程 游戏用一个结构体game state来表示这场游戏的状态：\nstruct game_state {\rint num_decks;\rint action; \/* 玩家操作：0: 拿牌, 1: 停牌 *\/\rstruct hand player_hand; \/* 玩家手牌 *\/\rstruct hand dealer_hand; \/* 庄家手牌 *\/\rint player_busted; \/* 玩家是否爆牌 (0: 未爆牌, 1: 已爆牌) *\/\rint dealer_busted; \/* 庄家是否爆牌 (0: 未爆牌, 1: 已爆牌) *\/\rint result; \/* 游戏结果 (0: 游戏进行中, 1: 玩家赢, 2: 庄家赢, 3: 平局) *\/\r};\rCopy\r这个结构体用来表示一张牌，主要有三个部分\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,21 +35,39 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2024",
-      "datePublished": "2024-12-16 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2024-12-16 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/categories\/",
+      "datePublished": "2024-12-15 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-15 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A801\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    分类
-    
+    分布式系统作业丨01
+  
   </title>
-  <meta property="og:title" content="Categories" />
+  <meta property="og:title" content="分布式系统作业丨01" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="简介 远程过程调用 (RPC) 是一种允许程序在不同计算机之间进行通信的协议。它使得客户端可以像调用本地函数一样调用远程服务器上的函数，而无需了解底层的网络细节。这一次的作业是实现RPC机制下的“黑杰克”游戏
+分析与设计 首先在 ubuntu 下下载并使用 rpcgen 编写 .x 文件，使用 rpcgen blackjack.x 生成文件并完善逻辑。
+基本规则如下：
+卡片值 数字牌(2-10)：牌的价值等于其面值。
+人头牌(J、Q、K):每张价值10分。
+A:可以值1分或11分，具体取决于哪个对玩家的手牌更有利。
+所以我用两个数组分别记录四个花色和13种牌面，外循环来选择牌面，内循环选择花色，来给 52 张牌初始化，并且外循环的牌面从 2 开始，也就是 2 - 10，J ，Q ，K ，A ，这样 2 - 10 的部分用外循环的值加2即可，然后针对 i &#43; 2 等于 11，12，13 的赋值为 10，等于 14 则赋值为 11 。并且根据有多少副牌就重复多少次这个过程。在计分时，每遇到一个手牌分值为11的就用一个变量记录一次，这样当手牌分值超过 21 且记录值大于 0 的时候，总分减去 10，这样就达成了 A 值 1 分或 11 分取决于哪个对玩家更有利的规则。
+游戏流程 游戏用一个结构体game state来表示这场游戏的状态：
+struct game_state {int num_decks;int action; /* 玩家操作：0: 拿牌, 1: 停牌 */struct hand player_hand; /* 玩家手牌 */struct hand dealer_hand; /* 庄家手牌 */int player_busted; /* 玩家是否爆牌 (0: 未爆牌, 1: 已爆牌) */int dealer_busted; /* 庄家是否爆牌 (0: 未爆牌, 1: 已爆牌) */int result; /* 游戏结果 (0: 游戏进行中, 1: 玩家赢, 2: 庄家赢, 3: 平局) */};Copy这个结构体用来表示一张牌，主要有三个部分
+" />
+  <meta name="description" content="简介 远程过程调用 (RPC) 是一种允许程序在不同计算机之间进行通信的协议。它使得客户端可以像调用本地函数一样调用远程服务器上的函数，而无需了解底层的网络细节。这一次的作业是实现RPC机制下的“黑杰克”游戏
+分析与设计 首先在 ubuntu 下下载并使用 rpcgen 编写 .x 文件，使用 rpcgen blackjack.x 生成文件并完善逻辑。
+基本规则如下：
+卡片值 数字牌(2-10)：牌的价值等于其面值。
+人头牌(J、Q、K):每张价值10分。
+A:可以值1分或11分，具体取决于哪个对玩家的手牌更有利。
+所以我用两个数组分别记录四个花色和13种牌面，外循环来选择牌面，内循环选择花色，来给 52 张牌初始化，并且外循环的牌面从 2 开始，也就是 2 - 10，J ，Q ，K ，A ，这样 2 - 10 的部分用外循环的值加2即可，然后针对 i &#43; 2 等于 11，12，13 的赋值为 10，等于 14 则赋值为 11 。并且根据有多少副牌就重复多少次这个过程。在计分时，每遇到一个手牌分值为11的就用一个变量记录一次，这样当手牌分值超过 21 且记录值大于 0 的时候，总分减去 10，这样就达成了 A 值 1 分或 11 分取决于哪个对玩家更有利的规则。
+游戏流程 游戏用一个结构体game state来表示这场游戏的状态：
+struct game_state {int num_decks;int action; /* 玩家操作：0: 拿牌, 1: 停牌 */struct hand player_hand; /* 玩家手牌 */struct hand dealer_hand; /* 庄家手牌 */int player_busted; /* 玩家是否爆牌 (0: 未爆牌, 1: 已爆牌) */int dealer_busted; /* 庄家是否爆牌 (0: 未爆牌, 1: 已爆牌) */int result; /* 游戏结果 (0: 游戏进行中, 1: 玩家赢, 2: 庄家赢, 3: 平局) */};Copy这个结构体用来表示一张牌，主要有三个部分
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +98,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,58 +126,170 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">分布式系统作业丨01</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-15 00:00:00 UTC">
+                15 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
-
-	
-	<title>分类</title>
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
-
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：23<br> 
-		最近一次发布日期：2024-12-16
-	</p>
-
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-                        <tr>
-				<td style="text-align:left"><a href="http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/" style = "color: #0000FF" target="_blank">腾讯公开课</a></td>
-				<td style="text-align:left">2024-11-24</td>
-				<td style="text-align:left">2</td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2/" style = "color: #0000FF" target="_blank">博客</a></td>
-				<td style="text-align:left">2024-12-03</td>
-				<td style="text-align:left">4</td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="http://localhost:1313/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/" style = "color: #0000FF" target="_blank">网安课程</a></td>
-				<td style="text-align:left">2024-12-10</td>
-				<td style="text-align:left">3</td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/"  style = "color: #0000FF" target="_blank">软件分析</a></td>
-				<td style="text-align:left">2024-12-12</td>
-				<td style="text-align:left">11</td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style = "color: #0000FF" target="_blank">分布式系统</a></td>
-				<td style="text-align:left">2024-12-16</td>
-				<td style="text-align:left">2</td>
-			</tr>
-	</table>
+        <div class="post-content markdown-body">
+          
+          <h1 id="简介">简介</h1>
+<p>远程过程调用 (RPC) 是一种允许程序在不同计算机之间进行通信的协议。它使得客户端可以像调用本地函数一样调用远程服务器上的函数，而无需了解底层的网络细节。这一次的作业是实现RPC机制下的“黑杰克”游戏</p>
+<h2 id="分析与设计">分析与设计</h2>
+<p>首先在 ubuntu 下下载并使用 rpcgen 编写 .x 文件，使用 rpcgen blackjack.x 生成文件并完善逻辑。</p>
+<p>基本规则如下：</p>
+<h3 id="卡片值">卡片值</h3>
+<ul>
+<li>
+<p>数字牌(2-10)：牌的价值等于其面值。</p>
+</li>
+<li>
+<p>人头牌(J、Q、K):每张价值10分。</p>
+</li>
+<li>
+<p>A:可以值1分或11分，具体取决于哪个对玩家的手牌更有利。</p>
+</li>
+</ul>
+<p>所以我用两个数组分别记录四个花色和13种牌面，外循环来选择牌面，内循环选择花色，来给 52 张牌初始化，并且外循环的牌面从 2 开始，也就是 2 - 10，J ，Q ，K ，A ，这样 2  - 10 的部分用外循环的值加2即可，然后针对 i + 2 等于 11，12，13 的赋值为 10，等于  14 则赋值为 11 。并且根据有多少副牌就重复多少次这个过程。在计分时，每遇到一个手牌分值为11的就用一个变量记录一次，这样当手牌分值超过 21 且记录值大于 0 的时候，总分减去 10，这样就达成了 A 值 1 分或 11 分取决于哪个对玩家更有利的规则。</p>
+<h3 id="游戏流程">游戏流程</h3>
+<p>游戏用一个结构体game state来表示这场游戏的状态：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">struct game_state {
+    int num_decks;
+    int action;  /* 玩家操作：0: 拿牌, 1: 停牌 */
+    struct hand player_hand; /* 玩家手牌 */
+    struct hand dealer_hand; /* 庄家手牌 */
+    int player_busted; /* 玩家是否爆牌 (0: 未爆牌, 1: 已爆牌) */
+    int dealer_busted; /* 庄家是否爆牌 (0: 未爆牌, 1: 已爆牌) */
+    int result; /* 游戏结果 (0: 游戏进行中, 1: 玩家赢, 2: 庄家赢, 3: 平局) */
+};</code></pre>
+<button class="copy-button" data-clipboard-target="#code1">Copy</button>
 </div>
+<p>这个结构体用来表示一张牌，主要有三个部分</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code2">struct card {
+    int value; /* 牌的点数，2-11 (2-10是普通牌，11是Ace) */
+    char suit[10];  /* 牌的花色，如红心, 方块, 梅花, 黑桃*/
+    char name[2]; /* 牌名 */
+};</code></pre>
+<button class="copy-button" data-clipboard-target="#code2">Copy</button>
+</div>
+<p>这个结构体表示手牌，包括牌和牌的数量两个信息</p>
+<p>struct card {</p>
+<p>int value; /* 牌的点数，2-11 (2-10是普通牌，11是Ace) */</p>
+<p>char suit[10];  /* 牌的花色，如红心, 方块, 梅花, 黑桃*/</p>
+<p>char name[2]; /* 牌名 */</p>
+<p>};</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code3">struct hand {
+    struct card cards[21]; /* 6副牌及以上时最多可以21张牌 */
+    int count; /* 当前手中的牌数 */
+};</code></pre>
+<button class="copy-button" data-clipboard-target="#code3">Copy</button>
+</div>
+<h4 id="发牌">发牌</h4>
+<p>玩家和庄家各发两张牌。玩家的牌通常面朝上，而庄家有一张面朝上的牌（“明牌”)和一张面下的牌(“底牌”)。</p>
+<p>这个过程由server端的函数game_state *deal_cards_1_svc(game_state *current_state, struct svc_req *rqstp)实现，客户端在游戏开始时调用，传递的参数为game state *p，这个过程不仅包括了一开始的发牌，还包括初始化牌堆。通过利用随机种子交换初始化的牌堆，达到牌堆内的牌无序的状态，然后按顺序发牌即可。并初始化game state的爆牌状态和结果状态返回给client端。</p>
+<h4 id="玩家决定拿牌抓另一张牌或停牌保留当前手牌">玩家决定“拿牌”（抓另一张牌）或“停牌”（保留当前手牌)</h4>
+<p>玩家可以继续补牌，直到他选择停牌或他的手牌超过21（称为“爆牌”）。庄家亮出底牌。然后庄家必须补牌，直到他的手牌总点数为17或更高。</p>
+<p>当state的result为0的时候进入while循环，同时这个过程由server端的函数game_state *player_action_1_svc(game_state *state, struct svc_req *rqstp)实现，根据每次传过来的游戏状态中的action值来判断此次操作是拿牌还是停牌，如果拿牌则将手牌加1，并计算分数是否超过21，未超过直接返回状态，result的值依旧为0，若超过则设置玩家爆牌，返回状态。如果此次是停牌，则进入庄家的行动，庄家必须补牌，直到他的手牌总点数为17或更高。</p>
+<h4 id="赢得比赛">赢得比赛</h4>
+<p>如果玩家的总点数超过21，他就爆牌并输掉。如果庄家爆牌，则玩家获胜。如果两者都没有爆牌，则靠近21的牌获胜。如果玩家和庄家的总点数相同，则为平局。</p>
+<p>根据state的结果值和是否爆牌进行判断，在玩家选择停牌的操作逻辑中计算庄家和玩家的分数，并更新游戏结果 (0: 游戏进行中, 1: 玩家赢, 2: 庄家赢, 3: 平局)。</p>
+<h4 id="额外规则设计">额外规则设计</h4>
+<p>加入了选择赌注，并给与玩家和庄家各自的初始金额来进行游戏，这样在某一方金额耗光之前，都会继续进行游戏，同时固定赔率为1赔2，在发牌完会询问下注情况。这个部分的逻辑在客户端维护几个变量即可。另外，在实现过程中发现rpc的通信好像存在使用旧值的情况，所以在客户端维护一个状态值来记录一些必要数据，而每次传入参数给server端的时候，深克隆一个新的state来避免这个问题。因为会从缓冲区读取数据也考虑了代码健壮性的问题，针对错误的读取有相应的处理。</p>
+<p>编写完成后使用如下指令生成可执行文件：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code4">gcc -o blackJack_server blackJack_svc.c blackJack_xdr.c -I/usr/include/tirpc -ltirpc -lnsl
+<p>gcc -o blackJack_client blackJack_clnt.c blackJack_xdr.c -I/usr/include/tirpc -ltirpc -lnsl</code></pre>
+<button class="copy-button" data-clipboard-target="#code4">Copy</button></p>
+</div>
+<h2 id="实现演示">实现演示</h2>
+<p>这里的每一张图都是一回合的基本过程，会包括发牌、下注、选择行动、分数结算、赌注结算的结果，我会在每一张图片的下面标注它额外的地方。</p>
+<img src = "1.png" />
+<p>这里显示了A的分数结算的实现以及赌注输入有误和玩家牌爆了的处理。</p>
+<img src = "2.png" />
+<p>这里显示了行动指令的输入有误的处理和玩家分数小于庄家的情况。</p>
+<img src = "3.png" />
+<p>这里显示了玩家分数大于庄家的情况。  这里是输掉全部的情况。</p>
+<img src = "4.png" />
+<p>这里展示了使用几副牌输入有误和庄家爆牌以及玩家最终赢得胜利的情况。</p>
+<h2 id="总结">总结</h2>
+<p>在这次关于RPC机制下“黑杰克”游戏的实现过程中，我深入探索了远程过程调用的基本原理及其在分布式系统中的重要性。通过设计和实现游戏的关键逻辑，我不仅加深了对卡牌游戏规则的理解，还提升了编程能力，尤其是在处理客户端与服务器通信方面。遇到的挑战，例如旧值问题，促使我更深入的体会rpc的内在原理。同时让我在设计中更加注重代码的健壮性。这次经历让我意识到，合理的结构设计和细致的逻辑处理是十分重要的。未来，我期待将这些经验应用于更复杂的项目中，继续探索RPC及其他网络编程技术的应用潜力。</p>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    // 初始化 Clipboard.js
+    var clipboard = new ClipboardJS('.copy-button'); 
+    clipboard.on('success', function(e) {
+        var copyButton = e.trigger;
+        copyButton.textContent = 'Copied!';
+        copyButton.style.backgroundColor = '#cd3bee';
+        setTimeout(function() {
+            copyButton.textContent = 'Copy';
+            copyButton.style.backgroundColor = '#008b8b';
+        }, 2000);
+        e.clearSelection();// 清除选中的文本
+    });
+</script>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -178,6 +309,8 @@
     
   
 </script>
+
+  
 
 </body>
 

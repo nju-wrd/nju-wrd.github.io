@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式系统 on 子春廿一</title>
+    <link>http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 分布式系统 on 子春廿一</description>
+    <generator>Hugo</generator>
+    <language>cn</language>
+    <lastBuildDate>Fri, 13 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分布式系统作业丨02</title>
+      <link>http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A802/</link>
+      <pubDate>Fri, 13 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A802/</guid>
+      <description>&lt;p&gt;&lt;a style=&#34;color: #0000FF;&#34; href=&#34;https:github.com/Zhang-Xiaoda/NJU-DisSys-2017/&#34; target=&#34;_blank&#34;&gt; 作业地址&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;虚拟机 Ubuntu-22.04.1&lt;/li&gt;&#xA;&lt;li&gt;Go 1.23.4&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;a style=&#34;color: #0000FF;&#34; href=&#34;https://go.dev/dl/&#34; target=&#34;_blank&#34;&gt; GO 下载地址&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;第一次接触 Go 语言还是踩了一些坑的，因为看到老师给出的 ppt 要求在1.5以上，就下载了最新版本，因为墙的原因，我的 Ubuntu 不能直接下载，所以用WinSCP 传到我的 Ubuntu 里面去，接着在b站搜索了一个部署环境的&lt;a style=&#34;color: #0000FF;&#34; href=&#34;https://www.bilibili.com/video/BV1PR4y1C7Bw/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1837baf7c46a027b7e27b4ab7174fb85&#34; target=&#34;_blank&#34;&gt;教程&lt;/a&gt;。&lt;del&gt;（虽然一开始错安装成32位的了，导致后续安装其他 package 的时候会和 gcc 的版本不一致）&lt;/del&gt;然后我发现我照着 PPT 上的指令去做，始终不行。我看着报错的内容突然想起了之前看到同学在群里闲聊到这个作业的时候的内容，和 GO 的不同版本的环境配置有关，当时觉得可能有用就顺手收藏了，于是我翻出收藏的内容，输入指令 &lt;code&gt;export GO111MODULE=off&lt;/code&gt; 果然好使。&lt;/p&gt;&#xA;&lt;h2 id=&#34;assignment-part-i&#34;&gt;Assignment Part I&lt;/h2&gt;&#xA;&lt;h4 id=&#34;任务要求&#34;&gt;任务要求&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Implement Raft by adding code to raft/raft.go (only)&lt;/p&gt;&#xA;&lt;p&gt;– find some example code of how to send and receive RPC&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Your task: Leader election:&lt;/p&gt;&#xA;&lt;p&gt;– First task is to fill the RequestVoteArgs and RequestVoteReply structs&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

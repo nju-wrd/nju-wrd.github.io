@@ -6,8 +6,15 @@
     <description>Recent content in 软件分析 on 子春廿一</description>
     <generator>Hugo</generator>
     <language>cn</language>
-    <lastBuildDate>Sat, 07 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>软件分析实验笔记丨A7</title>
+      <link>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a7/</link>
+      <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a7/</guid>
+      <description>&lt;p&gt;课程网站为&lt;a style=&#34;color: #0000FF;&#34; href=&#34;https://tai-e.pascal-lab.net/lectures.html&#34; target=&#34;_blank&#34;&gt;Static Program Analysis | Tai-e&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;本次实验为&lt;a style=&#34;color: #0000FF;&#34; href=&#34;https://tai-e.pascal-lab.net/pa7.html&#34; target=&#34;_blank&#34;&gt;作业 7：Alias-Aware 的过程间常量传播&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;作业目标&#34;&gt;作业目标&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;为 Java 实现一个 alias-aware 的过程间常量传播分析&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;在本次作业中，我们需要在作业4的基础上，进一步提高常量传播的精度。具体而言，我们需要借助之前作业中实现的指针分析，根据指针分析结果来得到程序中的别名（alias）信息，并用这一信息来在过程间常量传播中更精确地处理对象字段（field）和数组（array）。&lt;/p&gt;&#xA;&lt;p&gt;和作业4一样，常量传播中只需要考虑 int 类型的值，但在本次作业中，需要额外考虑程序中的别名，用别名信息来更精确地处理对字段和数组的存取。不过，可以忽略一些将在后续描述的情况。&lt;/p&gt;&#xA;&lt;h2 id=&#34;alias-aware的常量传播&#34;&gt;Alias-Aware的常量传播&lt;/h2&gt;&#xA;&lt;h3 id=&#34;别名&#34;&gt;别名&lt;/h3&gt;&#xA;&lt;p&gt;别名用于描述以下情况：一个内存中的数据位置可以通过不同的符号名来访问，这些指向内存中的同一位置的不同符号互为别名 。在 Java 中，对实例字段和数组的访问可以形成别名，举例来说，如果变量 x 和 y 指向相同的对象，那么 x.f 和 y.f 这两个字段访问构成了别名，因为它们实际上指向同一个字段；如果变量 a 和 b 指向同一个数组，并且 i 和 j 有相同的值，那么 a[i] 和 b[j] 这两个数组访问构成了别名，因为它们实际上指向同一个数组中的同一个位置。&lt;/p&gt;&#xA;&lt;p&gt;在别名存在的情况下，通过对一个字段/数组的访问来修改一个实例字段/数组将会同时修改与这一访问相关的所有别名值。举例来说，如果 x.f，y.f 和 z.f 互为别名，那么 store 语句 x.f = 5; 不仅将 x.f 的值修改为 5，而且同时将 y.f 和 z.f 的值设为 5。因此，为了在常量传播中精确地分析字段和数组的值，我们需要取得被分析程序的别名信息。&lt;/p&gt;&#xA;&lt;p&gt;值得注意的是，Java 中的静态字段不能拥有别名：对一个静态字段 T.f，它有唯一的符号名（即 T.f），且只能通过 T.f 被访问。由于不需要考虑别名的存在，对静态字段的处理要比对实例字段和数组的处理简单。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>软件分析学习笔记丨11上下文敏感指针分析I</title>
       <link>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i/</link>
