@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/tags/" />
-  <link rel="canonical" href="http://localhost:1313/tags/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A814%E4%BB%A5datalog%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A814%E4%BB%A5datalog%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,32 +24,44 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨14以Datalog为基础的程序分析",
+      "headline" : "软件分析学习笔记丨14以Datalog为基础的程序分析",
+      "description" : "Motivation 对于同样的目标：从一组人当中选择出成人\nImperative（命令式语言）：如何做\nSet selectAdults(Set persons) {\rSet result = new HashSet\u003c\u003e();\rfor (Person person : persons)\rif (person.getAge() \u003e= 18)\rresult.add(person);\rreturn result;\r}\rCopy\rDeclarative（声明式语言）：做什么\nSELECT * FROM Persons WHERE Age \u003e= 18;\rCopy\r可以看出来声明式语言要比命令式语言简单很多。\nIntroduction to Datalog Datalog Datalog 是一种声明性逻辑编程语言，是 Prolog 的子集。 它作为一种数据库语言出现（1980 年代中期） 现在它有多种应用 程序分析 声明式网络 大数据 云计算 Datalog = Data \u002b Logic（and, or, not）\n无副作用 无控制流 无函数 非图灵完备 Predicates（谓词） 在 Datalog 中，谓词 （relation） 是一组语句\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
       "publisher": "",
       "accountablePerson" : "",
       "copyrightHolder" : "",
-      "copyrightYear" : "0001",
-      "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
-      "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/tags\/",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-18 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-18 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A814%E4%BB%A5datalog%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    Tags
+    软件分析学习笔记丨14以Datalog为基础的程序分析
   
   </title>
-  <meta property="og:title" content="Tags" />
+  <meta property="og:title" content="软件分析学习笔记丨14以Datalog为基础的程序分析" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Motivation 对于同样的目标：从一组人当中选择出成人
+Imperative（命令式语言）：如何做
+Set selectAdults(Set persons) {Set result = new HashSet&lt;&gt;();for (Person person : persons)if (person.getAge() &gt;= 18)result.add(person);return result;}CopyDeclarative（声明式语言）：做什么
+SELECT * FROM Persons WHERE Age &gt;= 18;Copy可以看出来声明式语言要比命令式语言简单很多。
+Introduction to Datalog Datalog Datalog 是一种声明性逻辑编程语言，是 Prolog 的子集。 它作为一种数据库语言出现（1980 年代中期） 现在它有多种应用 程序分析 声明式网络 大数据 云计算 Datalog = Data &#43; Logic（and, or, not）
+无副作用 无控制流 无函数 非图灵完备 Predicates（谓词） 在 Datalog 中，谓词 （relation） 是一组语句
+" />
+  <meta name="description" content="Motivation 对于同样的目标：从一组人当中选择出成人
+Imperative（命令式语言）：如何做
+Set selectAdults(Set persons) {Set result = new HashSet&lt;&gt;();for (Person person : persons)if (person.getAge() &gt;= 18)result.add(person);return result;}CopyDeclarative（声明式语言）：做什么
+SELECT * FROM Persons WHERE Age &gt;= 18;Copy可以看出来声明式语言要比命令式语言简单很多。
+Introduction to Datalog Datalog Datalog 是一种声明性逻辑编程语言，是 Prolog 的子集。 它作为一种数据库语言出现（1980 年代中期） 现在它有多种应用 程序分析 声明式网络 大数据 云计算 Datalog = Data &#43; Logic（and, or, not）
+无副作用 无控制流 无函数 非图灵完备 Predicates（谓词） 在 Datalog 中，谓词 （relation） 是一组语句
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +92,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,58 +120,392 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨14以Datalog为基础的程序分析</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-18 00:00:00 UTC">
+                18 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
+        <div class="post-content markdown-body">
+          
+          <h2 id="motivation">Motivation</h2>
+<p>对于同样的目标：从一组人当中选择出成人</p>
+<ul>
+<li>
+<p>Imperative（命令式语言）：如何做</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code1">Set<Person> selectAdults(Set<Person> persons) {
+	Set<Person> result = new HashSet<>();
+	for (Person person : persons)
+		if (person.getAge() >= 18)
+			result.add(person);
+	return result;
+}</code></pre>
+  <button class="copy-button" data-clipboard-target="#code1">Copy</button>
+  </div>
+</li>
+<li>
+<p>Declarative（声明式语言）：做什么</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code2">SELECT * FROM Persons WHERE Age >= 18;</code></pre>
+  <button class="copy-button" data-clipboard-target="#code2">Copy</button>
+  </div>
+</li>
+</ul>
+<p>可以看出来声明式语言要比命令式语言简单很多。</p>
+<h2 id="introduction-to-datalog">Introduction to Datalog</h2>
+<h3 id="datalog">Datalog</h3>
+<ul>
+<li>Datalog 是一种声明性逻辑编程语言，是 Prolog 的子集。</li>
+<li>它作为一种数据库语言出现（1980 年代中期）</li>
+<li>现在它有多种应用
+<ul>
+<li>程序分析</li>
+<li>声明式网络</li>
+<li>大数据</li>
+<li>云计算</li>
+</ul>
+</li>
+</ul>
+<p>Datalog = <span style="color: #FF0000;">Data</span> + <span style="color: #FF0000;">Log</span>ic（and, or, not）</p>
+<ul>
+<li>无副作用</li>
+<li>无控制流</li>
+<li>无函数</li>
+<li>非图灵完备</li>
+</ul>
+<h3 id="predicates谓词">Predicates（谓词）</h3>
+<ul>
+<li>
+<p>在 Datalog 中，谓词 （relation） 是一组语句</p>
+</li>
+<li>
+<p>从本质上讲，谓词是一个数据表</p>
+</li>
+</ul>
+<image src = "table.png" />
+<p>如图所示，这里的 Age 就是一个谓词，即一个表，它表示某些人的年龄。</p>
+<ul>
+<li>(“Xiaoming”,18) 是指 “Xiaoming is 18”，这是一个 fact</li>
+<li>(“Abao”,23) 是指 “Abao is 23”，这不是一个 fact</li>
+</ul>
+<h3 id="atoms原子">Atoms（原子）</h3>
+<ul>
+<li>原子是 Datalog 的基本元素，它表示形如下图的谓词：</li>
+</ul>
+<image src = "atom.png" />
+<ul>
+<li>Terms
+<ul>
+<li>Variables（变量）：代表任何值</li>
+<li>Constants（常数）</li>
+</ul>
+</li>
+<li>Examples
+<ul>
+<li>Age(person,age)</li>
+<li>Age(“Xiaoming”,18)</li>
+</ul>
+</li>
+<li>P(X1,X2,…,Xn) 被称为 relational atom</li>
+<li>当谓词 P 包含 X1，X2,&hellip;,Xn 描述的元组时，P（X1，X2,&hellip;,Xn） 的计算结果为 true</li>
+<li>除了 relational atoms 之外，Datalog 还有 arithmetic atoms
+<ul>
+<li>E.g., age &gt;= 18</li>
+</ul>
+</li>
+</ul>
+<h3 id="datalog-rules-logic">Datalog Rules (Logic)</h3>
+<ul>
+<li>
+<p>Rule 是一种表达逻辑推理的方式</p>
+</li>
+<li>
+<p>Rule 还用于指定如何推断事实</p>
+</li>
+<li>
+<p>Rule 的形式是：</p>
+<image src = "rule.png" />
+<p>规则的含义是“如果 body 为真，则 head 为 true”</p>
+<p>例如，我们可以通过 Datalog 规则推断出 adults：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code3">Adult(person) <-
+	Age(person,age),
+	age >= 18.</code></pre>
+  <button class="copy-button" data-clipboard-target="#code3">Copy</button>
+  </div>
+</li>
+</ul>
+<h3 id="interpretation-of-datalog-rules">Interpretation of Datalog Rules</h3>
+<ul>
+<li>
+<p>考虑子目标中变量值的所有可能组合</p>
+</li>
+<li>
+<p>如果一个组合使所有子目标都为 true，则 head atom（具有相应的值）也为 true</p>
+</li>
+<li>
+<p>head 谓词由所有真 atoms 组成</p>
+</li>
+</ul>
+<h4 id="rule-interpretation-an-example">Rule Interpretation: An Example</h4>
+<image src = "example1.png" />
+<image src = "example2.png" />
+<p>也就是将所有使得 body 部分所有内容为真的数据加入到 head 中需要的数据。</p>
+<h3 id="edb-and-idb-predicates">EDB and IDB Predicates</h3>
+<p>知道了 rule 执行的流程，但是初始的数据从何而来呢？就要了解新的概念。</p>
+<ol>
+<li>EDB (extensional database)
+<ul>
+<li>提前定义的谓词</li>
+<li>关系是不可变的</li>
+<li>可以看作是输入关系</li>
+</ul>
+</li>
+<li>IDB (intensional database)
+<ul>
+<li>仅由规则建立的谓词</li>
+<li>关系由规则推断</li>
+<li>可以看作是输出关系</li>
+</ul>
+</li>
+</ol>
+<p>例如：H &lt;- B1,B2,…,Bn.</p>
+<p>H 只能是 IDB，而Bi 可以是 EDB ，也可以是 IDB 。</p>
+<h3 id="logical-or">Logical Or</h3>
+<p>在 Datalog 中有两种表示逻辑或</p>
+<ol>
+<li>
+<p>为同一个 head 编写多个规则</p>
+<ul>
+<li>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code4">SportFan(person) <- Hobby(person, “jogging”).
+SportFan(person) <- Hobby(person,“swimming”).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code4">Copy</button>
+  </div>
+</li>
+</ul>
+</li>
+<li>
+<p>使用逻辑 or 运算符 “;”</p>
+<ul>
+<li>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code5">SportFan(person) <-
+	Hobby(person,“jogging”);
+	Hobby(person,“swimming”).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code5">Copy</button>
+  </div>
+</li>
+</ul>
+</li>
+</ol>
+<p>“;”（or） 小于 “，” （and），因此析取可以用括号括起来，e.g., H &lt;- A,(B;C).</p>
+<h3 id="negation否定">Negation（否定）</h3>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code6">H(X1,X2) <- B1(X1,X3),!B2(X2,X4),…,Bn(Xm).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code6">Copy</button>
+  </div>
+<ul>
+<li>
+<p>在 Datalog 规则中，子目标可以是否定的原子，这会否定其含义。</p>
+</li>
+<li>
+<p>否定的子目标写成 !B(&hellip;) 的形式。</p>
+</li>
+<li>
+<p>例如，要计算需要参加补考的学生，我们可以编写：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code7">MakeupExamStd(student) <-
+	Student(student),
+	!PassedStd(student).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code7">Copy</button>
+  </div>
+</li>
+</ul>
+<p>其中 Student 存储所有学生，PassedStd 存储通过考试的学生。</p>
+<h3 id="recursion递归">Recursion（递归）</h3>
+<ul>
+<li>
+<p>Datalog 支持递归规则，这允许可以从自身（直接/间接）推导出 IDB 谓词</p>
+</li>
+<li>
+<p>例如，我们可以计算具有递归规则的图的可达性信息（即传递闭包）：</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code8">Reach(from, to) <-
+	Edge(from, to).
+&nbsp;
+Reach(from, to) <-
+	Reach(from, node),
+	Edge(node, to).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code8">Copy</button>
+  </div>
+</li>
+</ul>
+<p>其中 Edge（a，b） 表示图具有从节点 a 到节点 b 的边，Reach（a，b） 表示可以从 a 到达 b。</p>
+<h3 id="rule-safety">Rule Safety</h3>
+<p>我们先看如下几个规则</p>
+<div class="highlight"style="position:relative;"><pre><code class="language-java" data-lang="java" id = "code9">A(x) <- B(y), x > y.
+A(x) <- B(y), !C(x,y).
+A(x) <- B(x), !A(x).</code></pre>
+  <button class="copy-button" data-clipboard-target="#code9">Copy</button>
+  </div>
+<p>对于前两个规则，有无限的 x 的值都可以满足规则，这使得 A 成为一个无穷的关系。</p>
+<p>而最后一个规则造成了矛盾，毫无意义。</p>
+<ul>
+<li>如果每个变量都出现在至少一个非否定的关系原子中，则规则是安全的</li>
+<li>在 Datalog 中，原子的递归和否定必须分开。否则，规则可能包含矛盾，推理无法收敛。</li>
+<li>在 Datalog 中，只允许使用安全规则</li>
+</ul>
+<h3 id="execution-of-datalog-programs">Execution of Datalog Programs</h3>
+<ul>
+<li>Datalog 引擎通过给定的规则和 EDB 谓词来推断事实，直到无法推断出新的事实。一些现代 Datalog 引擎：
+<ul>
+<li>LogicBlox、Soufflé、XSB、Datomic、Flora-2 &hellip;</li>
+</ul>
+</li>
+<li>单调性：Datalog 是单调的，因为事实无法删除</li>
+<li>终止：Datalog 程序总是终止，因为：
+<ol>
+<li>Datalog 是单调的IDB</li>
+<li>谓词的可能值是有限的（规则安全）</li>
+</ol>
+</li>
+</ul>
+<h2 id="pointer-analysis-via-datalog">Pointer Analysis via Datalog</h2>
+<ul>
+<li>
+<p>EDB：可以从程序语法中提取的指针相关信息</p>
+</li>
+<li>
+<p>IDB：指针分析结果</p>
+</li>
+<li>
+<p>规则：指针分析规则</p>
+</li>
+</ul>
+<h3 id="datalog-model-for-pointer-analysis">Datalog Model for Pointer Analysis</h3>
+<img src = "model.png" />
+<h3 id="datalog-rules-for-pointer-analysis">Datalog Rules for Pointer Analysis</h3>
+<img src = "rules.png" />
+<h3 id="handle-method-calls">Handle Method Calls</h3>
+<p>这个部分通过几个部分来完成</p>
+<img src = "call1.png" />
+<p>首先完成 method 的 dispatch ，关于 dispatch ，这相当于在分析之前已经记录了所有对象的实际调用方法的数据信息，还包括了 callgraph 的构建和 this 变量指向的都对象的传递。</p>
+<img src = "call2.png" />
+<p>这部分是对参数信息的传递</p>
+<img src = "call3.png" />
+<p>这部分是对返回值信息的传递</p>
+<img src = "whole.png" />
+<p>指针分析全过程的 Datalog 语言，这里对于初始方法要加入 reachable，并且在对各种语句如 New 、Assign 等分析的时候，要判断该方法是否是可达的，否则不需浪费时间去做分析，但是实际只需要在分析 New 的 VarPointsTo 中加入该语句即可，因为后续都依赖于此。</p>
+<h2 id="taint-analysis-via-datalog">Taint Analysis via Datalog</h2>
+<h3 id="datalog-model-for-taint-analysis">Datalog Model for Taint Analysis</h3>
+<p>首先是基于指针分析的</p>
+<ul>
+<li>EDB 谓词
+<ul>
+<li>Source（m： M） // 源方法</li>
+<li>sink（m： M， i： N） // sink 方法</li>
+<li>Taint（l： S， t： T） // 将每个调用站点与来自该调用站点的受污染数据相关联</li>
+</ul>
+</li>
+<li>IDB 谓词
+<ul>
+<li>TaintFlow（sr： S， sn： S， i： N） // 检测到污点流，例如 TaintFlow(sr,sn,𝑖) 表示来自 source 调用 sr 的受污染数据可能会流向 sink 调用 sn 的第 i 个参数</li>
+</ul>
+</li>
+</ul>
+<h4 id="处理-sources生成受污染的数据">处理 sources（生成受污染的数据）</h4>
+<img src = "source.png" />
+<h4 id="处理-sink-生成污点流信息">处理 sink （生成污点流信息）</h4>
+<img src = "sink.png" />
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>Pros
+<ul>
+<li>简洁易读</li>
+<li>易于实施</li>
+<li>从现成的优化 Datalog 引擎中获益</li>
+</ul>
+</li>
+<li>Cons
+<ul>
+<li>限制表达性，即无法或不方便表达某些逻辑</li>
+<li>无法完全控制性能</li>
+</ul>
+</li>
+</ul>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+    // 初始化 Clipboard.js
+    var clipboard = new ClipboardJS('.copy-button'); 
+    clipboard.on('success', function(e) {
+        var copyButton = e.trigger;
+        copyButton.textContent = 'Copied!';
+        copyButton.style.backgroundColor = '#cd3bee';
+        setTimeout(function() {
+            copyButton.textContent = 'Copy';
+            copyButton.style.backgroundColor = '#008b8b';
+        }, 2000);
+        e.clearSelection();// 清除选中的文本
+    });
+</script>
 
-	
-	<title>分类</title>
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
+        </div>
 
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：28<br> 
-		最近一次发布日期：0001-01-01
-	</p>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-                        <tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href=""  style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-	</table>
-</div>
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -178,6 +525,8 @@
     
   
 </script>
+
+  
 
 </body>
 

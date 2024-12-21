@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%AF%A6%E7%BB%86/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%AF%A6%E7%BB%86/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "网络安全与检测技术复习要点（详细）",
+      "headline" : "网络安全与检测技术复习要点（详细）",
+      "description" : "复习知识要点 1. 概论 基本安全属性的理解 Confidentiality（保密性） Confidentiality 是信息的隐瞒 Data Confidentiality：确保私人或机密信息不会提供给或披露给未经授权的个人 Privacy：确保个人控制或影响哪些和他们有关的信息被收集，以及这些信息会被谁以及向谁披露 Integrity（完整性） Integrity 是防止未经授权的更改 Data Integrity：确保数据和信息仅以指定和授权的方式进行更改 System Integrity：确保系统以不受损害的方式执行预期功能，不受故意或无意的未经授权的操作对系统执行 Availability（可用性） Availability 是使用信息或资源的能力 确保系统迅速工作，并且不会拒绝向授权用户提供服务 Threats and Attacks：能够初步完成威胁模型（Threat model）的分析 Assets：我们要保护什么？这个资产有多少价值？\nAdversaries：(对手)谁可能会尝试攻击，为什么？\nVulnerabilities：系统可能多么薄弱？\nThreats：攻击者可能会采取哪些措施来利用漏洞\nRisk：资产有多重要？漏洞利用的可能性有多大？\nPossible Defenses：\n不是“传统的”威胁建模，但很重要（无论是整个过程，还是为了在帮助威胁建模之前更好的了解系统） 好处：系统可能会使谁受益，以及如何受益 危害：系统可能会伤害谁，如何伤害 没有完美的安全，但是攻击者的资源有限。**让他们付出不可接受的代价\/承担不可接受的风险来取得成功！**根据上下文来定义安全。\nSecurity Principles安全原则 能够理解各安全原则的基本含义，识别出遵从\/违背安全原则的设计 安全原则\tKnow Your Threat Model\nSecurity is Economics\nSecure the Weakest\nDefense in Depth\nUse Fail-Secure Defaults\nLeast Privilege\nCompartmentalization\nHard to Hide Secrets\nSeparation of Responsibility\nMinimize Attack Surface\nHave Good Usability\nDetect if You Can’t Prevent\nDesign in Security from the Start\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-20 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-20 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%AF%A6%E7%BB%86\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    网络安全与检测技术复习要点（详细）
+  
+  </title>
+  <meta property="og:title" content="网络安全与检测技术复习要点（详细）" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="复习知识要点 1. 概论 基本安全属性的理解 Confidentiality（保密性） Confidentiality 是信息的隐瞒 Data Confidentiality：确保私人或机密信息不会提供给或披露给未经授权的个人 Privacy：确保个人控制或影响哪些和他们有关的信息被收集，以及这些信息会被谁以及向谁披露 Integrity（完整性） Integrity 是防止未经授权的更改 Data Integrity：确保数据和信息仅以指定和授权的方式进行更改 System Integrity：确保系统以不受损害的方式执行预期功能，不受故意或无意的未经授权的操作对系统执行 Availability（可用性） Availability 是使用信息或资源的能力 确保系统迅速工作，并且不会拒绝向授权用户提供服务 Threats and Attacks：能够初步完成威胁模型（Threat model）的分析 Assets：我们要保护什么？这个资产有多少价值？
+Adversaries：(对手)谁可能会尝试攻击，为什么？
+Vulnerabilities：系统可能多么薄弱？
+Threats：攻击者可能会采取哪些措施来利用漏洞
+Risk：资产有多重要？漏洞利用的可能性有多大？
+Possible Defenses：
+不是“传统的”威胁建模，但很重要（无论是整个过程，还是为了在帮助威胁建模之前更好的了解系统） 好处：系统可能会使谁受益，以及如何受益 危害：系统可能会伤害谁，如何伤害 没有完美的安全，但是攻击者的资源有限。**让他们付出不可接受的代价/承担不可接受的风险来取得成功！**根据上下文来定义安全。
+Security Principles安全原则 能够理解各安全原则的基本含义，识别出遵从/违背安全原则的设计 安全原则	Know Your Threat Model
+Security is Economics
+Secure the Weakest
+Defense in Depth
+Use Fail-Secure Defaults
+Least Privilege
+Compartmentalization
+Hard to Hide Secrets
+Separation of Responsibility
+Minimize Attack Surface
+Have Good Usability
+Detect if You Can’t Prevent
+Design in Security from the Start
+" />
+  <meta name="description" content="复习知识要点 1. 概论 基本安全属性的理解 Confidentiality（保密性） Confidentiality 是信息的隐瞒 Data Confidentiality：确保私人或机密信息不会提供给或披露给未经授权的个人 Privacy：确保个人控制或影响哪些和他们有关的信息被收集，以及这些信息会被谁以及向谁披露 Integrity（完整性） Integrity 是防止未经授权的更改 Data Integrity：确保数据和信息仅以指定和授权的方式进行更改 System Integrity：确保系统以不受损害的方式执行预期功能，不受故意或无意的未经授权的操作对系统执行 Availability（可用性） Availability 是使用信息或资源的能力 确保系统迅速工作，并且不会拒绝向授权用户提供服务 Threats and Attacks：能够初步完成威胁模型（Threat model）的分析 Assets：我们要保护什么？这个资产有多少价值？
+Adversaries：(对手)谁可能会尝试攻击，为什么？
+Vulnerabilities：系统可能多么薄弱？
+Threats：攻击者可能会采取哪些措施来利用漏洞
+Risk：资产有多重要？漏洞利用的可能性有多大？
+Possible Defenses：
+不是“传统的”威胁建模，但很重要（无论是整个过程，还是为了在帮助威胁建模之前更好的了解系统） 好处：系统可能会使谁受益，以及如何受益 危害：系统可能会伤害谁，如何伤害 没有完美的安全，但是攻击者的资源有限。**让他们付出不可接受的代价/承担不可接受的风险来取得成功！**根据上下文来定义安全。
+Security Principles安全原则 能够理解各安全原则的基本含义，识别出遵从/违背安全原则的设计 安全原则	Know Your Threat Model
+Security is Economics
+Secure the Weakest
+Defense in Depth
+Use Fail-Secure Defaults
+Least Privilege
+Compartmentalization
+Hard to Hide Secrets
+Separation of Responsibility
+Minimize Attack Surface
+Have Good Usability
+Detect if You Can’t Prevent
+Design in Security from the Start
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">网络安全与检测技术复习要点（详细）</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-20 00:00:00 UTC">
+                20 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="复习知识要点">复习知识要点</h2>
+<hr>
+<h2 id="1-概论">1. 概论</h2>
+<h3 id="基本安全属性的理解">基本安全属性的理解</h3>
+<h4 id="confidentiality保密性">Confidentiality（保密性）</h4>
+<ul>
+<li>Confidentiality 是信息的隐瞒</li>
+<li>Data Confidentiality：确保私人或机密信息不会提供给或披露给未经授权的个人</li>
+<li><font color=gray>Privacy：确保个人控制或影响哪些和他们有关的信息被收集，以及这些信息会被谁以及向谁披露</font></li>
+</ul>
+<h4 id="integrity完整性">Integrity（完整性）</h4>
+<ul>
+<li>Integrity 是防止未经授权的更改</li>
+<li>Data Integrity：确保数据和信息仅以指定和授权的方式进行更改</li>
+<li>System Integrity：确保系统以不受损害的方式执行预期功能，不受故意或无意的未经授权的操作对系统执行</li>
+</ul>
+<h4 id="availability可用性">Availability（可用性）</h4>
+<ul>
+<li>Availability 是使用信息或资源的能力</li>
+<li>确保系统迅速工作，并且不会拒绝向授权用户提供服务</li>
+</ul>
+<h3 id="threats-and-attacks能够初步完成威胁模型threat-model的分析">Threats and Attacks：能够初步完成威胁模型（Threat model）的分析</h3>
+<p>Assets：我们要保护什么？这个资产有多少价值？</p>
+<p>Adversaries：(对手)谁可能会尝试攻击，为什么？</p>
+<p>Vulnerabilities：系统可能多么薄弱？</p>
+<p>Threats：攻击者可能会采取哪些措施来利用漏洞</p>
+<p>Risk：资产有多重要？漏洞利用的可能性有多大？</p>
+<p>Possible Defenses：</p>
+<ul>
+<li>不是“传统的”威胁建模，但很重要（无论是整个过程，还是为了在帮助威胁建模之前更好的了解系统）</li>
+<li>好处：系统可能会使谁受益，以及如何受益</li>
+<li>危害：系统可能会伤害谁，如何伤害</li>
+</ul>
+<p>没有完美的安全，但是攻击者的资源有限。**让他们付出不可接受的代价/承担不可接受的风险来取得成功！**根据上下文来定义安全。</p>
+<h3 id="security-principles安全原则">Security Principles安全原则</h3>
+<ul>
+<li>
+<h3 id="能够理解各安全原则的基本含义识别出遵从违背安全原则的设计">能够理解各安全原则的基本含义，识别出遵从/违背安全原则的设计</h3>
+</li>
+</ul>
+<details><summary><font size = 4><b>安全原则</b></font></summary>	<p>
+    <a style="color: #1e90ff;" href="#00">Know Your Threat Model</a><br>
+    <a style="color: #1e90ff;"href="#01">Security is Economics</a><br>
+    <a style="color: #1e90ff;"href="#02">Secure the Weakest</a><br>
+    <a style="color: #1e90ff;"href="#03">Defense in Depth</a><br>
+    <a style="color: #1e90ff;"href="#04">Use Fail-Secure Defaults</a><br>
+    <a style="color: #1e90ff;"href="#05">Least Privilege</a><br>
+    <a style="color: #1e90ff;"href="#06">Compartmentalization</a><br>
+    <a style="color: #1e90ff;"href="#07">Hard to Hide Secrets</a><br>
+    <a style="color: #1e90ff;"href="#08">Separation of Responsibility</a><br>
+    <a style="color: #1e90ff;"href="#09">Minimize Attack Surface</a><br>
+    <a style="color: #1e90ff;"href="#10">Have Good Usability</a><br>
+    <a style="color: #1e90ff;"href="#11">Detect if You Can’t Prevent</a><br>
+    <a style="color: #1e90ff;"href="#12">Design in Security from the Start</a><br>
+    </p> </details>
+<p><a id="00"></a></p>
+<h4 id="principle-0-了解您的威胁模型">Principle 0: 了解您的威胁模型</h4>
+<p>攻击者是谁以及他们拥有哪些资源</p>
+<p><a id="01"></a></p>
+<h4 id="principle-1-安全就是经济">Principle 1: 安全就是经济</h4>
+<ul>
+<li>
+<p>防御成本应低于发生攻击的成本</p>
+</li>
+<li>
+<p>安全性越高（通常）成本越高</p>
+</li>
+<li>
+<p>如果攻击的成本高于奖励，攻击者可能不会这样做</p>
+</li>
+</ul>
+<p><a id="02"></a></p>
+<h4 id="principle-2保护最弱者">Principle 2：保护最弱者</h4>
+<ul>
+<li>
+<p>安全是一个链条：系统的安全性取决于最薄弱的环节。</p>
+</li>
+<li>
+<p>将精力花在提高系统最薄弱部分的安全性上，因为这是攻击者攻击的地方。</p>
+</li>
+</ul>
+<p><a id="03"></a></p>
+<h4 id="principle-3纵深防御">Principle 3：纵深防御</h4>
+<ul>
+<li>
+<p>攻击者只需要在一个地方获胜</p>
+</li>
+<li>
+<p>防守方的回应：深度防御</p>
+</li>
+<li>
+<p>应将多种类型的防御措施分层在一起</p>
+<ul>
+<li>如果一个层失败，希望另一个层可以成功。</li>
+</ul>
+</li>
+<li>
+<p>保护最弱者并深度防御</p>
+<ul>
+<li>保护最薄弱的环节适用于非重叠函数</li>
+<li>纵深防御适用于同一功能</li>
+</ul>
+</li>
+</ul>
+<p><strong>层（Layers）</strong></p>
+<ul>
+<li>
+<p>计算机系统有多个层</p>
+<ul>
+<li>
+<p>硬件组件</p>
+</li>
+<li>
+<p>芯片组 / MB</p>
+</li>
+<li>
+<p>OS</p>
+</li>
+<li>
+<p>TCP / IP</p>
+</li>
+<li>
+<p>HTTP 应用程序</p>
+</li>
+<li>
+<p>安全 http 层</p>
+</li>
+<li>
+<p>Javascript</p>
+</li>
+<li>
+<p>用户/智能卡接口</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>多层防御</strong></p>
+<ul>
+<li>每一层都引入了额外的安全措施</li>
+<li>每个层可以包含多个级别的控制</li>
+</ul>
+<p>但是要记住</p>
+<ul>
+<li>防御不是免费的</li>
+<li>收益递减：防御通常小于其各部分的总和
+<ul>
+<li>2 堵墙比 1 堵墙好得多</li>
+<li>101 堵墙并不比 100 堵墙好多少</li>
+</ul>
+</li>
+</ul>
+<p><a id="04"></a></p>
+<h4 id="principle-4使用-fail-secure-默认值">Principle 4：使用 Fail-Secure 默认值</h4>
+<p>当系统出现故障时，它们不应恢复到不安全的行为。否则，攻击者只需要调用正确的失败。（故障安全系统）</p>
+<p>默认为deny access，比如默认执行 false，只有判断安全才会执行true。</p>
+<p><a id="05"></a></p>
+<h4 id="principle-5最小权限">Principle 5：最小权限</h4>
+<p>只应授予执行操作所需的最低访问权限，并且应仅授予该访问权限所需的最短时间。</p>
+<p>当代码可能执行的系统范围操作受到限制时，一个应用程序中的漏洞不能用于利用系统的其余部分。</p>
+<p><a id="06"></a></p>
+<h4 id="principle-6-compartmentalization">Principle 6: Compartmentalization</h4>
+<ul>
+<li>将系统分解为尽可能多的独立单元
+<ul>
+<li>通过将系统分解成多个单元来最大限度地减少可能造成的伤害</li>
+</ul>
+</li>
+<li>很少有操作系统这样做，因为它难以管理</li>
+<li>使用不同的机器执行不同的任务</li>
+</ul>
+<p><a id="07"></a></p>
+<h4 id="principle-7-难以隐藏secret">Principle 7: 难以隐藏secret</h4>
+<ul>
+<li>
+<p>“机制的安全性不应取决于其设计或实施的保密性。”</p>
+</li>
+<li>
+<p>“即使关于系统的所有内容（除了密钥）都是公共知识，加密系统也应该是安全的。”</p>
+<p>　　　　——Kerckhoff’s Principle</p>
+</li>
+</ul>
+<p><a id="08"></a></p>
+<h4 id="principle-8-责任分离">Principle 8: 责任分离</h4>
+<ul>
+<li>
+<p>也称为分布式信任</p>
+</li>
+<li>
+<p>如果您需要拥有特权，请考虑要求多方合作（串通）以行使该特权</p>
+</li>
+</ul>
+<p><a id="09"></a></p>
+<h4 id="principle-9-最小化攻击面">Principle 9: 最小化攻击面</h4>
+<ul>
+<li>最小化
+<ul>
+<li>打开的插槽数量</li>
+<li>服务数量</li>
+<li>默认运行的服务数量</li>
+<li>以高权限运行的服务数量</li>
+<li>动态内容网页数</li>
+<li>具有管理员权限的帐户数</li>
+<li>访问控制较弱的文件和目录数量</li>
+</ul>
+</li>
+</ul>
+<p><a id="10"></a></p>
+<h4 id="principle-10-具有良好的可用性">Principle 10: 具有良好的可用性</h4>
+<ul>
+<li>
+<p>了解您的用户</p>
+<ul>
+<li>如果太麻烦，他们会关闭安保。</li>
+<li>他们不阅读文档</li>
+<li>他们无视警告 – 他们只想得到他们想要的！</li>
+</ul>
+</li>
+<li>
+<p>如果您的安全机制太烦人和痛苦，您的用户将不遗余力地规避或避免它们。确保您的安全系统达到所需的安全性，但仅此而已。</p>
+</li>
+</ul>
+<p><a id="11"></a></p>
+<h4 id="principle-11-如果无法预防则进行检测">Principle 11: 如果无法预防，则进行检测</h4>
+<ul>
+<li>威慑：通过让攻击者更喜欢执行其他操作来阻止攻击</li>
+<li>预防：通过使攻击失败，在攻击发生之前阻止攻击</li>
+<li>检测：了解存在攻击（发生后）</li>
+<li>响应：对攻击执行一些操作（在攻击发生后）</li>
+</ul>
+<p><a id="12"></a></p>
+<h4 id="principle-12-从一开始就进行安全设计">Principle 12: 从一开始就进行安全设计</h4>
+<p>在构建新系统时，请将安全性作为设计注意事项的一部分，而不是在事后对其进行修补。</p>
+<h2 id="2-对称加密">2. 对称加密</h2>
+<h3 id="基本的密码学术语及对应关系basic-cryptography-terminology">基本的密码学术语及对应关系（Basic Cryptography Terminology）</h3>
+<ul>
+<li>Plaintext – 原始消息</li>
+<li>Ciphertext – 编码消息</li>
+<li>Key – 只有发送方/接收方知道的密码中使用的信息</li>
+<li>Encryption– 将明文转换为密文</li>
+<li>Decryption – 将密文转换为明文</li>
+<li>Cipher – 用于执行加密 （encipher） 或解密 （decipher） 的算法</li>
+</ul>
+<h3 id="针对加密消息的攻击类型">针对加密消息的攻击类型</h3>
+<ul>
+<li>攻击者知道：只有密文。</li>
+<li>攻击者知道：（1）密文，（2）与密钥形成的一个或多个原始消息-密文对。</li>
+<li>攻击者知道：（1）密文，（2）攻击者选择的明文消息，以及使用密钥生成的相应密文。</li>
+</ul>
+<h3 id="对称加密的基本构成">对称加密的基本构成</h3>
+<ul>
+<li>
+<p>对称密钥加密方案有三个算法：</p>
+<ul>
+<li>KeyGen（） → K：生成一个密钥 K</li>
+<li>Enc（K， M） → C： 使用密钥 K 加密明文 M，生成密文 C</li>
+<li>Dec（K， C） → M：使用密钥 K 解密密文 C</li>
+</ul>
+</li>
+<li>
+<p>性质</p>
+<ul>
+<li>正确性：解密密文应生成最初加密的消息</li>
+<li>高效性：加密/解密算法应该很快
+<ul>
+<li>给定明文和密钥，计算密文的计算效率很高。</li>
+<li>给定密文和密钥，计算纯文本的计算效率很高。</li>
+</ul>
+</li>
+<li>安全性：保密性
+<ul>
+<li>给定没有密钥的密文，计算纯文本在计算上是不可行的。</li>
+</ul>
+</li>
+</ul>
+<p>对机密性更好的定义叫做 IND-CPA (indistinguishability under chosen plaintext attack)，在选择明文攻击下的不可区分性。</p>
+</li>
+</ul>
+<h3 id="one-time-pad-otp">One-Time Pad (OTP)</h3>
+<img src="onepad.png" />
+<p>Encryption: 𝐶 = Enc(𝐾, 𝑀) = 𝑀 ⨁ 𝐾
+Decryption: Dec(𝐾, 𝐶) = 𝐶 ⨁ 𝐾 = (𝑀 ⨁ 𝐾) ⨁ 𝐾 = 𝑀</p>
+<p>密钥 K 是随机选择的 bitstring。</p>
+<p>如果对两个密文进行 XOR 运算，就会学习到 M_0 ⊕ M_1！这是有关消息的部分信息！攻击者可以猜M_0并检查M_1是否与她的猜测相符，反之亦然。因此如果密钥被重复使用，则One-Time Pad不安全。</p>
+<p>唯一实际应用：提前传达密钥，这样密钥只会用到一次。</p>
+<h3 id="stream-ciphers流密码">Stream Ciphers（流密码）</h3>
+<p>问题：OTP 密钥与信息的长度相同</p>
+<p>解决方案：Pseudo random key - stream ciphers（伪随机密钥 - 流密码）</p>
+<img src="stream.png" />
+<p>𝐶 ← PRG(𝐾) ⊕ 𝑀</p>
+<h3 id="掌握-feistel-cipher-结构">掌握 Feistel Cipher 结构</h3>
+<p>几乎所有传统的块加密算法（包括 DES）都具有由 IBM 的 Horst Feistel 于 1973 年首次描述的结构。</p>
+<p>输入：一个数据块和一个密钥</p>
+<p>将数据块分为两半 L 和 R。</p>
+<p>经历几轮。在每一轮中，</p>
+<ul>
+<li>R 不会改变。</li>
+<li>L 执行依赖于 R 的运算和从该密钥派生的round key。</li>
+</ul>
+<p>Feistel 网络的具体实现取决于以下参数和功能的选择：</p>
+<ul>
+<li>区块大小：区块大小越大意味着安全性更高</li>
+<li>密钥大小：密钥大小越大意味着安全性越高</li>
+<li>回合数：多个回合提供更高的安全性</li>
+<li>子密钥生成算法：复杂性越高，密码分析难度越大</li>
+</ul>
+<h3 id="des的发展以及其基本结构lec03-page64">DES的发展以及其基本结构（Lec03 Page64）</h3>
+<p>1970 年代/80 年代/90 年代使用最广泛的分组密码。块大小 64 位 （n = 64）;密钥大小 56 位 （k = 56）</p>
+<p>但是，由于密钥大小小，现代计算机速度使其完全不安全</p>
+<h3 id="理解-avalanche-effectlec03-page66">理解 Avalanche Effect（Lec03 Page66）</h3>
+<p>纯文本或密钥中的微小更改会导致密文发生重大变化。</p>
+<p>完备性效果：密文的每个 bit 都需要依赖明文上的很多 bit。DES 中 D-box 和 S-box 产生的扩散和混淆，表现出非常强的完备性效果。</p>
+<h3 id="多重加密的安全性以-2des-的安全性为主">多重加密的安全性，以 2DES 的安全性为主</h3>
+<p>考虑具有两个密钥的 2DES：</p>
+<p>𝑐 = E<sub>K2</sub>(E<sub>K1</sub>(𝑚))</p>
+<p>𝑚 = D<sub>K1</sub>(D<sub>K2</sub>(𝑐))</p>
+<h3 id="advanced-encryption-standard-aes">Advanced Encryption Standard (AES)</h3>
+<h3 id="aes-的发展历史以及其一般结构">AES 的发展历史以及其一般结构</h3>
+<ul>
+<li>密钥大小 128、192 或 256 位（k = 128、192 或 256）
+<ul>
+<li>实际密码名称为 AES-128、AES-192 和 AES-256</li>
+<li>像 NSA 这样的偏执狂使用 AES-256 密钥，但 AES-128 在实践中很好</li>
+</ul>
+</li>
+<li>块大小 128 位 （n = 128）
+<ul>
+<li>注意：无论密钥大小如何，块大小仍始终为 128 位</li>
+</ul>
+</li>
+</ul>
+<img src="AES1.png" />
+<p>AES 也有字的概念：一个字由四个字节组成，即 32 位。因此，state 数组的每一列都是一个单词，每一行也是如此。</p>
+<img src="AES2.png" />
+<p>不同的密钥大小使用不同的轮数</p>
+<p>每一轮都使用自己的“轮次密钥”，该密钥派生自密码密钥</p>
+<img src="AES3.png" />
+<p>AES：整体结构</p>
+<h3 id="了解-aes-中的四种变换及其设计原理不需要记忆boxeslec03-page78">了解 AES 中的四种变换及其设计原理（不需要记忆Boxes）（Lec03 Page78）</h3>
+<ul>
+<li>Substitute Bytes</li>
+<li>Shift Rows</li>
+<li>Mix Columns</li>
+<li>Add Round Key</li>
+</ul>
+<h3 id="aes-密钥扩展算法以及其设计原理lec03-page89">AES 密钥扩展算法以及其设计原理（Lec03 Page89）</h3>
+<h3 id="分组加密工作模式-modes-of-operation">分组加密工作模式 Modes of Operation</h3>
+<ul>
+<li>电子密码簿模式 （ECB）Electronic Codebook Mode</li>
+<li>密码块链接模式 （CBC）Cipher Block Chaining Mode</li>
+<li>输出反馈模式 （OFB）Output Feedback Mode</li>
+<li>密码反馈模式 （CFB）Cipher Feedback Mode</li>
+<li>计数器模式 （CTR）Counter Mode</li>
+</ul>
+<h4 id="electronic-code-book-ecb">Electronic Code Book (ECB)</h4>
+<p>我们刚刚就设计了一个 ECB 模式。</p>
+<ul>
+<li>最简单模式</li>
+<li>明文一次处理 b 位</li>
+<li>每个块都使用相同的密钥进行加密</li>
+<li>对于给定的密钥，每个 b 位纯文本块都有一个唯一的密文</li>
+<li>每个 b 明文位块都使用相同的密钥独立编码</li>
+</ul>
+<p>AES-ECB 不是 IND-CPA 安全的。为什么？</p>
+<ul>
+<li>因为 ECB 是确定性的。</li>
+</ul>
+<h5 id="strength-and-weakness-of-ecb">Strength and Weakness of ECB</h5>
+<ul>
+<li>Strength
+<ul>
+<li>简单</li>
+<li>有效</li>
+</ul>
+</li>
+<li>Weakness
+<ul>
+<li>加密的消息块是独立的</li>
+<li>消息重复可能以密文形式显示
+<ul>
+<li>如果与消息块对齐</li>
+<li>特别是对于图形等数据</li>
+<li>或者使用变化很小的消息，这成为 Codebook 分析问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src = "example.png" alt = "例子" />
+<p>在这种情况下，ECB 失效了。</p>
+<h4 id="cipher-block-chaining-mode-cbc-最受欢迎">Cipher block chaining mode (CBC) ——最受欢迎</h4>
+<p>我们现在要努力重新设计一个，因为 ECB 不是 IND-CPA 安全的，他是确定性的。</p>
+<p>想法：第一个密文块的计算具有一定的随机性。让我们用它来为第二个块添加随机性，并以此类推，这就是 CBC 模式。</p>
+<ul>
+<li>
+<p>明文被分成块：P<sub>1</sub>、P<sub>2</sub>、P<sub>3</sub>、&hellip;</p>
+</li>
+<li>
+<p>在加密之前，每个明文块都与前一个密文块进行 XOR 运算（链接）：</p>
+<p>C<sub>i</sub> = E<sub>k</sub> ( C<sub> i - 1</sub> ⨁ P<sub>i</sub>)</p>
+<p>C<sub>0</sub> = IV</p>
+</li>
+<li>
+<p>使用初始向量 （IV） 启动该过程，该向量是随机生成的。</p>
+</li>
+<li>
+<p>解密</p>
+<p>P<sub>i</sub> = C<sub>i - 1</sub> ⨁ D<sub>k</sub> (C<sub>i</sub>)</p>
+</li>
+</ul>
+<h5 id="cbc-模式效率和并行性">CBC 模式：效率和并行性</h5>
+<ul>
+<li>加密可以并行化吗？
+<ul>
+<li>不，我们必须等待区块 i 完成，然后才能加密区块 i + 1</li>
+</ul>
+</li>
+<li>解密可以并行化吗？
+<ul>
+<li>是的，解密只需要密文作为输入</li>
+</ul>
+</li>
+</ul>
+<h5 id="cbc-模式填充">CBC 模式：填充</h5>
+<p>如果要加密不是块大小的倍数的消息，该怎么办？</p>
+<ul>
+<li>仅当明文长度是块大小的倍数时，才定义 AES-CBC</li>
+<li>填充消息，直到它是块大小的倍数
+<ul>
+<li>用 0 填充？不起作用：如果我们的消息已经以 0 结尾怎么办？</li>
+<li>用 1 填充？同样的问题。</li>
+</ul>
+</li>
+</ul>
+<p>填充方案</p>
+<ul>
+<li>附加一个 &lsquo;1&rsquo;，然后用 &lsquo;0 填充 &lsquo;0&rsquo;
+<ul>
+<li>如果明文是 n 的倍数，你仍然需要用整个块填充</li>
+</ul>
+</li>
+<li>用填充的字节数来填充
+<ul>
+<li>如果你需要 1 个字节，用 01 填充;如果需要 3 个字节，请用 03 03 03 填充</li>
+<li>如果需要 0 个填充字节，请填充整个虚拟块</li>
+<li>这称为 PKCS #7</li>
+</ul>
+</li>
+</ul>
+<h5 id="strength-and-weakness-of-cbc">Strength and Weakness of CBC</h5>
+<ul>
+<li>Strength
+<ul>
+<li>块的加密取决于当前块和之前的所有块。</li>
+<li>因此，重复的纯文本块的加密方式不同。</li>
+</ul>
+</li>
+<li>Weakness
+<ul>
+<li>修改密文块</li>
+<li>仍然不保证完整性</li>
+</ul>
+</li>
+</ul>
+<h4 id="设计流密码">设计流密码</h4>
+<p>CBC 模式很好，但它不是流密码，我们如何基于分组密码设计流密码？</p>
+<ul>
+<li>为了加密 P<sub>1</sub>、P<sub>2</sub>、P<sub>3</sub>、&hellip;，我们想用 E<sub>k</sub> 为每个 P 生成不同的密钥： K<sub>1</sub>、K<sub>2</sub>、K<sub>3</sub>、&hellip;，</li>
+<li>然后加密 P<sub>i</sub>为 C<sub>i</sub> = P<sub>i</sub> ⨁ K<sub>i</sub></li>
+<li>生成 K<sub>1</sub>、K<sub>2</sub>、K<sub>3</sub>、&hellip; 的三种不同方法
+<ul>
+<li>计数器模式 （CTR）</li>
+<li>密码反馈 （CFB） 模式</li>
+<li>输出反馈 （OFB） 模式</li>
+</ul>
+</li>
+</ul>
+<h4 id="ctr-mode">CTR Mode</h4>
+<p>使用一个随机数 nonce 然后随着每个 block 加密递增，以确保每个数据块密码输出都不同。</p>
+<h5 id="ctr-模式效率">CTR 模式：效率</h5>
+<ul>
+<li>加密可以并行化</li>
+<li>解密也可以并行化</li>
+</ul>
+<h5 id="ctr-模式填充">CTR 模式：填充</h5>
+<p>不需要填充消息，可以剪掉比消息长的部分。</p>
+<h4 id="cipher-feedback-mode-cfb">Cipher Feedback Mode (CFB)</h4>
+<ul>
+<li>
+<p>明文是 s 位 （s ≤ block size） 的段序列：P<sub>1</sub>、P<sub>2</sub>、P<sub>3</sub>、&hellip;</p>
+</li>
+<li>
+<p>加密用于生成一系列密钥，每个密钥都是 s 位：K<sub>1</sub>、K<sub>2</sub>、K<sub>3</sub>、&hellip;</p>
+</li>
+<li>
+<p>密文为 C<sub>1</sub>、C<sub>2</sub>、C<sub>3</sub>、&hellip; ，其中</p>
+<p>C<sub>i</sub> = P<sub>i</sub> ⨁ K<sub>i</sub></p>
+</li>
+</ul>
+<h5 id="cfb-模式生成-key-流">CFB 模式：生成 Key 流</h5>
+<ul>
+<li>
+<p>分组密码的输入是一个移位寄存器 x，其在阶段 i 的值表示为 x<sub>i</sub></p>
+</li>
+<li>
+<p>Initially,</p>
+<p>x<sub>1</sub> = an initial vectot (IV)</p>
+</li>
+<li>
+<p>For i &gt; 1,</p>
+<p>x<sub>i</sub> = shift-left-s-bits (x<sub>i - 1</sub>) | C<sub>i - 1</sub></p>
+</li>
+<li>
+<p>Then</p>
+<p>K<sub>i</sub> = s-most-significant-bits(E<sub>K</sub>(x<sub>i</sub>))</p>
+</li>
+</ul>
+<img src = "encryption.png" alt = "加密" />
+<img src = "decryption.png" alt = "解密" />
+<h5 id="strength-and-weakness-of-cfb">Strength and Weakness of CFB</h5>
+<ul>
+<li>Strength
+<ul>
+<li>与 ECB 和 CBC 相比：
+<ul>
+<li>分组密码用作流密码。当数据以位/字节为单位到达时适用。（s 可以是任何值;常用值为 s = 8）</li>
+<li>密文段取决于当前和所有前面的纯文本段。</li>
+</ul>
+</li>
+<li>与 OFB 相比：
+<ul>
+<li>可以随时解密。无需从头开始。这使得 CFB 模式非常适合解密加密的随机访问文件等应用程序。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Weakness
+<ul>
+<li>传输过程中损坏的密文段最多会影响 （b/s） + 1 个明文段。</li>
+</ul>
+</li>
+</ul>
+<h4 id="ofb-mode">OFB mode</h4>
+<ul>
+<li>
+<p>结构与 CFB 非常相似</p>
+</li>
+<li>
+<p>不同之处：</p>
+</li>
+<li>
+<p>Initially,</p>
+<p>x<sub>1</sub> = an initial vectot (IV)</p>
+</li>
+<li>
+<p>For i &gt; 1,</p>
+<p>x<sub>i</sub> = shift-left-s-bits (x<sub>i - 1</sub>) | K<sub>i - 1</sub></p>
+</li>
+<li>
+<p>Then</p>
+<p>K<sub>i</sub> = s-most-significant-bits(E<sub>K</sub>(x<sub>i</sub>))</p>
+</li>
+</ul>
+<h3 id="comparing-modes-of-operation">Comparing Modes of Operation</h3>
+<ul>
+<li>如果你需要高性能，哪种模式更好？
+<ul>
+<li>CTR 模式，因为您可以并行加密和解密</li>
+</ul>
+</li>
+<li>如果您对安全性偏执，哪种模式更好？
+<ul>
+<li>CBC 模式更好</li>
+</ul>
+</li>
+<li>但是，如果使用不当（IV/nonce 重复使用），CBC 只会泄露部分信息，并且 CTR 会发生灾难性失败</li>
+<li>分组密码专为机密性而设计，如果攻击者篡改了密文，我们不能保证能检测到它</li>
+</ul>
+<h2 id="3-完整性-integrity">3. 完整性 (Integrity)</h2>
+<h3 id="完整性基本概念">完整性基本概念</h3>
+<p>攻击者无法在不被发现的情况下更改消息</p>
+<ul>
+<li>与机密性的区别</li>
+</ul>
+<h3 id="密码学hash-函数的基本思想">（密码学）Hash 函数的基本思想</h3>
+<p>哈希也称为消息摘要，将任意长度的消息转换为固定长度的摘要，使得文件是否被攻击过变得可识别</p>
+<h3 id="理解-one-waynessweakstrongcollision-resistance的含义以及其之间关系">理解 One-wayness、（Weak/Strong）Collision resistance的含义以及其之间关系</h3>
+<p>单向性：给定 H（x），难以找到 x</p>
+<p>抗碰撞性：难以找到 x、x′，使得 H（x） = H（x′）</p>
+<h3 id="了解常用的-hash-函数以及其一般结构">了解常用的 Hash 函数以及其一般结构</h3>
+<h4 id="md5">MD5</h4>
+<p>输出：128 位</p>
+<p>安全性：完全破解</p>
+<h4 id="sha-1">SHA-1</h4>
+<p>输出：160 位</p>
+<p>安全性：2017 年完全破解</p>
+<p>在 2017 年之前已知较弱，但有时仍会使用</p>
+<h4 id="sha-2">SHA-2</h4>
+<p>输出：256、384 或 512 位（有时标记为 SHA-256、SHA-384、SHA-512）</p>
+<p>目前没有破解，但某些变体容易受到长度延长攻击</p>
+<h4 id="sha-3-keccak">SHA-3 （Keccak）</h4>
+<p>输出：256、384 或 512 位</p>
+<p>当前标准（并非要取代 SHA-2，只是不同的结构）</p>
+<h3 id="应用password-hashing">应用：Password Hashing</h3>
+<p>存储 hash（password） 而不是 user password，而不是 user password，当用户输入密码时，计算其哈希值并与密码文件中的条目进行比较。系统不存储实际密码！无需担心密钥存放在哪里！无法从 hash 转到 password！</p>
+<p>Salted Hashes</p>
+<p>哈希是确定性的：它们将具有相同的密码哈希，攻击者可以看到哪些用户正在使用相同的密码，攻击者可以预先计算常见密码的哈希值。</p>
+<p>解决方案 #1：为每个用户添加唯一的随机盐，要验证用户：在 passwords 文件中查找他们的盐，计算 Hash（password || salt），并检查它与文件中的哈希值匹配</p>
+<p>解决方案 #2：使用较慢的哈希值，合法用户只需提交几次密码尝试。用户不会注意到服务器检查密码需要 0.0001 秒还是 0.1 秒。攻击者需要计算数百万个哈希值。使用慢速哈希可以将攻击者的速度降低 1,000 倍或更多！</p>
+<h3 id="理解hash函数在何种情况无法提供完整性保护">理解Hash函数在何种情况无法提供完整性保护？</h3>
+<p>这取决于您的威胁模型！</p>
+<p>威胁模型：我们假设攻击者无法修改网站上的哈希值</p>
+<p>只要我们能安全地传达哈希值，我们就有 integrity</p>
+<p>威胁模型：攻击者可以修改消息和哈希</p>
+<p>没有 integrity！</p>
+<h3 id="消息认证码-message-authentication-codes-macs">消息认证码 Message Authentication Codes (MACs)</h3>
+<h3 id="使用方式和定义">使用方式和定义</h3>
+<p>消息认证码（或 MAC）由以下三种算法组成</p>
+<p>k ← KeyGen()</p>
+<p>t ← MAC(k, m)</p>
+<p>b := Verify(k, m, t)（b = 1 表示有效，b = 0 表示无效）</p>
+<h3 id="区别伪造攻击的几种方式">区别伪造攻击的几种方式</h3>
+<ul>
+<li>存在形伪造 Existential forgery
+<ul>
+<li>攻击者在查询 MAC 预言机后选择要伪造的消息</li>
+</ul>
+</li>
+<li>选择性伪造 Selective forgery
+<ul>
+<li>攻击者在执行攻击之前选择一条消息，然后无法查询该消息</li>
+</ul>
+</li>
+<li>通用伪造 Universal forgery
+<ul>
+<li>攻击者在查询 MAC 预言机后可以为任何消息创建 MAC</li>
+</ul>
+</li>
+</ul>
+<h3 id="nmac">NMAC</h3>
+<p>NMAC(𝑘, 𝑚) = Hash(𝑘1||Hash(𝑘2||𝑚))</p>
+<p>如果两个密钥不同，则 NMAC 是安全的,使用两个哈希值可以防止长度延长攻击</p>
+<h3 id="hmaclec05-page52">HMAC（Lec05 Page52）</h3>
+<p>NMAC 的问题：我们需要两个不同的密钥，Key 必须是哈希输出大小</p>
+<p>HMAC(𝑘, 𝑚) = Hash[(𝑘+⨁ opad)|| Hash[(𝑘+⨁ipad)||𝑚)]]</p>
+<p>k+是填充（用 0）到 B 字节的密钥，哈希函数的输入块大小</p>
+<p>ipad = 重复 B 次0x36字节</p>
+<p>opad = 重复 B 次0x5C字节。</p>
+<h3 id="constructing-mac-using-block-cipherlec05-page56">Constructing MAC using Block Cipher（Lec05 Page56）</h3>
+<h3 id="理解-macs-的完整性保证和机密性保证">理解 MACs 的完整性保证和机密性保证</h3>
+<p>攻击者无法在不被发现的情况下篡改消息</p>
+<p>MAC 通常没有机密性保证;他们可以泄露有关消息的信息</p>
+<p>HMAC 不会泄露有关消息的信息，但它仍然是确定性的，因此它不是 IND-CPA 安全的</p>
+<h3 id="authenticated-encryption经过身份验证的加密lec05-page68">Authenticated Encryption（经过身份验证的加密）（Lec05 Page68）</h3>
+<p>经过身份验证的加密 （AE）：一种同时保证邮件的机密性和完整性（以及真实性，具体取决于您的威胁模型）的方案</p>
+<h2 id="4-非对称加密公认密钥学">4. 非对称加密/公认密钥学</h2>
+<ul>
+<li>基于公钥密码学的加密基本流程</li>
+<li>基于公钥密码学的认证基本流程</li>
+<li>公钥加密的要求
+<ul>
+<li>Key Generation 、加密、解密</li>
+</ul>
+</li>
+<li>基本的模运算</li>
+</ul>
+<h3 id="diffie-hellman">Diffie-Hellman</h3>
+<ul>
+<li>能够应用 Diffie-Hellman 密钥交换</li>
+<li>了解 Diffie-Hellman 的安全性</li>
+<li>Diffie-Hellman 的中间人攻击（MITM Attack）</li>
+</ul>
+<h3 id="rsa">RSA</h3>
+<ul>
+<li>RSA 的加密解密流程</li>
+<li>理解并应用 Square-and-multiply 算法</li>
+<li>了解 RSA 密钥生成过程</li>
+<li>理解 RSA 的安全性保证</li>
+<li>了解针对 RSA 的一些攻击</li>
+<li>数字签名
+<ul>
+<li>如何用 RSA 实现数字签名：RSA Signature</li>
+</ul>
+</li>
+</ul>
+<h3 id="pki">PKI</h3>
+<ul>
+<li>理解密钥分发问题与 Certificates 的基本概念</li>
+<li>了解几种PKI信任模型</li>
+<li>X.509
+<ul>
+<li>理解Certificate Revocation的含义</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-认证">5. 认证</h2>
+<ul>
+<li>认证的目标：
+<ul>
+<li>Mutual Authentication</li>
+<li>Key Establishment</li>
+</ul>
+</li>
+<li>理解并应用基于对称密钥的认证</li>
+<li>理解并应用基于非对称密钥的认证</li>
+<li>了解 Kerberos 并理解其设计原理
+<ul>
+<li>Kerberos Realm</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-数据隐私">6. 数据隐私</h2>
+<ul>
+<li>基本定义与性质</li>
+<li>ɛ 的含义</li>
+<li>Laplace机制</li>
+<li>敏感度分析Sensitivity</li>
+<li>后处理（Post-processing）的特性</li>
+<li>组合定理 Basic Composition Theorem</li>
+<li>Privacy for Non-Numeric Queries
+<ul>
+<li>隐私选择</li>
+<li>Private Median 的设计方法</li>
+</ul>
+</li>
+<li>本地化差分隐私（Local Differential Privacy）基本定义及方法
+<ul>
+<li>Randomized Response</li>
+</ul>
+</li>
+<li>Tradeoff between Utility and Privacy</li>
+</ul>
+<h2 id="7-实用安全-usable-security">7. 实用安全 Usable Security</h2>
+<ul>
+<li>实用的实人认证
+<ul>
+<li>常见实人认证机制及其优缺点</li>
+<li>Two-Factor Authentication</li>
+</ul>
+</li>
+<li>给定认证机制，分析其安全性与可能攻击面</li>
+</ul>
+<h2 id="8-网络安全协议">8. 网络安全协议</h2>
+<h3 id="arp-攻击与-dhcp-攻击">ARP 攻击与 DHCP 攻击</h3>
+<h3 id="传输层安全-ssltls">传输层安全 SSL/TLS</h3>
+<ul>
+<li>
+<p>SYN Flooding Attack 以及造成 TCP DoS 攻击的原因</p>
+</li>
+<li>
+<p>理解 SSL/TLS 协议的基本流程和设计原理</p>
+<ul>
+<li>
+<p>TLS Handshake</p>
+</li>
+<li>
+<p>SSL/TLS Record Protocol</p>
+<ul>
+<li>完整性与机密性</li>
+</ul>
+</li>
+<li>
+<p>TLS in Practice</p>
+<p>提供什么保障、不提供什么</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns">DNS</h3>
+<ul>
+<li>DNS Lookup</li>
+<li>DNS Security
+<ul>
+<li>DNS over TLS
+<ul>
+<li>性能？Caching？恶意的NS？…</li>
+</ul>
+</li>
+<li>DNSSEC
+<ul>
+<li>设计思想</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-web安全">9. Web安全</h2>
+<ul>
+<li>了解Web安全的基本模型</li>
+<li>理解Cookies机制和应用</li>
+<li>安全Cookies</li>
+</ul>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

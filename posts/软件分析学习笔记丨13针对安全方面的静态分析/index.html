@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/tags/" />
-  <link rel="canonical" href="http://localhost:1313/tags/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A813%E9%92%88%E5%AF%B9%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A813%E9%92%88%E5%AF%B9%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,32 +24,48 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "软件分析学习笔记丨13针对安全方面的静态分析",
+      "headline" : "软件分析学习笔记丨13针对安全方面的静态分析",
+      "description" : "Computer Security Goals Dependability Data safety … Adversaries Crackers Cyber attackers … Causes of exploited vulnerabilities（造成已被利用的漏洞的原因） Injection errors\nInformation leaks\n这两点其实就是本节课要解决的问题\nInformation Flow Security 我们要防止不必要的信息流动 保护信息安全\nAccess Control vs. Information Flow Security 访问控制（保护敏感数据的标准方法） 检查程序是否具有访问某些信息的权限 关注信息的访问方式 信息流安全（端到端） 跟踪信息如何流经程序，以确保程序安全地处理信息 关注信息的传播方式 Information Flow 信息流：如果变量 x 中的信息被转移到变量 y，那么存在信息流 y → x\nInformation Flow Security 将信息流与安全联系起来\n将程序变量分类为不同的安全级别 指定这些级别之间允许的流，即信息流策略 Security Levels (Classes) 最基本的模型是两级策略，即一个变量被分为两个安全级别之一：\nH，意为高安全性、秘密信息 L，表示低安全性，公共可观察信息 h = getPassword(); \/\/ h is high security broadcast(l); \/\/ l is low security 安全级别可以建模为 lattice*\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
       "publisher": "",
       "accountablePerson" : "",
       "copyrightHolder" : "",
-      "copyrightYear" : "0001",
-      "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
-      "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/tags\/",
+      "copyrightYear" : "2024",
+      "datePublished": "2024-12-16 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2024-12-16 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A813%E9%92%88%E5%AF%B9%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    Tags
+    软件分析学习笔记丨13针对安全方面的静态分析
   
   </title>
-  <meta property="og:title" content="Tags" />
+  <meta property="og:title" content="软件分析学习笔记丨13针对安全方面的静态分析" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Computer Security Goals Dependability Data safety … Adversaries Crackers Cyber attackers … Causes of exploited vulnerabilities（造成已被利用的漏洞的原因） Injection errors
+Information leaks
+这两点其实就是本节课要解决的问题
+Information Flow Security 我们要防止不必要的信息流动 保护信息安全
+Access Control vs. Information Flow Security 访问控制（保护敏感数据的标准方法） 检查程序是否具有访问某些信息的权限 关注信息的访问方式 信息流安全（端到端） 跟踪信息如何流经程序，以确保程序安全地处理信息 关注信息的传播方式 Information Flow 信息流：如果变量 x 中的信息被转移到变量 y，那么存在信息流 y → x
+Information Flow Security 将信息流与安全联系起来
+将程序变量分类为不同的安全级别 指定这些级别之间允许的流，即信息流策略 Security Levels (Classes) 最基本的模型是两级策略，即一个变量被分为两个安全级别之一：
+H，意为高安全性、秘密信息 L，表示低安全性，公共可观察信息 h = getPassword(); // h is high security broadcast(l); // l is low security 安全级别可以建模为 lattice*
+" />
+  <meta name="description" content="Computer Security Goals Dependability Data safety … Adversaries Crackers Cyber attackers … Causes of exploited vulnerabilities（造成已被利用的漏洞的原因） Injection errors
+Information leaks
+这两点其实就是本节课要解决的问题
+Information Flow Security 我们要防止不必要的信息流动 保护信息安全
+Access Control vs. Information Flow Security 访问控制（保护敏感数据的标准方法） 检查程序是否具有访问某些信息的权限 关注信息的访问方式 信息流安全（端到端） 跟踪信息如何流经程序，以确保程序安全地处理信息 关注信息的传播方式 Information Flow 信息流：如果变量 x 中的信息被转移到变量 y，那么存在信息流 y → x
+Information Flow Security 将信息流与安全联系起来
+将程序变量分类为不同的安全级别 指定这些级别之间允许的流，即信息流策略 Security Levels (Classes) 最基本的模型是两级策略，即一个变量被分为两个安全级别之一：
+H，意为高安全性、秘密信息 L，表示低安全性，公共可观察信息 h = getPassword(); // h is high security broadcast(l); // l is low security 安全级别可以建模为 lattice*
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +96,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,58 +124,375 @@
 </div>
 <div class="header-line"></div>
 
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">软件分析学习笔记丨13针对安全方面的静态分析</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2024-12-16 00:00:00 UTC">
+                16 Dec 2024
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-	
+        <div class="post-content markdown-body">
+          
+          <h2 id="computer-security">Computer Security</h2>
+<ul>
+<li>Goals
+<ul>
+<li>Dependability</li>
+<li>Data safety</li>
+<li>…</li>
+</ul>
+</li>
+<li>Adversaries
+<ul>
+<li>Crackers</li>
+<li>Cyber attackers</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h3 id="causes-of-exploited-vulnerabilities造成已被利用的漏洞的原因">Causes of exploited vulnerabilities（造成已被利用的漏洞的原因）</h3>
+<ul>
+<li>
+<p>Injection errors</p>
+</li>
+<li>
+<p>Information leaks</p>
+</li>
+</ul>
+<p>这两点其实就是本节课要解决的问题</p>
+<h2 id="information-flow-security">Information Flow Security</h2>
+<p>我们要防止不必要的信息流动 保护信息安全</p>
+<h3 id="access-control-vs-information-flow-security">Access Control vs. Information Flow Security</h3>
+<ul>
+<li>访问控制（保护敏感数据的标准方法）
+<ul>
+<li>检查程序是否具有访问某些信息的权限</li>
+<li>关注信息的访问方式</li>
+</ul>
+</li>
+<li>信息流安全（端到端）
+<ul>
+<li>跟踪信息如何流经程序，以确保程序安全地处理信息</li>
+<li>关注信息的传播方式</li>
+</ul>
+</li>
+</ul>
+<h3 id="information-flow">Information Flow</h3>
+<p>信息流：如果变量 x 中的信息被转移到变量 y，那么存在信息流 y → x</p>
+<img src = "example.png" alt = "示例" />
+<h3 id="information-flow-security-1">Information Flow Security</h3>
+<p>将信息流与安全联系起来</p>
+<ul>
+<li>将程序变量分类为不同的安全级别</li>
+<li>指定这些级别之间允许的流，即信息流策略</li>
+</ul>
+<h3 id="security-levels-classes">Security Levels (Classes)</h3>
+<ul>
+<li>
+<p>最基本的模型是两级策略，即一个变量被分为两个安全级别之一：</p>
+<ol>
+<li>H，意为高安全性、秘密信息</li>
+<li>L，表示低安全性，公共可观察信息</li>
+</ol>
+<ul>
+<li>h = getPassword(); // h is high security</li>
+<li>broadcast(l);           // l is low security</li>
+</ul>
+</li>
+<li>
+<p>安全级别可以建模为 lattice*</p>
+<ul>
+<li>L ≤ H</li>
+</ul>
+</li>
+</ul>
+<h3 id="information-flow-policy">Information Flow Policy</h3>
+<ul>
+<li>限制信息在不同安全级别之间的流动方式</li>
+<li>互不干扰政策*
+<ul>
+<li>要求 high 变量的信息对 low 变量的信息没有影响（即不应干扰）</li>
+<li>直观地说，您不应该能够通过观察低变量来得出任何关于高信息的信息结论</li>
+</ul>
+</li>
+</ul>
+<h3 id="noninterference">Noninterference</h3>
+<ul>
+<li>要求 high 变量的信息对 low 变量的信息没有影响（即不应干扰）</li>
+</ul>
+<img src = "noninterference.png" alt = "不干涉" />
+<p>确保信息仅在格中向上流动</p>
+<h2 id="confidentiality-and-integrity">Confidentiality and Integrity</h2>
+<ul>
+<li>Confidentiality（保密性）
+<ul>
+<li>防止机密信息泄露</li>
+</ul>
+</li>
+<li>Integrity（正确性）
+<ul>
+<li>防止不受信任的信息损坏（受信任的）关键信息</li>
+<li>x = readInput(); // untrusted
+cmd = &ldquo;&hellip;&rdquo; + x;
+execute(cmd); // critical (trusted)</li>
+</ul>
+</li>
+<li>Injection errors ( #1 cause of vulnerabilities in 2013-20192)
+<ul>
+<li>Command injection</li>
+<li>SQL injection</li>
+<li>XSS attacks</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<img src = "dual.png" alt = "不干涉" />
+<h3 id="integrity-broad-definition">Integrity, Broad Definition</h3>
+<ul>
+<li>确保数据的正确性、完整性和一致性</li>
+<li>正确性
+<ul>
+<li>例如，为了实现信息流的完整性，（受信任的）关键数据不应被不受信任的数据破坏</li>
+</ul>
+</li>
+<li>完整性
+<ul>
+<li>例如，数据库系统应该完整地存储所有数据</li>
+</ul>
+</li>
+<li>一致性
+<ul>
+<li>例如，文件传输系统应确保两端（发送方和接收方）的文件内容相同</li>
+</ul>
+</li>
+</ul>
+<h2 id="explicit-flows-and-covert-channels">Explicit Flows and Covert Channels</h2>
+<img src = "explicit.png" alt = "显式信息流" />
+<p>我们已经看到了信息是如何通过直接复制流动的。这称为显式流。</p>
+<img src = "secret.png" alt = "隐式信息流" />
+<p>这种信息流称为隐式流，当控制流受到秘密信息的影响时，可能会出现这种流。</p>
+<p>机密控制下，副作用的任何差异都会对有关控制的信息进行编码，这些信息可能是可公开观察的，并泄露机密信息。</p>
+<img src = "examples.png" alt = "更多隐式信息流" />
+<p>通过计算系统向信息发送信号的机制称为通道。</p>
+<p>利用主要目的不是信息传输的机制的通道称为隐蔽通道*。</p>
+<ul>
+<li>
+<p>Implicit flows（隐式流）</p>
+<p>信号信息通过程序的控制结构泄露</p>
+</li>
+<li>
+<p>Termination channels（终端通道）</p>
+<p>信号信息通过计算的（非）终止泄露</p>
+</li>
+<li>
+<p>Timing channels（计时通道）</p>
+<p>信号信息通过计算时间泄露</p>
+</li>
+<li>
+<p>Exceptions（异常）</p>
+<p>信号信息通过异常泄露</p>
+</li>
+</ul>
+<p>显式流通常比隐蔽通道携带更多的信息，因此我们专注于显式流</p>
+<img src = "compare.png" />
+<h2 id="taint-analysis">Taint Analysis</h2>
+<ul>
+<li>污点分析是最常见的信息流分析。它将程序数据分为两种：
+<ul>
+<li>受关注的数据，某些类型的标签与数据相关联，称为受污染数据</li>
+<li>其他数据，称为未受污染的数据</li>
+</ul>
+</li>
+<li>受污染数据的来源称为来源。在实践中，污染数据通常来自某些方法的返回值（被视为源）。</li>
+<li>污点分析跟踪受污染的数据如何流经程序，并观察它们是否可以流向受关注的位置（称为 sinks ）。在实践中，sinks 通常是一些敏感的方法。</li>
+</ul>
+<h3 id="taint-analysis-two-applications">Taint Analysis: Two Applications</h3>
+<ul>
+<li>
+<p>保密性</p>
+<ul>
+<li>
+<p>来源：密钥数据来源</p>
+</li>
+<li>
+<p>Sink：泄漏</p>
+</li>
+<li>
+<p>信息泄露</p>
+<p>x = getPassword(); // source
+y = x;
+log(y); // sink</p>
+</li>
+</ul>
+</li>
+<li>
+<p>正确性</p>
+<ul>
+<li>
+<p>来源：不可信数据的来源</p>
+</li>
+<li>
+<p>Sink：关键计算</p>
+</li>
+<li>
+<p>注入错误</p>
+<p>x = readInput(); // source
+cmd = &ldquo;&hellip;&rdquo; + x;
+execute(cmd); // sink</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>污点分析能够同时检测出这两种不受欢迎的信息流，因为他们是对称的。</p>
+<h3 id="taint-and-pointer-analysis-together">Taint and Pointer Analysis, Together*</h3>
+<p>污点分析/指针分析的本质是跟踪污点数据/抽象对象如何流经程序</p>
+<ul>
+<li>将受污染的数据视为对象</li>
+<li>将源视为（受污染数据的）分配站点</li>
+<li>利用指针分析传播受污染的数据</li>
+</ul>
+<h3 id="domains-and-notations域和符号">Domains and Notations（域和符号）</h3>
+<table border="0" cellpadding="10" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>Variables:</td>
+      <td>x, y ∈ V</td>
+    </tr>
+    <tr>
+      <td>Fields:</td>
+      <td>f, g ∈ F</td>
+    </tr>
+    <tr>
+      <td>Objects:</td>
+      <td>o<sub>i</sub>, o<sub>j</sub> ∈ O</td>
+    </tr>
+    <tr>
+      <td>Tainted data:</td>
+      <td>t<sub>i</sub>, t<sub>j</sub> ∈ T ⊂ O</td>
+    </tr>
+    <tr>
+      <td>Instance fields:</td>
+      <td>o<sub>i</sub>.f, o<sub>j</sub>.g ∈ O × F</td>
+    </tr>
+    <tr>
+      <td>Pointers:</td>
+      <td>Pointer = V ⋃ (O × F)</td>
+    </tr>
+    <tr>
+      <td>Points-to relations:</td>
+      <td>pt : Pointer → 𝒫𝒫(O)</td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+<li>P(O) denotes the powerset of O（P(O)表示 O 的幂集）</li>
+<li>pt(p) denotes the points-to set of （pt(p) 表示 p 的指向的集合）</li>
+<li>t<sub>i</sub> denotes the tainted data from call site i</li>
+</ul>
+<h3 id="taint-analysis-inputs--outputs">Taint Analysis: Inputs &amp; Outputs</h3>
+<ul>
+<li>
+<p>Inputs</p>
+<ul>
+<li>Sources：一组源方法（对这些方法的调用返回受污染的数据）</li>
+<li>Sinks：一组具有敏感参数的 sink 方法（污染流向这些方法的参数的数据流违反了安全策略）</li>
+</ul>
+</li>
+<li>
+<p>Outputs</p>
+<ul>
+<li>
+<p>TaintFlows：一组 source 和 sink 调用的元组</p>
+<p>E.g.,&lt;i,j,k&gt; ∈ TaintFlows 表示来自调用的受污染数据站点 i（调用 Source 方法）可能会流向调用站点 j（调用 Sink 方法）的第 k 个参数。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="rules-call">Rules: Call</h3>
+<p>处理 sources（生成受污染的数据）</p>
+<table border="0" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Kind</th>
+      <th>Statement</th>
+      <th>Rule</th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <td>Call</td>
+      <td>l: r = x.k(a1,...,an)</td>
+      <td><img src = "1.png" /></td>
+    </tr>
+    <tr>
+      <td>Call</td>
+      <td>l: r = x.k(a1,...,an)</td>
+      <td><img src = "2.png" /></td>
+    </tr>
+  </tbody>
+</table>
+<p>其余的和指针分析一样</p>
+<h3 id="taint-analysis-an-example">Taint Analysis: An Example</h3>
+<img src = "final.png" />
 
-	
-	<title>分类</title>
-	<header class = "post-header">
-        	<h1 class="post-title">文章分类与统计</h1>
-	</header>
+        </div>
 
-<div class = "post-content markdown-body">
-	<p>已发布文章总数：28<br> 
-		最近一次发布日期：0001-01-01
-	</p>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-	<table>
-		<thead>
-			<tr>
-				<th style="text-align:left">Category</th>
-				<th style="text-align:left">Last Updated Date</th>
-				<th style="text-align:left">Count</th>
-			</tr>
-		</thead>
-		<tbody>
-                        <tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href=""  style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-			<tr>
-				<td style="text-align:left"><a href="" style = "color: #0000FF" target="_blank"></a></td>
-				<td style="text-align:left"></td>
-				<td style="text-align:left"></td>
-			</tr>
-	</table>
-</div>
+          
 
 
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -178,6 +512,8 @@
     
   
 </script>
+
+  
 
 </body>
 
