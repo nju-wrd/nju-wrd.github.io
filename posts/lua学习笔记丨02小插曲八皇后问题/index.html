@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/categories/games101/" />
-  <link rel="canonical" href="http://localhost:1313/categories/games101/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802%E5%B0%8F%E6%8F%92%E6%9B%B2%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
+  <link rel="canonical" href="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802%E5%B0%8F%E6%8F%92%E6%9B%B2%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -24,10 +24,10 @@
            "@type": "WebPage",
            "@id": "http:\/\/localhost:1313\/"
       },
-      "articleSection" : "categories",
-      "name" : "GAMES101",
-      "headline" : "GAMES101",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Lua学习笔记丨02小插曲：八皇后问题",
+      "headline" : "Lua学习笔记丨02小插曲：八皇后问题",
+      "description" : "本章作为小插曲讲解如何用Lua语言编写的简单但完整的程序来解决八皇后问题（eight-quene puzzle，其目标是把8个皇后合理地摆放在棋盘上，让每个皇后之间都不能相互攻击）。\n可以用一个8个数字组成的简单数组来表示可能的解决方案。例如{3, 7, 2, 1, 8, 6, 5, 4}中3即(1, 3)表示其位置，7即(2, 7)，换言之，数字在数组中的位置同样表示其部分位置信息。\n示例：求解八皇后问题的程序\nN = 8\t-- 棋盘大小 -- 检查(n, c)是否不会被攻击 function isplaceok(a, n, c) for i = 1, n - 1 do\t-- 对于每一个已经被放置的皇后 if(a[i] == c) or\t-- 同一列？ (a[i] - 1 == c - n) or\t-- 同一对角线？ (a[i] \u002b 1 == c \u002b n) then\t-- 同一对角线？ return false\t-- 位置会被攻击 end end return true\t-- 不会被攻击；位置有效 end -- 打印棋盘 function printsolution (a) for i = 1, N do\t-- 对于每一行 for j = 1, N do\t-- 和每一列 -- 输出\u0026#34;X\u0026#34;或\u0026#34;-\u0026#34;，外加一个空格 io.write(a[i] == j and \u0026#34;X\u0026#34; or \u0026#34;-\u0026#34;, \u0026#34; \u0026#34;) end io.write(\u0026#34;\\n\u0026#34;) end io.write(\u0026#34;\\n\u0026#34;) end -- 把从\u0026#39;n\u0026#39;到\u0026#39;N\u0026#39;的所有皇后放在棋盘\u0026#39;a\u0026#39;上 function addqueen(a, n)\\ if n \u0026gt; N then\t-- 是否所有的皇后都被放置好了？ printsolution(a) else\t-- 尝试放置第n个皇后 for c = 1, N do if isplaceok(a, n, c) then a[n] = c\t-- 把第n个皇后放在列\u0026#39;c\u0026#39; addqueen(a, n \u002b 1) end end end end -- 运行程序 addqueen({}, 1) ",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,21 +35,27 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2025",
-      "datePublished": "2025-01-02 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2025-01-02 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/categories\/games101\/",
+      "datePublished": "2025-01-01 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-01 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802%E5%B0%8F%E6%8F%92%E6%9B%B2%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    GAMES101
+    Lua学习笔记丨02小插曲：八皇后问题
   
   </title>
-  <meta property="og:title" content="GAMES101" />
+  <meta property="og:title" content="Lua学习笔记丨02小插曲：八皇后问题" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="本章作为小插曲讲解如何用Lua语言编写的简单但完整的程序来解决八皇后问题（eight-quene puzzle，其目标是把8个皇后合理地摆放在棋盘上，让每个皇后之间都不能相互攻击）。
+可以用一个8个数字组成的简单数组来表示可能的解决方案。例如{3, 7, 2, 1, 8, 6, 5, 4}中3即(1, 3)表示其位置，7即(2, 7)，换言之，数字在数组中的位置同样表示其部分位置信息。
+示例：求解八皇后问题的程序
+N = 8	-- 棋盘大小 -- 检查(n, c)是否不会被攻击 function isplaceok(a, n, c) for i = 1, n - 1 do	-- 对于每一个已经被放置的皇后 if(a[i] == c) or	-- 同一列？ (a[i] - 1 == c - n) or	-- 同一对角线？ (a[i] &#43; 1 == c &#43; n) then	-- 同一对角线？ return false	-- 位置会被攻击 end end return true	-- 不会被攻击；位置有效 end -- 打印棋盘 function printsolution (a) for i = 1, N do	-- 对于每一行 for j = 1, N do	-- 和每一列 -- 输出&#34;X&#34;或&#34;-&#34;，外加一个空格 io.write(a[i] == j and &#34;X&#34; or &#34;-&#34;, &#34; &#34;) end io.write(&#34;\n&#34;) end io.write(&#34;\n&#34;) end -- 把从&#39;n&#39;到&#39;N&#39;的所有皇后放在棋盘&#39;a&#39;上 function addqueen(a, n)\ if n &gt; N then	-- 是否所有的皇后都被放置好了？ printsolution(a) else	-- 尝试放置第n个皇后 for c = 1, N do if isplaceok(a, n, c) then a[n] = c	-- 把第n个皇后放在列&#39;c&#39; addqueen(a, n &#43; 1) end end end end -- 运行程序 addqueen({}, 1) " />
+  <meta name="description" content="本章作为小插曲讲解如何用Lua语言编写的简单但完整的程序来解决八皇后问题（eight-quene puzzle，其目标是把8个皇后合理地摆放在棋盘上，让每个皇后之间都不能相互攻击）。
+可以用一个8个数字组成的简单数组来表示可能的解决方案。例如{3, 7, 2, 1, 8, 6, 5, 4}中3即(1, 3)表示其位置，7即(2, 7)，换言之，数字在数组中的位置同样表示其部分位置信息。
+示例：求解八皇后问题的程序
+N = 8	-- 棋盘大小 -- 检查(n, c)是否不会被攻击 function isplaceok(a, n, c) for i = 1, n - 1 do	-- 对于每一个已经被放置的皇后 if(a[i] == c) or	-- 同一列？ (a[i] - 1 == c - n) or	-- 同一对角线？ (a[i] &#43; 1 == c &#43; n) then	-- 同一对角线？ return false	-- 位置会被攻击 end end return true	-- 不会被攻击；位置有效 end -- 打印棋盘 function printsolution (a) for i = 1, N do	-- 对于每一行 for j = 1, N do	-- 和每一列 -- 输出&#34;X&#34;或&#34;-&#34;，外加一个空格 io.write(a[i] == j and &#34;X&#34; or &#34;-&#34;, &#34; &#34;) end io.write(&#34;\n&#34;) end io.write(&#34;\n&#34;) end -- 把从&#39;n&#39;到&#39;N&#39;的所有皇后放在棋盘&#39;a&#39;上 function addqueen(a, n)\ if n &gt; N then	-- 是否所有的皇后都被放置好了？ printsolution(a) else	-- 尝试放置第n个皇后 for c = 1, N do if isplaceok(a, n, c) then a[n] = c	-- 把第n个皇后放在列&#39;c&#39; addqueen(a, n &#43; 1) end end end end -- 运行程序 addqueen({}, 1) " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -80,10 +86,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post Chinese" id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header class="header-main">
 	<div class="header-content">
 		<div class="header-avatar">
@@ -107,53 +114,119 @@
 </div>
 <div class="header-line"></div>
 
-
-	
-
-	
-        <h1 class="taxonomy-term">GAMES101</h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2025</h1>
-    
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2025-01-02 00:00:00 UTC">Jan 02</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A807-shading-1illumination-shading/">图形学笔记丨07 Shading 1(illumination, Shading)</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          <section>
-            <h1 class="site-date-catalog">2024</h1>
-    
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2024-11-14 00:00:00 UTC">Nov 14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/">图形学笔记丨06 Rasterization 2（Antialiasing）</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Lua学习笔记丨02小插曲：八皇后问题</h1>
           
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-01 00:00:00 UTC">
+                01 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p>本章作为小插曲讲解如何用Lua语言编写的简单但完整的程序来解决八皇后问题（eight-quene puzzle，其目标是把8个皇后合理地摆放在棋盘上，让每个皇后之间都不能相互攻击）。</p>
+<p>可以用一个8个数字组成的简单数组来表示可能的解决方案。例如{3, 7, 2, 1, 8, 6, 5, 4}中3即(1, 3)表示其位置，7即(2, 7)，换言之，数字在数组中的位置同样表示其部分位置信息。</p>
+<p>示例：求解八皇后问题的程序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>N <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>	<span style="color:#75715e">-- 棋盘大小</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 检查(n, c)是否不会被攻击</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isplaceok</span>(a, n, c)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">do</span>		<span style="color:#75715e">-- 对于每一个已经被放置的皇后</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(a[i] <span style="color:#f92672">==</span> c) <span style="color:#f92672">or</span>				<span style="color:#75715e">-- 同一列？</span>
+</span></span><span style="display:flex;"><span>            (a[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> c <span style="color:#f92672">-</span> n) <span style="color:#f92672">or</span>		<span style="color:#75715e">-- 同一对角线？</span>
+</span></span><span style="display:flex;"><span>            (a[i] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> c <span style="color:#f92672">+</span> n) <span style="color:#66d9ef">then</span>	<span style="color:#75715e">-- 同一对角线？</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>		<span style="color:#75715e">-- 位置会被攻击</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>		<span style="color:#75715e">-- 不会被攻击；位置有效</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">--  打印棋盘</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printsolution</span> (a)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, N <span style="color:#66d9ef">do</span>		<span style="color:#75715e">-- 对于每一行</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, N <span style="color:#66d9ef">do</span>	<span style="color:#75715e">-- 和每一列</span>
+</span></span><span style="display:flex;"><span>           	<span style="color:#75715e">-- 输出&#34;X&#34;或&#34;-&#34;，外加一个空格</span>
+</span></span><span style="display:flex;"><span>        	io.write(a[i] <span style="color:#f92672">==</span> j <span style="color:#f92672">and</span> <span style="color:#e6db74">&#34;X&#34;</span> <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;-&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        io.write(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    io.write(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 把从&#39;n&#39;到&#39;N&#39;的所有皇后放在棋盘&#39;a&#39;上</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addqueen</span>(a, n)<span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&gt;</span> N <span style="color:#66d9ef">then</span>		<span style="color:#75715e">-- 是否所有的皇后都被放置好了？</span>
+</span></span><span style="display:flex;"><span>        printsolution(a)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>	<span style="color:#75715e">-- 尝试放置第n个皇后</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, N <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> isplaceok(a, n, c) <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>                a[n] <span style="color:#f92672">=</span> c	<span style="color:#75715e">-- 把第n个皇后放在列&#39;c&#39;</span>
+</span></span><span style="display:flex;"><span>                addqueen(a, n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 运行程序</span>
+</span></span><span style="display:flex;"><span>addqueen({}, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div>
         </div>
 
- 
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
 
         <div class="site-footer">
   
@@ -173,6 +246,8 @@
     
   
 </script>
+
+  
 
 </body>
 

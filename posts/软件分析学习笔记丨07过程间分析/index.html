@@ -272,7 +272,7 @@ invokevirtualReceiver objects×无实例√有实例√有实例Target meth
 <p>对于Node transfer，当遇到形如 <code>b = addOne(a)</code>这种形式的时候，和原来的不同，要将左边的变量的值留给edge transfer来处理，否则他可能导致不精确的问题，如下图所示：</p>
 <img src="example2.png" />
 <p>这里会将b识别为NAC，显然是不准确的。</p>
-<p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的c all-to-return edges 来获得数据流的传递。如图所示：</p>
+<p>另外，前文提到的 call-to-return edges 为什么会保留下来，就是为了在这里避免将某一个 local data-flow 传递到 method 中去，否则会非常低效。我们就可以通过 ICFG 上的 call-to-return edges 来获得数据流的传递。如图所示：</p>
 <img src="dataflow.png" />
 <p>总之，通过过程间的分析可以比原来的过程内分析得到的结果更加准确。</p>
 

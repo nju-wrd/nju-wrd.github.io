@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803%E6%95%B0%E5%80%BC/" />
+  <link rel="canonical" href="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803%E6%95%B0%E5%80%BC/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Lua学习笔记丨03数值",
+      "headline" : "Lua学习笔记丨03数值",
+      "description" : "3.1 数值常量 我们可以使用科学技术法（一个可选的十进制部分外加一个可选的十进制指数部分）书写数值常量，例如：\n4.77e-3\t--\u0026gt; 0.00477\r0.3e12\t--\u0026gt; 300000000000.0\r4e\u002b3\t--\u0026gt; 4000.0\r5E\u002b20\t--\u0026gt; 5e\u002b020 具有十进制小数或者指数的数值会被当做浮点类型值，否则会被当作整型值。\n由于整型值和浮点型值的类型都是\u0026quot;number\u0026quot;，所以它们是可以相互转化的。同时，具有相同算术值的整型值和浮点类型值在Lua语言中是相等的：\n1 == 1.0\t--\u0026gt; true\r-3 == -3.0\t--\u0026gt; true\r0.2e3 == 200\t--\u0026gt; true 在少数情况下，需要区分整型值和浮点型值时，可以使用math.type：\nmath.type(3)\t--\u0026gt; integer\rmath.type(3.0)\t--\u0026gt; float Lua语言也支持以0x开头的十六进制常量。与其它语言不同的是，Lua还支持十六进制的浮点数，这种十六进制浮点数以p或P开头的指数部分组成。\n0xff\t--\u0026gt; 255\r0x1A3\t--\u0026gt; 419\r0x0.2\t--\u0026gt; 0.125\r0x1p-1\t--\u0026gt; 0.5(p后面的数字表示2的幂次)\r0xa.bp2\t--\u0026gt; 42.75 可以使用%a参数，通过函数string.format最这种格式进行格式化输出：\nstring.format(\u0026#34;%a\u0026#34;,419)\t--\u0026gt; 0x1.a3p\u002b8\rstring.format(\u0026#34;%a\u0026#34;,0.1)\t--\u0026gt; 0x1.999999999999ap-4 虽然难以阅读，但是可以保留所有浮点数的精度，并且比十进制的转换速度更快。\n3.2 算术运算 除了加、减、乘、除、取负数（单目减法）等，还支持取整除法（floor除法），取模和指数运算。\n当操作数一个是整型值一个是浮点型值时，Lua语言会在进行算术运算前先将整型值转换为浮点型值：\n13.0 \u002b 25\t--\u0026gt; 38.0\r-(3 * 6.0)\t--\u0026gt; -18.0 由于两个整数相除的结果不一定时整除，因此触发不遵循整型值和整型值进行算术运算的结果依然是整型值，为了避免两个整型值相除和两个浮点型值相除导致不一样的结果，除法运算操作的永远是浮点数且产生浮点型值的结果：\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-03 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-03 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803%E6%95%B0%E5%80%BC\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    Lua学习笔记丨03数值
+  
+  </title>
+  <meta property="og:title" content="Lua学习笔记丨03数值" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="3.1 数值常量 我们可以使用科学技术法（一个可选的十进制部分外加一个可选的十进制指数部分）书写数值常量，例如：
+4.77e-3	--&gt; 0.004770.3e12	--&gt; 300000000000.04e&#43;3	--&gt; 4000.05E&#43;20	--&gt; 5e&#43;020 具有十进制小数或者指数的数值会被当做浮点类型值，否则会被当作整型值。
+由于整型值和浮点型值的类型都是&quot;number&quot;，所以它们是可以相互转化的。同时，具有相同算术值的整型值和浮点类型值在Lua语言中是相等的：
+1 == 1.0	--&gt; true-3 == -3.0	--&gt; true0.2e3 == 200	--&gt; true 在少数情况下，需要区分整型值和浮点型值时，可以使用math.type：
+math.type(3)	--&gt; integermath.type(3.0)	--&gt; float Lua语言也支持以0x开头的十六进制常量。与其它语言不同的是，Lua还支持十六进制的浮点数，这种十六进制浮点数以p或P开头的指数部分组成。
+0xff	--&gt; 2550x1A3	--&gt; 4190x0.2	--&gt; 0.1250x1p-1	--&gt; 0.5(p后面的数字表示2的幂次)0xa.bp2	--&gt; 42.75 可以使用%a参数，通过函数string.format最这种格式进行格式化输出：
+string.format(&#34;%a&#34;,419)	--&gt; 0x1.a3p&#43;8string.format(&#34;%a&#34;,0.1)	--&gt; 0x1.999999999999ap-4 虽然难以阅读，但是可以保留所有浮点数的精度，并且比十进制的转换速度更快。
+3.2 算术运算 除了加、减、乘、除、取负数（单目减法）等，还支持取整除法（floor除法），取模和指数运算。
+当操作数一个是整型值一个是浮点型值时，Lua语言会在进行算术运算前先将整型值转换为浮点型值：
+13.0 &#43; 25	--&gt; 38.0-(3 * 6.0)	--&gt; -18.0 由于两个整数相除的结果不一定时整除，因此触发不遵循整型值和整型值进行算术运算的结果依然是整型值，为了避免两个整型值相除和两个浮点型值相除导致不一样的结果，除法运算操作的永远是浮点数且产生浮点型值的结果：
+" />
+  <meta name="description" content="3.1 数值常量 我们可以使用科学技术法（一个可选的十进制部分外加一个可选的十进制指数部分）书写数值常量，例如：
+4.77e-3	--&gt; 0.004770.3e12	--&gt; 300000000000.04e&#43;3	--&gt; 4000.05E&#43;20	--&gt; 5e&#43;020 具有十进制小数或者指数的数值会被当做浮点类型值，否则会被当作整型值。
+由于整型值和浮点型值的类型都是&quot;number&quot;，所以它们是可以相互转化的。同时，具有相同算术值的整型值和浮点类型值在Lua语言中是相等的：
+1 == 1.0	--&gt; true-3 == -3.0	--&gt; true0.2e3 == 200	--&gt; true 在少数情况下，需要区分整型值和浮点型值时，可以使用math.type：
+math.type(3)	--&gt; integermath.type(3.0)	--&gt; float Lua语言也支持以0x开头的十六进制常量。与其它语言不同的是，Lua还支持十六进制的浮点数，这种十六进制浮点数以p或P开头的指数部分组成。
+0xff	--&gt; 2550x1A3	--&gt; 4190x0.2	--&gt; 0.1250x1p-1	--&gt; 0.5(p后面的数字表示2的幂次)0xa.bp2	--&gt; 42.75 可以使用%a参数，通过函数string.format最这种格式进行格式化输出：
+string.format(&#34;%a&#34;,419)	--&gt; 0x1.a3p&#43;8string.format(&#34;%a&#34;,0.1)	--&gt; 0x1.999999999999ap-4 虽然难以阅读，但是可以保留所有浮点数的精度，并且比十进制的转换速度更快。
+3.2 算术运算 除了加、减、乘、除、取负数（单目减法）等，还支持取整除法（floor除法），取模和指数运算。
+当操作数一个是整型值一个是浮点型值时，Lua语言会在进行算术运算前先将整型值转换为浮点型值：
+13.0 &#43; 25	--&gt; 38.0-(3 * 6.0)	--&gt; -18.0 由于两个整数相除的结果不一定时整除，因此触发不遵循整型值和整型值进行算术运算的结果依然是整型值，为了避免两个整型值相除和两个浮点型值相除导致不一样的结果，除法运算操作的永远是浮点数且产生浮点型值的结果：
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Lua学习笔记丨03数值</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-03 00:00:00 UTC">
+                03 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="31-数值常量">3.1 数值常量</h2>
+<p>我们可以使用科学技术法（一个可选的十进制部分外加一个可选的十进制指数部分）书写数值常量，例如：</p>
+<pre tabindex="0"><code>4.77e-3		--&gt; 0.00477
+0.3e12		--&gt; 300000000000.0
+4e+3		--&gt; 4000.0
+5E+20		--&gt; 5e+020
+</code></pre><p>具有十进制小数或者指数的数值会被当做浮点类型值，否则会被当作整型值。</p>
+<p>由于整型值和浮点型值的类型都是&quot;number&quot;，所以它们是可以相互转化的。同时，具有相同算术值的整型值和浮点类型值在Lua语言中是相等的：</p>
+<pre tabindex="0"><code>1 == 1.0		--&gt; true
+-3 == -3.0		--&gt; true
+0.2e3 == 200		--&gt; true
+</code></pre><p>在少数情况下，需要区分整型值和浮点型值时，可以使用math.type：</p>
+<pre tabindex="0"><code>math.type(3)		--&gt; integer
+math.type(3.0)		--&gt; float
+</code></pre><p>Lua语言也支持以0x开头的十六进制常量。与其它语言不同的是，Lua还支持十六进制的浮点数，这种十六进制浮点数以p或P开头的指数部分组成。</p>
+<pre tabindex="0"><code>0xff		--&gt; 255
+0x1A3		--&gt; 419
+0x0.2		--&gt; 0.125
+0x1p-1		--&gt; 0.5(p后面的数字表示2的幂次)
+0xa.bp2		--&gt; 42.75
+</code></pre><p>可以使用%a参数，通过函数string.format最这种格式进行格式化输出：</p>
+<pre tabindex="0"><code>string.format(&#34;%a&#34;,419)		--&gt; 0x1.a3p+8
+string.format(&#34;%a&#34;,0.1)		--&gt; 0x1.999999999999ap-4
+</code></pre><p>虽然难以阅读，但是可以保留所有浮点数的精度，并且比十进制的转换速度更快。</p>
+<h2 id="32-算术运算">3.2 算术运算</h2>
+<p>除了加、减、乘、除、取负数（单目减法）等，还支持取整除法（floor除法），取模和指数运算。</p>
+<p>当操作数一个是整型值一个是浮点型值时，Lua语言会在进行算术运算前先将整型值转换为浮点型值：</p>
+<pre tabindex="0"><code>13.0 + 25		--&gt; 38.0
+-(3 * 6.0)		--&gt; -18.0
+</code></pre><p>由于两个整数相除的结果不一定时整除，因此触发不遵循整型值和整型值进行算术运算的结果依然是整型值，为了避免两个整型值相除和两个浮点型值相除导致不一样的结果，除法运算操作的永远是浮点数且产生浮点型值的结果：</p>
+<pre tabindex="0"><code>3.0 / 2.0	--&gt; 1.5
+3 / 2		--&gt; 1.5
+4 / 2		--&gt; 2.0
+</code></pre><p>Lua5.3针对整数除法引入了一个称为floor的新算术运算符//。floor除法会对得到的商向负无穷取整，从而保证结果是一个整数。就可以与其他算术运算遵循同样的规则：如果操作数都是整型，结果就是整型值，否则就是浮点型值。</p>
+<pre tabindex="0"><code>3 // 2		--&gt; 1
+3.0 // 2	--&gt; 1.0
+4 // 2		--&gt; 2
+-9 // 2		--&gt; -5
+</code></pre><p>以下公式是取模运算的定义：</p>
+<p>a % b = a - ((a // b) * b)</p>
+<p>对于实数类型的操作数，取模运算有一些不同点。例如，x-x%0.01恰好是x保留两位小数的结果，x-x%0.001恰好是x保留三位小数的结果：</p>
+<pre tabindex="0"><code>x = math.pi
+x - x % 0.01	--&gt; 3.14
+x - x % 0.001	--&gt; 3.141
+</code></pre><p>表达式angle % (2 * math.pi)实现将任意弧度归一化到（0，2π）</p>
+<p>Lua语言同样支持幂运算，使用符号^表示。像除法一样，幂运算的操作数也永远是浮点型值。</p>
+<pre tabindex="0"><code>2^2	--&gt; 4.0
+4^0.5	--&gt; 2.0
+8^0.5   --&gt; 2.8284271247462
+</code></pre><h2 id="33-关系运算">3.3 关系运算</h2>
+<p>Lua语言提供了下列关系运算：</p>
+<p>&lt;      &gt;      &lt;=      &gt;=      ==      ~=</p>
+<p>这些关系运算的结果都是Boolean类型</p>
+<p>==用于相等性测试，~=用于不等性测试。这两个运算符可以用于任意两个值，当这两个值类型不同时，Lua语言认为它们不相等；否则，会根据他们的类型再对两者进行比较。</p>
+<p>比较数值时应永远忽略数值的子类型，只与算数值有关（尽管如此，比较具有相同子类型的数值时效率更高）。</p>
+<h2 id="34-数学库">3.4 数学库</h2>
+<p>Lua语言提供了标准数学库math。标准数学库由一组标准的数学函数组成，包括三角函数（sin、cos、tan、asin等）、指数函数、取整函数、最大和最小函数max和min、用于生成伪随机数的为随机函数（random）以及常量pi和huge（最大可表示值，在大多数平台上代表inf）。</p>
+<p>所有的三角函数都以弧度为单位，并通过函数deg和rad进行角度和弧度的转换。</p>
+<h3 id="341-随机数发生器">3.4.1 随机数发生器</h3>
+<p>函数math.random用于生成伪随机数，共有三种调用方式。当不带参数调用时，它返回一个在[0,1)范围内均匀分布的伪随机实数。当使用带有一个整型值n的参数调用时，它返回一个[1,n]范围内的伪随机<strong>整数</strong>。当使用带有两个整型值l和u的参数时，返回在[l,u]范围内的伪随机整数。</p>
+<p>函数randomseed用于设置伪随机数发生器的种子。该函数的唯一参数是数值类型的种子。一个程序启动时，系统固定使用1为种子。如果不设置其他种子，那么每次程序都会生成相同的伪随机数序列。方便调试，但是会导致游戏生成重复内容，为了解决这个问题，通常调用math.randomseed(os.time())来使用当前系统时间作为种子初始化（os.time会在后续介绍）。</p>
+<h3 id="342-取整函数">3.4.2 取整函数</h3>
+<p>提供了三个取整函数：floor、ceil和modf。其中，floor向负无穷取整，ceil向正无穷取整，modf向零取整。当取整结果能用整型表示时，返回结果为整型值，否则返回浮点型值（表示的是整型值）。除了返回取整后的值以外，函数modf还会返回小数部分作为第二个结果。</p>
+<pre tabindex="0"><code>math.floor(3.3)		--&gt; 3
+math.floor(-3.3)	--&gt; -4
+math.ceil(3.3)		--&gt; 4
+math.ceil(-3.3)		--&gt; -3
+math.modf(3.3)		--&gt; 3	0.3
+math.modf(-3.3)		--&gt; -3	-0.3
+math.floor(2^70)	--&gt; 1.1805916207174e+21
+</code></pre><p>如果想将数值x向最近的整数取整，可以对x+0.5调用floor函数。不过当x很大时，可能会导致错误。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">^</span><span style="color:#ae81ff">52</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>print(string.format(<span style="color:#e6db74">&#34;%d %d&#34;</span>, x, math.floor(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.5</span>)))
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">--&gt; 4503599627370497 4503599627370498</span>
+</span></span></code></pre></div><p>因为2^52 + 1.5的浮点值表示是不精确的，因此内部会以我们不可控的方式取整。为了避免这个问题，可以单独地处理数值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">round</span> (x)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> f <span style="color:#f92672">=</span> math.floor(x)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> x <span style="color:#f92672">==</span> f <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> math.floor(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>上述代码其实是达到了一个四舍五入后返回一个整数的效果，但是如果我们想对半个整数进行无偏取整（unbiased rounding），即向距离最近的偶数取整半个整数，在x + 0.5是奇数的情况下不成立：</p>
+<pre tabindex="0"><code>math.floor(3.5 + 0.5)		--&gt; 4
+math.floor(2.5 + 0.5)		--&gt; 3(期待2)
+</code></pre><p>可以修改为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">round</span> (x)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> f <span style="color:#f92672">=</span> math.floor(x)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (x <span style="color:#f92672">==</span> f) <span style="color:#f92672">or</span> (x <span style="color:#f92672">%</span> <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#66d9ef">then</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> math.floor(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="35-表示范围">3.5 表示范围</h2>
+<p>标准Lua使用64个比特位来存储整型值，其最大值为2<sup>63</sup> - 1，约等于10<sup>19</sup>；精简Lua使用32个比特位来存储整型值，其最大值约为20亿。数学库中的常量定义了整型值的最大值（math.maxinteger）和最小值（math.mininteger）。</p>
+<p>以下行为对所有涉及整型值的算术运算都是一致且可预测的：</p>
+<pre tabindex="0"><code>math.maxinteger + 1 == math.mininteger		--&gt; true
+math.mininteger - 1 == math.maxinteger		--&gt; true
+-math.mininteger == math.mininteger		--&gt; true
+math.mininteger // -1 == math.mininteger	--&gt; true
+</code></pre><p>对于浮点数，标准Lua使用双精度64个比特位表示，其中11位为指数；精简Lua使用32个比特位来表示单精度浮点数，有8位为指数。双精度对于大多数实际应用是足够大的，但是存在精度限制。</p>
+<p>由于整型值和浮点型值的表示范围不同，当超过他们的表示范围时会产生不同的结果：</p>
+<pre tabindex="0"><code>math.maxinteger + 2		--&gt; -9223372036854775807
+math.maxinteger + 2.0		--&gt; 9.2233720368548e+18
+</code></pre><p>第一行由于整型值发生溢出导致计算结果错误，第二行由于浮点数精度有限导致取近似值，可以通过如下比较运算证明：</p>
+<pre tabindex="0"><code>math.maxinteger + 2.0 == math.maxinteger + 1.0	--&gt; true
+</code></pre><p>只有浮点型才能表示小数。浮点型值可以表示很大的范围，但是浮点型值能够表示的整数范围被精确地限制在[-2<sup>53</sup>,2<sup>53</sup>]之间。由于包含52位尾数+隐含的1位前导位，共53位二进制有效位。因此，小于或等于2<sup>53</sup>的整数可以被精确表示，但大于2<sup>53</sup>的整数无法精确表示。在这个范围内可以忽略整型和浮点型的区别，超过则应该谨慎地思考。</p>
+<h2 id="36-惯例">3.6 惯例</h2>
+<p>我们可以简单地通过加0.0的方式将整形强制转换为浮点型值，一个整型值总是可以被转换成浮点型值。但是对于不在[-2<sup>53</sup>,2<sup>53</sup>]区间内的整型值在转换成浮点型值时可能导致精度损失。</p>
+<p>通过与零进行按位或运算，可以把浮点型值强制转化为整型值：</p>
+<pre tabindex="0"><code>2^53			--&gt; 9.007199254741e+015
+2^53 | 0		--&gt; 9007199254740992
+</code></pre><p>在将浮点型值强制转化为整型值时，Lua语言会检查数值是否与整型值表示完全一致，即没有小数部分以及其值在整型值的表示范围内，若不满足条件会抛出异常：</p>
+<pre tabindex="0"><code>3.2 | 0		--&gt; stdin:1: number has no integer representation
+2^64 | 0	--&gt; stdin:1: number has no integer representation
+math.random(1, 3.5)
+--&gt;stdin:1: bad argument #2 to &#39;random&#39; (number has no integer representation)
+</code></pre><p>另一种把数值强制转换为整型值的方式是使用函数math.tointeger，该函数会在输入参数无法转换为整型值时返回nil：</p>
+<pre tabindex="0"><code>math.tointeger(-258.0)		--&gt; -258
+math.tointeger(2^30)		--&gt; 1073741824
+math.tointeger(5.01)		--&gt; nil
+math.tointeger(2^64)		--&gt; nil
+</code></pre><p>这个函数在需要检查一个数字能否被转换成整型值时有位有用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cond2int</span> (x)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> math.tointeger(x) <span style="color:#f92672">or</span> x
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="37-运算符优先级">3.7 运算符优先级</h2>
+<p>Lua语言中的运算符优先级（优先级从高到低）：</p>
+<p>^</p>
+<p>一元运算符（-      #      ~      not）</p>
+<p>*      /      //      %</p>
+<p>+      -</p>
+<p>..                    （连接）</p>
+<p>&laquo;      &raquo;             （按位移位）</p>
+<p>&amp;                    （按位与）</p>
+<p>~                    （按位异或）</p>
+<p>|                     （按位或）</p>
+<p>&lt;      &gt;      &lt;=      &gt;=      ~=      ==</p>
+<p>and</p>
+<p>or</p>
+<p>在二元运算符中，除了幂运算和连接操作符是右结合的外，其他运算符都是左结合的。因此，一下各个表达式左右等价：</p>
+<pre tabindex="0"><code>a + i &lt; b / 2 + 1		--		(a + i) &lt; ((b / 2) + 1)
+5 + x^2 * 8			--		5 + ((x^2) * 8)
+a &lt; y and y &lt;= z		--		(a &lt; y) and (y &lt;= z)
+-x^2				--		-(x^2)
+x^y^z				--		x^(y^z)
+</code></pre><p>当不能确定优先级时，应该显示地用括号来指定所希望的运算次序。</p>
+<h2 id="38-兼容性">3.8 兼容性</h2>
+<p>Lua5.3引入的整型值导致了一定的不兼容。Lua5.3和Lua5.2之间的最大不同就是整数的表示范围。Lua5.2支持的最大整数为2<sup>53</sup>，而Lua5.3支持的最大整数为2<sup>63</sup>-1。</p>
+<p>与整型引入相关的问题的根源在于，Lua语言将数值转换为字符串的方式。Lua5.2将所有整数值格式化为整型（不带小数点），而Lua5.3则将所有的浮点数格式化为浮点型。因此Lua5.2会将3.0格式化为&quot;3&quot;输出，而Lua5.3会将其格式化为&quot;3.0&quot;输出。</p>
+<p>（此处说明，Lua5.2是没有专门表示整型的，它只有一种数字类型，即双精度浮点数类型。所以上述提到的相关的5.2的整数都是实际感知意义上的，而不是表示形式上的）</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
