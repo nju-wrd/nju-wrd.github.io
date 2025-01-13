@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.136.5">
 
@@ -11,10 +11,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/" />
-  <link rel="canonical" href="http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
-  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="子春廿一">
 
   <script type="application/ld+json">
   {
@@ -22,7 +22,7 @@
       "@type" : "BlogPosting",
       "mainEntityOfPage": {
            "@type": "WebPage",
-           "@id": "http:\/\/localhost:1313\/"
+           "@id": "https:\/\/nju-wrd.github.io\/"
       },
       "articleSection" : "posts",
       "name" : "UE5C\u002b\u002b开发学习笔记丨01",
@@ -37,7 +37,7 @@
       "copyrightYear" : "2025",
       "datePublished": "2025-01-02 00:00:00 \u002b0000 UTC",
       "dateModified" : "2025-01-02 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/ue5c\u002b\u002b%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801\/",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/ue5c\u002b\u002b%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801\/",
       "keywords" : [  ]
   }
 </script>
@@ -82,6 +82,7 @@
     title="子春廿一">
   
   
+
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <script>
   function addDarkmodeWidget() {
@@ -175,7 +176,7 @@
 <h2 id="头文件的含义">头文件的含义</h2>
 <p>由于5.3以后blank模板就不会默认生成GameModeBase相关文件，所以首先打开UE5Editor生成相关类以及文件。右击解决方案中的UE5设置为启动项，点击本地Windows调试器会自动打开UE5Editor，接着点击上方的工具—&gt;新建C++类—&gt;游戏模式基础—&gt;下一步—&gt;创建类。此时会触发热更新，需要点击全部重新加载来实时更新改动。</p>
 <img src = "gamemodebase.png" alt = "头文件信息" />
-<p>其中，<code>#pragma once</code>用来保证每个头文件只会被编译一次，这是一个预处理指令；&ldquo;CoreMinimal.h&quot;包含了一套来自UE4的核心编程环境的普遍存在类型；&ldquo;GameFramework/GameModeBase.h&quot;是因为该文件本身是基于GameModeBase生成的文件，所以默认要包含该头文件；&ldquo;MyGameModeBase.generated.h&quot;存储了一些虚幻反射的数据，也就是来自UHT生成的反射数据存储在其中，每一个类都会包含这个文件，且该文件的include要放在末位。</p>
+<p>其中，#pragma once用来保证每个头文件只会被编译一次，这是一个预处理指令；&ldquo;CoreMinimal.h&quot;包含了一套来自UE4的核心编程环境的普遍存在类型；&ldquo;GameFramework/GameModeBase.h&quot;是因为该文件本身是基于GameModeBase生成的文件，所以默认要包含该头文件；&ldquo;MyGameModeBase.generated.h&quot;存储了一些虚幻反射的数据，也就是来自UHT生成的反射数据存储在其中，每一个类都会包含这个文件，且该文件的include要放在末位。</p>
 <p><a id="03"></a></p>
 <h2 id="uec各个宏的作用">UEC++各个宏的作用</h2>
 <pre tabindex="0"><code>GENERATED_BODY()	//表示我们不直接使用父类的构造函数，并且默认成员变量和成员函数是private
@@ -185,7 +186,8 @@ UPROPERTY()		//属性声明宏，此宏声明该属性在反射系统（虚幻C+
 UFUNCTION()		//函数声明宏，反射系统可识别的C++函数
 USTRUCT()		//结构体声明宏，反射系统可识别的C++结构体
 UENUM()			//枚举声明宏，反射系统可识别的C++枚举
-</code></pre>
+</code></pre><p>TEXT()是一个宏，用于将字符串字面量转换为TCHAR类型的字符串，TCHAR类型会根据项目的字符集设置自动适配为合适的字符类型。使用TEXT()宏可以确保你的字符串在不同字符集设置下都能正确处理。</p>
+
         </div>
 
         <div class="row middle-xs">

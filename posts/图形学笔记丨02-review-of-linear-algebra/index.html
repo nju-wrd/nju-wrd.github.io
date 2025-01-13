@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A802-review-of-linear-algebra/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A802-review-of-linear-algebra/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/nju-wrd.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "图形学笔记丨02 Review of Linear Algebra",
+      "headline" : "图形学笔记丨02 Review of Linear Algebra",
+      "description" : "Graphics’ Dependencies Basic mathematics Linear algebra, calculus, statistics（线性代数、微积分、统计） Basic physics Optics, Mechanics（光学、力学） Misc Signal processing（信号处理） Numerical analysis（数值分析） And a bit of aesthetics（美学） Vectors 一个向量通常写做一个字母加一个在其上方从左指向右的箭头，或者是用加粗的字母表示a。也可以用起点和终点加上箭头来表示，AB = B - A，即从点A指向点B，用B点坐标减去A点坐标。向量是由长度和方向组成的，它没有一个绝对的开始位置，如果对向量进行平移实际上他仍然是相等的向量。\n一个向量的长度用||a||表示，利用向量的长度我们可以获得单位向量：u = a \/ ||a||，我们可以用单位向量来表示方向，不关心它的长度。\nVector Addition（向量加法） 分为平行四边形法则和三角形法则，不过殊途同归，计算的结果是一样的。平行四边形法则，对于向量a和向量b我们都可以任意的移动，然后将a和b都进行一定的平移，使得他们围成一个平行四边形，红线就是计算的结果。三角形法则，我们要将向量相加，就将他们首尾相连拼接起来，最后形成的最开始和最后就是计算的结果，这个也同样适用于多个向量相加。\n以上是在几何上理解向量相加，在数学上向量相加，就是将他们的坐标给加起来。\ncartesian coordinates（笛卡尔坐标） 在坐标系下描述一个向量，我们永远认为这个向量从(0, 0)开始，X是向右的单位向量，Y是向上的单位向量，一个向量是多少，就由几个X加上几个Y来表示，通常它们是互相垂直的单位向量。如上图所示，这样的话，我们就可以直接用A⊤ = (4, 3)来表示这个向量。这里有一点，在图形学，默认向量是一个列向量。在此基础上，计算向量的长度也会很简单，公式如图右下角所示。\nDot（scalar） Product（点积） 点乘的计算如图所示，这里的θ是两个向量之间的夹角。两个向量点乘的结果是一个数字（标量），其实向量的点乘可以方便计算这个θ角。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-06 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-06 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A802-review-of-linear-algebra\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    图形学笔记丨02 Review of Linear Algebra
+  
+  </title>
+  <meta property="og:title" content="图形学笔记丨02 Review of Linear Algebra" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Graphics’ Dependencies Basic mathematics Linear algebra, calculus, statistics（线性代数、微积分、统计） Basic physics Optics, Mechanics（光学、力学） Misc Signal processing（信号处理） Numerical analysis（数值分析） And a bit of aesthetics（美学） Vectors 一个向量通常写做一个字母加一个在其上方从左指向右的箭头，或者是用加粗的字母表示a。也可以用起点和终点加上箭头来表示，AB = B - A，即从点A指向点B，用B点坐标减去A点坐标。向量是由长度和方向组成的，它没有一个绝对的开始位置，如果对向量进行平移实际上他仍然是相等的向量。
+一个向量的长度用||a||表示，利用向量的长度我们可以获得单位向量：u = a / ||a||，我们可以用单位向量来表示方向，不关心它的长度。
+Vector Addition（向量加法） 分为平行四边形法则和三角形法则，不过殊途同归，计算的结果是一样的。平行四边形法则，对于向量a和向量b我们都可以任意的移动，然后将a和b都进行一定的平移，使得他们围成一个平行四边形，红线就是计算的结果。三角形法则，我们要将向量相加，就将他们首尾相连拼接起来，最后形成的最开始和最后就是计算的结果，这个也同样适用于多个向量相加。
+以上是在几何上理解向量相加，在数学上向量相加，就是将他们的坐标给加起来。
+cartesian coordinates（笛卡尔坐标） 在坐标系下描述一个向量，我们永远认为这个向量从(0, 0)开始，X是向右的单位向量，Y是向上的单位向量，一个向量是多少，就由几个X加上几个Y来表示，通常它们是互相垂直的单位向量。如上图所示，这样的话，我们就可以直接用A⊤ = (4, 3)来表示这个向量。这里有一点，在图形学，默认向量是一个列向量。在此基础上，计算向量的长度也会很简单，公式如图右下角所示。
+Dot（scalar） Product（点积） 点乘的计算如图所示，这里的θ是两个向量之间的夹角。两个向量点乘的结果是一个数字（标量），其实向量的点乘可以方便计算这个θ角。
+" />
+  <meta name="description" content="Graphics’ Dependencies Basic mathematics Linear algebra, calculus, statistics（线性代数、微积分、统计） Basic physics Optics, Mechanics（光学、力学） Misc Signal processing（信号处理） Numerical analysis（数值分析） And a bit of aesthetics（美学） Vectors 一个向量通常写做一个字母加一个在其上方从左指向右的箭头，或者是用加粗的字母表示a。也可以用起点和终点加上箭头来表示，AB = B - A，即从点A指向点B，用B点坐标减去A点坐标。向量是由长度和方向组成的，它没有一个绝对的开始位置，如果对向量进行平移实际上他仍然是相等的向量。
+一个向量的长度用||a||表示，利用向量的长度我们可以获得单位向量：u = a / ||a||，我们可以用单位向量来表示方向，不关心它的长度。
+Vector Addition（向量加法） 分为平行四边形法则和三角形法则，不过殊途同归，计算的结果是一样的。平行四边形法则，对于向量a和向量b我们都可以任意的移动，然后将a和b都进行一定的平移，使得他们围成一个平行四边形，红线就是计算的结果。三角形法则，我们要将向量相加，就将他们首尾相连拼接起来，最后形成的最开始和最后就是计算的结果，这个也同样适用于多个向量相加。
+以上是在几何上理解向量相加，在数学上向量相加，就是将他们的坐标给加起来。
+cartesian coordinates（笛卡尔坐标） 在坐标系下描述一个向量，我们永远认为这个向量从(0, 0)开始，X是向右的单位向量，Y是向上的单位向量，一个向量是多少，就由几个X加上几个Y来表示，通常它们是互相垂直的单位向量。如上图所示，这样的话，我们就可以直接用A⊤ = (4, 3)来表示这个向量。这里有一点，在图形学，默认向量是一个列向量。在此基础上，计算向量的长度也会很简单，公式如图右下角所示。
+Dot（scalar） Product（点积） 点乘的计算如图所示，这里的θ是两个向量之间的夹角。两个向量点乘的结果是一个数字（标量），其实向量的点乘可以方便计算这个θ角。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">图形学笔记丨02 Review of Linear Algebra</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-06 00:00:00 UTC">
+                06 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="graphics-dependencies">Graphics’ Dependencies</h2>
+<ul>
+<li>Basic mathematics
+<ul>
+<li>Linear algebra, calculus, statistics（线性代数、微积分、统计）</li>
+</ul>
+</li>
+<li>Basic physics
+<ul>
+<li>Optics, Mechanics（光学、力学）</li>
+</ul>
+</li>
+<li>Misc
+<ul>
+<li>Signal processing（信号处理）</li>
+<li>Numerical analysis（数值分析）</li>
+</ul>
+</li>
+<li>And a bit of aesthetics（美学）</li>
+</ul>
+<h2 id="vectors">Vectors</h2>
+<p>一个向量通常写做一个字母加一个在其上方从左指向右的箭头，或者是用加粗的字母表示<strong>a</strong>。也可以用起点和终点加上箭头来表示，AB = B - A，即从点A指向点B，用B点坐标减去A点坐标。向量是由长度和方向组成的，它没有一个绝对的开始位置，如果对向量进行平移实际上他仍然是相等的向量。</p>
+<image src = "vector.png" alt = "向量" />
+<p>一个向量的长度用||<strong>a</strong>||表示，利用向量的长度我们可以获得单位向量：<strong>u</strong> = <strong>a</strong> / ||<strong>a</strong>||，我们可以用单位向量来表示方向，不关心它的长度。</p>
+<h3 id="vector-addition向量加法">Vector Addition（向量加法）</h3>
+<p>分为平行四边形法则和三角形法则，不过殊途同归，计算的结果是一样的。平行四边形法则，对于向量a和向量b我们都可以任意的移动，然后将<strong>a</strong>和<strong>b</strong>都进行一定的平移，使得他们围成一个平行四边形，红线就是计算的结果。三角形法则，我们要将向量相加，就将他们首尾相连拼接起来，最后形成的最开始和最后就是计算的结果，这个也同样适用于多个向量相加。</p>
+<p>以上是在几何上理解向量相加，在数学上向量相加，就是将他们的坐标给加起来。</p>
+<image src = "addition.png" alt = "向量的加法" />
+<h3 id="cartesian-coordinates笛卡尔坐标">cartesian coordinates（笛卡尔坐标）</h3>
+<image src = "cartesian coordinates.png" alt = "笛卡尔坐标系下的向量" />
+<p>在坐标系下描述一个向量，我们永远认为这个向量从(0, 0)开始，<strong>X</strong>是向右的单位向量，<strong>Y</strong>是向上的单位向量，一个向量是多少，就由几个<strong>X</strong>加上几个<strong>Y</strong>来表示，通常它们是互相垂直的单位向量。如上图所示，这样的话，我们就可以直接用A<sup>⊤</sup> = (4, 3)来表示这个向量。这里有一点，在图形学，默认向量是一个列向量。在此基础上，计算向量的长度也会很简单，公式如图右下角所示。</p>
+<h3 id="dotscalar-product点积">Dot（scalar） Product（点积）</h3>
+<image src = "dot.png" alt = "点乘" />
+<p>点乘的计算如图所示，这里的θ是两个向量之间的夹角。两个向量点乘的结果是一个数字（标量），其实向量的点乘可以方便计算这个θ角。</p>
+<p>首先我们来看点乘满足的规律：</p>
+<image src = "rule.png" alt = "点乘满足的规律" />
+<p>也就是说，点乘满足交换律、分配率、结合律。</p>
+<p>点乘的计算在坐标系中是很好计算的：</p>
+<image src = "calc.png" alt = "点乘在坐标系下的计算" />
+<p>也就是对应的坐标相乘然后加起来。所以，上文提到的计算夹角就十分简单了。</p>
+<p>这里，点乘除了方便计算夹角，还可以找到一个向量投影到另一个向量上的向量。</p>
+<image src = "projection.png" alt = "点乘帮助计算投影向量" />
+<p>将<strong>b</strong>投影到<strong>a</strong>上，就是说假设有一束平行光，垂直于a向量照射过来，那么b向量会投射一个阴影在a向量上，这一段就把他叫做<strong>b</strong>在<strong>a</strong>上的投影。</p>
+<p>我们知道了<strong>b</strong><sub>⊥</sub>怎么算，另外一个方向也可以知道。这里的减法其实就是加上原来反方向的向量。</p>
+<image src = "calc2.png" alt = "计算另一个向量" />
+<p>在图形学中，我们还可以利用点乘计算两个向量的方向有多接近，以及计算两个向量方向的关系。</p>
+<p><image src = "ward.png" alt = "计算向量方向的关系"	 /></p>
+<p>如果点乘计算的结果＞0，表示方向基本一致，=0表示方向垂直，&lt;0表示方向基本相反。同时，这两个向量越接近，点乘的结果越接近1，越远离，结果越接近-1。</p>
+<h3 id="cross-product叉积">Cross Product（叉积）</h3>
+<image src = "cross.png" alt = "叉乘" />
+<p>叉乘的计算如图所示，这里的Φ是两个向量之间的夹角。两个向量点乘的结果是一个向量，这个结果向量和原来计算的两个向量都要垂直，所以它一定和原来的向量不在一个平面内。这里图中只写了叉乘的大小的计算，方向的计算是如何决定的？这里要用到一个叫做右手定则的东西，有两种形式。第一种是伸出右手的拇指食指中指，会摆成一个垂直的样子；这里介绍另一种，右手螺旋定则。四指的方向表示旋转的方向，也就是从<strong>a</strong>旋转到<strong>b</strong>的方向，拇指的方向也就是叉乘得到的结果的方向。</p>
+<p>我们在坐标系中看一下叉乘的结果以及满足的规律：</p>
+<image src = "calc3.png" alt = "叉乘在坐标系下的计算以及规律" />
+<p>并且我们说对于满足上图左侧结果中的，是一个右手坐标系，在本门课程中都假设是一个右手坐标系，但是在OpenGL或者说其他API中可能是一个左手坐标系，也就是。</p>
+<p>对于上图右侧的规律，叉乘是没有交换律的，交换之后叉乘的结果不同。另外，两个向量叉乘得结果是零向量，因为它们之间的夹角为0，所以对应的正弦值算出来的长度为0，不过他依旧是一个向量。</p>
+<image src = "calc4.png" alt = "叉乘在坐标系下的计算" />
+<p>向量的叉乘可以表示成矩阵形式。</p>
+<p>在向量中，利用叉乘我们可以判断左和右以及内与外。</p>
+<image src = "function.png" alt = "计算向量方向的关系" />
+<p>例如上图中的左图，我们想知道b向量在a向量的左侧还是右侧，我们利用<strong>a</strong>叉乘<strong>b</strong>，如果结果的z是正的，那就说明<strong>b</strong>在<strong>a</strong>的左侧（逆时针旋转小于180°可以与另一个向量的方向一致），否则在右侧。</p>
+<p>上图中的右图，有一个P点，我们想知道它是不是在三角形的内部。我们可以做叉积，首先是AB和AP的叉积，计算出来AP在AB的左侧，BC叉乘BP得到BP依旧在BC的左侧，最后看CA叉乘CP，得到还是在CA的左侧，所以我们知道P点在三角形的内部。这里三角形三条边的绕向不重要，只要遵循同一个绕的方向，得到结果都是在同一侧即可说明在三角形内部。这一点十分重要，我们后面在给三角形光栅化的时候，就要判断某个像素点是否在三角形内部。如果计算得到的结果是0，在图形学里面，是算作三角形内部还是外部（corner case）是由自己决定。</p>
+<h3 id="orthonormal-coordinate-frames标准正交坐标系">Orthonormal Coordinate Frames（标准正交坐标系）</h3>
+<image src = "frames.png" alt = "标准正交坐标系" />
+<h2 id="matrices矩阵">Matrices（矩阵）</h2>
+<p>矩阵就是一堆数，把它变成一个几行几列的结构。</p>
+<p>矩阵可以乘一个数，乘一个数很简单，就把矩阵里面每个数都乘这个数就可以。</p>
+<p>矩阵最困难最有用的操作是矩阵的乘积，首先，对于给定的两个矩阵，它们得能乘。可以乘的矩阵也就是前一个矩阵的列数等于后一个矩阵的行数。(M × N)(N × P) = (M × P)</p>
+<image src = "matrix.png" alt = "矩阵相乘" />
+<p>矩阵乘法也有一定的规律性质：</p>
+<ul>
+<li>(AB)C = A(BC)</li>
+<li>A(B+C) = AB + AC</li>
+<li>(A + B)C = AC + BC</li>
+</ul>
+<p>矩阵的转置也就是将矩阵的行和列互换：</p>
+<image src = "transpose.png" alt = "矩阵转置" />
+<p>(AB)<sup>⊤</sup> = B<sup>⊤</sup>A<sup>⊤</sup></p>
+<image src = "inverse.png" alt = "矩阵逆运算以及单位矩阵" />
+<p>单位矩阵也就是只有对角线上有非零的元素，且都为1，这里的单位矩阵的大小是3×3。如果我们能找到两个矩阵它们相乘的结果是单位矩阵，那么它们互为逆矩阵，简称互逆。逆矩阵的计算和转置的计算的性质很类似。</p>
+<p>向量的点乘和叉乘也可以写成矩阵的形式：</p>
+<image src = "form.png" alt = "矩阵的形式" />
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

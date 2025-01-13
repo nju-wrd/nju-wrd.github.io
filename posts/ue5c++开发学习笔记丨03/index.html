@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803/" />
+  <link rel="canonical" href="https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="https://nju-wrd.github.io/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/nju-wrd.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "UE5C\u002b\u002b开发学习笔记丨03",
+      "headline" : "UE5C\u002b\u002b开发学习笔记丨03",
+      "description" : "目录 - Table of contents\tUEC\u002b\u002b的基础变量类型\rFString、FName、FText的区别\rUEC\u002b\u002b的容器TArray\rUEC\u002b\u002b的容器TMap\rUEC\u002b\u002b的容器TSet\rUEC\u002b\u002b基础数据类型输出打印\rUEC\u002b\u002b的基础变量类型 \/\/ 布尔类型变量声明\rbool varBool;\r\/\/ 整型32位的变量声明\rint32 varInt32;\r\/\/ 整型64位的变量声明\rint64 varInt64;\r\/\/ 字节类型的变量声明\rBYTE varByte;\r\/\/ String类型的变量声明字符串的类型\rFString varString;\r\/\/ Name名称类型的变量声明\rFName varName;\r\/\/ FText文本类型的变量声明\rFText varText;\r\/\/ FVector;向量类型的变量声明\rFVector varVector;\/\/ 这个就是x轴，Y轴，Z轴的坐标\r\/\/ FRotator旋转类型的变量声明\rFRotator varRotator;\/\/ 这个就是x轴的旋转Ro1L,Y轴的旋转Pitch,Z轴的旋转Yam\r\/\/ FTransform类型的变量声明\rFTransform varTransform;\/\/ 这个就是既有FVector也有FRotator,还有缩放Scale三者的集合类型(一个齐次矩阵) FString、FName、FText的区别 FString用于表示动态字符串。FString是一个标准的可变字符串类型，用于在运行时处理文本。它可以包含任意字符，并且可以修改和动态改变内容。\n内存动态分配，适合在程序中频繁修改或拼接字符串。 支持Unicode字符，可以包含所有字符集。 适用于一般的文本处理，比如文件路径、用户输入等。 FName用于表示轻量级、不可变的字符串，通常用于标识符（如资源名称、对象标签、蓝图类名等）。FName是一种轻量的、高效的字符串表示方式，用于需要进行频繁比较的场景。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-07 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-07 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/nju-wrd.github.io\/posts\/ue5c\u002b\u002b%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    UE5C&#43;&#43;开发学习笔记丨03
+  
+  </title>
+  <meta property="og:title" content="UE5C&#43;&#43;开发学习笔记丨03" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="目录 - Table of contents	UEC&#43;&#43;的基础变量类型FString、FName、FText的区别UEC&#43;&#43;的容器TArrayUEC&#43;&#43;的容器TMapUEC&#43;&#43;的容器TSetUEC&#43;&#43;基础数据类型输出打印UEC&#43;&#43;的基础变量类型 // 布尔类型变量声明bool varBool;// 整型32位的变量声明int32 varInt32;// 整型64位的变量声明int64 varInt64;// 字节类型的变量声明BYTE varByte;// String类型的变量声明字符串的类型FString varString;// Name名称类型的变量声明FName varName;// FText文本类型的变量声明FText varText;// FVector;向量类型的变量声明FVector varVector;// 这个就是x轴，Y轴，Z轴的坐标// FRotator旋转类型的变量声明FRotator varRotator;// 这个就是x轴的旋转Ro1L,Y轴的旋转Pitch,Z轴的旋转Yam// FTransform类型的变量声明FTransform varTransform;// 这个就是既有FVector也有FRotator,还有缩放Scale三者的集合类型(一个齐次矩阵) FString、FName、FText的区别 FString用于表示动态字符串。FString是一个标准的可变字符串类型，用于在运行时处理文本。它可以包含任意字符，并且可以修改和动态改变内容。
+内存动态分配，适合在程序中频繁修改或拼接字符串。 支持Unicode字符，可以包含所有字符集。 适用于一般的文本处理，比如文件路径、用户输入等。 FName用于表示轻量级、不可变的字符串，通常用于标识符（如资源名称、对象标签、蓝图类名等）。FName是一种轻量的、高效的字符串表示方式，用于需要进行频繁比较的场景。
+" />
+  <meta name="description" content="目录 - Table of contents	UEC&#43;&#43;的基础变量类型FString、FName、FText的区别UEC&#43;&#43;的容器TArrayUEC&#43;&#43;的容器TMapUEC&#43;&#43;的容器TSetUEC&#43;&#43;基础数据类型输出打印UEC&#43;&#43;的基础变量类型 // 布尔类型变量声明bool varBool;// 整型32位的变量声明int32 varInt32;// 整型64位的变量声明int64 varInt64;// 字节类型的变量声明BYTE varByte;// String类型的变量声明字符串的类型FString varString;// Name名称类型的变量声明FName varName;// FText文本类型的变量声明FText varText;// FVector;向量类型的变量声明FVector varVector;// 这个就是x轴，Y轴，Z轴的坐标// FRotator旋转类型的变量声明FRotator varRotator;// 这个就是x轴的旋转Ro1L,Y轴的旋转Pitch,Z轴的旋转Yam// FTransform类型的变量声明FTransform varTransform;// 这个就是既有FVector也有FRotator,还有缩放Scale三者的集合类型(一个齐次矩阵) FString、FName、FText的区别 FString用于表示动态字符串。FString是一个标准的可变字符串类型，用于在运行时处理文本。它可以包含任意字符，并且可以修改和动态改变内容。
+内存动态分配，适合在程序中频繁修改或拼接字符串。 支持Unicode字符，可以包含所有字符集。 适用于一般的文本处理，比如文件路径、用户输入等。 FName用于表示轻量级、不可变的字符串，通常用于标识符（如资源名称、对象标签、蓝图类名等）。FName是一种轻量的、高效的字符串表示方式，用于需要进行频繁比较的场景。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">UE5C&#43;&#43;开发学习笔记丨03</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-07 00:00:00 UTC">
+                07 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <details><summary><font size = 5><b>目录 - Table of contents</b></font></summary>	<p>
+<ul>
+	<li><a style="color: #1e90ff;" href="#00">UEC++的基础变量类型</a></li>
+	<li><a style="color: #1e90ff;" href="#01">FString、FName、FText的区别</a></li>
+	<li><a style="color: #1e90ff;" href="#02">UEC++的容器TArray</a></li>
+    <li><a style="color: #1e90ff;" href="#03">UEC++的容器TMap</a></li>
+    <li><a style="color: #1e90ff;" href="#04">UEC++的容器TSet</a></li>
+    <li><a style="color: #1e90ff;" href="#05">UEC++基础数据类型输出打印</a></li>
+</ul>
+    </p> </details>
+<p><a id="00"></a></p>
+<h2 id="uec的基础变量类型">UEC++的基础变量类型</h2>
+<pre tabindex="0"><code>// 布尔类型变量声明
+bool varBool;
+// 整型32位的变量声明
+int32 varInt32;
+// 整型64位的变量声明
+int64 varInt64;
+// 字节类型的变量声明
+BYTE varByte;
+// String类型的变量声明字符串的类型
+FString varString;
+// Name名称类型的变量声明
+FName varName;
+// FText文本类型的变量声明
+FText varText;
+// FVector;向量类型的变量声明
+FVector varVector;// 这个就是x轴，Y轴，Z轴的坐标
+// FRotator旋转类型的变量声明
+FRotator varRotator;// 这个就是x轴的旋转Ro1L,Y轴的旋转Pitch,Z轴的旋转Yam
+// FTransform类型的变量声明
+FTransform varTransform;// 这个就是既有FVector也有FRotator,还有缩放Scale三者的集合类型(一个齐次矩阵)
+</code></pre><p><a id="01"></a></p>
+<h2 id="fstringfnameftext的区别">FString、FName、FText的区别</h2>
+<p><strong>FString</strong>用于表示动态字符串。FString是一个标准的可变字符串类型，用于在运行时处理文本。它可以包含任意字符，并且可以修改和动态改变内容。</p>
+<ul>
+<li>内存动态分配，适合在程序中频繁修改或拼接字符串。</li>
+<li>支持Unicode字符，可以包含所有字符集。</li>
+<li>适用于一般的文本处理，比如文件路径、用户输入等。</li>
+</ul>
+<p><strong>FName</strong>用于表示轻量级、不可变的字符串，通常用于标识符（如资源名称、对象标签、蓝图类名等）。FName是一种轻量的、高效的字符串表示方式，用于需要进行频繁比较的场景。</p>
+<ul>
+<li>FName在内存中是以唯一的索引形式存储，这使得它比FString更加高效。</li>
+<li>它不可变，创建后不能修改。</li>
+<li>用于存储需要快速比较的固定文本值，如物体的类型名称或命名空间。</li>
+</ul>
+<p><strong>FText</strong>用于表示本地化文本。FText是专门为支持多语言本地化而设计的字符串类型。它通常用于用户界面、错误消息等文本显示。</p>
+<ul>
+<li>支持本地化和格式化，能够根据用户的语言设置显示不同的内容。</li>
+<li>与FString不同，它不适合进行字符串拼接或处理，而是用于固定的、本地化的文本。</li>
+<li>它会存储更多的信息来支持语言的切换，比如翻译和文本格式化。</li>
+</ul>
+<h3 id="相互转化">相互转化</h3>
+<pre tabindex="0"><code>// 创建一个FString,TEXT()宏处理后的字符串可以方便地用于初始化FString对象或者与FString进行其他操作。
+FString MyString = TEXT(&#34;I am string&#34;);
+
+// FString转化成FName
+FName MyName = FName(*MyString);
+// FString转化成FText
+FText MyText = FText::FromString(MyString);
+
+// FName转化成FString
+MyString = MyName.ToString();
+// FName转化成FText
+FText text1 = FText::FromName (MyName);
+
+// FText转化成String
+FString strFromText = text1.ToString();
+// 注意这里FTEXT不能直按转化成FName，要转化成FString,然后再转化成FName
+FName name1 = FName(*text1.ToString());
+</code></pre><p><a id="02"></a></p>
+<h2 id="uec的容器tarray">UEC++的容器TArray</h2>
+<p>TArray是UEC++中的动态数组。TArray特点：速度快，内存消耗小，安全性高。并且TArray所有元素均完全为相同类型，不能进行不同元素类型的混合。</p>
+<pre tabindex="0"><code>// 声明
+TArray&lt;int32&gt;MyArray;
+
+// 增
+MyArray.Add(1O);// 将元素添加到数组末尾
+MyArray.Add(20);
+MyArray.Add(30);
+MyArray.AddUnique(20);// 数组中不存在的元素才会添加到我们的数组中这里就不会添加到数组中
+MyArray.AddUnique(40);
+
+// 遍历
+void PrintArray()
+{
+	for(auto It = MyArray.CreateConstIterator(); It; It++)
+	{
+		UE_LOG(LogTemp,Warning,TEXT(&#34;%d&#34;),*It);
+		GEngine-&gt;AddScreenDebugMessage(-1, 5.0f, FColor::Blue, Fstring::Printf(TEXT(&#34;%d&#34;), *It));
+	}
+}
+PrintArray();
+
+// 删
+MyArray.Remove(20);// 移除数组中所有等值的元素
+MyArray.RemoveAt(0);// 移除数组中索引为0的元素
+MyArray.RemoveSingle(10);// 移除首个匹配的元素
+MyArray.Empty();// 清空数组中的所有元素，并将数组的大小设置为 0，同时释放底层的内存
+MyArray.Reset();// 清空数组中的所有元素，并将数组的大小重置为 0，但保留分配的内存（不释放内存）
+
+// 改
+MyArray.Insert(60,0)// 在0号索引的位置插入值60
+int32 &amp;temp = MyArray[0];
+temp = 50;// 利用引用修改0号索引的值
+
+// 查
+MyArray.Contains(10);// 查找数组中是否包含某元素
+MyArray.Find(10);// 正向查找第一个匹配的元素的索引，返回该索引或-1
+MyArray.FindLast(10);// 反向查找第一个匹配的元素的索引，返回该索引或-1
+</code></pre><p><a id="03"></a></p>
+<h2 id="uec的容器tmap">UEC++的容器TMap</h2>
+<p>TMap是一种键值对容器，里面的数据都是成对出现的(Key,Value),Value通过Key值来获取，且Key值不能重复，Key值唯一。</p>
+<pre tabindex="0"><code>// 声明
+TMap&lt;int32, int32&gt;MyMap;
+
+// 增
+MyMap.Emplace(0, 1);// 原地构造，不会额外创建临时变量进行复制
+MyMap.Emplace(1, 2);
+MyMap.Emplace(2, 3);
+
+// 遍历
+void PrintMap()
+{
+	for(auto&amp; TestMap : MyMap)
+	{
+		UE_LOG(LogTemp,Warning,TEXT(&#34;Key: %d&#34; &#34;Value: %d&#34;), TestMap.Key, TestMap.Value);
+		GEngine-&gt;AddScreenDebugMessage(-1, 5.0f, FColor::Blue, Fstring::Printf(TEXT(&#34;Key: %d Value: %d&#34;), TestMap.Key, TestMap.Value));
+	}
+}
+PrintMap();
+
+// 删
+MyArray.Remove(0);// 移除Key值为0的元素
+MyArray.Empty();// 清空所有元素，同时释放底层的内存
+
+// 查
+MyMap.Contains(1);// 查找匹配的Key值是否存在,返回true或false
+int32* isFind = MyMap.Find(6);// 返回一个指向值的指针，不存在返回nullptr
+const int32* isFindKey = MyMap.FindKey(2);// 反向查找，其他和find一样
+// 分别获取Keys和Values
+TArray&lt;int32&gt; TestKeys;
+TArray&lt;int32&gt; TestValues;
+MyMap.GenerateKeyArray(TestKeys);
+MyMap.GenerateValueArray(TestValues);
+</code></pre><p><a id="04"></a></p>
+<h2 id="uec的容器tset">UEC++的容器TSet</h2>
+<p>TSet是一种快速容器类，（通常）用于在排序不重要的情况下存储唯一元素。TSet类似于TMap和TMultiMap，但有一个重要区别：TSet是通过对元素求值的可覆盖函数，使用数据值本身作为键，而不是将数据值与独立的键相关联。TSet可以非常快速地添加、查找和删除元素（恒定时间），TSt也是值类型，支持常规复制、赋值和析构函数操作，以及其元素较强的所有权。</p>
+<pre tabindex="0"><code>// 声明
+TSet&lt;FString&gt;MySet;
+
+// 增
+MySet.Add(TXET(&#34;Banana&#34;));
+MySet.Add(TXET(&#34;Grapefruit&#34;));
+MySet.Add(TXET(&#34;Pine&#34;));
+MySet.Emplace(TXET(&#34;Orange&#34;));
+
+// 遍历
+void PrintSet()
+{
+	for(auto&amp; TestSet : MySet)
+	{
+		UE_LOG(LogTemp,Warning,TEXT(&#34;%s&#34;), *TestSet);
+		// FString::Printf按照指定的格式化字符串以及后面提供的参数来格式化生成一个新的 FString 对象
+		GEngine-&gt;AddScreenDebugMessage(-1, 5.0f, FColor::Blue, Fstring::Printf(TEXT(&#34;%s&#34;), *TestSet));
+	}
+}
+PrintSet();
+
+// 合并元素
+TSet&lt;FString&gt;NewMySet;
+NewMySet.Add(TEXT(&#34;zhangsan&#34;))
+NewMySet.Add(TEXT(&#34;lisi&#34;))
+NewMySet.Add(TEXT(&#34;wangwu&#34;))
+MySet.Append(NewMySet);// 将NewMySet的值合并到MySet里面
+
+// 移除元素
+MySet.Remove(TEXT(&#34;banana&#34;));// 会返回已删除元素的数量，如果未包含给定的删除值返回0
+MySet.Empty();// 清空容器，删除内存
+MySet.Reset();// 清空容器，保留内存
+
+// 查找元素
+int32 cnt = MySet.Num();// 查询集合中保存的元素数量，返回一个整型值
+bool isFind1 = MySet.Contains(TEXT(&#34;Banana&#34;));// 查询是否包含特定元素，有返回真，否则为假
+FString* isFind2 = MySet.Find(TEXT(&#34;Banana&#34;));// 返回指向元素数值的指针，不包含返回nullptr
+
+// Array函数
+TArray&lt;FString&gt; FruitArray = MySet.Array();// 函数会返回一个TArray，其中填充了TSet中每个元素的副本
+
+// 排序
+TSet&lt;FString&gt;TestSet = {TEXT(&#34;a&#34;), TEXT(&#34;aa&#34;), TEXT(&#34;aaa&#34;), TEXT(&#34;aaaa&#34;)};
+TestSet.Sort([](FString A, FString B){return A.Len() &gt; B.Len();});
+
+// 运算符 =
+TSet&lt;FString&gt;NewSet;
+NewSet = MySet;// 将MySet里面的值赋值给NewSet
+NewSet.Add(TEXT(&#34;OneOne&#34;))
+
+// 运算符[]
+FSetElementId Index = NewSet.Add(TEXT(&#34;Twotwo&#34;));// 根据FSetElementId访问集合对应的元素
+TestSet[Index] = TEXT(&#34;One&#34;)
+
+// Reserve
+TSet&lt;FString&gt;NewSet1;
+NewSet1.Reserve(10);// 预先分配内存，若分配内存多会产生闲置内存（Slack）
+
+// Shrink
+for(int32 i = 0; i &lt; 8; ++i)
+{
+	NewSet1.Add(FString::Printf(TEXT(&#34;NewSet%d&#34;),i));// 添加元素
+}
+for(int32 i = 0; i &lt; 10; i += 2)
+{
+	NewSet1.Remove(FSetElementId::FromInteger(i));// 删除元素产生闲置内存
+}
+NewSet1.Shrink();// 删除末端的空元素
+
+// Compact将容器中的空白元素集合到一起放到末尾
+NewSet1.Compact();// 注意Compact可能会改变元素之间的顺序，如果不想改变，可以使用CompactStable()
+NewSet1.Shrink();
+</code></pre><p><a id="05"></a></p>
+<h2 id="uec基础数据类型输出打印">UEC++基础数据类型输出打印</h2>
+<pre tabindex="0"><code>int32 MyInt = 10;
+float MyFloat = 5.0f;
+bool MyBool = true;
+char MyChar = &#39;A&#39;;
+FString MyString = TEXT(&#34;MyString&#34;);
+FVector MyVector = FVector(0, 0, 0);
+UE_LOG(LogTemp, Warning, TEXT(&#34;%d&#34;), MyInt);
+UE_LOG(LogTemp, Warning, TEXT(&#34;%f&#34;), MyFloat);
+UE_LOG(LogTemp, Warning, TEXT(&#34;%c&#34;), MyChar);
+UE_LOG(LogTemp, Warning, TEXT(&#34;%s&#34;), *MyString);
+UE_LOG(LogTemp, Warning, TEXT(&#34;%s&#34;), *MyVector.ToString());
+</code></pre>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
