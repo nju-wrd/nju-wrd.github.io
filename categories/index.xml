@@ -2,66 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 子春廿一</title>
-    <link>https://nju-wrd.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on 子春廿一</description>
     <generator>Hugo</generator>
     <language>cn</language>
-    <lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://nju-wrd.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GAMES101</title>
-      <link>https://nju-wrd.github.io/categories/games101/</link>
-      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/games101/</guid>
+      <link>http://localhost:1313/categories/games101/</link>
+      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/games101/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C#</title>
+      <link>http://localhost:1313/categories/c%23/</link>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/c%23/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://localhost:1313/categories/c&#43;&#43;/</link>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>Lua</title>
-      <link>https://nju-wrd.github.io/categories/lua/</link>
-      <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/lua/</guid>
+      <link>http://localhost:1313/categories/lua/</link>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/lua/</guid>
       <description></description>
     </item>
     <item>
       <title>UE5-C&#43;&#43;</title>
-      <link>https://nju-wrd.github.io/categories/ue5-c&#43;&#43;/</link>
-      <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/ue5-c&#43;&#43;/</guid>
+      <link>http://localhost:1313/categories/ue5-c&#43;&#43;/</link>
+      <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/ue5-c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>博客</title>
-      <link>https://nju-wrd.github.io/categories/%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     <item>
       <title>网安课程</title>
-      <link>https://nju-wrd.github.io/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</link>
+      <link>http://localhost:1313/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</link>
       <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</guid>
       <description></description>
     </item>
     <item>
       <title>软件分析</title>
-      <link>https://nju-wrd.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</link>
+      <link>http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</link>
       <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</guid>
+      <guid>http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</guid>
       <description></description>
     </item>
     <item>
       <title>分布式系统</title>
-      <link>https://nju-wrd.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</link>
+      <link>http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     <item>
       <title>腾讯公开课</title>
-      <link>https://nju-wrd.github.io/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</link>
+      <link>http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</link>
       <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://nju-wrd.github.io/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</guid>
+      <guid>http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</guid>
       <description></description>
     </item>
   </channel>

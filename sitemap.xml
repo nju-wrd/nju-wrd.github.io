@@ -2,159 +2,186 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://nju-wrd.github.io/posts/</loc>
-    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/</loc>
-    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/games101/</loc>
+    <lastmod>2025-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A805-rasterization-1triangles/</loc>
+    <lastmod>2025-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/c%23/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/c%23%E5%9B%BE%E8%A7%A3%E6%95%99%E7%A8%8B%E4%B8%A803-c%23%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/c&#43;&#43;/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/c&#43;&#43;primerplus%E4%B8%A802-%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0c&#43;&#43;/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/lua/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2025-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A804-transformation-cont/</loc>
+    <lastmod>2025-01-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/ue5-c&#43;&#43;/</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804/</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A805%E8%A1%A8/</loc>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a0/</loc>
     <lastmod>2025-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/games101/</loc>
-    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a0/</loc>
-    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A803-transformation/</loc>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A803-transformation/</loc>
     <lastmod>2025-01-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/lua/</loc>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     <lastmod>2025-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <loc>http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803/</loc>
     <lastmod>2025-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/ue5-c&#43;&#43;/</loc>
-    <lastmod>2025-01-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803/</loc>
-    <lastmod>2025-01-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A802-review-of-linear-algebra/</loc>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A802-review-of-linear-algebra/</loc>
     <lastmod>2025-01-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802/</loc>
+    <loc>http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802/</loc>
     <lastmod>2025-01-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803%E6%95%B0%E5%80%BC/</loc>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A803%E6%95%B0%E5%80%BC/</loc>
     <lastmod>2025-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/</loc>
     <lastmod>2025-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A807-shading-1illumination-shading/</loc>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A807-shading-1illumination-shading/</loc>
     <lastmod>2025-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802%E5%B0%8F%E6%8F%92%E6%9B%B2%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802%E5%B0%8F%E6%8F%92%E6%9B%B2%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801lua%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/</loc>
+    <loc>http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801lua%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2024-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2024-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E6%98%93%E9%9B%B7%E7%81%AB%E5%87%89%E7%BB%8F&#43;%E5%8F%8D%E6%80%9D/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E6%98%93%E9%9B%B7%E7%81%AB%E5%87%89%E7%BB%8F&#43;%E5%8F%8D%E6%80%9D/</loc>
     <lastmod>2024-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</loc>
+    <loc>http://localhost:1313/categories/%E7%BD%91%E5%AE%89%E8%AF%BE%E7%A8%8B/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%AF%A6%E7%BB%86/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%AF%A6%E7%BB%86/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</loc>
+    <loc>http://localhost:1313/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a8/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a8/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A814%E4%BB%A5datalog%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A814%E4%BB%A5datalog%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</loc>
     <lastmod>2024-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9/</loc>
     <lastmod>2024-12-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>http://localhost:1313/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2024-12-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A802/</loc>
+    <loc>http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A802/</loc>
     <lastmod>2024-12-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A813%E9%92%88%E5%AF%B9%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A813%E9%92%88%E5%AF%B9%E5%AE%89%E5%85%A8%E6%96%B9%E9%9D%A2%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/</loc>
     <lastmod>2024-12-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
     <lastmod>2024-12-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a7/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a7/</loc>
     <lastmod>2024-12-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A802/</loc>
     <lastmod>2024-12-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A811%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90i/</loc>
     <lastmod>2024-12-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A812%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90ii/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A812%E4%B8%8A%E4%B8%8B%E6%96%87%E6%95%8F%E6%84%9F%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90ii/</loc>
     <lastmod>2024-12-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a6/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a6/</loc>
     <lastmod>2024-12-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E6%98%93%E9%9B%B7%E7%81%AB%E6%B8%B8%E6%88%8F%E5%A4%A7%E8%B5%9B%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E6%98%93%E9%9B%B7%E7%81%AB%E6%B8%B8%E6%88%8F%E5%A4%A7%E8%B5%9B%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2024-12-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/24%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/24%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</loc>
+    <loc>http://localhost:1313/categories/%E8%85%BE%E8%AE%AF%E5%85%AC%E5%BC%80%E8%AF%BE/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a5/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a5/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A810%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80ii/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A810%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80ii/</loc>
     <lastmod>2024-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/</loc>
+    <loc>http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A806-rasterization-2antialiasing/</loc>
     <lastmod>2024-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a4/</loc>
     <lastmod>2024-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A809%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80i/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A809%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80i/</loc>
     <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A808%E6%8C%87%E9%92%88%E5%88%86%E6%9E%90/</loc>
     <lastmod>2024-11-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/</loc>
+    <loc>http://localhost:1313/posts/2024%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%AC%E5%BC%80%E8%AF%BE%E7%AC%94%E8%AF%95/</loc>
     <lastmod>2024-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E4%B8%A801/</loc>
     <lastmod>2024-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E4%BD%9C%E4%B8%9A%E4%B8%A801/</loc>
     <lastmod>2024-11-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/</loc>
+    <loc>http://localhost:1313/posts/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%8E%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A801/</loc>
     <lastmod>2024-11-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A807%E8%BF%87%E7%A8%8B%E9%97%B4%E5%88%86%E6%9E%90/</loc>
     <lastmod>2024-11-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a3/</loc>
+    <loc>http://localhost:1313/posts/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a3/</loc>
     <lastmod>2024-11-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E5%8E%BB%E9%99%A4%E5%86%97%E4%BD%99%E7%9A%84java%E4%BE%9D%E8%B5%96/</loc>
+    <loc>http://localhost:1313/posts/%E5%8E%BB%E9%99%A4%E5%86%97%E4%BD%99%E7%9A%84java%E4%BE%9D%E8%B5%96/</loc>
     <lastmod>2024-11-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://localhost:1313/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nju-wrd.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

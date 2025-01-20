@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A804-transformation-cont/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A804-transformation-cont/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "图形学笔记丨04 Transformation Cont",
+      "headline" : "图形学笔记丨04 Transformation Cont",
+      "description" : "3D Transforms 这里可以类比二维的变化，依旧是使用齐次坐标系：\n3D point = (x, y, z, 1)⊤ 3D vector = (x, y, z, 0)⊤ 并且同样的，当w≠0，(x, y, z, w)就是点(x\/w, y\/w, z\/w, 1)。\n针对3D下的齐次坐标矩阵，做更多的细节解释。\n在三维空间中，也是先应用线性变换，再应用平移变换。针对左上角的3×3矩阵，缩放变换则是一个对角矩阵，从上到下依次是x、y、z的缩放比例；旋转分为三种：\n当我们想要在三维空间中进行任意地旋转很难写，我们可以从简单的开始写起，即绕着某一个轴旋转。我门可以看到，绕着哪个轴转，哪个轴的值就不变。剩下的二维矩阵就是一个二维下的旋转。这一点对于绕y轴的旋转有所不同，这是因为在右手坐标系中，x可以通过y叉乘z得到，z可以通过x叉乘y得到，而y是由z叉乘x得到，不是按照xyz的顺序，所以这里sin的正负相反。\n这样，三维空间的旋转，可以通过三个平面的旋转来表示：\nRxyz(α, β, γ) = Rx(α)Ry(β)Rz(γ)\n这里的旋转都是默认的逆时针旋转。这三个角又被称为欧拉角。\n飞机运行中的旋转也类似的可以分解为pitch、yaw、roll。\nRodrigues’ Rotation Formula 这样，绕任意轴旋转任意角度可以通过这个公式计算变换的结果。另外，三维空间中，如果绕着某一条平行于坐标轴的轴旋转，依旧可以采取先将该轴移回坐标轴进行旋转，再进行一个平移的逆变换的方式进行计算。\n（这里没有介绍四元数的概念，四元数可能主要用于插值）\nViewing（观测） transformation View（视图）\/Camera translation 我们最终的目的是把一个三维空间世界看到的内容转化为二维空间中的一个图像。可以先想想如何拍一张照片，首先找到一个地方，并安排好要拍的内容（model transformation），然后找到一个角度来放置照相机（view transformation），最后拍下（projection transformation）。这个过程也可以简称为mvp变换。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-15 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-15 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0%E4%B8%A804-transformation-cont\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    图形学笔记丨04 Transformation Cont
+  
+  </title>
+  <meta property="og:title" content="图形学笔记丨04 Transformation Cont" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="3D Transforms 这里可以类比二维的变化，依旧是使用齐次坐标系：
+3D point = (x, y, z, 1)⊤ 3D vector = (x, y, z, 0)⊤ 并且同样的，当w≠0，(x, y, z, w)就是点(x/w, y/w, z/w, 1)。
+针对3D下的齐次坐标矩阵，做更多的细节解释。
+在三维空间中，也是先应用线性变换，再应用平移变换。针对左上角的3×3矩阵，缩放变换则是一个对角矩阵，从上到下依次是x、y、z的缩放比例；旋转分为三种：
+当我们想要在三维空间中进行任意地旋转很难写，我们可以从简单的开始写起，即绕着某一个轴旋转。我门可以看到，绕着哪个轴转，哪个轴的值就不变。剩下的二维矩阵就是一个二维下的旋转。这一点对于绕y轴的旋转有所不同，这是因为在右手坐标系中，x可以通过y叉乘z得到，z可以通过x叉乘y得到，而y是由z叉乘x得到，不是按照xyz的顺序，所以这里sin的正负相反。
+这样，三维空间的旋转，可以通过三个平面的旋转来表示：
+Rxyz(α, β, γ) = Rx(α)Ry(β)Rz(γ)
+这里的旋转都是默认的逆时针旋转。这三个角又被称为欧拉角。
+飞机运行中的旋转也类似的可以分解为pitch、yaw、roll。
+Rodrigues’ Rotation Formula 这样，绕任意轴旋转任意角度可以通过这个公式计算变换的结果。另外，三维空间中，如果绕着某一条平行于坐标轴的轴旋转，依旧可以采取先将该轴移回坐标轴进行旋转，再进行一个平移的逆变换的方式进行计算。
+（这里没有介绍四元数的概念，四元数可能主要用于插值）
+Viewing（观测） transformation View（视图）/Camera translation 我们最终的目的是把一个三维空间世界看到的内容转化为二维空间中的一个图像。可以先想想如何拍一张照片，首先找到一个地方，并安排好要拍的内容（model transformation），然后找到一个角度来放置照相机（view transformation），最后拍下（projection transformation）。这个过程也可以简称为mvp变换。
+" />
+  <meta name="description" content="3D Transforms 这里可以类比二维的变化，依旧是使用齐次坐标系：
+3D point = (x, y, z, 1)⊤ 3D vector = (x, y, z, 0)⊤ 并且同样的，当w≠0，(x, y, z, w)就是点(x/w, y/w, z/w, 1)。
+针对3D下的齐次坐标矩阵，做更多的细节解释。
+在三维空间中，也是先应用线性变换，再应用平移变换。针对左上角的3×3矩阵，缩放变换则是一个对角矩阵，从上到下依次是x、y、z的缩放比例；旋转分为三种：
+当我们想要在三维空间中进行任意地旋转很难写，我们可以从简单的开始写起，即绕着某一个轴旋转。我门可以看到，绕着哪个轴转，哪个轴的值就不变。剩下的二维矩阵就是一个二维下的旋转。这一点对于绕y轴的旋转有所不同，这是因为在右手坐标系中，x可以通过y叉乘z得到，z可以通过x叉乘y得到，而y是由z叉乘x得到，不是按照xyz的顺序，所以这里sin的正负相反。
+这样，三维空间的旋转，可以通过三个平面的旋转来表示：
+Rxyz(α, β, γ) = Rx(α)Ry(β)Rz(γ)
+这里的旋转都是默认的逆时针旋转。这三个角又被称为欧拉角。
+飞机运行中的旋转也类似的可以分解为pitch、yaw、roll。
+Rodrigues’ Rotation Formula 这样，绕任意轴旋转任意角度可以通过这个公式计算变换的结果。另外，三维空间中，如果绕着某一条平行于坐标轴的轴旋转，依旧可以采取先将该轴移回坐标轴进行旋转，再进行一个平移的逆变换的方式进行计算。
+（这里没有介绍四元数的概念，四元数可能主要用于插值）
+Viewing（观测） transformation View（视图）/Camera translation 我们最终的目的是把一个三维空间世界看到的内容转化为二维空间中的一个图像。可以先想想如何拍一张照片，首先找到一个地方，并安排好要拍的内容（model transformation），然后找到一个角度来放置照相机（view transformation），最后拍下（projection transformation）。这个过程也可以简称为mvp变换。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">图形学笔记丨04 Transformation Cont</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-15 00:00:00 UTC">
+                15 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="3d-transforms">3D Transforms</h2>
+<p>这里可以类比二维的变化，依旧是使用齐次坐标系：</p>
+<ul>
+<li>3D point = (x, y, z, 1)<sup>⊤</sup></li>
+<li>3D vector = (x, y, z, 0)<sup>⊤</sup></li>
+</ul>
+<p>并且同样的，当w≠0，(x, y, z, w)就是点(x/w, y/w, z/w, 1)。</p>
+<image src = "homogeneous3.png" alt = "3D下的齐次坐标矩阵" />
+<p>针对3D下的齐次坐标矩阵，做更多的细节解释。</p>
+<p>在三维空间中，也是先应用线性变换，再应用平移变换。针对左上角的3×3矩阵，缩放变换则是一个对角矩阵，从上到下依次是x、y、z的缩放比例；旋转分为三种：</p>
+<image src = "rotate.png" alt = "3D下的旋转矩阵" />
+<p>当我们想要在三维空间中进行任意地旋转很难写，我们可以从简单的开始写起，即绕着某一个轴旋转。我门可以看到，绕着哪个轴转，哪个轴的值就不变。剩下的二维矩阵就是一个二维下的旋转。这一点对于绕y轴的旋转有所不同，这是因为在右手坐标系中，x可以通过y叉乘z得到，z可以通过x叉乘y得到，而y是由z叉乘x得到，不是按照xyz的顺序，所以这里sin的正负相反。</p>
+<p>这样，三维空间的旋转，可以通过三个平面的旋转来表示：</p>
+<p>R<sub>xyz</sub>(α, β, γ) = R<sub>x</sub>(α)R<sub>y</sub>(β)R<sub>z</sub>(γ)</p>
+<p>这里的旋转都是默认的逆时针旋转。这三个角又被称为欧拉角。</p>
+<image src = "3drotate.png" alt = "飞行中的旋转组合" />
+<p>飞机运行中的旋转也类似的可以分解为pitch、yaw、roll。</p>
+<h3 id="rodrigues-rotation-formula">Rodrigues’ Rotation Formula</h3>
+<image src = "formula.png" alt = "公式" />
+<p>这样，绕任意轴旋转任意角度可以通过这个公式计算变换的结果。另外，三维空间中，如果绕着某一条平行于坐标轴的轴旋转，依旧可以采取先将该轴移回坐标轴进行旋转，再进行一个平移的逆变换的方式进行计算。</p>
+<p>（这里没有介绍四元数的概念，四元数可能主要用于插值）</p>
+<h2 id="viewing观测-transformation">Viewing（观测） transformation</h2>
+<h3 id="view视图camera-translation">View（视图）/Camera translation</h3>
+<p>我们最终的目的是把一个三维空间世界看到的内容转化为二维空间中的一个图像。可以先想想如何拍一张照片，首先找到一个地方，并安排好要拍的内容（model transformation），然后找到一个角度来放置照相机（view transformation），最后拍下（projection transformation）。这个过程也可以简称为mvp变换。</p>
+<p>要定义view transformation，首先要定义这个camera，分别是向上方向，看的方向和所在位置。为了方便，我们将这个相机放在原点，向上方向为y的正方向，看向-z方向。所以我们可以通过矩阵M<sub>view</sub>即以下一系列操作将一个在e点朝向g，向上方向为t的相机变成我们想要的位置：</p>
+<image src = "camera.png" alt = "相机移动原点" />
+<p>可以将两个旋转变成它们的叉乘的向量旋转到x，因为它们俩其实是互相垂直的，并且可以反过来，将x轴旋转到g×t。因为x旋转到g×t的同时，y旋转到t，z旋转到-g，所以左上3×3矩阵的第一列就是g×t的结果，第二列就是向量t，第三列就是向量g的负值。又因为旋转矩阵的逆矩阵就是它的转置，所以我们只要转置这个矩阵就得到了做变换的旋转矩阵。</p>
+<p>所以我们只要对空间中其他的物体做对相机相同的变换即可保持model在设置好的相机中的正确位置。所以模型变换和试图变换常被放在一起称为ModelView Transformation。</p>
+<h3 id="projection投影transformation">Projection（投影）transformation</h3>
+<ul>
+<li>Orthographic（正交）projection</li>
+<li>Perspective（透视）projection</li>
+</ul>
+<image src = "projection.png" alt = "投影" />
+<p>投影变换分为正交投影和透视投影，如上图所示。人的眼睛看物体更偏向于右图中的透视投影，我们会看到平行线不再平行，这其实是近大远小的缘故。左边的正交投影更多用于制作工程制图，它并不会带来近大远小。</p>
+<image src = "vs.png" alt = "两种投影的对比解析" />
+<p>可以通过上面两张图来解释，透视投影我们认为camera是一个点，从camera出发连向平面，可以连出一个四棱锥。正交投影则假设相机离观察物体无限远，这样，近和远就一样大了。</p>
+<h4 id="orthographic-projection">Orthographic projection</h4>
+<p>正交投影很简单，如果相机固定在固定点（原点）处，这样我们只要把z的坐标给丢掉（这里没有z之后如何区分物体的前和后呢？这个后面会解决），然后无论原来的x、y范围多大都缩小到[-1，1]就得到了正交投影的结果。为什么要移动到这个范围内，是为了方便后续的计算。</p>
+<p>不过实际当中，不一定如此简单，所以我们要进行一些定义。</p>
+<image src = "o.png" alt = "正交投影的分析" />
+<p>我们首先定义空间中的一个立方体（这里可能意味着把部分观测区域视为一个立方体），我们定义这个立方体的上下左右以及远近在坐标系中的位置，把这样一个立方体映射到最右边的这个（正则、规范、标准）的立方体（canonical cube）。</p>
+<p>这个映射怎么做呢，首先把左侧一开始说的立方体的中心移到原点，然后把x、y、z轴都拉伸到[-1,1]。这个和前面说到的直接丢掉z不同，是先做平移，再做缩放。另外我们定义的上下左右，都是下比上小，左比右小，而在远近中，由于我们看的是-z方向，所以近其实比远大（所以比如在opengl中，用的是左手系，就是在这一点上会方便一点，但也会造成别的问题）。</p>
+<p>变换矩阵如下：</p>
+<image src = "juzhen.png" alt = "正交投影的矩阵" />
+<p>在线性变换中，拿左右举例，因为原来是r-l，变换后是[-1,1]所以是变换到1-(-1) = 2，所以乘上因子如图所示。</p>
+<h4 id="perspective-projection">Perspective projection</h4>
+<p>透视投影是用的最广泛的投影，广泛的用于图形学中。在透视投影中，我们同样定义近和远，这个截头锥体的小的一面为近，大的一面为远。</p>
+<image src = "frustum.png" alt = "透视投影的截头锥体" />
+<p>所以我们做的透视投影，可以先将远的平面的内容向内挤压收缩到小平面上，再利用正交投影到近处的平面上。在这个挤压的过程中我们定义几个事情：</p>
+<ul>
+<li>近平面永远不变（近处平面上的所有内容都不会在这个操作下发生变化）</li>
+<li>远平面的z值不会发生变化，一直是f</li>
+<li>原平面的中心点也不会发生变化，挤压后依旧是中心</li>
+</ul>
+<p>我们已知了正交投影怎么做，现在只要解决挤压的变化即可。</p>
+<image src = "perspective.png" alt = "透视投影的分析" />
+<p>我们从侧面往这个frustum看，图示是这个frustum的一半，用来分析。对于f处的任何一点(x, y, z)在经过挤压了之后我们想知道它对应于近处平面的位置，我们可以找一个y对应的关系，即一个相似三角形。对于x也是同样的道理：</p>
+<image src = "x.png" alt = "透视投影x的关系" />
+<p>至此，已经获得了很多信息：</p>
+<image src = "info.png" alt = "已知信息" />
+<p>对于一个点，我们知道了x，y的变化，只差一个z的变化，并且可以通过同乘一个z化简这个点的表现形式。</p>
+<image src = "calc1.png" alt = "计算式1" />
+<image src = "calc2.png" alt = "计算式2" />
+<p>我们可以通过计算推导这个矩阵。还记得前面提到的一些关于不变达成的共识，所以我们可以利用如下：</p>
+<image src = "calc3.png" alt = "计算式3" />
+<p>即一个近处的点永远会在乘上这个矩阵后被映射回它自己，所以：</p>
+<image src = "calc4.png" alt = "计算式4" />
+<p>目前，只通过这一个式子（An + B = n<sup>2</sup>）还不够确定AB的值，但是还有一点远处的中心变换后仍然是中心，可以得到：</p>
+<image src = "calc5.png" alt = "计算式5" />
+<p>于是我们解出A = n + f，B = -nf，现在我们将这个挤压的矩阵再左乘一个正交矩阵就得到了最终的透视变换。</p>
+<p>另外还有一个思考的问题，就是这对于中间的某一个点，在经过挤压之后，它的z是更接近n还是f？</p>
+<p>根据挤压的矩阵，假设原来一点为(x, y, z, 1)，变换后为(nx, ny, z(n + f) - nf, n)。和原来的点(nx, ny, nz, n)对比来看，nz + zf - nf - nz = (z - n)f，此值小与0，所以比原来的值更小，即更接近f。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

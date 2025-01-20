@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804/" />
+  <link rel="canonical" href="http://localhost:1313/posts/ue5c&#43;&#43;%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "UE5C\u002b\u002b开发学习笔记丨04",
+      "headline" : "UE5C\u002b\u002b开发学习笔记丨04",
+      "description" : "目录 - Table of contents\tUEC\u002b\u002b宏\r属性说明符\rUEC\u002b\u002b结构体USTRUCT\rUEC\u002b\u002b宏 这些宏的作用就是通过反射把属性暴露在蓝图或实例的细节面板中，来实现C\u002b\u002b和蓝图之间的通信和交互。简单来说，UE会生成它相关的反射数据，利用这些反射数据，我们可以在蓝图中找到相关的变量或方法。需要和各种说明符配合使用（详细见下文），每个宏大致的作用可查看：各个宏的介绍\n例如：\nUPROPERTY(VisibleAnywhere)\rint32 VisibleAnywhereInt; 这样在这个UPROPERTY下的属性就是VisibleAnywhere的。\n属性说明符 访问权限与可见性说明符 VisibleAnywhere：实例中、类默认设置中以及蓝图编辑器中都可见，但不可编辑。 VisibleDefaultsOnly：仅在类默认设置的细节面板中可见，在实例中及蓝图编辑器中的其他地方不可见，且不可编辑。 VisibleInstanceOnly：仅在实例中可见，在类默认设置的细节面板中不可见，且不可编辑。 EditAnywhere：可在细节面板中编辑，无论是在类默认设置还是实例中，同时在蓝图编辑器中也可编辑和访问。 EditDefaultsOnly：仅在类默认设置中可通过细节面板编辑，在实例中不可编辑，但在蓝图中可以根据其读写属性进行访问。 EditInstanceOnly：仅在实例中可编辑，在类默认设置中不可编辑，在蓝图中可见但通常不可修改，若与 BlueprintReadWrite 一起使用需谨慎，可能会失去仅在实例中可编辑的特性。 蓝图交互说明符 BlueprintReadOnly：此属性可以在蓝图中读取，但不能修改，适合用于一些常量或不希望在蓝图中被修改的属性。\nBlueprintReadWrite：此属性允许在蓝图中被读或写，可在蓝图的图表中进行读写操作。\nBlueprintCallable：暴露在蓝图中供调用。（有执行引脚，函数会在调用时执行一次，之后只是使用它的返回值）\nUFUNCTION(BluprintCallable, Category = \u0026#34;MyFunction\u0026#34;)\rvoid PrintF1(); BlueprintPure：纯函数，可以在蓝图中使用。（没有执行引脚，必须有函数返回值或者函数参数输出，会在每次需要使用返回值的时候执行一次）\nUFUNCTION(BlueprintPure, Category = \u0026#34;MyFunction\u0026#34;)\rvoid PrintF2(); BlueprintImplementableEvent：在C\u002b\u002b中声明，不能定义，由蓝图重载实现（纯虚函数）\nUFUNCTION(BlueprintImplementableEvent)\rvoid Test1();\/\/ 相当于一个事件\rUFUNCTION(BlueprintImplementableEvent)\rint Test2();\/\/ 相当于一个函数\rUFUNCTION(BlueprintImplementableEvent)\rvoid Test3(const FString\u0026amp; MyString);\/\/ 相当于一个有参数的事件\rUFUNCTION(BlueprintImplementableEvent)\rvoid Test4(const FString\u0026amp; MyString);\/\/ 相当于一个有参数的函数 BlueprintNativeEvent：C\u002b\u002b中实现，蓝图可重载或不重载\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-14 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-14 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/ue5c\u002b\u002b%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A804\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    UE5C&#43;&#43;开发学习笔记丨04
+  
+  </title>
+  <meta property="og:title" content="UE5C&#43;&#43;开发学习笔记丨04" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="目录 - Table of contents	UEC&#43;&#43;宏属性说明符UEC&#43;&#43;结构体USTRUCTUEC&#43;&#43;宏 这些宏的作用就是通过反射把属性暴露在蓝图或实例的细节面板中，来实现C&#43;&#43;和蓝图之间的通信和交互。简单来说，UE会生成它相关的反射数据，利用这些反射数据，我们可以在蓝图中找到相关的变量或方法。需要和各种说明符配合使用（详细见下文），每个宏大致的作用可查看：各个宏的介绍
+例如：
+UPROPERTY(VisibleAnywhere)int32 VisibleAnywhereInt; 这样在这个UPROPERTY下的属性就是VisibleAnywhere的。
+属性说明符 访问权限与可见性说明符 VisibleAnywhere：实例中、类默认设置中以及蓝图编辑器中都可见，但不可编辑。 VisibleDefaultsOnly：仅在类默认设置的细节面板中可见，在实例中及蓝图编辑器中的其他地方不可见，且不可编辑。 VisibleInstanceOnly：仅在实例中可见，在类默认设置的细节面板中不可见，且不可编辑。 EditAnywhere：可在细节面板中编辑，无论是在类默认设置还是实例中，同时在蓝图编辑器中也可编辑和访问。 EditDefaultsOnly：仅在类默认设置中可通过细节面板编辑，在实例中不可编辑，但在蓝图中可以根据其读写属性进行访问。 EditInstanceOnly：仅在实例中可编辑，在类默认设置中不可编辑，在蓝图中可见但通常不可修改，若与 BlueprintReadWrite 一起使用需谨慎，可能会失去仅在实例中可编辑的特性。 蓝图交互说明符 BlueprintReadOnly：此属性可以在蓝图中读取，但不能修改，适合用于一些常量或不希望在蓝图中被修改的属性。
+BlueprintReadWrite：此属性允许在蓝图中被读或写，可在蓝图的图表中进行读写操作。
+BlueprintCallable：暴露在蓝图中供调用。（有执行引脚，函数会在调用时执行一次，之后只是使用它的返回值）
+UFUNCTION(BluprintCallable, Category = &#34;MyFunction&#34;)void PrintF1(); BlueprintPure：纯函数，可以在蓝图中使用。（没有执行引脚，必须有函数返回值或者函数参数输出，会在每次需要使用返回值的时候执行一次）
+UFUNCTION(BlueprintPure, Category = &#34;MyFunction&#34;)void PrintF2(); BlueprintImplementableEvent：在C&#43;&#43;中声明，不能定义，由蓝图重载实现（纯虚函数）
+UFUNCTION(BlueprintImplementableEvent)void Test1();// 相当于一个事件UFUNCTION(BlueprintImplementableEvent)int Test2();// 相当于一个函数UFUNCTION(BlueprintImplementableEvent)void Test3(const FString&amp; MyString);// 相当于一个有参数的事件UFUNCTION(BlueprintImplementableEvent)void Test4(const FString&amp; MyString);// 相当于一个有参数的函数 BlueprintNativeEvent：C&#43;&#43;中实现，蓝图可重载或不重载
+" />
+  <meta name="description" content="目录 - Table of contents	UEC&#43;&#43;宏属性说明符UEC&#43;&#43;结构体USTRUCTUEC&#43;&#43;宏 这些宏的作用就是通过反射把属性暴露在蓝图或实例的细节面板中，来实现C&#43;&#43;和蓝图之间的通信和交互。简单来说，UE会生成它相关的反射数据，利用这些反射数据，我们可以在蓝图中找到相关的变量或方法。需要和各种说明符配合使用（详细见下文），每个宏大致的作用可查看：各个宏的介绍
+例如：
+UPROPERTY(VisibleAnywhere)int32 VisibleAnywhereInt; 这样在这个UPROPERTY下的属性就是VisibleAnywhere的。
+属性说明符 访问权限与可见性说明符 VisibleAnywhere：实例中、类默认设置中以及蓝图编辑器中都可见，但不可编辑。 VisibleDefaultsOnly：仅在类默认设置的细节面板中可见，在实例中及蓝图编辑器中的其他地方不可见，且不可编辑。 VisibleInstanceOnly：仅在实例中可见，在类默认设置的细节面板中不可见，且不可编辑。 EditAnywhere：可在细节面板中编辑，无论是在类默认设置还是实例中，同时在蓝图编辑器中也可编辑和访问。 EditDefaultsOnly：仅在类默认设置中可通过细节面板编辑，在实例中不可编辑，但在蓝图中可以根据其读写属性进行访问。 EditInstanceOnly：仅在实例中可编辑，在类默认设置中不可编辑，在蓝图中可见但通常不可修改，若与 BlueprintReadWrite 一起使用需谨慎，可能会失去仅在实例中可编辑的特性。 蓝图交互说明符 BlueprintReadOnly：此属性可以在蓝图中读取，但不能修改，适合用于一些常量或不希望在蓝图中被修改的属性。
+BlueprintReadWrite：此属性允许在蓝图中被读或写，可在蓝图的图表中进行读写操作。
+BlueprintCallable：暴露在蓝图中供调用。（有执行引脚，函数会在调用时执行一次，之后只是使用它的返回值）
+UFUNCTION(BluprintCallable, Category = &#34;MyFunction&#34;)void PrintF1(); BlueprintPure：纯函数，可以在蓝图中使用。（没有执行引脚，必须有函数返回值或者函数参数输出，会在每次需要使用返回值的时候执行一次）
+UFUNCTION(BlueprintPure, Category = &#34;MyFunction&#34;)void PrintF2(); BlueprintImplementableEvent：在C&#43;&#43;中声明，不能定义，由蓝图重载实现（纯虚函数）
+UFUNCTION(BlueprintImplementableEvent)void Test1();// 相当于一个事件UFUNCTION(BlueprintImplementableEvent)int Test2();// 相当于一个函数UFUNCTION(BlueprintImplementableEvent)void Test3(const FString&amp; MyString);// 相当于一个有参数的事件UFUNCTION(BlueprintImplementableEvent)void Test4(const FString&amp; MyString);// 相当于一个有参数的函数 BlueprintNativeEvent：C&#43;&#43;中实现，蓝图可重载或不重载
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">UE5C&#43;&#43;开发学习笔记丨04</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-14 00:00:00 UTC">
+                14 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <details><summary><font size = 5><b>目录 - Table of contents</b></font></summary>	<p>
+<ul>
+	<li><a style="color: #1e90ff;" href="#00">UEC++宏</a></li>
+	<li><a style="color: #1e90ff;" href="#01">属性说明符</a></li>
+	<li><a style="color: #1e90ff;" href="#02">UEC++结构体USTRUCT</a></li>
+</ul>
+    </p> </details>
+<p><a id="00"></a></p>
+<h2 id="uec宏">UEC++宏</h2>
+<p>这些宏的作用就是通过反射把属性暴露在蓝图或实例的细节面板中，来实现C++和蓝图之间的通信和交互。简单来说，UE会生成它相关的反射数据，利用这些反射数据，我们可以在蓝图中找到相关的变量或方法。需要和各种说明符配合使用（详细见下文），每个宏大致的作用可查看：<a style="color: #0000FF;" href="https://nju-wrd.github.io/posts/ue5c++开发学习笔记丨01/#03" target="_blank">各个宏的介绍</a></p>
+<p>例如：</p>
+<pre tabindex="0"><code>UPROPERTY(VisibleAnywhere)
+	int32 VisibleAnywhereInt;
+</code></pre><p>这样在这个UPROPERTY下的属性就是VisibleAnywhere的。</p>
+<p><a id="01"></a></p>
+<h2 id="属性说明符">属性说明符</h2>
+<h3 id="访问权限与可见性说明符">访问权限与可见性说明符</h3>
+<ul>
+<li><strong>VisibleAnywhere</strong>：实例中、类默认设置中以及蓝图编辑器中都可见，但不可编辑。</li>
+<li><strong>VisibleDefaultsOnly</strong>：仅在类默认设置的细节面板中可见，在实例中及蓝图编辑器中的其他地方不可见，且不可编辑。</li>
+<li><strong>VisibleInstanceOnly</strong>：仅在实例中可见，在类默认设置的细节面板中不可见，且不可编辑。</li>
+<li><strong>EditAnywhere</strong>：可在细节面板中编辑，无论是在类默认设置还是实例中，同时在蓝图编辑器中也可编辑和访问。</li>
+<li><strong>EditDefaultsOnly</strong>：仅在类默认设置中可通过细节面板编辑，在实例中不可编辑，但在蓝图中可以根据其读写属性进行访问。</li>
+<li><strong>EditInstanceOnly</strong>：仅在实例中可编辑，在类默认设置中不可编辑，在蓝图中可见但通常不可修改，若与 BlueprintReadWrite 一起使用需谨慎，可能会失去仅在实例中可编辑的特性。</li>
+</ul>
+<h3 id="蓝图交互说明符">蓝图交互说明符</h3>
+<ul>
+<li>
+<p><strong>BlueprintReadOnly</strong>：此属性可以在蓝图中读取，但不能修改，适合用于一些常量或不希望在蓝图中被修改的属性。</p>
+</li>
+<li>
+<p><strong>BlueprintReadWrite</strong>：此属性允许在蓝图中被读或写，可在蓝图的图表中进行读写操作。</p>
+</li>
+<li>
+<p><strong>BlueprintCallable</strong>：暴露在蓝图中供调用。（有执行引脚，函数会在调用时执行一次，之后只是使用它的返回值）</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UFUNCTION(BluprintCallable, Category = &#34;MyFunction&#34;)
+	void PrintF1();
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>BlueprintPure</strong>：纯函数，可以在蓝图中使用。（没有执行引脚，必须有函数返回值或者函数参数输出，会在每次需要使用返回值的时候执行一次）</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UFUNCTION(BlueprintPure, Category = &#34;MyFunction&#34;)
+	void PrintF2();
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>BlueprintImplementableEvent</strong>：在C++中声明，不能定义，由蓝图重载实现（纯虚函数）</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UFUNCTION(BlueprintImplementableEvent)
+	void Test1();// 相当于一个事件
+UFUNCTION(BlueprintImplementableEvent)
+	int Test2();// 相当于一个函数
+UFUNCTION(BlueprintImplementableEvent)
+	void Test3(const FString&amp; MyString);// 相当于一个有参数的事件
+UFUNCTION(BlueprintImplementableEvent)
+	void Test4(const FString&amp; MyString);// 相当于一个有参数的函数
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>BlueprintNativeEvent</strong>：C++中实现，蓝图可重载或不重载</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UFUNCTION(BlueprintNativeEvent)
+	void TestA();
+// 用这个说明符的，在实现的时候要加上_Implementation，否则会编译出错
+// void AMyPawn::TestA_Implementation(){}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>BlueprintType</strong>：将相关的数据暴露给蓝图使用。（将一个类或结构体标记为BlueprintType时，这个类或结构体的实例可以作为蓝图中的变量类型）</p>
+<ul>
+<li>
+<pre tabindex="0"><code>// 先在命名空间声明对枚举进行分组，提高代码的组织性和可读性
+UENUM(BlueprintType)
+namespace MyEnumType
+{
+	enum MyCustomEnum
+	{
+		Type1,
+		Type2,
+		Type3,
+	};
+}
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyEnum&#34;)
+	TEnumAsByte&lt;MyEnumType::MyCustomEnum&gt; MyCustomEnum;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="分类说明符">分类说明符</h3>
+<ul>
+<li>
+<p><strong>Category</strong>：指定该属性类别的分类目录，用法为 Category = 类别名，可将属性进行分类，方便在编辑器中进行查找和管理。</p>
+<ul>
+<li>
+<pre tabindex="0"><code>// UPROPERTY()可以存在多种说明符，利用|表示子目录
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = &#34;MyIntValue&#34;)
+	int32 Value1;
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = &#34;MyIntValue|MySubIntValue&#34;)
+	int32 Value2;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="meta元数据说明符">meta元数据说明符</h3>
+<ul>
+<li>
+<p>DisplayName别名，这里创建的变量名，会被替换为别名</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UPROPERTY(EditAnyWhere, BlueprintReadWrite, meta = (DisplayName = &#34;MyValue3DisplayName&#34;))
+	int32 MyValue3
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>EditCondition条件控制编辑，可以使用一个bool值控制该变量的编辑</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UPROPERTY(EditAnyWhere, BlueprintReadWrite, meta = (DisplayName = &#34;Controller&#34;))
+	bool isController;
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, meta = (EditCondition = &#34;isController&#34;))
+	float Value3;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>ToolTip解释说明符，用来解释说明我们的变量</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UPROPERTY(EditAnyWhere, BlueprintReadWrite, meta = (ToolTip = &#34;isControllerTrue&#34;))
+	bool isTrue;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>ExposeOnSpawn蓝图生成时暴露</p>
+<ul>
+<li>
+<pre tabindex="0"><code>UPROPERTY(EditAnyWhere, BlueprintReadWrite, meta = (ExposeOnSpawn = &#34;ExposeOnSpawnValue&#34;))
+	float MyHealth; // 蓝图生成时暴露该数据
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p><a id="02"></a></p>
+<h2 id="uec结构体ustruct">UEC++结构体USTRUCT</h2>
+<pre tabindex="0"><code>USTRUCT(BlueprintType)
+struct FMyTestStruct // 这里必须要以F开头来命名
+{
+	GENERATED_USTRUCT_BODY() // 这个宏由UHT处理，用来自动生成一些引擎需要的底层实现
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyTestStruct&#34;)
+		int32 Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyTestStruct&#34;)
+		FString MyName;
+};
+</code></pre><p>结构体接收创建数据表格：</p>
+<p>新建MyObject类，在MyObject.h中新建struct</p>
+<pre tabindex="0"><code>USTRUCT(BlueprintType)
+struct FMyTestStruct: public FTableRowBase // 继承该类
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyTestDataTableStruct&#34;)
+		int32 Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyTestDataTableStruct&#34;)
+		FString Name;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = &#34;MyTestDataTableStruct&#34;)
+		int32 Level;
+};
+</code></pre><p>创建一个csv格式的表，拖入UE中Apply对应的结构体即可创建一个数据表。</p>
+<image src = "1.png" alt = "" />
+<image src = "result.png" alt = "" />
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

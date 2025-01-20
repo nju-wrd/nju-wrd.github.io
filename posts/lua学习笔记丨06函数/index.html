@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806%E5%87%BD%E6%95%B0/" />
+  <link rel="canonical" href="http://localhost:1313/posts/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806%E5%87%BD%E6%95%B0/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Lua学习笔记丨06函数",
+      "headline" : "Lua学习笔记丨06函数",
+      "description" : "函数既可以用于完成某种特定任务，也可以只是进行一些计算然后返回计算结果。在前一种情况下，我们将一句函数调用视为一条语句；而在后一种情况下，我们则将函数调用视为表达式：\nprint(8 * 9, 9 \/ 8) a = math.sin(3) \u002b math.cos(10) print(os.date()) 无论哪种情况，函数调用时都需要使用一对圆括号把参数列表括起来。即使被调用的函数不需要参数，也需要一对空括号()对于这个规则，唯一的例外就是，当函数只有一个参数且该参数是字符串常量或表构造器时，括号是可选的：\nprint \u0026#34;Hello World\t\u0026lt;--\u0026gt;\tprint (\u0026#34;Hello World\u0026#34;)\rdofile \u0026#39;a.lua\u0026#39;\t\u0026lt;--\u0026gt;\tdofile (\u0026#39;a.lua\u0026#39;) print [[a multi-line\t\u0026lt;--\u0026gt;\tprint([[a multi-line message]] message]])\rf{x = 10, y = 20}\t\u0026lt;--\u0026gt;\tf({x = 10, y = 20})\rtype{}\t\u0026lt;--\u0026gt;\ttype ({}) Lua语言也为面向对象风格的调用（object-oriented call）提供了一种特殊的语法，即冒号操作符，形如o:foo(x)的表达式意为调用对象o的foo方法。\n一个Lua程序既可以调用Lua语言编写的函数，也可以调用C语言（或者宿主程序使用的其他任意语言)编写的函数。一般来说，我们选择使用C语言编写的函数来实现对性能要求更高，或不容易直接通过Lua语言进行操作的操作系统机制等。例如，Lua语言标准库中所有的函数就都是使用C语言编写的。\nLua中，一个函数定义具有一个函数名、一个参数（parameter）组成的列表和由一组语句组成的函数体（body）。参数的行为与局部变量的行为完全一致，相当于一个用函数调用时传入的值进行初始化的局部变量。\n调用函数时使用的参数个数可以与定义函数时使用的参数个数不一致。Lua语言会通过抛弃多余参数和将不足的参数设为nil的方式来调整参数的个数。例如，考虑如下的函数：\nfunction f (a, b) print(a, b) end f()\t--\u0026gt; nil nil f(3)\t--\u0026gt; 3 nil f(3, 4)\t--\u0026gt; 3 4 f(3, 4, 5)\t--\u0026gt; 3 4 （5被丢弃） 虽然这种行为可能导致编程错误（在单元测试中容易发现），但同样又是有用的，尤其是对于默认参数（default argument）的情况。例如，考虑如下递增全局计数器的函数：\nfunction incCount (n) n = n or 1 globalCounter = globalCounter \u002b n end n的默认参数是1，当调用无参数的incCount时，将globalCounter加1。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-18 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-18 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/lua%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%A806%E5%87%BD%E6%95%B0\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    Lua学习笔记丨06函数
+  
+  </title>
+  <meta property="og:title" content="Lua学习笔记丨06函数" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="函数既可以用于完成某种特定任务，也可以只是进行一些计算然后返回计算结果。在前一种情况下，我们将一句函数调用视为一条语句；而在后一种情况下，我们则将函数调用视为表达式：
+print(8 * 9, 9 / 8) a = math.sin(3) &#43; math.cos(10) print(os.date()) 无论哪种情况，函数调用时都需要使用一对圆括号把参数列表括起来。即使被调用的函数不需要参数，也需要一对空括号()对于这个规则，唯一的例外就是，当函数只有一个参数且该参数是字符串常量或表构造器时，括号是可选的：
+print &#34;Hello World	&lt;--&gt;	print (&#34;Hello World&#34;)dofile &#39;a.lua&#39;	&lt;--&gt;	dofile (&#39;a.lua&#39;) print [[a multi-line	&lt;--&gt;	print([[a multi-line message]] message]])f{x = 10, y = 20}	&lt;--&gt;	f({x = 10, y = 20})type{}	&lt;--&gt;	type ({}) Lua语言也为面向对象风格的调用（object-oriented call）提供了一种特殊的语法，即冒号操作符，形如o:foo(x)的表达式意为调用对象o的foo方法。
+一个Lua程序既可以调用Lua语言编写的函数，也可以调用C语言（或者宿主程序使用的其他任意语言)编写的函数。一般来说，我们选择使用C语言编写的函数来实现对性能要求更高，或不容易直接通过Lua语言进行操作的操作系统机制等。例如，Lua语言标准库中所有的函数就都是使用C语言编写的。
+Lua中，一个函数定义具有一个函数名、一个参数（parameter）组成的列表和由一组语句组成的函数体（body）。参数的行为与局部变量的行为完全一致，相当于一个用函数调用时传入的值进行初始化的局部变量。
+调用函数时使用的参数个数可以与定义函数时使用的参数个数不一致。Lua语言会通过抛弃多余参数和将不足的参数设为nil的方式来调整参数的个数。例如，考虑如下的函数：
+function f (a, b) print(a, b) end f()	--&gt; nil nil f(3)	--&gt; 3 nil f(3, 4)	--&gt; 3 4 f(3, 4, 5)	--&gt; 3 4 （5被丢弃） 虽然这种行为可能导致编程错误（在单元测试中容易发现），但同样又是有用的，尤其是对于默认参数（default argument）的情况。例如，考虑如下递增全局计数器的函数：
+function incCount (n) n = n or 1 globalCounter = globalCounter &#43; n end n的默认参数是1，当调用无参数的incCount时，将globalCounter加1。
+" />
+  <meta name="description" content="函数既可以用于完成某种特定任务，也可以只是进行一些计算然后返回计算结果。在前一种情况下，我们将一句函数调用视为一条语句；而在后一种情况下，我们则将函数调用视为表达式：
+print(8 * 9, 9 / 8) a = math.sin(3) &#43; math.cos(10) print(os.date()) 无论哪种情况，函数调用时都需要使用一对圆括号把参数列表括起来。即使被调用的函数不需要参数，也需要一对空括号()对于这个规则，唯一的例外就是，当函数只有一个参数且该参数是字符串常量或表构造器时，括号是可选的：
+print &#34;Hello World	&lt;--&gt;	print (&#34;Hello World&#34;)dofile &#39;a.lua&#39;	&lt;--&gt;	dofile (&#39;a.lua&#39;) print [[a multi-line	&lt;--&gt;	print([[a multi-line message]] message]])f{x = 10, y = 20}	&lt;--&gt;	f({x = 10, y = 20})type{}	&lt;--&gt;	type ({}) Lua语言也为面向对象风格的调用（object-oriented call）提供了一种特殊的语法，即冒号操作符，形如o:foo(x)的表达式意为调用对象o的foo方法。
+一个Lua程序既可以调用Lua语言编写的函数，也可以调用C语言（或者宿主程序使用的其他任意语言)编写的函数。一般来说，我们选择使用C语言编写的函数来实现对性能要求更高，或不容易直接通过Lua语言进行操作的操作系统机制等。例如，Lua语言标准库中所有的函数就都是使用C语言编写的。
+Lua中，一个函数定义具有一个函数名、一个参数（parameter）组成的列表和由一组语句组成的函数体（body）。参数的行为与局部变量的行为完全一致，相当于一个用函数调用时传入的值进行初始化的局部变量。
+调用函数时使用的参数个数可以与定义函数时使用的参数个数不一致。Lua语言会通过抛弃多余参数和将不足的参数设为nil的方式来调整参数的个数。例如，考虑如下的函数：
+function f (a, b) print(a, b) end f()	--&gt; nil nil f(3)	--&gt; 3 nil f(3, 4)	--&gt; 3 4 f(3, 4, 5)	--&gt; 3 4 （5被丢弃） 虽然这种行为可能导致编程错误（在单元测试中容易发现），但同样又是有用的，尤其是对于默认参数（default argument）的情况。例如，考虑如下递增全局计数器的函数：
+function incCount (n) n = n or 1 globalCounter = globalCounter &#43; n end n的默认参数是1，当调用无参数的incCount时，将globalCounter加1。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Lua学习笔记丨06函数</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-18 00:00:00 UTC">
+                18 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p>函数既可以用于完成某种特定任务，也可以只是进行一些计算然后返回计算结果。在前一种情况下，我们将一句函数调用视为一条语句；而在后一种情况下，我们则将函数调用视为表达式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>print(<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> math.sin(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> math.cos(<span style="color:#ae81ff">10</span>) 
+</span></span><span style="display:flex;"><span>print(os.date())
+</span></span></code></pre></div><p>无论哪种情况，函数调用时都需要使用一对圆括号把参数列表括起来。即使被调用的函数不需要参数，也需要一对空括号()对于这个规则，唯一的例外就是，当函数只有一个参数且该参数是字符串常量或表构造器时，括号是可选的：</p>
+<pre tabindex="0"><code>print &#34;Hello World	&lt;--&gt;	print (&#34;Hello World&#34;)
+dofile &#39;a.lua&#39;		&lt;--&gt;	dofile (&#39;a.lua&#39;) 
+print [[a multi-line	&lt;--&gt;	print([[a multi-line 
+ message]] 			 message]])
+f{x = 10, y = 20}	&lt;--&gt;	f({x = 10, y = 20})
+type{}			&lt;--&gt;	type ({})
+</code></pre><p>Lua语言也为面向对象风格的调用（object-oriented call）提供了一种特殊的语法，即冒号操作符，形如o:foo(x)的表达式意为调用对象o的foo方法。</p>
+<p>一个Lua程序既可以调用Lua语言编写的函数，也可以调用C语言（或者宿主程序使用的其他任意语言)编写的函数。一般来说，我们选择使用C语言编写的函数来实现对性能要求更高，或不容易直接通过Lua语言进行操作的操作系统机制等。例如，Lua语言标准库中所有的函数就都是使用C语言编写的。</p>
+<p>Lua中，一个函数定义具有一个函数名、一个参数（parameter）组成的列表和由一组语句组成的函数体（body）。参数的行为与局部变量的行为完全一致，相当于一个用函数调用时传入的值进行初始化的局部变量。</p>
+<p>调用函数时使用的参数个数可以与定义函数时使用的参数个数不一致。Lua语言会通过抛弃多余参数和将不足的参数设为nil的方式来调整参数的个数。例如，考虑如下的函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">f</span> (a, b) print(a, b) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>f()				<span style="color:#75715e">--&gt; nil nil </span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#ae81ff">3</span>)			<span style="color:#75715e">--&gt; 3 nil </span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)			<span style="color:#75715e">--&gt; 3 4 </span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>)		<span style="color:#75715e">--&gt; 3 4 （5被丢弃）</span>
+</span></span></code></pre></div><p>虽然这种行为可能导致编程错误（在单元测试中容易发现），但同样又是有用的，尤其是对于默认参数（default argument）的情况。例如，考虑如下递增全局计数器的函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">incCount</span> (n)
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> n <span style="color:#f92672">or</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	globalCounter <span style="color:#f92672">=</span> globalCounter <span style="color:#f92672">+</span> n
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>n的默认参数是1，当调用无参数的incCount时，将globalCounter加1。</p>
+<h2 id="61-多返回值">6.1 多返回值</h2>
+<p>Lua语言中一种特性是允许一个函数返回多个结果(Multiple Results)。Lua语言中有几个预定义函数就会返回多个值。我们已经接触过函数strin、,find,该函数用于在字符串中定位模式(pattern)。当找到了对应的模式时，该函数会返回两个索引值：所匹配模式在字符串中起始字符和结尾字符的索引。使用多重赋值(multiple assignment)可以同时获取到这两个结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>s, e <span style="color:#f92672">=</span> string.find(<span style="color:#e6db74">&#34;hello Lua users&#34;</span>, <span style="color:#e6db74">&#34;Lua&#34;</span>)
+</span></span><span style="display:flex;"><span>print(s, e)		<span style="color:#75715e">--&gt; 7 9</span>
+</span></span></code></pre></div><p>Lua语言编写的函数同样可以返回多个结果，只需在return关键字后列出所有要返回的值即可。例如，一个用于查找序列中最大元素的函数可以同时返回最大值及该元素的位置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">maximum</span> (a)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> mi <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>		<span style="color:#75715e">-- 最大值的索引</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> m <span style="color:#f92672">=</span> a[mi]		<span style="color:#75715e">-- 最大值</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">#</span>a <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> a[i] <span style="color:#f92672">&gt;</span> m <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>			mi <span style="color:#f92672">=</span> i; m <span style="color:#f92672">=</span> a[i]
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> m, mi		<span style="color:#75715e">-- 返回最大值及其索引</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>Lua语言根据函数的被调用情况调整返回值的数量。当函数被作为一条单独语句调用时，其所有返回值都会被丢弃；当函数被作为表达式（例如，加法的操作数）调用时，将只保留函数的第一个返回值。只有当函数调用是一系列表达式中的最后一个表达式（或是唯一一个表达式）时，其所有的返回值才能被获取到。这里所谓的“一系列表达式”在Lua中表现为4种情况：多重赋值、函数调用时传入的实参列表、表构造器和return语句。为了分别展示这几种情况，接下来举几个例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo0</span> () <span style="color:#66d9ef">end</span>					<span style="color:#75715e">-- 不返回结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo1</span> () <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#66d9ef">end</span>			<span style="color:#75715e">-- 返回一个结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo1</span> () <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> <span style="color:#66d9ef">end</span>	<span style="color:#75715e">-- 返回两个结果</span>
+</span></span></code></pre></div><p>首先是多重赋值，一个函数调用是一系列表达式中的最后（或者唯一）一个表达式，该函数调用将产生尽可能多的返回值来匹配待赋值变量，若不够会用nil来补充，并且不满足时只会产生一个返回值（第一个或nil（无返回值））：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> foo2()				<span style="color:#75715e">-- x = &#34;a&#34;, y = &#34;b&#34;</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> foo2()					<span style="color:#75715e">-- x = &#34;a&#34;, &#34;b&#34;被丢弃</span>
+</span></span><span style="display:flex;"><span>x, y, z <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, foo2()		<span style="color:#75715e">-- x = 10, y = &#34;a&#34;, z = &#34;b&#34;</span>
+</span></span><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> foo0()				<span style="color:#75715e">-- x = nil, y = nil</span>
+</span></span><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> foo1()				<span style="color:#75715e">-- x = &#34;a&#34;, y = nil</span>
+</span></span><span style="display:flex;"><span>x, y, z <span style="color:#f92672">=</span> foo2()			<span style="color:#75715e">-- x = &#34;a&#34;, y = &#34;b&#34;, z = nil</span>
+</span></span><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> foo2(), <span style="color:#ae81ff">20</span>			<span style="color:#75715e">-- x = &#34;a&#34;, y = 20 (&#34;b&#34;被丢弃)</span>
+</span></span><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> foo2(), <span style="color:#ae81ff">20</span><span style="color:#960050;background-color:#1e0010">，</span> <span style="color:#ae81ff">30</span>		<span style="color:#75715e">-- x = &#34;a&#34;, y = 20 (30被丢弃)</span>
+</span></span></code></pre></div><p>其次是函数调用时传入的实参列表，当一个函数调用是另一个函数调用的最后一个（或者是唯一）实参时，参数中函数的所有返回值都会被作为实参传给第二个函数。我们已经见到过很多这样的代码结构，例如函数 print。由于函数print能够接收可变数量的参数，所以print(g())会打印出g返回的所有结果。</p>
+<p>当我们调用f(g())时，如果f的参数是固定的，那么Lua语言会把g返回值的个数调整成与f的参数个数一致。这并非巧合，实际上这正是多重赋值的逻辑。</p>
+<p>接着是表构造器，表构造器会完整地接收函数调用的所有返回值，而不会调整返回值的个数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>t <span style="color:#f92672">=</span> {foo0()}		<span style="color:#75715e">-- t = {} （一个空表）</span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> {foo1()}		<span style="color:#75715e">-- t = {&#34;a&#34;}</span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> {foo2()}		<span style="color:#75715e">-- t = {&#34;a&#34;, &#34;b&#34;}</span>
+</span></span></code></pre></div><p>不过，这种行为依旧要满足当函数调用是表达式列表中的最后（或者唯一）一个时才有效，在其他位置总只返回一个结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>t <span style="color:#f92672">=</span> {foo0(), foo2(), <span style="color:#ae81ff">4</span>}		<span style="color:#75715e">-- t = {nil, &#34;a&#34;, 4}</span>
+</span></span></code></pre></div><p>最后是return语句，形如return f()的语句会返回f返回的所有结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span> (i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> foo0()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elseif</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> foo1()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elseif</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> foo2()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(foo(<span style="color:#ae81ff">1</span>))	<span style="color:#75715e">--&gt; a</span>
+</span></span><span style="display:flex;"><span>print(foo(<span style="color:#ae81ff">2</span>))	<span style="color:#75715e">--&gt; a b</span>
+</span></span><span style="display:flex;"><span>print(foo(<span style="color:#ae81ff">0</span>))	<span style="color:#75715e">--&gt; 无结果</span>
+</span></span><span style="display:flex;"><span>print(foo(<span style="color:#ae81ff">3</span>))	<span style="color:#75715e">--&gt; 无结果</span>
+</span></span></code></pre></div><p>将函数调用用一对圆括号括起来可以强制其只返回一个结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>print((foo0()))		<span style="color:#75715e">--&gt; nil</span>
+</span></span><span style="display:flex;"><span>print((foo1()))		<span style="color:#75715e">--&gt; a</span>
+</span></span><span style="display:flex;"><span>print((foo2()))		<span style="color:#75715e">--&gt; a</span>
+</span></span></code></pre></div><p>因此，无论f返回几个值，return (f(x))只返回一个值。</p>
+<h2 id="62-可变长参数函数">6.2 可变长参数函数</h2>
+<p>Lua语言中的函数可以是可变长参数函数（variadic），即可以支持数量可变的参数。例如，我们已经使用一个、两个或更多个参数调用过函数print。虽然函数print是在C语言中定义的，但也可以在Lua语言中定义可变长参数函数。下面是一个简单的示例，该函数返回所有参数的总和：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span> (...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _, v <span style="color:#66d9ef">in</span> ipairs{...} <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s <span style="color:#f92672">+</span> v
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> s
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(add(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">12</span>))		<span style="color:#75715e">--&gt; 54</span>
+</span></span></code></pre></div><p>参数列表中的三个点(&hellip;)表示该函数的参数是可变长的。当这个函数被调用时，Lua内部会把它的所有参数收集起来，我们把这些被收集起来的参数称为函数的额外参数（extra argument)。当函数要访问这些参数时仍需用到三个点，但不同的是此时这三个点是作为一个表达式来使用的。在上例中，表达式{&hellip;}的结果是一个由所有可变长参数组成的列表，该函数会遍历该列表来累加其中的元素。我们将三个点组成的表达式称为可变长参数表达式（vararg expression），其行为类似于一个具有多个返回值的函数，返回的是当前函数的所有可变长参数。例如，print(&hellip;)会打印出该函数的所有参数。又如，如下的代码创建了两个局部变量，其值为&hellip;中前两个可选的参数（如果不存在则为nil）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> a, b <span style="color:#f92672">=</span> ...
+</span></span></code></pre></div><p>实际上，可以通过变长参数来模拟Lua语言中普通的参数传递机制，例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span> (a,b,c)
+</span></span></code></pre></div><p>可以写成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span> (...)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> a, b, c <span style="color:#f92672">=</span> ...
+</span></span></code></pre></div><p>形如下例的函数只是将调用它时所传人的所有参数简单地返回：</p>
+<pre tabindex="0"><code>function id (...) return ... end
+</code></pre><p>该函数是一个多值恒等式函数（multi-value identity function）。下列函数的行为则类似于直接调用函数foo，唯一不同之处是在调用函数foo之前会先打印出传递给函数foo的所有参数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo1</span> (...)
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;calling foo:&#34;</span>, ...)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> foo(...)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>当跟踪对某个特定的函数调用时，这个技巧很有用。</p>
+<p>接下来再让我们看另外一个很有用的示例。Lua语言提供了专门用于格式化输出的函数string.format和输出文本的函数io.write。我们会很自然地想到把这两个函数合并为一个具有可变长参数的函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fwrite</span> (fmt, ...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> io.write(string.format(fmt, ...))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>注意，在三个点前有一个固定的参数fmt。具有可变长参数的函数也可以具有任意数量的固定参数，但固定参数必须放在变长参数之前。Lua语言会先将前面的参数赋给固定参数，然后将剩余的参数（如果有）作为可变长参数。</p>
+<p>要遍历可变长参数，函数可以使用表达式{&hellip;}将可变长参数放在一个表中，就像add示例中所做的那样。不过，在某些罕见的情况下，如果可变长参数中包含无效的nil，那么{&hellip;}获得的表可能不再是一个有效的序列。此时，就没有办法在表中判断原始参数究竟是不是以nil结尾的。对于这种情况，Lua语言提供了函数table.pack。该函数像表达式{&hellip;}一样保存所有的参数，然后将其放在一个表中返回，但是这个表还有一个保存了参数个数的额外字段&quot;n&quot;。例如，下面的函数使用了函数table.pack来检测参数中是否有nil：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">nonils</span> (...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> arg <span style="color:#f92672">=</span> table.pack(...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, arg.n <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> arg[i] <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(nonils(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#66d9ef">nil</span>))		<span style="color:#75715e">--&gt; false</span>
+</span></span><span style="display:flex;"><span>print(nonils(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))				<span style="color:#75715e">--&gt; true</span>
+</span></span><span style="display:flex;"><span>print(nonils())					<span style="color:#75715e">--&gt; true</span>
+</span></span><span style="display:flex;"><span>print(nonils(<span style="color:#66d9ef">nil</span>))				<span style="color:#75715e">--&gt; false</span>
+</span></span></code></pre></div><p>另一种遍历函数的可变长参数的方法是使用函数select。函数select总是具有一个固定的参数selector，以及数量可变的参数。如果selector是数值n，那么函数select则返回第n个参数及以后的所有参数；否则，selector应该是字符串&quot;#&quot;，以便函数select返回额外参数的总数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>print(select(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>))		<span style="color:#75715e">--&gt; a b c</span>
+</span></span><span style="display:flex;"><span>print(select(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>))		<span style="color:#75715e">--&gt; b c</span>
+</span></span><span style="display:flex;"><span>print(select(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>))		<span style="color:#75715e">--&gt; C</span>
+</span></span><span style="display:flex;"><span>print(select(<span style="color:#e6db74">&#34;#&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>))	<span style="color:#75715e">--&gt; 3</span>
+</span></span></code></pre></div><p>通常，我们在需要把返回值个数调整为1的地方使用函数select，因此可以把select(n, &hellip;)认为是返回第n个额外参数的表达式。来看一个使用函数select的典型示例，下面是使用该函数的add函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span> (...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">local</span> s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, select(<span style="color:#e6db74">&#34;#&#34;</span>, ...)<span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s <span style="color:#f92672">+</span> select(i,...)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> s
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>对于参数较少的情况，第二个版本的add更快，因为该版本避免了每次调用时创建一个新表。不过，对于参数较多的情况，多次带有很多参数调用函数select会超过创建表的开销，因此第一个版本会更好（特别地，由于迭代的次数和每次迭代时传入参数的个数会随着参数的个数增长，因此第二个版本的时间开销是二次代价（quadratic cost）的）。</p>
+<h2 id="63-函数tableunpack">6.3 函数table.unpack</h2>
+<p>多重返回值还涉及一个特殊的函数table.unpack。该函数的参数是一个数组（表），返回值为数组内的所有元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>print(table.unpack{<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>})		<span style="color:#75715e">--&gt; 10 20 30</span>
+</span></span><span style="display:flex;"><span>a, b <span style="color:#f92672">=</span> table.unpack{<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>}		<span style="color:#75715e">--&gt; a=10, b=20, 30被丢弃</span>
+</span></span></code></pre></div><p>顾名思义，函数table.unpack与函数table.pack的功能相反。pack把参数列表转换成 Lua语言中一个真实的列表（一个表），而unpack则把Lua语言中的真实的列表（一个表）转换成一组返回值，进而可以作为另一个函数的参数被使用。</p>
+<p>unpack函数的重要用途之一体现在泛型调用（generic call）机制中。泛型调用机制允许我们动态地调用具有任意参数的任意函数。例如，在ISO C中，我们无法编写泛型调用的代码，只能声明可变长参数的函数（使用stdarg.h）或使用函数指针来调用不同的函数。但是，我们仍然不能调用具有可变数量参数的函数，因为C语言中的每一个函数调用的实参个数是固定的，并且每个实参的类型也是固定的。而在Lua语言中，却可以做到这一点。如果我们想通过数组a传入可变的参数来调用函数f，那么可以写成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>f(table.unpack(a))
+</span></span></code></pre></div><p>unpack会返回a中所有的元素，而这些元素又被用作f的参数。例如，考虑如下的代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>print(string.find(<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#e6db74">&#34;ll&#34;</span>))
+</span></span></code></pre></div><p>可以使用如下的代码动态地构造一个等价的调用：</p>
+<pre tabindex="0"><code>f = string.find
+a = {&#34;hello&#34;,&#34;ll&#34;}
+
+print(f(table.unpack(a)))
+</code></pre><p>通常，函数table.unpack使用长度操作符获取返回值的个数，因而该函数只能用于序列。不过，如果有需要，也可以显式地限制返回元素的范围：</p>
+<pre tabindex="0"><code>print(table.unpack({&#34;Sun&#34;, &#34;Mon&#34;, &#34;Tue&#34;, &#34;Wed&#34;}, 2, 3))		--&gt; Mon Tue 2和3是起始和终止的位置
+</code></pre><p>虽然预定义的函数unpack是用C语言编写的，但是也可以利用递归在Lua语言中实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">unpack</span> (t,i,n)
+</span></span><span style="display:flex;"><span>	i <span style="color:#f92672">=</span> i <span style="color:#f92672">or</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> n <span style="color:#f92672">or</span> <span style="color:#f92672">#</span>t
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;=</span> n <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> t[i], unpack(t, i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, n)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>在第一次调用该函数时，只传入一个参数，此时i为1，n为序列长度；然后，函数返回t[1]及unpack(t, 2, n)返回的所有结果，而unpack(t, 2, n)又会返回t[2]及unpack(t, 3, n)返回的所有结果，依此类推，直到处理完n个元素为止。</p>
+<h2 id="64-正确的尾调用">6.4 正确的尾调用</h2>
+<p>Lua支持尾调用消除（tail-call elimination）。这意味着Lua可以正确地（properly）尾递归（tail recursive），虽然尾调用消除的概念并没有直接涉及递归。</p>
+<p>尾调用（tail call）是被当作函数调用使用的跳转。当一个函数的最后一个动作是调用另一个函数而没有再进行其他工作时，就形成了尾调用。例如，下列代码中对函数g的调用就是尾调用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">f</span> (x)
+</span></span><span style="display:flex;"><span>	x <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> g(x)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>当函数f调用完函数g之后，f不再需要进行其他的工作。这样，当被调用的函数执行结束后，程序就不再需要返回最初的调用者。因此，在尾调用之后，程序也就不需要在调用栈中保存有关调用函数的任何信息。当g返回时，程序的执行路径会直接返回到调用f的位置。在一些语言的实现中，例如Lua语言解释器，就利用了这个特点，使得在进行尾调用时不使用任何额外的栈空间。我们就将这种实现称为尾调用消除（tail-call elimination)。由于尾调用不会使用栈空间，所以一个程序中能够嵌套的尾调用的数量是无限的。例如，下列函数支持任意的数字作为参数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span> (n)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> foo(n <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>该函数永远不会发生栈溢出。</p>
+<p>关于尾调用消除的一个重点就是如何判断一个调用是尾调用。很多函数调用之所以不是尾调用，是由于这些函数在调用之后还进行了其他工作。例如，下例中调用g就不是尾调用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">f</span> (x)
+</span></span><span style="display:flex;"><span>	g(x)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>这个示例的问题在于，当调用完g后，f在返回前还不得不丢弃g返回的所有结果。类似的，以下的所有调用也都不符合尾调用的定义：</p>
+<pre tabindex="0"><code>return g(x) + 1		-- 必须进行加法
+return x or g(x)	-- 必须把返回值限制为1个
+return (g(x))		-- 必须把返回值限制为1个
+</code></pre><p>在Lua语言中，只有形如return func(args)的调用才是尾调用。不过，由于Lua语言会在调用前对func及其参数求值，所以func及其参数都可以是复杂的表达式。例如，下面的例子就是尾调用：</p>
+<pre tabindex="0"><code>return x[i].foo(x[j] + a*b, i + j)	
+</code></pre>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

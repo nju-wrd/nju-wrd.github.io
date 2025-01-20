@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/c%23%E5%9B%BE%E8%A7%A3%E6%95%99%E7%A8%8B%E4%B8%A803-c%23%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/" />
+  <link rel="canonical" href="http://localhost:1313/posts/c%23%E5%9B%BE%E8%A7%A3%E6%95%99%E7%A8%8B%E4%B8%A803-c%23%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "C#图解教程丨03 C#编程概述",
+      "headline" : "C#图解教程丨03 C#编程概述",
+      "description" : "3.1 一个简单的C#程序 using System; namespace Simple { class Program\t\/\/ 声明一个类 { static void Main() { Console.WriteLine(\u0026#34;Hi there!\u0026#34;); } } } 代码包含在一个名称为SimpleProgram.cs的文本文件里。\n当代码被编译执行时，它在屏幕的一个窗口中显示字符串“Hi there!”。 第5行包含两个连续的斜杠。这两个字符以及这一行中它们之后的所有内容都会被编译器忽略。这叫作单行注释。 行号\r描述\r行1\r告诉编译器这个程序使用System命名空间的类型\r行3\r声明一个新命名空间，名称为Simple：\n新命名空间从第4行的左大括号开始一直延伸到第12行与之对应的右大括号\n在这部分里声明的任何类型都是该命名空间的成员\r行5\r声明一个新的类类型，名称为Program：\n任何在第6行和第11行的两个大括号中间声明的成员都是组成这个类的成员\r行7\r声明一个名称为Main的方法作为类Program的成员：\n在这个程序中，Main是Program类的唯一成员\nMain是一个特殊函数，编译器用它作为程序的起始点\r行9\r只包含一条单独的、简单的语句，这一行组成了Main的方法体：\n简单语句以一个分号结束\n这条语句使用命名空间System中的一个名称为Console的类将消息输出到屏幕窗口\n没有第1行的using语句，编译器就不知道在哪里寻找类Console\rC#程序由一个或多个类型声明组成。后续大部分内容都用来解释可以在程序中创建和使用的不同类型。程序中的类型可以以任何顺序声明。在SimpleProgram中，只声明了class类型。\n命名空间是与某个名称相关联的一组类型声明。SimpleProgram使用了两个命名空间。它创建了一个名称为Simple的新命名空间，并在其中声明了其类型（类program)，还使用了System命名空间中定义的Console类。\n要编译这个程序，可以使用Visual Studio或命令行编译器。如果使用命令行编译器，最简单的形式是在命名窗口使用下面的命令：\ncsc SimpleProgram.cs 在这条命令中，csc是命令行编译器的名称，SimpleProgram.cs是源文件的名称。csc是指“C-sharp编译器”。\n3.2 标识符 标识符是一种字符串，用来命名变量、方法、参数和许多后面将要阐述的其他程序结构。可以通过把有意义的词连接成一个单独的描述性名称来创建自文档化（self-documenting）的标识符，可以使用大写和小写字母（如CardDeck、PlayersHand、FirstName和SocialSecurityNum）。某些字符能否在标识符中特定的位置出现是有规定的。\n字母和下划线(a-z、A-Z和)可以用在任何位置。 数字不能放在首位，但可以放在其他的任何地方。 @字符只能放在标识符的首位。虽然允许使用，但不推荐将@作为常用字符。 标识符区分大小写。例如，变量名myVar和MyVar是不同的标识符。但使用如此相似的名称会使代码更易出错并更难调试。第8章将介绍推荐的C#命名约定。使用清晰、一致、描述性的术语的重要性再怎么强调也不为过。\n3.3 关键字 关键字是用来定义C#语言的字符串记号。关于关键字，一些应该知道的重要内容如下：\n关键字不能被用作变量名或任何其他形式的标识符，除非以@字符开始。 所有C#关键字全部都由小写字母组成（但是.NET类型名使用Pascal大小写约定）。 完整的C#关键字表：\nabstract\rconst\rextern\rint\rout\rshort\rtypeof\ras\rcontinue\rfalse\rinterface\roverride\rsizeof\ruint\rbase\rdecimal\rfinally\rinternal\rparams\rstackalloc\rulong\rbool\rdefault\rfixed\ris\rprivate\rstatic\runchecked\rbreak\rdelegate\rfloat\rlock\rprotected\rstring\runsafe\rbyte\rdo\rfor\rlong\rpublic\rstruct\rushort\rcase\rdouble\rforeach\rnamespace\rreadonly\rswitch\rusing\rcatch\relse\rgoto\rnew\rref\rthis\rvirtual\rchar\renum\rif\rnull\rreturn\rthrow\rvoid\rchecked\revent\rimplicit\robject\rsbyte\rtrue\rvolatile\rclass\rexplicit\rin\roperator\tsealed\rtry\rwhen\rwhile\r上下文关键字是仅在特定的语言结构中充当关键字的标识符。在那些位置，它们有特别的含义。两者的区别是，关键字不能被用作标识符，而上下文关键字可以在代码的其他部分被用作标识符。上下文关键字表：\radd\rascending\rasync\rawait\rby\rdescending\rdynamic\requals\rfrom\rget\rglobal\rgroup\rin\rinto\rjoin\rlet\ron\rorderby\rpartial\rremove\rselect\rset\rvalue\rvar\rwhere\ryield\r3.4 Main：程序的起始点 每个C#程序必须有一个类带有Main方法（函数）。在先前所示的SimpleProgram程序中，它被声明在Program类中。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-18 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-18 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/c%23%E5%9B%BE%E8%A7%A3%E6%95%99%E7%A8%8B%E4%B8%A803-c%23%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    C#图解教程丨03 C#编程概述
+  
+  </title>
+  <meta property="og:title" content="C#图解教程丨03 C#编程概述" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="3.1 一个简单的C#程序 using System; namespace Simple { class Program	// 声明一个类 { static void Main() { Console.WriteLine(&#34;Hi there!&#34;); } } } 代码包含在一个名称为SimpleProgram.cs的文本文件里。
+当代码被编译执行时，它在屏幕的一个窗口中显示字符串“Hi there!”。 第5行包含两个连续的斜杠。这两个字符以及这一行中它们之后的所有内容都会被编译器忽略。这叫作单行注释。 行号描述行1告诉编译器这个程序使用System命名空间的类型行3声明一个新命名空间，名称为Simple：
+新命名空间从第4行的左大括号开始一直延伸到第12行与之对应的右大括号
+在这部分里声明的任何类型都是该命名空间的成员行5声明一个新的类类型，名称为Program：
+任何在第6行和第11行的两个大括号中间声明的成员都是组成这个类的成员行7声明一个名称为Main的方法作为类Program的成员：
+在这个程序中，Main是Program类的唯一成员
+Main是一个特殊函数，编译器用它作为程序的起始点行9只包含一条单独的、简单的语句，这一行组成了Main的方法体：
+简单语句以一个分号结束
+这条语句使用命名空间System中的一个名称为Console的类将消息输出到屏幕窗口
+没有第1行的using语句，编译器就不知道在哪里寻找类ConsoleC#程序由一个或多个类型声明组成。后续大部分内容都用来解释可以在程序中创建和使用的不同类型。程序中的类型可以以任何顺序声明。在SimpleProgram中，只声明了class类型。
+命名空间是与某个名称相关联的一组类型声明。SimpleProgram使用了两个命名空间。它创建了一个名称为Simple的新命名空间，并在其中声明了其类型（类program)，还使用了System命名空间中定义的Console类。
+要编译这个程序，可以使用Visual Studio或命令行编译器。如果使用命令行编译器，最简单的形式是在命名窗口使用下面的命令：
+csc SimpleProgram.cs 在这条命令中，csc是命令行编译器的名称，SimpleProgram.cs是源文件的名称。csc是指“C-sharp编译器”。
+3.2 标识符 标识符是一种字符串，用来命名变量、方法、参数和许多后面将要阐述的其他程序结构。可以通过把有意义的词连接成一个单独的描述性名称来创建自文档化（self-documenting）的标识符，可以使用大写和小写字母（如CardDeck、PlayersHand、FirstName和SocialSecurityNum）。某些字符能否在标识符中特定的位置出现是有规定的。
+字母和下划线(a-z、A-Z和)可以用在任何位置。 数字不能放在首位，但可以放在其他的任何地方。 @字符只能放在标识符的首位。虽然允许使用，但不推荐将@作为常用字符。 标识符区分大小写。例如，变量名myVar和MyVar是不同的标识符。但使用如此相似的名称会使代码更易出错并更难调试。第8章将介绍推荐的C#命名约定。使用清晰、一致、描述性的术语的重要性再怎么强调也不为过。
+3.3 关键字 关键字是用来定义C#语言的字符串记号。关于关键字，一些应该知道的重要内容如下：
+关键字不能被用作变量名或任何其他形式的标识符，除非以@字符开始。 所有C#关键字全部都由小写字母组成（但是.NET类型名使用Pascal大小写约定）。 完整的C#关键字表：
+abstractconstexternintoutshorttypeofascontinuefalseinterfaceoverridesizeofuintbasedecimalfinallyinternalparamsstackalloculongbooldefaultfixedisprivatestaticuncheckedbreakdelegatefloatlockprotectedstringunsafebytedoforlongpublicstructushortcasedoubleforeachnamespacereadonlyswitchusingcatchelsegotonewrefthisvirtualcharenumifnullreturnthrowvoidcheckedeventimplicitobjectsbytetruevolatileclassexplicitinoperator	sealedtrywhenwhile上下文关键字是仅在特定的语言结构中充当关键字的标识符。在那些位置，它们有特别的含义。两者的区别是，关键字不能被用作标识符，而上下文关键字可以在代码的其他部分被用作标识符。上下文关键字表：addascendingasyncawaitbydescendingdynamicequalsfromgetglobalgroupinintojoinletonorderbypartialremoveselectsetvaluevarwhereyield3.4 Main：程序的起始点 每个C#程序必须有一个类带有Main方法（函数）。在先前所示的SimpleProgram程序中，它被声明在Program类中。
+" />
+  <meta name="description" content="3.1 一个简单的C#程序 using System; namespace Simple { class Program	// 声明一个类 { static void Main() { Console.WriteLine(&#34;Hi there!&#34;); } } } 代码包含在一个名称为SimpleProgram.cs的文本文件里。
+当代码被编译执行时，它在屏幕的一个窗口中显示字符串“Hi there!”。 第5行包含两个连续的斜杠。这两个字符以及这一行中它们之后的所有内容都会被编译器忽略。这叫作单行注释。 行号描述行1告诉编译器这个程序使用System命名空间的类型行3声明一个新命名空间，名称为Simple：
+新命名空间从第4行的左大括号开始一直延伸到第12行与之对应的右大括号
+在这部分里声明的任何类型都是该命名空间的成员行5声明一个新的类类型，名称为Program：
+任何在第6行和第11行的两个大括号中间声明的成员都是组成这个类的成员行7声明一个名称为Main的方法作为类Program的成员：
+在这个程序中，Main是Program类的唯一成员
+Main是一个特殊函数，编译器用它作为程序的起始点行9只包含一条单独的、简单的语句，这一行组成了Main的方法体：
+简单语句以一个分号结束
+这条语句使用命名空间System中的一个名称为Console的类将消息输出到屏幕窗口
+没有第1行的using语句，编译器就不知道在哪里寻找类ConsoleC#程序由一个或多个类型声明组成。后续大部分内容都用来解释可以在程序中创建和使用的不同类型。程序中的类型可以以任何顺序声明。在SimpleProgram中，只声明了class类型。
+命名空间是与某个名称相关联的一组类型声明。SimpleProgram使用了两个命名空间。它创建了一个名称为Simple的新命名空间，并在其中声明了其类型（类program)，还使用了System命名空间中定义的Console类。
+要编译这个程序，可以使用Visual Studio或命令行编译器。如果使用命令行编译器，最简单的形式是在命名窗口使用下面的命令：
+csc SimpleProgram.cs 在这条命令中，csc是命令行编译器的名称，SimpleProgram.cs是源文件的名称。csc是指“C-sharp编译器”。
+3.2 标识符 标识符是一种字符串，用来命名变量、方法、参数和许多后面将要阐述的其他程序结构。可以通过把有意义的词连接成一个单独的描述性名称来创建自文档化（self-documenting）的标识符，可以使用大写和小写字母（如CardDeck、PlayersHand、FirstName和SocialSecurityNum）。某些字符能否在标识符中特定的位置出现是有规定的。
+字母和下划线(a-z、A-Z和)可以用在任何位置。 数字不能放在首位，但可以放在其他的任何地方。 @字符只能放在标识符的首位。虽然允许使用，但不推荐将@作为常用字符。 标识符区分大小写。例如，变量名myVar和MyVar是不同的标识符。但使用如此相似的名称会使代码更易出错并更难调试。第8章将介绍推荐的C#命名约定。使用清晰、一致、描述性的术语的重要性再怎么强调也不为过。
+3.3 关键字 关键字是用来定义C#语言的字符串记号。关于关键字，一些应该知道的重要内容如下：
+关键字不能被用作变量名或任何其他形式的标识符，除非以@字符开始。 所有C#关键字全部都由小写字母组成（但是.NET类型名使用Pascal大小写约定）。 完整的C#关键字表：
+abstractconstexternintoutshorttypeofascontinuefalseinterfaceoverridesizeofuintbasedecimalfinallyinternalparamsstackalloculongbooldefaultfixedisprivatestaticuncheckedbreakdelegatefloatlockprotectedstringunsafebytedoforlongpublicstructushortcasedoubleforeachnamespacereadonlyswitchusingcatchelsegotonewrefthisvirtualcharenumifnullreturnthrowvoidcheckedeventimplicitobjectsbytetruevolatileclassexplicitinoperator	sealedtrywhenwhile上下文关键字是仅在特定的语言结构中充当关键字的标识符。在那些位置，它们有特别的含义。两者的区别是，关键字不能被用作标识符，而上下文关键字可以在代码的其他部分被用作标识符。上下文关键字表：addascendingasyncawaitbydescendingdynamicequalsfromgetglobalgroupinintojoinletonorderbypartialremoveselectsetvaluevarwhereyield3.4 Main：程序的起始点 每个C#程序必须有一个类带有Main方法（函数）。在先前所示的SimpleProgram程序中，它被声明在Program类中。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">C#图解教程丨03 C#编程概述</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-18 00:00:00 UTC">
+                18 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="31-一个简单的c程序">3.1 一个简单的C#程序</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c#" data-lang="c#"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> Simple
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>		<span style="color:#75715e">// 声明一个类</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main()
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            Console.WriteLine(<span style="color:#e6db74">&#34;Hi there!&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>代码包含在一个名称为SimpleProgram.cs的文本文件里。</p>
+<ul>
+<li>当代码被编译执行时，它在屏幕的一个窗口中显示字符串“Hi there!”。</li>
+<li>第5行包含两个连续的斜杠。这两个字符以及这一行中它们之后的所有内容都会被编译器忽略。这叫作单行注释。</li>
+</ul>
+<table border="1" cellpadding="10" cellspacing="0">
+  <colgroup>
+    <col style="width: 10%;">
+    <col style="width: 90%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>行号</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>行1</td>
+      <td>告诉编译器这个程序使用System命名空间的类型</td>
+    </tr>
+    <tr>
+      <td>行3</td>
+      <td>声明一个新命名空间，名称为Simple：<br>新命名空间从第4行的左大括号开始一直延伸到第12行与之对应的右大括号<br>在这部分里声明的任何类型都是该命名空间的成员</td>
+    </tr>
+    <tr>
+      <td>行5</td>
+      <td>声明一个新的类类型，名称为Program：<br>任何在第6行和第11行的两个大括号中间声明的成员都是组成这个类的成员</td>
+    </tr>
+    <tr>
+      <td>行7</td>
+      <td>声明一个名称为Main的方法作为类Program的成员：<br>在这个程序中，Main是Program类的唯一成员<br>Main是一个特殊函数，编译器用它作为程序的起始点</td>
+    </tr>
+    <tr>
+      <td>行9</td>
+      <td>只包含一条单独的、简单的语句，这一行组成了Main的方法体：<br>简单语句以一个分号结束<br>这条语句使用命名空间System中的一个名称为Console的类将消息输出到屏幕窗口<br>没有第1行的using语句，编译器就不知道在哪里寻找类Console</td>
+    </tr>
+    </tbody>
+</table>
+<p>C#程序由一个或多个类型声明组成。后续大部分内容都用来解释可以在程序中创建和使用的不同类型。程序中的类型可以以任何顺序声明。在SimpleProgram中，只声明了class类型。</p>
+<p>命名空间是与某个名称相关联的一组类型声明。SimpleProgram使用了两个命名空间。它创建了一个名称为Simple的新命名空间，并在其中声明了其类型（类program)，还使用了System命名空间中定义的Console类。</p>
+<p>要编译这个程序，可以使用Visual Studio或命令行编译器。如果使用命令行编译器，最简单的形式是在命名窗口使用下面的命令：</p>
+<pre tabindex="0"><code>csc SimpleProgram.cs
+</code></pre><p>在这条命令中，csc是命令行编译器的名称，SimpleProgram.cs是源文件的名称。csc是指“C-sharp编译器”。</p>
+<h2 id="32-标识符">3.2 标识符</h2>
+<p>标识符是一种字符串，用来命名变量、方法、参数和许多后面将要阐述的其他程序结构。可以通过把有意义的词连接成一个单独的描述性名称来创建自文档化（self-documenting）的标识符，可以使用大写和小写字母（如CardDeck、PlayersHand、FirstName和SocialSecurityNum）。某些字符能否在标识符中特定的位置出现是有规定的。</p>
+<ul>
+<li>字母和下划线(a-z、A-Z和)可以用在任何位置。</li>
+<li>数字不能放在首位，但可以放在其他的任何地方。</li>
+<li>@字符只能放在标识符的首位。虽然允许使用，但不推荐将@作为常用字符。</li>
+</ul>
+<p>标识符区分大小写。例如，变量名myVar和MyVar是不同的标识符。但使用如此相似的名称会使代码更易出错并更难调试。第8章将介绍推荐的C#命名约定。使用清晰、一致、描述性的术语的重要性再怎么强调也不为过。</p>
+<h2 id="33-关键字">3.3 关键字</h2>
+<p>关键字是用来定义C#语言的字符串记号。关于关键字，一些应该知道的重要内容如下：</p>
+<ul>
+<li>关键字不能被用作变量名或任何其他形式的标识符，除非以@字符开始。</li>
+<li>所有C#关键字全部都由小写字母组成（但是.NET类型名使用Pascal大小写约定）。</li>
+</ul>
+<p>完整的C#关键字表：</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>abstract</td>
+      <td>const</td>
+      <td>extern</td>
+      <td>int</td>
+      <td>out</td>
+      <td>short</td>
+      <td>typeof</td>
+    </tr>
+    <tr>
+      <td>as</td>
+      <td>continue</td>
+      <td>false</td>
+      <td>interface</td>
+      <td>override</td>
+      <td>sizeof</td>
+      <td>uint</td>
+    </tr>
+    <tr>
+      <td>base</td>
+      <td>decimal</td>
+      <td>finally</td>
+      <td>internal</td>
+      <td>params</td>
+      <td>stackalloc</td>
+      <td>ulong</td>
+    </tr>
+    <tr>
+      <td>bool</td>
+      <td>default</td>
+      <td>fixed</td>
+      <td>is</td>
+      <td>private</td>
+      <td>static</td>
+      <td>unchecked</td>
+    </tr>
+    <tr>
+      <td>break</td>
+      <td>delegate</td>
+      <td>float</td>
+      <td>lock</td>
+      <td>protected</td>
+      <td>string</td>
+      <td>unsafe</td>
+    </tr>
+    <tr>
+      <td>byte</td>
+      <td>do</td>
+      <td>for</td>
+      <td>long</td>
+      <td>public</td>
+      <td>struct</td>
+      <td>ushort</td>
+    </tr>
+    <tr>
+      <td>case</td>
+      <td>double</td>
+      <td>foreach</td>
+      <td>namespace</td>
+      <td>readonly</td>
+      <td>switch</td>
+      <td>using</td>
+    </tr>
+    <tr>
+      <td>catch</td>
+      <td>else</td>
+      <td>goto</td>
+      <td>new</td>
+      <td>ref</td>
+      <td>this</td>
+      <td>virtual</td>
+    </tr>
+    <tr>
+      <td>char</td>
+      <td>enum</td>
+      <td>if</td>
+      <td>null</td>
+      <td>return</td>
+      <td>throw</td>
+      <td>void</td>
+    </tr>
+    <tr>
+      <td>checked</td>
+      <td>event</td>
+      <td>implicit</td>
+      <td>object</td>
+      <td>sbyte</td>
+      <td>true</td>
+      <td>volatile</td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td>explicit</td>
+      <td>in</td>
+      <td>operator	</td>
+      <td>sealed</td>
+      <td>try</td>
+      <td>when</td>
+    </tr>
+    <tr>
+      <td>while</td>
+    </tr>
+    </tbody>
+</table>
+上下文关键字是仅在特定的语言结构中充当关键字的标识符。在那些位置，它们有特别的含义。两者的区别是，关键字不能被用作标识符，而上下文关键字可以在代码的其他部分被用作标识符。上下文关键字表：
+<table border="1" cellpadding="10" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>add</td>
+      <td>ascending</td>
+      <td>async</td>
+      <td>await</td>
+      <td>by</td>
+      <td>descending</td>
+      <td>dynamic</td>
+    </tr>
+    <tr>
+      <td>equals</td>
+      <td>from</td>
+      <td>get</td>
+      <td>global</td>
+      <td>group</td>
+      <td>in</td>
+      <td>into</td>
+    </tr>
+    <tr>
+      <td>join</td>
+      <td>let</td>
+      <td>on</td>
+      <td>orderby</td>
+      <td>partial</td>
+      <td>remove</td>
+      <td>select</td>
+    </tr>
+    <tr>
+      <td>set</td>
+      <td>value</td>
+      <td>var</td>
+      <td>where</td>
+      <td>yield</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="34-main程序的起始点">3.4 Main：程序的起始点</h2>
+<p>每个C#程序必须有一个类带有Main方法（函数）。在先前所示的SimpleProgram程序中，它被声明在Program类中。</p>
+<ul>
+<li>每个C#程序的可执行起始点在Main中的第一条指令。</li>
+<li>Main必须首字母大写。</li>
+</ul>
+<h2 id="35-空白">3.5 空白</h2>
+<p>程序中的空白指的是没有可视化输出的字符。程序员在源代码中使用的空白将被编译器忽略，但它会使代码更清晰易读。空白字符包括：</p>
+<ul>
+<li>空格（Space）；</li>
+<li>制表符（Tab）；</li>
+<li>换行符；</li>
+<li>回车符。</li>
+</ul>
+<p>例如，下面的代码段会被编译器同等对待，尽管它们看起来有所不同。</p>
+<pre tabindex="0"><code>//很好的格式
+Main()
+{
+	Console.WriteLine(&#34;Hi,there!&#34;);
+}
+//连在一起
+Main(){Console.WriteLine(&#34;Hi,there!&#34;);}
+</code></pre><h2 id="36-语句">3.6 语句</h2>
+<p>C#的语句和C、C++的语句非常相似。本节将介绍语句的常用形式，详细的语句形式将在第10章介绍。</p>
+<p>语句是描述一个类型或告诉程序去执行某个动作的一条源代码指令。</p>
+<p>简单语句以一个分号结束。例如，下面的代码是一个由两条简单语句组成的序列。第一条语句定义了一个名为var1的整型变量，并将它的值初始化为5。第二条语句将变量var1的值打印到屏幕窗口。</p>
+<pre tabindex="0"><code>int var1 = 5;
+System.Console.WriteLine(&#34;The value of var1 is {o}&#34;,var1);
+</code></pre><p>块是一个由成对大括号包围的0条或多条语句序列，它在语法上相当于一条语句。</p>
+<p>可以使用之前示例中的两条语句创建一个块。用大括号把语句包围起来。</p>
+<p>关于块，一些应该知道的重要内容如下：</p>
+<ul>
+<li>语法上只需要一条语句，而需要执行的动作无法用一条简单的语句表达的情况下，考虑使用块。</li>
+<li>有些特定的程序结构只能使用块。在这些结构中，不能用简单语句替代块。</li>
+<li>虽然简单语句以分号结束，但块后面不跟分号。（实际上，由于被解析为一条空语句，所以编译器允许这样，但这不是好的风格。)</li>
+</ul>
+<h2 id="37-从程序中输出文本">3.7 从程序中输出文本</h2>
+<p>控制台窗口是一种简单的命令提示窗口，允许程序显示文本并从键盘接受输人。BCL提供一个名为Console的类（在System命名空间中），该类包含了将数据输人和输出到控制台窗口的方法。</p>
+<h3 id="371-write">3.7.1 Write</h3>
+<p>Write是Console类的成员，它把一个文本字符串发送到程序的控制台窗口。最简单的情况下，Write将文本的字符串字面量发送到窗口，字符串必须使用双引号括起来。</p>
+<p>下面这行代码展示了一个使用Write成员的示例：</p>
+<pre tabindex="0"><code>Console.Write(&#34;This is trivial text.&#34;);
+</code></pre><h3 id="372-writeline">3.7.2 WriteLine</h3>
+<p>WriteLine是Console的另外一个成员，它和write实现相同的功能，但会在每个输出字符串的结尾添加一个换行符：</p>
+<pre tabindex="0"><code>System.Console.WriteLine(&#34;This is text1.&#34;);
+System.Console.WriteLine(&#34;This is text2.&#34;);
+System.Console.WriteLine(&#34;This is text3.&#34;);
+</code></pre><h3 id="373-格式字符串">3.7.3 格式字符串</h3>
+<p>Write语句和WriteLine语句的常规形式中可以有一个以上的参数。</p>
+<ul>
+<li>如果不止一个参数，参数间用逗号分隔。</li>
+<li>第一个参数必须总是字符串，称为格式字符串。格式字符串可以包含替代标记。
+<ul>
+<li>替代标记在格式字符串中标出位置，在输出串中该位置将用一个值来替代。</li>
+<li>替代标记由一个整数及括住它的一对大括号组成，其中整数就是替换值的数字位置。跟着格式字符串的参数称为替换值，这些替换值从0开始编号。</li>
+</ul>
+</li>
+</ul>
+<p>语法如下：</p>
+<pre tabindex="0"><code>Console.WriteLine(格式字符串（含替代标记）, 替换值0, 替换值1, 替换值2, ...);
+</code></pre><p>C#6.0引入了一种允许以更简单易懂的方式表述参数化字符串的语法，称为字符串插值，它是通过直接在替代标记内插入变量名实现的。实际上，替代标记告诉编译器这个变量名将被视为一个变量，而不是字符串字面量——前提是在字符串前面加上了$符号。</p>
+<pre tabindex="0"><code>int var1 = 3;
+int var2 = 6;
+Console.WriteLine($&#34;Two sample integers are {var1} and {var2}.&#34;);
+</code></pre><h3 id="374-多重标记和值">3.7.4 多重标记和值</h3>
+<p>在C#中，可以使用任意数量的替代标记和任意数量的值。</p>
+<ul>
+<li>值可以以任何顺序使用。</li>
+<li>值可以在格式字符串中替换任意次。</li>
+</ul>
+<p>例如，下面的语句使用了3个标记但只有两个值。请注意，值1被用在了值0之前，而且被用了两次。</p>
+<pre tabindex="0"><code>Console.WriteLine(&#34;Three integers are {1}, {o} and {1}.&#34;, 3, 6);
+</code></pre><p>这段代码产生如下输出：</p>
+<p>Three integers are 6, 3 and 6.</p>
+<p>标记不能试图引用超出替换值列表长度以外位置的值。如果引用了，不会产生编译错误，但会产生运行时错误（称为异常)。</p>
+<p>例如，在下面的语句中有两个替换值，分别在位置0和位置1。然而，第二个标记引用了位置2，但位置2并不存在。这将会产生一个运行时错误。</p>
+<pre tabindex="0"><code>Console.WriteLine(&#34;Two integers are {o} and {2}.&#34;, 3, 6);		//错误
+</code></pre><h3 id="375-格式化数字字符串">3.7.5 格式化数字字符串</h3>
+<p>很多时候，我们更希望以更合适的格式而不是一个简单的数字来呈现文本字符串的输出。例如，把值作为货币或者某个小数位数的定点值来显示。这些都可以通过格式化字符串来实现。</p>
+<p>例如，下面的代码由两条打印值500的语句组成。第一行没有使用任何其他格式化来打印数字，而第二行的格式化字符串指定了数字应该被格式化成货币。</p>
+<pre tabindex="0"><code>Console.WriteLine(&#34;The value: {0}.&#34;,500);		//输出数字
+Console.WriteLine(&#34;The value:{0:C}.&#34;,500);		//格式化为货币格式化为货币
+</code></pre><p>这段代码产生了如下的输出：</p>
+<pre tabindex="0"><code>The value: 500.
+
+The value: $500.00.
+</code></pre><p>使用字符串插值，下面的代码产生的结果跟之前的示例相同。</p>
+<pre tabindex="0"><code>int myInt 500;
+Console.WriteLine($&#34;The value: {myInt}.&#34;);
+Console.WriteLine($&#34;The value: {myInt:C).&#34;);
+</code></pre><p>两条语句的不同之处在于，格式项以格式说明符形式包括了额外的信息。大括号内的格式说明符的语法由3个字段组成：索引号、对齐说明符和格式字段(format field)。语法如下所示：</p>
+<pre tabindex="0"><code>{index, alignment:format}
+</code></pre><p>index是必需的，指定列表中的某一项，并且列表项的数字必须从0开始，alignment可选，指定字段宽度，以及是否是右对齐或左对齐，format可选，指定项的格式。</p>
+<p>对齐说明符表示字段中字符的最小宽度。对齐说明符有如下特性：</p>
+<ul>
+<li>对齐说明符是可选的，并且使用逗号来和索引号分离。</li>
+<li>它由一个正整数或负整数组成。
+<ul>
+<li>整数表示字段使用字符的最少数量。</li>
+<li>符号表示右对齐或左对齐。正数表示右对齐，负数表示左对齐。</li>
+</ul>
+</li>
+</ul>
+<p>例如，如下格式化int型变量myInt的值的代码显示了两个格式项。在第-个示例中，myInt的值以在10个字符的字符串中右对齐的形式进行显示；第二个示例中则是左对齐。格式项放在两个竖杠中间，这样在输出中就能看到它们的左右边界。</p>
+<pre tabindex="0"><code>int myInt = 500;
+Console.WriteLine(&#34;|{0, 10}|&#34;, myInt);		//右对齐
+Console.WriteLine(&#34;|{0, -10}|&#34;, myInt);		//左对齐
+</code></pre><p>这段代码产生了如下的输出：</p>
+<pre tabindex="0"><code>|       500|
+|500       |
+</code></pre><p>值的实际表示可能会比对齐说明符指定的字符数多一些或少一些：</p>
+<ul>
+<li>如果要表示的字符数比对齐说明符中指定的字符数少，那么其余字符会使用空格填充；</li>
+<li>如果要表示的字符数多于指定的字符数，对齐说明符会被忽略，并且使用所需的字符进行表示。</li>
+</ul>
+<p>格式字段指定了数字应该以哪种形式表示。例如，应该表示为货币、十进制数字、十六进制数字还是定点符号？</p>
+<p>格式字段有三部分：</p>
+<ul>
+<li>冒号后必须紧跟着格式说明符，中间不能有空格。</li>
+<li>格式说明符是一个字母字符，是9个内置字符格式之一。字符可以是大写或小写形式。大小写对于某些说明符来说比较重要，而对于另外一些说明符来说则不重要。</li>
+<li>精度说明符是可选的，由1~2位数字组成。它的实际意义取决于格式说明符。</li>
+</ul>
+<pre tabindex="0"><code>:Axx
+</code></pre><p>如下代码给出了不同格式字符串的一些示例：</p>
+<pre tabindex="0"><code>double myDouble = 12.345678;
+Console.WriteLine(&#34;{0,-10:G} -- General&#34;, myDouble);
+Console.WriteLine(&#34;{0,-10} -- Default, same as General&#34;, myDouble);
+Console.WriteLine(&#34;{0,-10:F4} -- Fixed Point, 4 dec places&#34;, myDouble);
+Console.WriteLine(&#34;{0,-10:C} -- Currency&#34;, myDouble);
+Console.WriteLine(&#34;{0,-10:E3) -- Sci. Notation, 3 dec places&#34;, myDouble);
+Console.WriteLine(&#34;{0,-10:x} -- Hexadecimal integer&#34;, 1194719);
+</code></pre><p>这段代码产生了如下的输出：</p>
+<pre tabindex="0"><code>12.345678	-- General
+12.345678	-- Default,same as General
+12.3457		-- Fixed Point, 4 dec places
+$12.35		-- Currency
+1.235E+001	-- Sci. Notation, 3 dec places
+123adf		-- Hexadecimal integer
+</code></pre><p>下表总结了9种标准数字格式说明符。第一列在说明符名后列出了说明符字符。如果说明符字符根据它们的大小写会有不同的输出，就会标注为区分大小写。</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <colgroup>
+    <col style="width: 15%;">
+    <col style="width: 85%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>名字和字符</th>
+      <th>意义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>货币<br>C、c</td>
+      <td>使用货币符号把值格式化为货币，货币符号取决于程序所在PC的区域设置<br>精度说明符：小数位数<br>示例：Console.riteLine("{0:C]",12.5);<br>输出：$12.50</td>
+    </tr>
+    <tr>
+      <td>十进制数<br>D、d</td>
+      <td>十进制数字字符串，需要的情况下有负数符号。只能和整数类型配合使用<br>精度说明符：输出字符串中的最少位数。如果实际数字的位数更少，则在左边以0填充<br>示例：Console.WriteLine("{0:D4}",12);<br>输出：0012</td>
+    </tr>
+    <tr>
+      <td>定点<br>F、f</td>
+      <td>带有小数点的十进制数字字符串。如果需要也可以有负数符号<br>精度说明符：小数的位数<br>示例：Console.WriteLine("{0:F4}",12.3456789);<br>输出：12.3457</td>
+    </tr>
+    <tr>
+      <td>常规<br>G、g</td>
+      <td>在没有指定说明符的情况下，会根据值转换为定点或科学记数法表示的紧凑形式<br>精度说明符：根据值<br>示例：Console.WriteLine("{0,G4}",12.345678);<br>输出：12.35</td>
+    </tr>
+    <tr>
+      <td>十六进制数<br>X、x<br>区分大小写</td>
+      <td>十六进制数字的字符串。十六进制数字A~F会匹配说明符的大小写形式<br>精度说明符：输出字符串中的最少位数。如果实际数的位数更少，则在左边以0填充<br>示例：Console,WriteLine("{0:x}",180026);<br>输出：2bf3a</td>
+    </tr>
+    <tr>
+      <td>数字<br>N、n</td>
+      <td>和定点表示法相似，但是在每三个数字的一组中间有逗号或空格分隔符。从小数点开始往左数。使用逗号还是空格分隔符取决于程序所在PC的区域设置<br>精度说明符：小数的位数<br>示例：Console.WriteLine("{0:N2}",12345678.54321);<br>输出：12,345,678.54</td>
+    </tr>
+    <tr>
+      <td>百分比<br>P、p</td>
+      <td>表示百分比的字符串。数字会乘以100<br>精度说明符：小数的位数<br>示例：Console.WriteLine("{0:P2}",0.1221897);<br>输出：12.22%</td>
+    </tr>
+    <tr>
+      <td>往返过程<br>R、r</td>
+      <td>保证输出字符串后如果使用Parse方法将字符串转化成数字，那么该值和原始值一样。Parse方法将在第27章描述<br>精度说明符：忽略<br>示例：Console.WriteLine("{0:R}",1234.21897);<br>输出：1234.21897</td>
+    </tr>
+    <tr>
+      <td>科学计数法<br>E、e<br>区分大小写</td>
+      <td>具有尾数和指数的料学记数法。指数前面加字母E。E的大小写和说明符一致<br>精度说明符：小数的位数<br>示例：Console.WriteLine("{0:e4)",12.3456789);输山：1.2346e+001</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="38-注释为代码添加注释">3.8 注释：为代码添加注释</h2>
+<p>已经见过单行注释了，所以这里将讨论第二种行内注释——带分隔符的注释，并提及第三种类型，称为文档注释。</p>
+<ul>
+<li>带分隔符的注释有两个字符的开始标记（<code>/*</code>）和两个字符的结束标记（<code>*/</code>）。</li>
+<li>标记对之间的文本会被编译器忽略。</li>
+<li>带分隔符的注释可以跨任意多行。</li>
+</ul>
+<p>带分隔符的注释还可以只包括行的一部分。</p>
+<h3 id="381-关于注释的更多内容">3.8.1 关于注释的更多内容</h3>
+<p>关于注释，有其他几点重要内容需要知道。</p>
+<ul>
+<li>不能嵌套带分隔符的注释，一次只能有一个注释起作用。如果打算嵌套注释，首先开始的注释直到它的范围结束都有效。</li>
+<li>注释类型的范围如下。
+<ul>
+<li>对于单行注释，一直到行结束都有效。</li>
+<li>对于带分隔符的注释，直至遇到第一个结束分隔符都有效。</li>
+</ul>
+</li>
+</ul>
+<h3 id="382-文档注释">3.8.2 文档注释</h3>
+<p>C#还提供了第三种注释类型：文档注释。文档注释包含XML文本，可以用于产生程序文档。这种类型的注释看起来像单行注释，但它们有三个斜杠而不是两个。文档注释会在第27章详细阐述。</p>
+<p>下面的代码展示了文档注释的形式：</p>
+<pre tabindex="0"><code>/// &lt;summary&gt;
+/// This class does...
+/// &lt;/summary&gt;
+class Program
+{
+	...
+</code></pre>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
