@@ -11,8 +11,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a0/" />
-  <link rel="canonical" href="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a0/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:url" content="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a1/" />
+  <link rel="canonical" href="http://localhost:1313/posts/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a1/" /><link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="icon" href="/favicon.png" />
   <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
 
@@ -25,9 +25,9 @@
            "@id": "http:\/\/localhost:1313\/"
       },
       "articleSection" : "posts",
-      "name" : "图形学实验笔记丨A0",
-      "headline" : "图形学实验笔记丨A0",
-      "description" : "前言 论坛链接\n要实现之前立的flag了，因为换了电脑加上前面的都忘掉了，所以重新完成一下原来已经做过的内容。在这个过程中大概率还要重新补一下前面的学习内容。\n本次作业主要目的是熟悉虚拟机的使用、使用C\u002b\u002b与Eigen库编写简单的程序和用cmake进行编译,由于涉及虚拟机的安装，所以内容很长，可以参考实验的Pdf文档。\n作业内容 给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45°，再平移 (1,2), 计算出变换后点的坐标（要求用齐次坐标进行计算）。\n#include\u0026lt;cmath\u0026gt; #include\u0026lt;eigen3\/Eigen\/Core\u0026gt; #include\u0026lt;eigen3\/Eigen\/Dense\u0026gt; #include\u0026lt;iostream\u0026gt; int main(){ float si = std::sin(45 * M_PI \/ 180.0); Eigen::Vector3f v(2.0f,1.0f,1.0f); Eigen::Matrix3f i,j; i \u0026lt;\u0026lt; 1.0, 0.0, 1.0, 0.0, 1.0, 2.0, 0.0, 0.0, 1.0; j \u0026lt;\u0026lt; si, -si, 0.0, si, si, 0.0, 0.0, 0.0, 1.0; std::cout \u0026lt;\u0026lt; i * j * v \u0026lt;\u0026lt; std::endl; } 可以在此基础上熟悉一下Eigen库的使用，为后续实验打下基础。\n",
+      "name" : "图形学实验笔记丨A1",
+      "headline" : "图形学实验笔记丨A1",
+      "description" : "前言 我们已经学习了如何使用矩阵变换来排列二维或三维空间中的对象。所以现在是时候通过实现一些简单的变换矩阵来获得一些实际经验了。在接下来的三次作业中，我们将去模拟一个基于CPU的光栅化渲染器的简化版本。\n作业内容 填写一个旋转矩阵和一个透视投影矩阵。给定三维下三个点v0(2.0, 0.0, −2.0)，v1(0.0, 2.0, −2.0)，v2(−2.0, 0.0, −2.0)，需要将这三个点的坐标变换为屏幕坐标并在屏幕上绘制出对应的线框三角形）在代码框架中，我们已经提供了draw_triangle函数，所以只需要去构建变换矩阵即可）。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分去完成。\n要记得每次复制代码框架之后，先完成cmake编译的工作。\nmkdir build\rcd build\rcmake ..\rmake 补充代码如下所示：\nEigen::Matrix4f get_model_matrix(float rotation_angle) { \/\/TODO:Implement this function \/\/Create the model matrix for rotating the triangle around the Z axis. \/\/Then return it. Eigen:Matrix4f model = Eigen::Matrix4f::Identity() float rotation_rad = rotation_angle * MY_PI \/ 180; float co = cos(rotation_rad),si = sin(rotation_rad); model \u0026lt;\u0026lt; co, -si, 0, 0, si, co, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1: return model; } Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear,float zFar) { \/\/Students will implement this function \/\/TODO:Implement this function \/\/Create the projection matrix for the given parameters. \/\/Then return it. Eigen::Matrix4f projection = Eigen::Matrix4f::Identity(); Eigen::Matrix4f scale = Eigen::Matrix4f::Identity(); Eigen::Matrix4f perspective = Eigen::Matrix4f::Identity(); float tb = 2 * tan(eye_fov \/ 2) * zNear; float rl = tb * aspect_ratio; float fn = zFar - zNear; scale \u0026lt;\u0026lt; 2 \/ r1, 0, 0, 0, 0, 2 \/ tb, 0, 0, 0, 0, 2 \/ fn, 0, 0, 0, 0, 1: perspective \u0026lt;\u0026lt; zNear, 0, 0, 0, 0, zNear, 0, 0, 0, 0, zNear \u002b zFar, -zNear * zFar, 0, 0, 1, 0; projection = scale * perspective; return projection; } ",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
@@ -35,31 +35,29 @@
       "accountablePerson" : "",
       "copyrightHolder" : "",
       "copyrightYear" : "2025",
-      "datePublished": "2025-01-11 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2025-01-11 00:00:00 \u002b0000 UTC",
-      "url" : "http:\/\/localhost:1313\/posts\/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a0\/",
+      "datePublished": "2025-01-22 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-22 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B8%A8a1\/",
       "keywords" : [  ]
   }
 </script>
 <title>
     
-    图形学实验笔记丨A0
+    图形学实验笔记丨A1
   
   </title>
-  <meta property="og:title" content="图形学实验笔记丨A0" />
+  <meta property="og:title" content="图形学实验笔记丨A1" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="前言 论坛链接
-要实现之前立的flag了，因为换了电脑加上前面的都忘掉了，所以重新完成一下原来已经做过的内容。在这个过程中大概率还要重新补一下前面的学习内容。
-本次作业主要目的是熟悉虚拟机的使用、使用C&#43;&#43;与Eigen库编写简单的程序和用cmake进行编译,由于涉及虚拟机的安装，所以内容很长，可以参考实验的Pdf文档。
-作业内容 给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45°，再平移 (1,2), 计算出变换后点的坐标（要求用齐次坐标进行计算）。
-#include&lt;cmath&gt; #include&lt;eigen3/Eigen/Core&gt; #include&lt;eigen3/Eigen/Dense&gt; #include&lt;iostream&gt; int main(){ float si = std::sin(45 * M_PI / 180.0); Eigen::Vector3f v(2.0f,1.0f,1.0f); Eigen::Matrix3f i,j; i &lt;&lt; 1.0, 0.0, 1.0, 0.0, 1.0, 2.0, 0.0, 0.0, 1.0; j &lt;&lt; si, -si, 0.0, si, si, 0.0, 0.0, 0.0, 1.0; std::cout &lt;&lt; i * j * v &lt;&lt; std::endl; } 可以在此基础上熟悉一下Eigen库的使用，为后续实验打下基础。
-" />
-  <meta name="description" content="前言 论坛链接
-要实现之前立的flag了，因为换了电脑加上前面的都忘掉了，所以重新完成一下原来已经做过的内容。在这个过程中大概率还要重新补一下前面的学习内容。
-本次作业主要目的是熟悉虚拟机的使用、使用C&#43;&#43;与Eigen库编写简单的程序和用cmake进行编译,由于涉及虚拟机的安装，所以内容很长，可以参考实验的Pdf文档。
-作业内容 给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45°，再平移 (1,2), 计算出变换后点的坐标（要求用齐次坐标进行计算）。
-#include&lt;cmath&gt; #include&lt;eigen3/Eigen/Core&gt; #include&lt;eigen3/Eigen/Dense&gt; #include&lt;iostream&gt; int main(){ float si = std::sin(45 * M_PI / 180.0); Eigen::Vector3f v(2.0f,1.0f,1.0f); Eigen::Matrix3f i,j; i &lt;&lt; 1.0, 0.0, 1.0, 0.0, 1.0, 2.0, 0.0, 0.0, 1.0; j &lt;&lt; si, -si, 0.0, si, si, 0.0, 0.0, 0.0, 1.0; std::cout &lt;&lt; i * j * v &lt;&lt; std::endl; } 可以在此基础上熟悉一下Eigen库的使用，为后续实验打下基础。
-" />
+  <meta property="og:description" content="前言 我们已经学习了如何使用矩阵变换来排列二维或三维空间中的对象。所以现在是时候通过实现一些简单的变换矩阵来获得一些实际经验了。在接下来的三次作业中，我们将去模拟一个基于CPU的光栅化渲染器的简化版本。
+作业内容 填写一个旋转矩阵和一个透视投影矩阵。给定三维下三个点v0(2.0, 0.0, −2.0)，v1(0.0, 2.0, −2.0)，v2(−2.0, 0.0, −2.0)，需要将这三个点的坐标变换为屏幕坐标并在屏幕上绘制出对应的线框三角形）在代码框架中，我们已经提供了draw_triangle函数，所以只需要去构建变换矩阵即可）。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分去完成。
+要记得每次复制代码框架之后，先完成cmake编译的工作。
+mkdir buildcd buildcmake ..make 补充代码如下所示：
+Eigen::Matrix4f get_model_matrix(float rotation_angle) { //TODO:Implement this function //Create the model matrix for rotating the triangle around the Z axis. //Then return it. Eigen:Matrix4f model = Eigen::Matrix4f::Identity() float rotation_rad = rotation_angle * MY_PI / 180; float co = cos(rotation_rad),si = sin(rotation_rad); model &lt;&lt; co, -si, 0, 0, si, co, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1: return model; } Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear,float zFar) { //Students will implement this function //TODO:Implement this function //Create the projection matrix for the given parameters. //Then return it. Eigen::Matrix4f projection = Eigen::Matrix4f::Identity(); Eigen::Matrix4f scale = Eigen::Matrix4f::Identity(); Eigen::Matrix4f perspective = Eigen::Matrix4f::Identity(); float tb = 2 * tan(eye_fov / 2) * zNear; float rl = tb * aspect_ratio; float fn = zFar - zNear; scale &lt;&lt; 2 / r1, 0, 0, 0, 0, 2 / tb, 0, 0, 0, 0, 2 / fn, 0, 0, 0, 0, 1: perspective &lt;&lt; zNear, 0, 0, 0, 0, zNear, 0, 0, 0, 0, zNear &#43; zFar, -zNear * zFar, 0, 0, 1, 0; projection = scale * perspective; return projection; } " />
+  <meta name="description" content="前言 我们已经学习了如何使用矩阵变换来排列二维或三维空间中的对象。所以现在是时候通过实现一些简单的变换矩阵来获得一些实际经验了。在接下来的三次作业中，我们将去模拟一个基于CPU的光栅化渲染器的简化版本。
+作业内容 填写一个旋转矩阵和一个透视投影矩阵。给定三维下三个点v0(2.0, 0.0, −2.0)，v1(0.0, 2.0, −2.0)，v2(−2.0, 0.0, −2.0)，需要将这三个点的坐标变换为屏幕坐标并在屏幕上绘制出对应的线框三角形）在代码框架中，我们已经提供了draw_triangle函数，所以只需要去构建变换矩阵即可）。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分去完成。
+要记得每次复制代码框架之后，先完成cmake编译的工作。
+mkdir buildcd buildcmake ..make 补充代码如下所示：
+Eigen::Matrix4f get_model_matrix(float rotation_angle) { //TODO:Implement this function //Create the model matrix for rotating the triangle around the Z axis. //Then return it. Eigen:Matrix4f model = Eigen::Matrix4f::Identity() float rotation_rad = rotation_angle * MY_PI / 180; float co = cos(rotation_rad),si = sin(rotation_rad); model &lt;&lt; co, -si, 0, 0, si, co, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1: return model; } Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear,float zFar) { //Students will implement this function //TODO:Implement this function //Create the projection matrix for the given parameters. //Then return it. Eigen::Matrix4f projection = Eigen::Matrix4f::Identity(); Eigen::Matrix4f scale = Eigen::Matrix4f::Identity(); Eigen::Matrix4f perspective = Eigen::Matrix4f::Identity(); float tb = 2 * tan(eye_fov / 2) * zNear; float rl = tb * aspect_ratio; float fn = zFar - zNear; scale &lt;&lt; 2 / r1, 0, 0, 0, 0, 2 / tb, 0, 0, 0, 0, 2 / fn, 0, 0, 0, 0, 1: perspective &lt;&lt; zNear, 0, 0, 0, 0, zNear, 0, 0, 0, 0, zNear &#43; zFar, -zNear * zFar, 0, 0, 1, 0; projection = scale * perspective; return projection; } " />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
   
 
@@ -121,13 +119,13 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">图形学实验笔记丨A0</h1>
+          <h1 class="post-title">图形学实验笔记丨A1</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
               
-              <time class="post-date" datetime="2025-01-11 00:00:00 UTC">
-                11 Jan 2025
+              <time class="post-date" datetime="2025-01-22 00:00:00 UTC">
+                22 Jan 2025
               </time>
               
             </div>
@@ -141,28 +139,54 @@
         <div class="post-content markdown-body">
           
           <h2 id="前言">前言</h2>
-<p><a style="color: #0000FF;" href="http://games-cn.org/forums/forum/graphics-intro/" target="_blank">论坛链接</a></p>
-<p>要实现之前立的flag了，因为换了电脑加上前面的都忘掉了，所以重新完成一下原来已经做过的内容。在这个过程中大概率还要重新补一下前面的学习内容。</p>
-<p>本次作业主要目的是熟悉虚拟机的使用、使用C++与Eigen库编写简单的程序和用cmake进行编译,由于涉及虚拟机的安装，所以内容很长，可以参考实验的<a style="color: #0000FF;" href="pa0.pdf" target="_blank">Pdf文档</a>。</p>
+<p>我们已经学习了如何使用矩阵变换来排列二维或三维空间中的对象。所以现在是时候通过实现一些简单的变换矩阵来获得一些实际经验了。在接下来的三次作业中，我们将去模拟一个基于CPU的光栅化渲染器的简化版本。</p>
 <h2 id="作业内容">作业内容</h2>
-<p>给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45°，再平移 (1,2), 计算出变换后点的坐标（要求用齐次坐标进行计算）。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;cmath&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;eigen3/Eigen/Core&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;eigen3/Eigen/Dense&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> si <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>sin(<span style="color:#ae81ff">45</span> <span style="color:#f92672">*</span> M_PI <span style="color:#f92672">/</span> <span style="color:#ae81ff">180.0</span>);
-</span></span><span style="display:flex;"><span>    Eigen<span style="color:#f92672">::</span>Vector3f v(<span style="color:#ae81ff">2.0f</span>,<span style="color:#ae81ff">1.0f</span>,<span style="color:#ae81ff">1.0f</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    Eigen<span style="color:#f92672">::</span>Matrix3f i,j;
-</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>;
-</span></span><span style="display:flex;"><span>    j <span style="color:#f92672">&lt;&lt;</span> si, <span style="color:#f92672">-</span>si, <span style="color:#ae81ff">0.0</span>, si, si, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> i <span style="color:#f92672">*</span> j <span style="color:#f92672">*</span> v <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+<p>填写一个旋转矩阵和一个透视投影矩阵。给定三维下三个点v0(2.0, 0.0, −2.0)，v1(0.0, 2.0, −2.0)，v2(−2.0, 0.0, −2.0)，需要将这三个点的坐标变换为屏幕坐标并在屏幕上绘制出对应的线框三角形）在代码框架中，我们已经提供了draw_triangle函数，所以只需要去构建变换矩阵即可）。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分去完成。</p>
+<p>要记得每次复制代码框架之后，先完成cmake编译的工作。</p>
+<pre tabindex="0"><code>mkdir build
+cd build
+cmake ..
+make
+</code></pre><p>补充代码如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Eigen<span style="color:#f92672">::</span>Matrix4f get_model_matrix(<span style="color:#66d9ef">float</span> rotation_angle)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//TODO:Implement this function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//Create the model matrix for rotating the triangle around the Z axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//Then return it.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	Eigen:Matrix4f model <span style="color:#f92672">=</span> Eigen<span style="color:#f92672">::</span>Matrix4f<span style="color:#f92672">::</span>Identity()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> rotation_rad <span style="color:#f92672">=</span> rotation_angle <span style="color:#f92672">*</span> MY_PI <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> co <span style="color:#f92672">=</span> cos(rotation_rad),si <span style="color:#f92672">=</span> sin(rotation_rad);
+</span></span><span style="display:flex;"><span>	model <span style="color:#f92672">&lt;&lt;</span> co, <span style="color:#f92672">-</span>si, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 si, co, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> model;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>可以在此基础上熟悉一下Eigen库的使用，为后续实验打下基础。</p>
-
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Eigen<span style="color:#f92672">::</span>Matrix4f get_projection_matrix(<span style="color:#66d9ef">float</span> eye_fov, <span style="color:#66d9ef">float</span> aspect_ratio,
+</span></span><span style="display:flex;"><span>                                      <span style="color:#66d9ef">float</span> zNear,<span style="color:#66d9ef">float</span> zFar)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Students will implement this function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//TODO:Implement this function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//Create the projection matrix for the given parameters.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">//Then return it.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	Eigen<span style="color:#f92672">::</span>Matrix4f projection <span style="color:#f92672">=</span> Eigen<span style="color:#f92672">::</span>Matrix4f<span style="color:#f92672">::</span>Identity();
+</span></span><span style="display:flex;"><span>	Eigen<span style="color:#f92672">::</span>Matrix4f scale <span style="color:#f92672">=</span> Eigen<span style="color:#f92672">::</span>Matrix4f<span style="color:#f92672">::</span>Identity();
+</span></span><span style="display:flex;"><span>	Eigen<span style="color:#f92672">::</span>Matrix4f perspective <span style="color:#f92672">=</span> Eigen<span style="color:#f92672">::</span>Matrix4f<span style="color:#f92672">::</span>Identity();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> tb <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> tan(eye_fov <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> zNear;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> rl <span style="color:#f92672">=</span> tb <span style="color:#f92672">*</span> aspect_ratio;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> fn <span style="color:#f92672">=</span> zFar <span style="color:#f92672">-</span> zNear;
+</span></span><span style="display:flex;"><span>	scale <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> r1, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> tb, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> fn, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>			 <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	perspective <span style="color:#f92672">&lt;&lt;</span> zNear, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>				   <span style="color:#ae81ff">0</span>, zNear, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>				   <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, zNear <span style="color:#f92672">+</span> zFar, <span style="color:#f92672">-</span>zNear <span style="color:#f92672">*</span> zFar,
+</span></span><span style="display:flex;"><span>				   <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	projection <span style="color:#f92672">=</span> scale <span style="color:#f92672">*</span> perspective;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> projection;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
         </div>
 
         <div class="row middle-xs">

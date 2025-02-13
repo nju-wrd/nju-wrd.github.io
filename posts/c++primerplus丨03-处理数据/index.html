@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.136.5">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="http://localhost:1313/posts/c&#43;&#43;primerplus%E4%B8%A803-%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" />
+  <link rel="canonical" href="http://localhost:1313/posts/c&#43;&#43;primerplus%E4%B8%A803-%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" /><link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="shortcut" href="/favicon.png" /><link rel="alternate" type="application/atom+xml" href="http://localhost:1313/index.xml" title="子春廿一">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "http:\/\/localhost:1313\/"
+      },
+      "articleSection" : "posts",
+      "name" : "C\u002b\u002bPrimerPlus丨03 处理数据",
+      "headline" : "C\u002b\u002bPrimerPlus丨03 处理数据",
+      "description" : "3.1 简单变量 为把信息存储在计算机中，程序必须记录3个基本属性：\n信息将存储在哪里； 要存储什么值； 存储何种类型的信息。 到目前为止，示例采取的策略都是声明一个变量。声明中使用的类型描述了信息的类型和通过符号来表示其值的变量名。例如：\nint braincount;\rbraincount = 5; 这些语句告诉程序，它正在存储整数，并使用名称braincount来表示该整数的值（这里为5）。实际上，程序将找到一块能够存储整数的内存，将该内存单元标记为braincount，并将5复制到该内存单元中；然后，可在程序中使用braincount来访问该内存单元。虽然没有告知这个值将存储在内存的什么位置，但程序确实记录了这种信息。实际上，可以使用\u0026amp;运算符来检索braincount的内存地址。\n3.1.1 变量名 C\u002b\u002b提倡使用有一定含义的变量名。如果变量表示差旅费，应将其命名为cost_of_trip或costOfTrip，而不要将其命名为x或cot。必须遵循几种简单的C\u002b\u002b命名规则。\n在名称中只能使用字母字符、数字和下划线(_)。 名称的第一个字符不能是数字。 区分大写字符与小写字符。 不能将C\u002b\u002b关键字用作名称。 以两个下划线或下划线和大写字母打头的名称被保留给实现（编译器及其使用的资源）使用。以一个下划线开头的名称被保留给实现，用作全局标识符。 C\u002b\u002b对于名称的长度没有限制，名称中所有的字符都有意义，但有些平台有长度限制。 倒数第二点与前面几点有些不同，因为使用像_time_stop或_Donut这样的名称不会导致编译器错误，而会导致行为的不确定性。换句话说，不知道结果将是什么。不出现编译器错误的原因是，这样的名称不是非法的，但要留给实现使用。全局名称指的是名称被声明的位置，这将在第4章讨论。\n最后一点使得C\u002b\u002b与ANSI C（C99标准）有所区别，后者只保证名称中的前63个字符有意义（在ANSI C中，前63个字符相同的名称被认为是相同的，即使第64个字符不同）。\n如果想用两个或更多的单词组成一个名称，通常的做法是用下划线字符将单词分开，如my_onions；或者从第二个单词开始将每个单词的第一个字母大写，如myEyeTooth。(C程序员倾向于按C语言的方式使用下划线，而Pascal程序员喜欢采用大写方式。）这两种形式都很容易将单词区分开，如carDrip和cardRip或boat_sport和boats_port。\n3.1.2 整型 整数就是没有小数部分的数字，如2、98、-5286和0。整数有很多，如果将无限大的整数看作很大，则不可能用有限的计算机内存来表示所有的整数。因此，语言只能表示所有整数的一个子集。有些语言只提供一种整型（一种类型满足所有要求！），而C\u002b\u002b则提供好几种，这样便能够根据程序的具体要求选择最合适的整型。\n不同C\u002b\u002b整型使用不同的内存量来存储整数。使用的内存量越大，可以表示的整数值范围也越大。另外，有的类型（符号类型）可表示正值和负值，而有的类型（无符号类型）不能表示负值。术语宽度（width）用于描述存储整数时使用的内存量。使用的内存越多，则越宽。C\u002b\u002b的基本整型（按宽度递增的顺序排列）分别是char、short、int、long和C\u002b\u002b11新增的long long，其中每种类型都包括有符号版本和无符号版本，因此总共有10种类型可供选择。char类型有一些特殊属性（它最常用来表示字符，而不是数字)，因此将首先介绍其他类型。\n3.1.3 整型short、int、long和long long 计算机内存由一些叫做位（bit）的单元组成。C\u002b\u002b的short、int、 long和long long类型通过使用不同数目的位来存储值，最多能够表示4种不同的整数宽度。如果在所有的系统中，每种类型的宽度都相同，则使用起来将非常方便。例如，如果short总是16位，int总是32位，等等。不过没有一种选择能够满足所有的计算机设计要求。C\u002b\u002b提供了一种灵活的标准，它确保了最小长度（从C语言借鉴而来），如下所示：\nshort至少16位； int至少与short一样长； long至少32位，且至少与int一样长； long long至少64位，且至少与long一样长。 当前很多系统都使用最小长度，即shot为16位，long为32位。这仍然为int提供了多种选择，其宽度可以是16位、24位或32位，同时又符合标准；甚至可以是64位，因为long和long long至少长64位。类型的宽度随实现而异，这可能在将C\u002b\u002b程序从一种环境移到另一种环境（包括在同一个系统中使用不同编译器）时引发问题。但只要小心一点，就可以最大限度地减少这种问题。\n实际上，short是short int的简称，而long是long int的简称，但是程序设计者们几乎都不使用比较长的形式。\n这4种类型（int、short、long和longlong）都是符号类型。\n要知道系统中整数的最大长度，可以在程序中使用C\u002b\u002b工具来检查类型的长度。首先，sizeof运算符返回类型或变量的长度，单位为字节（运算符是内置的语言元素，对一个或多个数据进行运算，并生成一个值。例如，加号运算符\u002b将两个值相加)。前面说过，“字节”的含义依赖于实现，因此在一个系统中，两字节的int可能是16位，而在另一个系统中可能是32位。其次，头文件climits（在老式实现中为limits.h）中包含了关于整型限制的信息。具体地说，它定义了表示各种限制的符号名称。例如，INT_MAX为int的最大取值，CHAR_BIT为字节的位数。下例程序演示了如何使用这些工具。该程序还演示如何初始化，即使用声明语句将值赋给变量。\n\/\/ limits.cpp -- some integer limits #include \u0026lt;iostream\u0026gt; #include \u0026lt;climits\u0026gt; \/\/ use limits.h for older systems int main() { using namespace std; int n_int = INT_MAX; \/\/ initialize n_int to max int value short n_short = SHRT_MAX; \/\/ symbols defined in climits file long n_long = LONG_MAX; long long n_llong = LLONG_MAX; \/\/ sizeof operator yields size of type or of variable cout \u0026lt;\u0026lt; \u0026#34;int is \u0026#34; \u0026lt;\u0026lt; sizeof (int) \u0026lt;\u0026lt; \u0026#34; bytes.\u0026#34; \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;short is \u0026#34; \u0026lt;\u0026lt; sizeof n_short \u0026lt;\u0026lt; \u0026#34; bytes.\u0026#34; \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;long is \u0026#34; \u0026lt;\u0026lt; sizeof n_long \u0026lt;\u0026lt; \u0026#34; bytes.\u0026#34; \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;long long is \u0026#34; \u0026lt;\u0026lt; sizeof n_llong \u0026lt;\u0026lt; \u0026#34; bytes.\u0026#34; \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;Maximum values:\u0026#34; \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;int: \u0026#34; \u0026lt;\u0026lt; n_int \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;short: \u0026#34; \u0026lt;\u0026lt; n_short \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;long: \u0026#34; \u0026lt;\u0026lt; n_long \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;long long: \u0026#34; \u0026lt;\u0026lt; n_llong \u0026lt;\u0026lt; endl \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;Minimum int value = \u0026#34; \u0026lt;\u0026lt; INT_MIN \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026#34;Bits per byte = \u0026#34; \u0026lt;\u0026lt; CHAR_BIT \u0026lt;\u0026lt; endl; \/\/ cin.get(); return 0; } sizeof运算符指出，在使用8位字节的系统中，int的长度为4个字节。可对类型名或变量名使用sizeof运算符。对类型名（如int）使用sizeof运算符时，应将名称放在括号中；但对变量名使用该运算符，括号是可选的：\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-01-25 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2025-01-25 00:00:00 \u002b0000 UTC",
+      "url" : "http:\/\/localhost:1313\/posts\/c\u002b\u002bprimerplus%E4%B8%A803-%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>
+    
+    C&#43;&#43;PrimerPlus丨03 处理数据
+  
+  </title>
+  <meta property="og:title" content="C&#43;&#43;PrimerPlus丨03 处理数据" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="3.1 简单变量 为把信息存储在计算机中，程序必须记录3个基本属性：
+信息将存储在哪里； 要存储什么值； 存储何种类型的信息。 到目前为止，示例采取的策略都是声明一个变量。声明中使用的类型描述了信息的类型和通过符号来表示其值的变量名。例如：
+int braincount;braincount = 5; 这些语句告诉程序，它正在存储整数，并使用名称braincount来表示该整数的值（这里为5）。实际上，程序将找到一块能够存储整数的内存，将该内存单元标记为braincount，并将5复制到该内存单元中；然后，可在程序中使用braincount来访问该内存单元。虽然没有告知这个值将存储在内存的什么位置，但程序确实记录了这种信息。实际上，可以使用&amp;运算符来检索braincount的内存地址。
+3.1.1 变量名 C&#43;&#43;提倡使用有一定含义的变量名。如果变量表示差旅费，应将其命名为cost_of_trip或costOfTrip，而不要将其命名为x或cot。必须遵循几种简单的C&#43;&#43;命名规则。
+在名称中只能使用字母字符、数字和下划线(_)。 名称的第一个字符不能是数字。 区分大写字符与小写字符。 不能将C&#43;&#43;关键字用作名称。 以两个下划线或下划线和大写字母打头的名称被保留给实现（编译器及其使用的资源）使用。以一个下划线开头的名称被保留给实现，用作全局标识符。 C&#43;&#43;对于名称的长度没有限制，名称中所有的字符都有意义，但有些平台有长度限制。 倒数第二点与前面几点有些不同，因为使用像_time_stop或_Donut这样的名称不会导致编译器错误，而会导致行为的不确定性。换句话说，不知道结果将是什么。不出现编译器错误的原因是，这样的名称不是非法的，但要留给实现使用。全局名称指的是名称被声明的位置，这将在第4章讨论。
+最后一点使得C&#43;&#43;与ANSI C（C99标准）有所区别，后者只保证名称中的前63个字符有意义（在ANSI C中，前63个字符相同的名称被认为是相同的，即使第64个字符不同）。
+如果想用两个或更多的单词组成一个名称，通常的做法是用下划线字符将单词分开，如my_onions；或者从第二个单词开始将每个单词的第一个字母大写，如myEyeTooth。(C程序员倾向于按C语言的方式使用下划线，而Pascal程序员喜欢采用大写方式。）这两种形式都很容易将单词区分开，如carDrip和cardRip或boat_sport和boats_port。
+3.1.2 整型 整数就是没有小数部分的数字，如2、98、-5286和0。整数有很多，如果将无限大的整数看作很大，则不可能用有限的计算机内存来表示所有的整数。因此，语言只能表示所有整数的一个子集。有些语言只提供一种整型（一种类型满足所有要求！），而C&#43;&#43;则提供好几种，这样便能够根据程序的具体要求选择最合适的整型。
+不同C&#43;&#43;整型使用不同的内存量来存储整数。使用的内存量越大，可以表示的整数值范围也越大。另外，有的类型（符号类型）可表示正值和负值，而有的类型（无符号类型）不能表示负值。术语宽度（width）用于描述存储整数时使用的内存量。使用的内存越多，则越宽。C&#43;&#43;的基本整型（按宽度递增的顺序排列）分别是char、short、int、long和C&#43;&#43;11新增的long long，其中每种类型都包括有符号版本和无符号版本，因此总共有10种类型可供选择。char类型有一些特殊属性（它最常用来表示字符，而不是数字)，因此将首先介绍其他类型。
+3.1.3 整型short、int、long和long long 计算机内存由一些叫做位（bit）的单元组成。C&#43;&#43;的short、int、 long和long long类型通过使用不同数目的位来存储值，最多能够表示4种不同的整数宽度。如果在所有的系统中，每种类型的宽度都相同，则使用起来将非常方便。例如，如果short总是16位，int总是32位，等等。不过没有一种选择能够满足所有的计算机设计要求。C&#43;&#43;提供了一种灵活的标准，它确保了最小长度（从C语言借鉴而来），如下所示：
+short至少16位； int至少与short一样长； long至少32位，且至少与int一样长； long long至少64位，且至少与long一样长。 当前很多系统都使用最小长度，即shot为16位，long为32位。这仍然为int提供了多种选择，其宽度可以是16位、24位或32位，同时又符合标准；甚至可以是64位，因为long和long long至少长64位。类型的宽度随实现而异，这可能在将C&#43;&#43;程序从一种环境移到另一种环境（包括在同一个系统中使用不同编译器）时引发问题。但只要小心一点，就可以最大限度地减少这种问题。
+实际上，short是short int的简称，而long是long int的简称，但是程序设计者们几乎都不使用比较长的形式。
+这4种类型（int、short、long和longlong）都是符号类型。
+要知道系统中整数的最大长度，可以在程序中使用C&#43;&#43;工具来检查类型的长度。首先，sizeof运算符返回类型或变量的长度，单位为字节（运算符是内置的语言元素，对一个或多个数据进行运算，并生成一个值。例如，加号运算符&#43;将两个值相加)。前面说过，“字节”的含义依赖于实现，因此在一个系统中，两字节的int可能是16位，而在另一个系统中可能是32位。其次，头文件climits（在老式实现中为limits.h）中包含了关于整型限制的信息。具体地说，它定义了表示各种限制的符号名称。例如，INT_MAX为int的最大取值，CHAR_BIT为字节的位数。下例程序演示了如何使用这些工具。该程序还演示如何初始化，即使用声明语句将值赋给变量。
+// limits.cpp -- some integer limits #include &lt;iostream&gt; #include &lt;climits&gt; // use limits.h for older systems int main() { using namespace std; int n_int = INT_MAX; // initialize n_int to max int value short n_short = SHRT_MAX; // symbols defined in climits file long n_long = LONG_MAX; long long n_llong = LLONG_MAX; // sizeof operator yields size of type or of variable cout &lt;&lt; &#34;int is &#34; &lt;&lt; sizeof (int) &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;short is &#34; &lt;&lt; sizeof n_short &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;long is &#34; &lt;&lt; sizeof n_long &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;long long is &#34; &lt;&lt; sizeof n_llong &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; endl; cout &lt;&lt; &#34;Maximum values:&#34; &lt;&lt; endl; cout &lt;&lt; &#34;int: &#34; &lt;&lt; n_int &lt;&lt; endl; cout &lt;&lt; &#34;short: &#34; &lt;&lt; n_short &lt;&lt; endl; cout &lt;&lt; &#34;long: &#34; &lt;&lt; n_long &lt;&lt; endl; cout &lt;&lt; &#34;long long: &#34; &lt;&lt; n_llong &lt;&lt; endl &lt;&lt; endl; cout &lt;&lt; &#34;Minimum int value = &#34; &lt;&lt; INT_MIN &lt;&lt; endl; cout &lt;&lt; &#34;Bits per byte = &#34; &lt;&lt; CHAR_BIT &lt;&lt; endl; // cin.get(); return 0; } sizeof运算符指出，在使用8位字节的系统中，int的长度为4个字节。可对类型名或变量名使用sizeof运算符。对类型名（如int）使用sizeof运算符时，应将名称放在括号中；但对变量名使用该运算符，括号是可选的：
+" />
+  <meta name="description" content="3.1 简单变量 为把信息存储在计算机中，程序必须记录3个基本属性：
+信息将存储在哪里； 要存储什么值； 存储何种类型的信息。 到目前为止，示例采取的策略都是声明一个变量。声明中使用的类型描述了信息的类型和通过符号来表示其值的变量名。例如：
+int braincount;braincount = 5; 这些语句告诉程序，它正在存储整数，并使用名称braincount来表示该整数的值（这里为5）。实际上，程序将找到一块能够存储整数的内存，将该内存单元标记为braincount，并将5复制到该内存单元中；然后，可在程序中使用braincount来访问该内存单元。虽然没有告知这个值将存储在内存的什么位置，但程序确实记录了这种信息。实际上，可以使用&amp;运算符来检索braincount的内存地址。
+3.1.1 变量名 C&#43;&#43;提倡使用有一定含义的变量名。如果变量表示差旅费，应将其命名为cost_of_trip或costOfTrip，而不要将其命名为x或cot。必须遵循几种简单的C&#43;&#43;命名规则。
+在名称中只能使用字母字符、数字和下划线(_)。 名称的第一个字符不能是数字。 区分大写字符与小写字符。 不能将C&#43;&#43;关键字用作名称。 以两个下划线或下划线和大写字母打头的名称被保留给实现（编译器及其使用的资源）使用。以一个下划线开头的名称被保留给实现，用作全局标识符。 C&#43;&#43;对于名称的长度没有限制，名称中所有的字符都有意义，但有些平台有长度限制。 倒数第二点与前面几点有些不同，因为使用像_time_stop或_Donut这样的名称不会导致编译器错误，而会导致行为的不确定性。换句话说，不知道结果将是什么。不出现编译器错误的原因是，这样的名称不是非法的，但要留给实现使用。全局名称指的是名称被声明的位置，这将在第4章讨论。
+最后一点使得C&#43;&#43;与ANSI C（C99标准）有所区别，后者只保证名称中的前63个字符有意义（在ANSI C中，前63个字符相同的名称被认为是相同的，即使第64个字符不同）。
+如果想用两个或更多的单词组成一个名称，通常的做法是用下划线字符将单词分开，如my_onions；或者从第二个单词开始将每个单词的第一个字母大写，如myEyeTooth。(C程序员倾向于按C语言的方式使用下划线，而Pascal程序员喜欢采用大写方式。）这两种形式都很容易将单词区分开，如carDrip和cardRip或boat_sport和boats_port。
+3.1.2 整型 整数就是没有小数部分的数字，如2、98、-5286和0。整数有很多，如果将无限大的整数看作很大，则不可能用有限的计算机内存来表示所有的整数。因此，语言只能表示所有整数的一个子集。有些语言只提供一种整型（一种类型满足所有要求！），而C&#43;&#43;则提供好几种，这样便能够根据程序的具体要求选择最合适的整型。
+不同C&#43;&#43;整型使用不同的内存量来存储整数。使用的内存量越大，可以表示的整数值范围也越大。另外，有的类型（符号类型）可表示正值和负值，而有的类型（无符号类型）不能表示负值。术语宽度（width）用于描述存储整数时使用的内存量。使用的内存越多，则越宽。C&#43;&#43;的基本整型（按宽度递增的顺序排列）分别是char、short、int、long和C&#43;&#43;11新增的long long，其中每种类型都包括有符号版本和无符号版本，因此总共有10种类型可供选择。char类型有一些特殊属性（它最常用来表示字符，而不是数字)，因此将首先介绍其他类型。
+3.1.3 整型short、int、long和long long 计算机内存由一些叫做位（bit）的单元组成。C&#43;&#43;的short、int、 long和long long类型通过使用不同数目的位来存储值，最多能够表示4种不同的整数宽度。如果在所有的系统中，每种类型的宽度都相同，则使用起来将非常方便。例如，如果short总是16位，int总是32位，等等。不过没有一种选择能够满足所有的计算机设计要求。C&#43;&#43;提供了一种灵活的标准，它确保了最小长度（从C语言借鉴而来），如下所示：
+short至少16位； int至少与short一样长； long至少32位，且至少与int一样长； long long至少64位，且至少与long一样长。 当前很多系统都使用最小长度，即shot为16位，long为32位。这仍然为int提供了多种选择，其宽度可以是16位、24位或32位，同时又符合标准；甚至可以是64位，因为long和long long至少长64位。类型的宽度随实现而异，这可能在将C&#43;&#43;程序从一种环境移到另一种环境（包括在同一个系统中使用不同编译器）时引发问题。但只要小心一点，就可以最大限度地减少这种问题。
+实际上，short是short int的简称，而long是long int的简称，但是程序设计者们几乎都不使用比较长的形式。
+这4种类型（int、short、long和longlong）都是符号类型。
+要知道系统中整数的最大长度，可以在程序中使用C&#43;&#43;工具来检查类型的长度。首先，sizeof运算符返回类型或变量的长度，单位为字节（运算符是内置的语言元素，对一个或多个数据进行运算，并生成一个值。例如，加号运算符&#43;将两个值相加)。前面说过，“字节”的含义依赖于实现，因此在一个系统中，两字节的int可能是16位，而在另一个系统中可能是32位。其次，头文件climits（在老式实现中为limits.h）中包含了关于整型限制的信息。具体地说，它定义了表示各种限制的符号名称。例如，INT_MAX为int的最大取值，CHAR_BIT为字节的位数。下例程序演示了如何使用这些工具。该程序还演示如何初始化，即使用声明语句将值赋给变量。
+// limits.cpp -- some integer limits #include &lt;iostream&gt; #include &lt;climits&gt; // use limits.h for older systems int main() { using namespace std; int n_int = INT_MAX; // initialize n_int to max int value short n_short = SHRT_MAX; // symbols defined in climits file long n_long = LONG_MAX; long long n_llong = LLONG_MAX; // sizeof operator yields size of type or of variable cout &lt;&lt; &#34;int is &#34; &lt;&lt; sizeof (int) &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;short is &#34; &lt;&lt; sizeof n_short &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;long is &#34; &lt;&lt; sizeof n_long &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; &#34;long long is &#34; &lt;&lt; sizeof n_llong &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl; cout &lt;&lt; endl; cout &lt;&lt; &#34;Maximum values:&#34; &lt;&lt; endl; cout &lt;&lt; &#34;int: &#34; &lt;&lt; n_int &lt;&lt; endl; cout &lt;&lt; &#34;short: &#34; &lt;&lt; n_short &lt;&lt; endl; cout &lt;&lt; &#34;long: &#34; &lt;&lt; n_long &lt;&lt; endl; cout &lt;&lt; &#34;long long: &#34; &lt;&lt; n_llong &lt;&lt; endl &lt;&lt; endl; cout &lt;&lt; &#34;Minimum int value = &#34; &lt;&lt; INT_MIN &lt;&lt; endl; cout &lt;&lt; &#34;Bits per byte = &#34; &lt;&lt; CHAR_BIT &lt;&lt; endl; // cin.get(); return 0; } sizeof运算符指出，在使用8位字节的系统中，int的长度为4个字节。可对类型名或变量名使用sizeof运算符。对类型名（如int）使用sizeof运算符时，应将名称放在括号中；但对变量名使用该运算符，括号是可选的：
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="/favicon.png" />
+  
+
+  
+    <style>@import '/fonts/lxgw-wenkai-screen-webfont/style.css';body{font-family:lxgw wenkai screen,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none!important}a:hover{text-decoration:underline!important}table{width:100%;border-collapse:collapse;border:2px solid #000}th,td{text-align:center;vertical-align:middle;border:2px solid #000;padding:10px}p{}details{background-color:#f0f0f0;border:0 solid #1e90ff;border-radius:20px;padding:10px}details[open]{background-color:#f0f0f0}summary{font-size:20px;font-weight:700;color:#000;cursor:pointer;transition:color .3s ease}summary:hover{color:#ff4500}.highlight{position:relative}button{appearance:auto;text-rendering:auto;color:buttontext;letter-spacing:normal;word-spacing:normal;line-height:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:center;align-items:flex-start;cursor:default;box-sizing:border-box;background-color:buttonface;margin:0;padding-block:1px;padding-inline:6px;border-width:2px;border-style:outset;border-color:buttonborder;border-image:initial}.copy-button{display:none;position:absolute;top:10px;right:10px;padding:5px 10px;font-size:.8em;color:#fff;background-color:#008b8b;border:none;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:background-color .3s ease}.copy-button:hover{background-color:#cd3bee}.highlight:hover .copy-button{display:inline-block}.post-ads{color:#00f;margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.header-main{display:flex;padding:5px 0;justify-content:flex-start}.header-avatar img{width:113px;height:125px;border-radius:50%;margin-right:10px}.site-date-catalog{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;color:blue}.header-title{font-family:lxgw wenkai screen,sans-serif;font-size:2rem;font-weight:700;margin-top:32px}.header-title a{text-decoration:none}.header-subtitle{color:#c557a2;font-size:1.3rem;font-weight:700}.header-items{margin:5px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.header-content{display:flex;align-items:center}.lang-switch{font-weight:900}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}pre{background-color:#f5f2f0;padding:5px;font-family:lxgw wenkai screen,sans-serif;font-size:18px;margin-bottom:18px margin-left:0px margin-right:0px margin-top:18px padding-top:16px padding-bottom:16px padding-left:16px padding-right:16px white-space:pre-wrap;word-wrap:break-word;overflow-x:auto;overflow-y:auto;-webkit-font-smoothing:antialiased}code{font-family:Consolas,Monaco,andale mono,ubuntu mono,monospace}.post-header{margin-bottom:50px;font-weight:900}.post-title{font-size:2rem;font-weight:900}.post-tags{display:inline;font-weight:900;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:900;font-style:italic}.post-author{float:right;font-weight:900}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:18px;max-width:100%}.post-title{font-size:2rem;font-weight:900}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}.language-css.token.string,.style.token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:0 0!important}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子春廿一">
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post Chinese" id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header class="header-main">
+	<div class="header-content">
+		<div class="header-avatar">
+		<img src="/%e5%a4%b4%e5%83%8f.jpg" />
+		</div>
+		<div class="header-title">
+			<a href="/">子春廿一</a>
+			<div class="header-subtitle">中意胡梓悦大王💖</div> 
+		</div>
+	</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="/categories/index.html" >分类</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">C&#43;&#43;PrimerPlus丨03 处理数据</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-01-25 00:00:00 UTC">
+                25 Jan 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="31-简单变量">3.1 简单变量</h2>
+<p>为把信息存储在计算机中，程序必须记录3个基本属性：</p>
+<ul>
+<li>信息将存储在哪里；</li>
+<li>要存储什么值；</li>
+<li>存储何种类型的信息。</li>
+</ul>
+<p>到目前为止，示例采取的策略都是声明一个变量。声明中使用的类型描述了信息的类型和通过符号来表示其值的变量名。例如：</p>
+<pre tabindex="0"><code>int braincount;
+braincount = 5;
+</code></pre><p>这些语句告诉程序，它正在存储整数，并使用名称braincount来表示该整数的值（这里为5）。实际上，程序将找到一块能够存储整数的内存，将该内存单元标记为braincount，并将5复制到该内存单元中；然后，可在程序中使用braincount来访问该内存单元。虽然没有告知这个值将存储在内存的什么位置，但程序确实记录了这种信息。实际上，可以使用&amp;运算符来检索braincount的内存地址。</p>
+<h3 id="311-变量名">3.1.1 变量名</h3>
+<p>C++提倡使用有一定含义的变量名。如果变量表示差旅费，应将其命名为cost_of_trip或costOfTrip，而不要将其命名为x或cot。必须遵循几种简单的C++命名规则。</p>
+<ul>
+<li>在名称中只能使用字母字符、数字和下划线(_)。</li>
+<li>名称的第一个字符不能是数字。</li>
+<li>区分大写字符与小写字符。</li>
+<li>不能将C++关键字用作名称。</li>
+<li>以两个下划线或下划线和大写字母打头的名称被保留给实现（编译器及其使用的资源）使用。以一个下划线开头的名称被保留给实现，用作全局标识符。</li>
+<li>C++对于名称的长度没有限制，名称中所有的字符都有意义，但有些平台有长度限制。</li>
+</ul>
+<p>倒数第二点与前面几点有些不同，因为使用像_time_stop或_Donut这样的名称不会导致编译器错误，而会导致行为的不确定性。换句话说，不知道结果将是什么。不出现编译器错误的原因是，这样的名称不是非法的，但要留给实现使用。全局名称指的是名称被声明的位置，这将在第4章讨论。</p>
+<p>最后一点使得C++与ANSI C（C99标准）有所区别，后者只保证名称中的前63个字符有意义（在ANSI C中，前63个字符相同的名称被认为是相同的，即使第64个字符不同）。</p>
+<p>如果想用两个或更多的单词组成一个名称，通常的做法是用下划线字符将单词分开，如my_onions；或者从第二个单词开始将每个单词的第一个字母大写，如myEyeTooth。(C程序员倾向于按C语言的方式使用下划线，而Pascal程序员喜欢采用大写方式。）这两种形式都很容易将单词区分开，如carDrip和cardRip或boat_sport和boats_port。</p>
+<h3 id="312-整型">3.1.2 整型</h3>
+<p>整数就是没有小数部分的数字，如2、98、-5286和0。整数有很多，如果将无限大的整数看作很大，则不可能用有限的计算机内存来表示所有的整数。因此，语言只能表示所有整数的一个子集。有些语言只提供一种整型（一种类型满足所有要求！），而C++则提供好几种，这样便能够根据程序的具体要求选择最合适的整型。</p>
+<p>不同C++整型使用不同的内存量来存储整数。使用的内存量越大，可以表示的整数值范围也越大。另外，有的类型（符号类型）可表示正值和负值，而有的类型（无符号类型）不能表示负值。术语宽度（width）用于描述存储整数时使用的内存量。使用的内存越多，则越宽。C++的基本整型（按宽度递增的顺序排列）分别是char、short、int、long和C++11新增的long long，其中每种类型都包括有符号版本和无符号版本，因此总共有10种类型可供选择。char类型有一些特殊属性（它最常用来表示字符，而不是数字)，因此将首先介绍其他类型。</p>
+<h3 id="313-整型shortintlong和long-long">3.1.3 整型short、int、long和long long</h3>
+<p>计算机内存由一些叫做位（bit）的单元组成。C++的short、int、 long和long long类型通过使用不同数目的位来存储值，最多能够表示4种不同的整数宽度。如果在所有的系统中，每种类型的宽度都相同，则使用起来将非常方便。例如，如果short总是16位，int总是32位，等等。不过没有一种选择能够满足所有的计算机设计要求。C++提供了一种灵活的标准，它确保了最小长度（从C语言借鉴而来），如下所示：</p>
+<ul>
+<li>short至少16位；</li>
+<li>int至少与short一样长；</li>
+<li>long至少32位，且至少与int一样长；</li>
+<li>long long至少64位，且至少与long一样长。</li>
+</ul>
+<p>当前很多系统都使用最小长度，即shot为16位，long为32位。这仍然为int提供了多种选择，其宽度可以是16位、24位或32位，同时又符合标准；甚至可以是64位，因为long和long long至少长64位。类型的宽度随实现而异，这可能在将C++程序从一种环境移到另一种环境（包括在同一个系统中使用不同编译器）时引发问题。但只要小心一点，就可以最大限度地减少这种问题。</p>
+<p>实际上，short是short int的简称，而long是long int的简称，但是程序设计者们几乎都不使用比较长的形式。</p>
+<p>这4种类型（int、short、long和longlong）都是符号类型。</p>
+<p>要知道系统中整数的最大长度，可以在程序中使用C++工具来检查类型的长度。首先，sizeof运算符返回类型或变量的长度，单位为字节（运算符是内置的语言元素，对一个或多个数据进行运算，并生成一个值。例如，加号运算符+将两个值相加)。前面说过，“字节”的含义依赖于实现，因此在一个系统中，两字节的int可能是16位，而在另一个系统中可能是32位。其次，头文件climits（在老式实现中为limits.h）中包含了关于整型限制的信息。具体地说，它定义了表示各种限制的符号名称。例如，INT_MAX为int的最大取值，CHAR_BIT为字节的位数。下例程序演示了如何使用这些工具。该程序还演示如何初始化，即使用声明语句将值赋给变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// limits.cpp -- some integer limits
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">              </span><span style="color:#75715e">// use limits.h for older systems
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n_int <span style="color:#f92672">=</span> INT_MAX;        <span style="color:#75715e">// initialize n_int to max int value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">short</span> n_short <span style="color:#f92672">=</span> SHRT_MAX;   <span style="color:#75715e">// symbols defined in climits file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> n_long <span style="color:#f92672">=</span> LONG_MAX;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> n_llong <span style="color:#f92672">=</span> LLONG_MAX;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sizeof operator yields size of type or of variable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;int is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> (<span style="color:#66d9ef">int</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;short is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_short <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_long <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long long is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_llong <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Maximum values:&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;int: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> n_int <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;short: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> n_short <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> n_long <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long long: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> n_llong <span style="color:#f92672">&lt;&lt;</span> endl <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Minimum int value = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> INT_MIN <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Bits per byte = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> CHAR_BIT <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// cin.get();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>sizeof运算符指出，在使用8位字节的系统中，int的长度为4个字节。可对类型名或变量名使用sizeof运算符。对类型名（如int）使用sizeof运算符时，应将名称放在括号中；但对变量名使用该运算符，括号是可选的：</p>
+<pre tabindex="0"><code>cout &lt;&lt; &#34;int is &#34; &lt;&lt; sizeof (int) &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl;
+cout &lt;&lt; &#34;short is &#34; &lt;&lt; sizeof n_short &lt;&lt; &#34; bytes.&#34; &lt;&lt; endl;
+</code></pre><p>头文件climits定义了符号常量来表示类型的限制。如前所述，INT_MAX表示类型int能够存储的最大值，对于Windows7系统，为2147483647。编译器厂商提供了climits文件，该文件指出了其编译器中的值。例如，在使用16位int的老系统中，climits文件将INT_MAX定义为32767。下表对该文件中定义的符号常量进行了总结。</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <colgroup>
+    <col style="width: 50%;">
+    <col style="width: 50%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>符号常量</th>
+      <th>表示</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CHAR_BIT</td>
+      <td>char的位数</td>
+    </tr>
+    <tr>
+      <td>CHAR_MAX</td>
+      <td>char的最大值</td>
+    </tr>
+    <tr>
+      <td>CHAR_MIN</td>
+      <td>char的最小值</td>
+    </tr>
+    <tr>
+      <td>SCHAR_MAX</td>
+      <td>signed char的最大值</td>
+    </tr>
+    <tr>
+      <td>SCHAR_MIN</td>
+      <td>signed char的最小值</td>
+    </tr>
+    <tr>
+      <td>UCHAR_MAX</td>
+      <td>unsigned char的最大值</td>
+    </tr>
+    <tr>
+      <td>UCHAR_MIN</td>
+      <td>unsigned char的最小值</td>
+    </tr>
+    <tr>
+      <td>SHRT_MAX</td>
+      <td>short的最大值</td>
+    </tr>
+    <tr>
+      <td>SHRT_MIN</td>
+      <td>short的最小值</td>
+    </tr>
+    <tr>
+      <td>USHRT_MAX</td>
+      <td>unsigned short的最大值</td>
+    </tr>
+    <tr>
+      <td>INT_MAX</td>
+      <td>int的最大值</td>
+    </tr>
+    <tr>
+      <td>INT_MIN</td>
+      <td>int的最小值</td>
+    </tr>
+    <tr>
+      <td>UINT_MAX</td>
+      <td>unsigned int的最大值</td>
+    </tr>
+    <tr>
+      <td>LONG_MAX</td>
+      <td>long的最大值</td>
+    </tr>
+    <tr>
+      <td>LONG_MIN</td>
+      <td>long的最小值</td>
+    </tr>
+    <tr>
+      <td>ULONG_MAX</td>
+      <td>unsigned long的最大值</td>
+    </tr>
+    <tr>
+      <td>LLONG_MAX</td>
+      <td>long long的最大值</td>
+    </tr>
+    <tr>
+      <td>LLONG_MIN</td>
+      <td>long long的最小值</td>
+    </tr>
+    <tr>
+      <td>ULLONG_MAX</td>
+      <td>unsigned long long的最大值</td>
+    </tr>
+    </tbody>
+</table>
+<p>climits文件中包含与下面类以的语句行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#define INT_MAX 32767
+</span></span></span></code></pre></div><p>在C++编译过程中，首先将源代码传递给预处理器。在这里，#define和include一样，也是一个预处理器编译指令。该编译指令告诉预处理器：在程序中查找INT_MAX，并将所有的INT_MAX都替换为32767。因此#define编译指令的工作方式与文本编辑器或字处理器中的全局搜索并替换命令相似。修改后的程序将在完成这些替换后被编译。预处理器查找独立的标记（单独的单词），跳过嵌入的单词。也就是说，预处理器不会将PINT_MAXTM替换为P32767M。也可以使用#define来定义自己的符号常量。然而，#define编译指令是C语言遗留下来的。C++有一种更好的创建符号常量的方法（使用关键字const），所以不会经常使用#define。然而，有些头文件，尤其是那些被设计成可用于C和C++中的头文件，必须使用#define。</p>
+<p>C++11有一种初始化方式，这种方式用于数组和结构，但在C++98中，也可用于单值变量：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> hamburgers <span style="color:#f92672">=</span> {<span style="color:#ae81ff">24</span>}; <span style="color:#75715e">//set hamburgers to 24
+</span></span></span></code></pre></div><p>将大括号初始化器用于单值变量的情形还不多，但C++11标准使得这种情形更多了。首先，采用这种方式时，可以使用等号(=)，也可以不使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> emus{<span style="color:#ae81ff">7</span>};		<span style="color:#75715e">// set emus to 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> rheas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">12</span>};	<span style="color:#75715e">// set rheas to 12
+</span></span></span></code></pre></div><p>其次，大括号内可以不包含任何东西。在这种情况下，变量将被初始化为零：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> rocs <span style="color:#f92672">=</span> {};	<span style="color:#75715e">// set rocs to 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> psychics{};	<span style="color:#75715e">// set psychics to 0
+</span></span></span></code></pre></div><h3 id="314-无符号类型">3.1.4 无符号类型</h3>
+<p>前面介绍的4种整型都有一种不能存储负数值的无符号变体，其优点是可以增大变量能够存储的最大值。例如，如果short表示的范围为-32768到+32767，则无符号版本的表示范围为0-65535。当然，仅当数值不会为负时才应使用无符号类型，如人口、粒数等。要创建无符号版本的基本整型，只需使用关键字 unsigned来修改声明即可：</p>
+<pre tabindex="0"><code>unsigned short change;
+unsigned int rovert;
+unsigned quarterback;
+unsigned long gone;
+unsigned longlong lang_lang;
+</code></pre><h3 id="315-选择整形类型">3.1.5 选择整形类型</h3>
+<p>通常会选择int类型，但是在一些情况下也要选择不同的类型。</p>
+<p>如果变量表示的值不可能为负，如文档中的字数，则可以使用无符号类型，这样变量可以表示更大的值。</p>
+<p>如果知道变量可能表示的整数值大于16位整数的最大可能值，则使用long。即使系统上int为32位，也应这样做。这样，将程序移植到16位系统时，就不会突然无法正常工作。如果要存储的值超过20亿，可使用long long。</p>
+<p>由于short比int小，则使用short可以节省内存。通常，仅当有大型整型数组时，才有必要使用short。如果节省内存很重要，则应使用short而不是使用int，即使它们的长度是一样的。例如，假设要将程序从int为16位的系统移到int为32位的系统，则用于存储int数组的内存量将加倍，但short数组不受影响。如果只需要一个字节，可使用char。</p>
+<h3 id="316-整型字面值">3.1.6 整型字面值</h3>
+<p>整型字面值（常量）是显式地书写的常量，如212或1776。与C相同，C++能够以三种不同的计数方式来书写整数：基数为10、基数为8（老式UNX版本）和基数为16（硬件）。这里将介绍C++表示法。C++使用前一（两）位来标识数字常量的基数。如果第一位为 1<del>9，则基数为10（十进制）；因此93是以10为基数的。如果第一位是0，第二位为1</del>7，则基数为8（八进制）；因此042的基数是8，它相当于十进制数34。如果前两位为0x或0X，则基数为16（十六进制）；因此0x42为十六进制数，相当于十进制数66。对于十六进制数，字符a<del>f和A</del>F表示了十六进制位，对应于10~15。0xF为15，0xA5为165（10个16加5个1）。</p>
+<p>在默认情况下，cout以十进制格式显示整数，而不管这些整数在程序中是如何书写的。</p>
+<p>如果要以十六进制或八进制方式显示值，则可以使用cout的一些特殊特性。前面指出过，头文件iostream提供了控制符endl，用于指示cout重起一行。同样，它还提供了控制符dec、hex和oct，分别用于指示cout以十进制、十六进制和八进制格式显示整数。下面的程序使用了hex和oct以上述三种格式显示十进制值42。默认格式为十进制，在修改格式之前，原来的格式将一直有效。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// hexoct2.cpp -- display values in hex and octal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> chest <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> waist <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> inseam <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Monsieur cuts a striking figure!&#34;</span>  <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;chest = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> chest <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; (decimal for 42)&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> hex;      <span style="color:#75715e">// manipulator for changing number base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;waist = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> waist <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; (hexadecimal for 42)&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> oct;      <span style="color:#75715e">// manipulator for changing number base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;inseam = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> inseam <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; (octal for 42)&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// cin.get();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>诸如cout &laquo; hex;等代码不会在屏幕上显示任何内容，而只是修改cout显示整数的方式。因此，控制符 hex实际上是一条消息，告诉cout采取何种行为。另外，由于标识符hex位于名称空间std中，而程序使用了该名称空间，因此不能将hex用作变量名。然而，如果省略编译指令using，而使用std:cout、std:endl、 std:hex和std:oct，则可以将hex用作变量名。</p>
+<h3 id="317-c如何确定常量的类型">3.1.7 C++如何确定常量的类型</h3>
+<p>程序的声明将特定的整型变量的类型告诉了C++编译器，但编译器是如何知道常量的类型呢？假设在程序中使用常量表示一个数字：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Year = &#34;</span><span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1492</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span></code></pre></div><p>程序将把1492存储为int、long还是其他整型呢？答案是，除非有理由存储为其他类型（如使用了特殊的后缀来表示特定的类型，或者值太大，不能存储为int），否则C++将整型常量存储为int类型。</p>
+<p>首先来看看后缀。后缀是放在数字常量后面的字母，用于表示类型。整数后面的l或L后缀表示该整数为long常量，u或U后缀表示unsigned int常量，ul（可以采用任何一种顺序，大写小写均可）表示unsigned long常量（由于小写l看上去像1，因此应使用大写L作后缀）。例如，在int为16位、long为32位的系统上，数字22022被存储为int，占16位，数字22022L被存储为long，占32位。同样，22022LU和22022UL都被存储为unsigned long。C++11提供了用于表示类型long long的后缀ll和LL，还提供了用于表示类型 unsigned long long的后缀ull、Ull、uLL和ULL。</p>
+<p>接下来考察长度。在C++中，对十进制整数采用的规则，与十六进制和八进制稍微有些不同。对于不带后缀的十进制整数，将使用下面几种类型中能够存储该数的最小类型来表示：int、long或long long。在int为16位、long为32位的计算机系统上，20000被表示为int类型，40000被表示为long类型， 3000000000被表示为long long类型。对于不带后缀的十六进制或八进制整数，将使用下面几种类型中能够存储该数的最小类型来表示：int、unsigned int long、unsigned long、long long或unsigned long long。在将40000表示为long的计算机系统中，十六进制数0x9C40(40000)将被表示为unsigned int。这是因为十六进制常用来表示内存地址，而内存地址是没有符号的，因此，usigned int比long更适合用来表示 16位的地址。</p>
+<h3 id="318-char类型字符和小整数">3.1.8 char类型：字符和小整数</h3>
+<p>下面介绍最后一种整型：char类型。顾名思义，char类型是专为存储字符（如字母和数字）而设计的。现在，存储数字对于计算机来说算不了什么，但存储字母则是另一回事。编程语言通过使用字母的数值编码解决了这个问题。因此，char类型是另一种整型。它足够长，能够表示目标计算机系统中的所有基本符号——所有的字母、数字、标点符号等。实际上，很多系统支持的字符都不超过128个，因此用一个字节就可以表示所有的符号。因此，虽然char最常被用来处理字符，但也可以将它用做比short更小的整型。</p>
+<p>在美国，最常用的符号集是ASCII字符集。字符集中的字符用数值编码（ASCII码）表示。例如，字符A的编码为65，字母M的编码为77。为方便起见，本书在示例中使用的是ASCII码。然而，C++实现使用的是其主机系统的编码——例如，IBM大型机使用EBCDIC编码。ASCII和EBCDIC都不能很好地满足国际需要，C++支持的宽字符类型可以存储更多的值，如国际Unicode字符集使用的值。稍后将介绍wchar_t类型。</p>
+<p>输入时，cin将键盘输入的M转换为77；输出时，cout将值77转换为所显示的字符M；cin和cout的行为都是由变量类型引导的。如果将77存储在int变量中，则cout将把它显示为77（也就是说，cout显示两个字符7）。</p>
+<p>C++将字符表示为整数提供了方便，使得操纵字符值很容易。不必使用笨重的转换函数在字符和ASCII码之间来回转换。</p>
+<p>函数cout.put()是一个重要的C++OOP概念——成员函数——的第一个例子。类定义了如何表示和控制数据。成员函数归类所有，描述了操纵类数据的方法。例如类ostream有一个put()的成员函数，用来输出字符。只能通过类的特定对象（例如这里的cout对象）来使用成员函数。要通过对象（如cout）使用成员函数，必须用句点将对象名和函数名称（put()）连接起来。句点被称为成员运算符。cout.put()的意思是，通过类对象cout来使用函数put()。</p>
+<p>cout.put()成员函数提供了另一种显示字符的方法，可以替代&laquo;运算符。为何需要 cout.put()。答案与历史有关。在C++的Release2.0之前，cout将字符变量显示为字符，而将字符常量（如&rsquo;M&rsquo;和&rsquo;N&rsquo;）显示为数字。问题是，C++的早期版本与C一样，也将把字符常量存储为int类型。也就是说，&lsquo;M&rsquo;的编码77将被存储在一个16位或32位的单元中。而char变量一般占8位。下面的语句从常量&rsquo;M&rsquo;中复制8位（左边的8位）到变量ch中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;M&#39;</span>;
+</span></span></code></pre></div><p>遗憾的是，这意味着对cout来说，&lsquo;M&rsquo;和ch看上去有天壤之别，虽然它们存储的值相同。因此，下面的语句将打印$字符的ASCIⅡ码，而不是字符$：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;$&#39;</span>;
+</span></span></code></pre></div><p>但下面的语句将打印字符$：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cout.put(<span style="color:#e6db74">&#39;$&#39;</span>);
+</span></span></code></pre></div><p>在Release2.0之后，C++将字符常量存储为char类型，而不是int类型。这意味着cout现在可以正确处理字符常量了。</p>
+<p>在C++中，书写字符常量的方式有多种。对于常规字符（如字母、标点符号和数字），最简单的方法是将字符用单引号括起。这种表示法代表的是字符的数值编码。</p>
+<p>有些字符不能直接通过键盘输入到程序中。例如，按回车键并不能使字符串包含一个换行符；相反，程序编辑器将把这种键击解释为在源代码中开始新的一行。其他一些字符也无法从键盘输入，因为C++语言赋予了它们特殊的含义。例如，双引号字符用来分隔字符串字面值，因此不能把双引号放在字符串字面值中。对于这些字符，C++提供了一种特殊的表示方法——转义序列，如下表所示。例如，\a表示振铃字符，它可以使终端扬声器振铃。转义序列\n表示换行符，\&ldquo;将双引号作为常规字符，而不是字符串分隔符。</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>字符名称</th>
+      <th>ASCII符号</th>
+      <th>C++代码</th>
+      <th>十进制ASCII码</th>
+      <th>十六进制ASCII码</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>换行符</td>
+      <td>NL(LF)</td>
+      <td>\n</td>
+      <td>10</td>
+      <td>0xA</td>
+    </tr>
+    <tr>
+      <td>水平制表符</td>
+      <td>HT</td>
+      <td>\t</td>
+      <td>9</td>
+      <td>0x9</td>
+    </tr>
+    <tr>
+      <td>垂直制表符</td>
+      <td>VT</td>
+      <td>\v</td>
+      <td>11</td>
+      <td>0xB</td>
+    </tr>
+    <tr>
+      <td>退格</td>
+      <td>BS</td>
+      <td>\b</td>
+      <td>8</td>
+      <td>0x8</td>
+    </tr>
+    <tr>
+      <td>回车</td>
+      <td>CR</td>
+      <td>\r</td>
+      <td>13</td>
+      <td>0xD</td>
+    </tr>
+    <tr>
+      <td>振铃</td>
+      <td>BEL</td>
+      <td>\a</td>
+      <td>7</td>
+      <td>0x7</td>
+    </tr>
+    <tr>
+      <td>反斜杠</td>
+      <td>\</td>
+      <td>\\</td>
+      <td>92</td>
+      <td>0x5C</td>
+    </tr>
+    <tr>
+      <td>问号</td>
+      <td>?</td>
+      <td>\?</td>
+      <td>63</td>
+      <td>0x3F</td>
+    </tr>
+    <tr>
+      <td>单引号</td>
+      <td>'</td>
+      <td>\'</td>
+      <td>39</td>
+      <td>0x27</td>
+    </tr>
+    <tr>
+      <td>双引号</td>
+      <td>"</td>
+      <td>\"</td>
+      <td>34</td>
+      <td>0x22</td>
+    </tr>
+    </tbody>
+</table>
+<p>注意，应该像处理常规字符（如Q）那样处理转义序列（如\n）。也就是说，将它们作为字符常量时，应用单引号括起；将它们放在字符串中时，不需要使用单引号。</p>
+<p>换行符可替代endl，用于在输出中重起一行。可以以字符常量表示法（&rsquo;\n&rsquo;）或字符串方式（&ldquo;n&rdquo;）使用换行符。下面三行代码都将光标移到下一行开头：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> endl;	<span style="color:#75715e">// using the endl manipulator
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;\n&#39;</span>;	<span style="color:#75715e">// using a character constant
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;	<span style="color:#75715e">// using a string
+</span></span></span></code></pre></div><p>可以将换行符嵌入到较长的字符串中，这通常比使用endl方便。显示数字时，使用endl比输入&rdquo;\n&quot;或&rsquo;n&rsquo;更容易些，但显示字符串时，在字符串末尾添加一个换行符所需的输入量要少些。</p>
+<p>最后，可以基于字符的八进制和十六进制编码来使用转义序列。例如，Ctr+Z的ASCIII码为26，对应的八进制编码为032，十六进制编码为0x1a。可以用下面的转义序列来表示该字符：\032或\x1a。将这些编码用单引号括起，可以得到相应的字符常量，如&rsquo;&rsquo;\032&rsquo;，也可以将它们放在字符串中，如&quot;hi\x1a there&quot;。</p>
+<p>不过，在可以使用数字转义序列或符号转义序列（如\0x8和\b）时，应使用符号序列。数字表示与特定的编码方式（如ASCII码）相关，而符号表示适用于任何编码方式，并且其可读性也更强。</p>
+<p>C++实现支持一个基本的源字符集，即可用来编写源代码的字符集。它由标准美国键盘上的字符（大写和小写）和数字、C语言中使用的符号（如{和=}以及其他一些字符（如换行符和空格）组成。还有一个基本的执行字符集，它包括在程序执行期间可处理的字符（如可从文件中读取或显示到屏幕上的字符）。它增加了一些字符，如退格和振铃。C++标准还允许实现提供扩展源字符集和扩展执行字符集。另外，那些被作为字母的额外字符也可用于标识符名称中。也就是说，德国实现可能允许使用日耳曼语的元音变音，而法国实现则允许使用重元音。C++有一种表示这种特殊字符的机制，它独立于任何特定的键盘，使用的是通用字符名（universal character name）。</p>
+<p>通用字符名的用法类似于转义序列。通用字符名可以以\u或\U打头。\u后面是8个十六进制位，\U后面则是16个十六进制位。这些位表示的是字符的ISO 10646码点（ISO 10646是一种正在制定的国际标准，为大量的字符提供了数值编码）。</p>
+<p>如果所用的实现支持扩展字符，则可以在标识符（如字符常量）和字符串中使用通用字符名。例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> k<span style="color:#960050;background-color:#1e0010">\</span>u00F6rper;
+</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Let them eat g</span><span style="color:#ae81ff">\u00E2</span><span style="color:#e6db74">teau.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span></code></pre></div><p>如果系统不支持ISO 10646，它将显示其他字符或gu00E2teau。实际上，从易读性的角度看，在变量名中使用\u00F6没有多大意义。</p>
+<p>Unicode提供了一种表示各种字符集的解决方案——为大量字符和符号提供标准数值编码，并根据类型将它们分组。例如，ASCII码为Unicode的子集，因此在这两种系统中，美国的拉丁字符（如A和Z）的表示相同。然而，Unicode还包含其他拉丁字符，如欧洲语言使用的拉丁字符、来自其他语言（如希腊语、西里尔语、希伯来语、切罗基语、阿拉伯语、泰语和孟加拉语）中的字符以及象形文字（如中国和日本的文字）。到目前为止，Unicode可以表示109000多种符号和90多个手写符号（script），它还在不断发展中。</p>
+<p>Unicode给每个字符指定一个编号——码点。Unicode码点通常类似于下面这样：U-222B。其中U表示这是一个Unicode字符，而222B是该字符（积分正弦符号)的十六进制编号。</p>
+<p>国际标准化组织（ISO）建立了一个工作组，专门开发ISO 10646——这也是一个对多种语言文本进行编码的标准。ISO 10646小组和Unicode小组从1991年开始合作，以确保他们的标准同步。</p>
+<p>与int不同的是，char在默认情况下既不是没有符号，也不是有符号。是否有符号由C++实现决定，这样编译器开发人员可以最大限度地将这种类型与硬件属性匹配起来。如果char有某种特定的行为非常重要，则可以显式地将类型设置为signed char或unsigned char：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> fodo;			<span style="color:#75715e">// may be signed,may be unsigned
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> bar;	<span style="color:#75715e">// definitely unsigned
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">signed</span> <span style="color:#66d9ef">char</span> snark;	<span style="color:#75715e">// definitely signed
+</span></span></span></code></pre></div><p>如果将char用作数值类型，则unsigned char和signed char之间的差异将非常重要。unsigned char类型的表示范围通常为0~255，而signed char的表示范围为-128到127。例如，假设要使用一个char变量来存储像200这样大的值，则在某些系统上可以，而在另一些系统上可能不可以。但使用unsigned char可以在任何系统上达到这种目的。另一方面，如果使用char变量来存储标准ASCII字符，则char有没有符号都没关系，在这种情况下，可以使用char。</p>
+<p>程序需要处理的字符集可能无法用一个8位的字节表示，如日文汉字系统。对于这种情况，C++的处理方式有两种。首先，如果大型字符集是实现的基本字符集，则编译器厂商可以将char定义为一个16位的字节或更长的字节。其次，一种实现可以同时支持一个小型基本字符集和一个较大的扩展字符集。8位 char可以表示基本字符集，另一种类型wchar_t（宽字符类型）可以表示扩展字符集。wchar_t类型是一种整数类型，它有足够的空间，可以表示系统使用的最大扩展字符集。这种类型与另一种整型（底层（underlying）类型）的长度和符号属性相同。对底层类型的选择取决于实现，因此在一个系统中，它可能是unsigned short，而在另一个系统中，则可能是int。</p>
+<p>cin和cout将输入和输出看作是char流，因此不适于用来处理wchar_t类型。iostream头文件的最新版本提供了作用相似的工具——wcin和wcout，可用于处理wchar_t流。另外，可以通过加上前缀L来指示宽字符常量和宽字符串。下面的代码将字母P的wchar_t版本存储到变量bob中，并显示单词tall的wchar_t版本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">wchar_t</span> bob <span style="color:#f92672">=</span> <span style="color:#e6db74">L</span><span style="color:#e6db74">&#39;P&#39;</span>;			<span style="color:#75715e">// a wide-character constant
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>wcout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;tall&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;	<span style="color:#75715e">// outputting a wide-character string
+</span></span></span></code></pre></div><p>在支持两字节wchar_t的系统中，上述代码将把每个字符存储在一个两个字节的内存单元中。本书不使用宽字符类型，但读者应知道有这种类型，尤其是在进行国际编程或使用Unicode或ISO 10646时。</p>
+<p>随着编程人员日益熟悉Unicode,类型wchar_t显然不再能够满足需求。事实上，在计算机系统上进行字符和字符串编码时，仅使用Unicode码点并不够。具体地说，进行字符串编码时，如果有特定长度和符号特征的类型，将很有帮助，而类型wchar_t的长度和符号特征随实现而已。因此，C++11新增了类型char16_t和char32_t,其中前者是无符号的，长16位，而后者也是无符号的，但长32位。C++11使用前缀u表示 char16_t字符常量和字符串常量，如u&rsquo;C&rsquo;和u&quot;be good&quot;；并使用前缀U表示char32_t常量，如U&rsquo;R&rsquo;和U&quot;dirty rat&quot;。类型char16_t与/u00F6形式的通用字符名匹配，而类型char32_t与/U0000222B形式的通用字符名匹配。前缀u和U分别指出字符字面值的类型为char16_t和char32_t：</p>
+<p>与wchar_t一样，char16_t和char32_t也都有底层类型——一种内置的整型，但底层类型可能随系统而已。</p>
+<h3 id="319-bool类型">3.1.9 bool类型</h3>
+<p>ANSI/ISO C++标准添加了一种名叫bool的新类型（对C++来说是新的）。在计算中，布尔变量的值可以是true或false。过去，C++和C一样，也没有布尔类型。C++将非零值解释为true,将零解释为false。然而，现在可以使用bool类型来表示真和假了，它们分别用预定义的字面值true和false表示。也就是说，可以这样编写语句：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> is_ready <span style="color:#f92672">=</span> true;
+</span></span></code></pre></div><p>字面值true和false都可以通过提升转换为int类型，true被转换为1，而false被转换为0：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> true;			<span style="color:#75715e">// ans assigned 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> promise <span style="color:#f92672">=</span> false;	<span style="color:#75715e">// promise assigned 0
+</span></span></span></code></pre></div><p>另外，任何数字值或指针值都可以被隐式转换（即不用显式强制转换）为bool值。任何非零值都被转换为true，而零被转换为false：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> start <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>;	<span style="color:#75715e">// start assigned true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">bool</span> stop <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;		<span style="color:#75715e">// stop assigned false
+</span></span></span></code></pre></div><h2 id="32-const限定符">3.2 const限定符</h2>
+<p>现在回过头来介绍常量的符号名称。符号名称指出了常量表示的内容。另外，如果程序在多个地方使用同一个常量，则需要修改该常量时，只需修改一个符号定义即可。本章前面关于#define语句的说明指出过，C++有一种更好的处理符号常量的方法，这种方法就是使用const关键字来修改变量声明和初始化。例如，假设需要一个表示一年中月份数的符号常量，可以在程序中输入下面这行代码：</p>
+<pre tabindex="0"><code>const int Months = 12;	// Months is symbolic constant for 12
+</code></pre><p>这样，便可以在程序中使用Months，而不是12了。常量（如Months）被初始化后，其值就被固定了，编译器将不允许再修改该常量的值。如果这样做，将指出程序试图给一个只读变量赋值。关键字const叫做限定符，因为它限定了声明的含义。</p>
+<p>一种常见的做法是将名称的首字母大写，以提醒Months是个常量。这不是一种通用约定，但在阅读程序时有助于区分常量和变量。另一种约定是将整个名称大写，使用#define创建常量时通常使用这种约定。还有一种约定是以字母k打头，如kmonths。当然，还有其他约定。</p>
+<p>注意，应在声明中对const进行初始化。如果在声明常量时没有提供值，则该常量的值将是不确定的，且无法修改。</p>
+<p>如果以前使用过C语言，可能觉得前面讨论的#define语句己经足够完成这样的工作了。但const比#defien好。首先，它能够明确指定类型。其次，可以使用C++的作用域规则将定义限制在特定的函数或文件中 。第三，可以将const用于更复杂的类型，如数组和结构。</p>
+<p>ANSI C也使用const限定符，这是从C++借鉴来的。如果熟悉ANSI C版本，则应注意，C++版本稍微有些不同。区别之一是作用域规则；另一个主要的区别是，在C++（而不是C）中可以用const值来声明数组长度。</p>
+<h2 id="33-浮点数">3.3 浮点数</h2>
+<p>浮点类型是C++的第二组基本类型。浮点数能够表示带小数部分的数字，它们提供的值范围也更大。如果数字很大，无法表示为long类型，如人体的细菌数（估计超过100兆），则可以使用浮点类型来表示。</p>
+<p>使用浮点类型可以表示诸如2.5、3.14159和122442.32这样的数字，即带小数部分的数字。计算机将这样的值分成两部分存储。一部分表示值，另一部分用于对值进行放大或缩小。下面打个比方。对于数字 34.1245和34124.5，它们除了小数点的位置不同外，其他都是相同的。可以把第一个数表示为0.341245（基准值）和100（缩放因子），而将第二个数表示为0.341245（基准值相同）和10000（缩放因子更大）。缩放因子的作用是移动小数点的位置，术语浮点因此而得名。C++内部表示浮点数的方法与此相同，只不过它基于的是二进制数，因此缩放因子是2的幂，不是10的幂。幸运的是，程序员不必详细了解内部表示。重要的是，浮点数能够表示小数值、非常大和非常小的值，它们的内部表示方法与整数有天壤之别。</p>
+<h3 id="331-书写浮点数">3.3.1 书写浮点数</h3>
+<p>C++有两种书写浮点数的方式。第一种是使用常用的标准小数点表示法：</p>
+<pre tabindex="0"><code>12.34		// floating-point
+939001.32	// floating-point
+0.00023		// floating-point
+8.0		// still floating-point
+</code></pre><p>即使小数部分为0（如8.0），小数点也将确保该数字以浮点格式（而不是整数格式）表示。（C++标准允许实现表示不同的区域；例如，提供了使用欧洲方法的机制，即将逗号而不是句点用作小数点。然而，这些选项控制的是数字在输入和输出中的外观，而不是数字在代码中的外观。）</p>
+<p>第二种表示浮点值的方法叫做E表示法，其外观是像这样的：3.45E6，这指的是3.45与1000000相乘的结果；E6指的是10的6次方，即1后面6个0。因此，3.45E6表示的是3450000，6被称为指数，3.45被称为尾数。下面是一些例子：</p>
+<pre tabindex="0"><code>2.52e+8		// can use E or e,is optional
+8.33E-4		// exponent can be negative
+7E5		// same as 7.0E+05
+-18.32e13	// can have or sign in front
+1.69e12		// 2010 Brazilian public debt in reais
+5.98E24		// mass of earth in kilograms
+9.11e-31	// mass of an electron in kilograms
+</code></pre><p>E表示法最适合于非常大和非常小的数。</p>
+<p>E表示法确保数字以浮点格式存储，即使没有小数点。注意，既可以使用E也可以使用e，指数可以是正数也可以是负数也可以省略，尾数的+/-为可选项。然而，数字中不能有空格，因此7.2 E6是非法的。</p>
+<p>指数为负数意味着除以10的乘方，而不是乘以10的乘方。因此，8.33E-4表示8.33/10<sup>4</sup>，即0.000833。注意，-8.33E4指的是-83300。前面的符号用于数值，而指数的符号用于缩放。</p>
+<h3 id="332-浮点类型">3.3.2 浮点类型</h3>
+<p>和ANSI C一样，C++也有3种浮点类型：float、double和long double。这些类型是按它们可以表示的有效数位和允许的指数最小范围来描述的。有效位（significant figure）是数字中有意义的位。例如，加利福尼亚的Shasta山脉的高度为14179英尺，该数字使用了5个有效位，指出了最接近的英尺数。然而，将 Shasta山脉的高度写成约14000英尺时，有效位数为2位，因为结果经过四舍五入精确到了千位。在这种情况下，其余的3位只不过是占位符而已。有效位数不依赖于小数点的位置。例如，可以将高度写成14.162千英尺。这样仍有5个有效位，因为这个值精确到了第5位。</p>
+<p>事实上，C和C++对于有效位数的要求是，float至少32位，double至少48位，且不少于float，long double至少和double一样多。这三种类型的有效位数可以一样多。然而，通常，float为32位，double为64位， long double为80、96或128位。另外，这3种类型的指数范围至少是-37到37。可以从头文件cfloat或float.h中找到系统的限制。（cfloat是C语言的float.h文件的C++版本。）</p>
+<h3 id="333-浮点常量">3.3.3 浮点常量</h3>
+<p>在程序中书写浮点常量的时候，程序将把它存储为哪种浮点类型呢？在默认情况下，像8.24和2.4E8这样的浮点常量都属于double类型。如果希望常量为float类型，请使用f或F后缀。对于long double类型，可使用l或L后缀（由于1看起来像数字1，因此L是更好的选择）。</p>
+<h3 id="334-浮点数的优缺点">3.3.4 浮点数的优缺点</h3>
+<p>与整数相比，浮点数有两大优点。首先，它们可以表示整数之间的值。其次，由于有缩放因子，它们可以表示的范围大得多。另一方面，浮点运算的速度通常比整数运算慢，且精度将降低。</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>数据类型</th>
+      <th>符号位</th>
+      <th>指数位（阶码）</th>
+      <th>尾数位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>float</td>
+      <td>1</td>
+      <td>8</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>double</td>
+      <td>1</td>
+      <td>11</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>long double(GCC和Clang)</td>
+      <td>1</td>
+      <td>15</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <td>long double(Visual C++)</td>
+      <td>1</td>
+      <td>11</td>
+      <td>52</td>
+    </tr>
+    </tbody>
+</table>
+<p>C++对基本类型进行分类，形成了若干个族。类型signed char、shot、int和long统称为符号整型；它们的无符号版本统称为无符号整型；C++11新增了long long。bool、char、wchar_t、符号整数和无符号整型统称为整型；C++11新增了char16_t和char32_t。float、double和long double统称为浮点型。整数和浮点型统称算术（arithmetic）类型。</p>
+<h2 id="34-c算术运算符">3.4 C++算术运算符</h2>
+<p>C++使用运算符来运算。它提供了几种运算符来完成5种基本的算术计算：加法、减法、乘法、除法以及求模。每种运算符都使用两个值（操作数）来计算结果。运算符及其操作数构成了表达式。例如，在下面的语句中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> wheels <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+</span></span></code></pre></div><p>4和2都是操作数，+是加法运算符，4+2则是一个表达式，其值为6。</p>
+<p>下面是5种基本的C++算术运算符。</p>
+<ul>
+<li>+运算符对操作数执行加法运算。例如，4+20等于24。</li>
+<li>-运算符从第一个数中减去第二个数。例如，12-3等于9。</li>
+<li>*运算符将操作数相乘。例如，28*4等于112。</li>
+<li>/运算符用第一个数除以第二个数。例如，1000/5等于200。如果两个操作数都是整数，则结果为商的整数部分。例如，17/3等于5，小数部分被丢弃。</li>
+<li>%运算符求模。也就是说，它生成第一个数除以第二个数后的余数。例如，19%6为1，因为19是6的3倍余1。两个操作数必须都是整型，将该运算符用于浮点数将导致编译错误。如果其中一个是负数，则结果的符号满足如下规则：(a/b)*b+a%b=a。</li>
+</ul>
+<p>当然，变量和常量都可以用作操作数。</p>
+<h3 id="341-运算符优先级和结合性">3.4.1 运算符优先级和结合性</h3>
+<p>当多个运算符可用于同一个操作数时，C++使用优先级规则来决定首先使用哪个运算符。算术运算符遵循通常的代数优先级，先乘除，后加减。</p>
+<p>关于这一点可以看C++优先级的规则（后续补充）。</p>
+<h3 id="342-除法分支">3.4.2 除法分支</h3>
+<p>除法运算符（/）的行为取决于操作数的类型。如果两个操作数都是整数，则C++将执行整数除法。这意味着结果的小数部分将被丢弃，使得最后的结果是一个整数。如果其中有一个（或两个）操作数是浮点值，则小数部分将保留，结果为浮点数。</p>
+<p>实际上，对不同类型进行运算时，C++将把它们全部转换为同一类型。如果两个操作数都是double类型，则结果为double类型：如果两个操作数都是float类型，则结果为float类型。记住，浮点常量在默认情况下为double类型。</p>
+<p>有些基于ANSI C之前的编译器的C++实现不支持浮点常量的f后缀。如果面临这样的问题，可以用(float)1.e7代替1.e7f。</p>
+<p>除法运算符表示了3种不同的运算：int除法、float除法和double除法。C++根据上下文（这里是操作数的类型）来确定运算符的含义。使用相同的符号进行多种操作叫做运算符重载（operator overloading）。C++有一些内置的重载示例。C++还允许扩展运算符重载，以便能够用于用户定义的类，因此在这里看到的是一个重要的OOP属性。</p>
+<h3 id="343-求模运算符从">3.4.3 求模运算符从</h3>
+<p>求模运算符返回整数除法的余数。它与整数除法相结合，尤其适用于解决要求将一个量分成不同的整数单元的问题。</p>
+<h3 id="344-类型转换">3.4.4 类型转换</h3>
+<p>C++丰富的类型允许根据需求选择不同的类型，这也使计算机的操作更复杂。例如，将两个short值相加涉及到的硬件编译指令可能会与将两个long值相加不同。由于有11种整型和3种浮点类型，因此计算机需要处理大量不同的情况，尤其是对不同的类型进行运算时。为处理这种潜在的混乱，C++自动执行很多类型转换：</p>
+<ul>
+<li>将一种算术类型的值赋给另一种算术类型的变量时，C++将对值进行转换；</li>
+<li>表达式中包含不同的类型时，C++将对值进行转换；</li>
+<li>将参数传递给函数时，C++将对值进行转换。</li>
+</ul>
+<p>如果不知道进行这些自动转换时将发生的情况，将无法理解一些程序的结果，因此下面详细地介绍这些规则。</p>
+<h5 id="1-初始化和赋值进行的转换">1. 初始化和赋值进行的转换</h5>
+<p>C++允许将一种类型的值赋给另一种类型的变量。这样做时，值将被转换为接收变量的类型。例如，假设so_long的类型为long，thirty的类型为short，而程序中包含这样的语句：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>so_long <span style="color:#f92672">=</span> thirty;	<span style="color:#75715e">// assigning a short to a long
+</span></span></span></code></pre></div><p>则进行赋值时，程序将thirty的值（通常是16位）扩展为long值（通常为32位）。扩展后将得到一个新值，这个值被存储在so_long中，而thirty的内容不变。</p>
+<p>将一个值赋给取值范围更大的类型通常不会导致什么问题。例如，将short值赋给long变量并不会改变这个值，只是占用的字节更多而已。然而，将一个很大的long值赋给f1oat变量将有可能降低精度。下表列出了一些可能出现的转换问题：</p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>转换</th>
+      <th>潜在的问题</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>将较大的浮点类型转换为较小的浮点类型，如将double转换为float</td>
+      <td>精度（有效数位）降低，值可能超出目标类型的取值范围，在这种情况下，结果将是不确定的</td>
+    </tr>
+    <tr>
+      <td>将浮点类型转换为整型</td>
+      <td>小数部分丢失，原来的值可能超出目标类型的取值范围，在这种情况下，结果将是不确定的</td>
+    </tr>
+    <tr>
+      <td>将较大的整型转换为较小的整型，如将long转换为short</td>
+      <td>原来的值可能超出目标类型的取值范围，通常只复制右边的字节</td>
+    </tr>
+    </tbody>
+</table>
+<p>将浮点型转换为整型时，C++采取截取（丢弃小数部分）而不是四舍五入（查找最接近的整数）。将整数变量初始化为浮点值时，有些编译器将提出警告，指出这可能丢掉数据。</p>
+<h5 id="2-以方式初始化时进行的转换c11">2. 以{}方式初始化时进行的转换（C++11）</h5>
+<p>C++11将使用大括号的初始化称为列表初始化（list-initialization），因为这种初始化常用于给复杂的数据类型提供值列表。它对类型转换的要求更严格。具体地说，列表初始化不允许缩窄（narrowing），即变量的类型可能无法表示赋给它的值。例如，不允许将浮点型转换为整型。在不同的整型之间转换或将整型转换为浮点型可能被允许，条件是编译器知道目标变量能够正确地存储赋给它的值。例如，可将long变量初始化为int值，因为long总是至少与int一样长；相反方向的转换也可能被允许，只要int变量能够存储赋给它的long常量：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> code <span style="color:#ae81ff">66</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">66</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> c1 {<span style="color:#ae81ff">31325</span>};	<span style="color:#75715e">// narrowing,not allowed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> c2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">66</span>};		<span style="color:#75715e">// allowed because char can hold 66
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> c3 {code);		<span style="color:#75715e">// ditto
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> c4 <span style="color:#f92672">=</span> {x};		<span style="color:#75715e">// not allowed,x is not constant
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">31325</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> c5 <span style="color:#f92672">=</span> x;		<span style="color:#75715e">// allowed by this form of initialization
+</span></span></span></code></pre></div><h5 id="3-表达式中的转换">3. 表达式中的转换</h5>
+<p>当同一个表达式中包含两种不同的算术类型时，将出现什么情况呢？在这种情况下，C++将执行两种自动转换：首先，一些类型在出现时便会自动转换；其次，有些类型在与其他类型同时出现在表达式中时将被转换。</p>
+<p>先来看看自动转换。在计算表达式时，C++将bool、char、unsigned char、signed char和short值转换为 int。具体地说，true被转换为1，false被转换为0。这些转换被称为整型提升（integral promotion）。</p>
+<p>还有其他一些整型提升：如果short比int短，则unsigned short类型将被转换为int；如果两种类型的长度相同，则unsigned short类型将被转换为unsigned int。这种规则确保了在对unsigned short进行提升时不会损失数据。</p>
+<p>同样，wchar_t被提升成为下列类型中第一个宽度足够存储wchar_t取值范围的类型：int、unsigned int、 long或unsigned long。</p>
+<p>将不同类型进行算术运算时，也会进行一些转换，例如将int和float相加时。当运算涉及两种类型时，较小的类型将被转换为较大的类型。编译器通过校验表来确定在算术表达式中执行的转换。C++11对这个校验表稍做了修改，下面是C++11版本的校验表，编译器将依次查阅该列表。</p>
+<p>(1)如果有一个操作数的类型是long double,则将另一个操作数转换为long double。</p>
+<p>(2)否则，如果有一个操作数的类型是double,.则将另一个操作数转换为double。</p>
+<p>(3)否则，如果有一个操作数的类型是float,则将另一个操作数转换为float。</p>
+<p>(4)否则，说明操作数都是整型，因此执行整型提升。</p>
+<p>(5)在这种情况下，如果两个操作数都是有符号或无符号的，且其中一个操作数的级别比另一个低，则转换为级别高的类型。</p>
+<p>(6)如果一个操作数为有符号的，另一个操作数为无符号的，且无符号操作数的级别比有符号操作数高，则将有符号操作数转换为无符号操作数所属的类型。</p>
+<p>(7)否则，如果有符号类型可表示无符号类型的所有可能取值，则将无符号操作数转换为有符号操作数所属的类型。</p>
+<p>(8)否则，将两个操作数都转换为有符号类型的无符号版本。</p>
+<p>前面的列表谈到了整型级别的概念。简单地说，有符号整型按级别从高到低依次为long long、 long、int、short和signed char。无符号整型的排列顺序与有符号整型相同。类型char、signed char和unsigned char的级别相同。类型bool的级别最低。wchar_t、char16_t和char32_t的级别与其底层类型相同。</p>
+<h5 id="4-参数传递时的转换">4. 参数传递时的转换</h5>
+<p>传递参数时的类型转换通常由C++函数原型控制。然而，也可以取消原型对参数传递的控制，尽管这样做并不明智。在这种情况下，C++将对char和short类型（signed和unsigned）应用整型提升。另外，为保持与传统C语言中大量代码的兼容性，在将参数传递给取消函数原型对参数传递控制的函数时，C++将float参数提升为double。</p>
+<h5 id="5-强制类型转换">5. 强制类型转换</h5>
+<p>C++还允许通过强制类型转换机制显式地进行类型转换。（C++认识到，必须有类型规则，而有时又需要推翻这些规则。)强制类型转换的格式有两种。例如，为将存储在变量thorn中的int值转换为long类型，可以使用下述表达式中的一种：</p>
+<pre tabindex="0"><code>(long) thorn	// returns a type long conversion of thorn
+long (thorn)	// returns a type long conversion of thorn
+</code></pre><p>强制类型转换不会修改thorn变量本身，而是创建一个新的、指定类型的值，可以在表达式中使用这个值。</p>
+<p>第一种格式来自C语言，第二种格式是纯粹的C++。新格式的想法是，要让强制类型转换就像是函数调用。这样对内置类型的强制类型转换就像是为用户定义的类设计的类型转换。</p>
+<p>C++还引入了4个强制类型转换运算符，对它们的使用要求更为严格。在这四个运算符中，static_cast&lt;&gt;可用于将值从一种数值类型转换为另一种数值类型。例如，可以像下面这样将thorn转换为long类型：</p>
+<pre tabindex="0"><code>static cast&lt;long&gt; (thorn)	// returns a type long conversion of thorn
+</code></pre><p>long可以替换成想要强转的typename。运算符static cast&lt;&gt;比传统强制类型转换更严格。</p>
+<h3 id="345-c11中的auto声明">3.4.5 C++11中的auto声明</h3>
+<p>C++11新增了一个工具，让编译器能够根据初始值的类型推断变量的类型。为此，它重新定义了auto的含义。auto是一个C语言关键字，但很少使用。在初始化声明中，如果使用关键字auto,而不指定变量的类型，编译器将把变量的类型设置成与初始值相同：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;		<span style="color:#75715e">// n is int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>;		<span style="color:#75715e">// x is double
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.3e12L</span>;	<span style="color:#75715e">// y is long double
+</span></span></span></code></pre></div><p>然而，自动推断类型并非为这种简单情况而设计的；事实上，如果将其用于这种简单情形，甚至可能误入歧途。例如，假设要将x、y和z都指定为double类型，并编写了如下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;	<span style="color:#75715e">// ok,x is double because 0.0 is double
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">// ok,0 automatically converted to 0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> z <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;		<span style="color:#75715e">// oops,z is int because 0 is int
+</span></span></span></code></pre></div><p>显式地声明类型时，将变量初始化0（而不是0.0）不会导致任何问题，但采用自动类型推断时，这却会导致问题。</p>
+<p>处理复杂类型，如标准模块库（STL）中的类型时，自动类型推断的有时才能显现出来。例如，对于下述C++98代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> scores;
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;::</span>iterator pv <span style="color:#f92672">=</span> scores.begin(); 
+</span></span></code></pre></div><p>C++11允许将其重写为下面这样：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> scores;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> pv <span style="color:#f92672">=</span> scores.begin();
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+          <div class="post-comments">
+            <div id="disqus_thread"></div>
+<script>
+  window.addEventListener("load", () => {
+    (function() {
+      
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://dongi30.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
+          </div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

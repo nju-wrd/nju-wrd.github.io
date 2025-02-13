@@ -6,13 +6,27 @@
     <description>Recent content in Categories on 子春廿一</description>
     <generator>Hugo</generator>
     <language>cn</language>
-    <lastBuildDate>Sun, 19 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://localhost:1313/categories/c&#43;&#43;/</link>
+      <pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
     <item>
       <title>GAMES101</title>
       <link>http://localhost:1313/categories/games101/</link>
-      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/games101/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lua</title>
+      <link>http://localhost:1313/categories/lua/</link>
+      <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/lua/</guid>
       <description></description>
     </item>
     <item>
@@ -20,20 +34,6 @@
       <link>http://localhost:1313/categories/c%23/</link>
       <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/c%23/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>http://localhost:1313/categories/c&#43;&#43;/</link>
-      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/c&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lua</title>
-      <link>http://localhost:1313/categories/lua/</link>
-      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/lua/</guid>
       <description></description>
     </item>
     <item>
